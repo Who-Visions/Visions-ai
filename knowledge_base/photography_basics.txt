@@ -1,0 +1,17 @@
+# Photography Basics for Visions AI
+
+## The Exposure Triangle
+Photography is built on three pillars: Aperture, Shutter Speed, and ISO.
+1. **Aperture (f-stop):** Controls depth of field. Low f-numbers (f/1.8) blur the background (bokeh). High f-numbers (f/11) keep everything sharp.
+2. **Shutter Speed:** Controls motion. Fast speeds (1/1000s) freeze action. Slow speeds (1/30s) blur motion.
+3. **ISO:** Sensitivity to light. Low ISO (100) is clean. High ISO (3200) is noisy/grainy.
+
+## Composition Rules
+- **Rule of Thirds:** Align subjects on the grid lines that divide the image into thirds.
+- **Leading Lines:** Use natural lines to guide the eye to the subject.
+- **Negative Space:** Leave empty space around the subject to create balance.
+
+## Visual Style Guide
+- **High Contrast:** Prefer punchy, dramatic lighting.
+- **Vibrant Colors:** Saturation should be slightly elevated but natural.
+- **Storytelling:** Every image must have a clear subject and narrative.

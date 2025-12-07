@@ -1,0 +1,38 @@
+[
+    {
+        "name": "timestamp",
+        "type": "TIMESTAMP",
+        "mode": "REQUIRED",
+        "description": "When the memory was created"
+    },
+    {
+        "name": "session_id",
+        "type": "STRING",
+        "mode": "REQUIRED",
+        "description": "Session identifier for grouping related memories"
+    },
+    {
+        "name": "memory_type",
+        "type": "STRING",
+        "mode": "REQUIRED",
+        "description": "Type of memory: conversation, tool_use, knowledge, preference, image_generation"
+    },
+    {
+        "name": "content",
+        "type": "STRING",
+        "mode": "REQUIRED",
+        "description": "Main content of the memory entry (JSON string for structured data)"
+    },
+    {
+        "name": "metadata",
+        "type": "JSON",
+        "mode": "NULLABLE",
+        "description": "Additional metadata as JSON object"
+    },
+    {
+        "name": "embedding",
+        "type": "FLOAT64",
+        "mode": "REPEATED",
+        "description": "Text embedding vector for semantic search (768 dimensions for text-embedding-004)"
+    }
+]
