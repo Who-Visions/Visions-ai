@@ -57,49 +57,60 @@ GENAI_DAILY = CREDITS["genai"]["amount"] / CREDITS["genai"]["duration_days"]  # 
 DAILY_BUDGET = math.fsum([GLITCHED_DAILY, GENAI_DAILY])  # $9.41 (precise)
 TOTAL_CREDITS = math.fsum([CREDITS["glitched"]["amount"], CREDITS["genai"]["amount"]])  # $1600
 
-# Model tiers for smart routing
+# Model tiers for smart routing (Official pricing from ai.google.dev Dec 2025)
 MODEL_TIERS = {
     "triage": {
         "model": "gemini-2.5-flash-lite",
-        "cost_per_1k_input": 0.0001,
-        "cost_per_1k_output": 0.0004,
+        "cost_per_1m_input": 0.10,      # $0.10/1M tokens
+        "cost_per_1m_output": 0.40,     # $0.40/1M tokens
+        "batch_input": 0.05,            # 50% batch discount
+        "batch_output": 0.20,
         "use_for": ["greeting", "simple_question", "routing"]
     },
     "standard": {
         "model": "gemini-2.5-flash",
-        "cost_per_1k_input": 0.0003,
-        "cost_per_1k_output": 0.0025,
+        "cost_per_1m_input": 0.30,      # $0.30/1M tokens
+        "cost_per_1m_output": 2.50,     # $2.50/1M tokens
+        "batch_input": 0.15,
+        "batch_output": 1.25,
         "use_for": ["general", "code", "analysis"]
     },
     "advanced": {
         "model": "gemini-2.5-pro", 
-        "cost_per_1k_input": 0.00125,
-        "cost_per_1k_output": 0.01,
+        "cost_per_1m_input": 1.25,      # $1.25/1M tokens
+        "cost_per_1m_output": 10.00,    # $10.00/1M tokens
+        "batch_input": 0.625,
+        "batch_output": 5.00,
         "use_for": ["complex_reasoning", "research", "synthesis"]
     },
     "flagship": {
         "model": "gemini-3-pro-preview",
-        "cost_per_1k_input": 0.002,
-        "cost_per_1k_output": 0.012,
+        "cost_per_1m_input": 2.00,      # $2.00/1M tokens
+        "cost_per_1m_output": 12.00,    # $12.00/1M tokens
+        "batch_input": 1.00,
+        "batch_output": 6.00,
         "use_for": ["expert", "multimodal", "final_output"]
     }
 }
 
-# Image resolution tiers
+# Image resolution tiers (Official pricing from ai.google.dev Dec 2025)
 IMAGE_TIERS = {
     "draft": {
         "resolution": "1k",
-        "cost": 0.039,  # Flash Image
+        "cost": 0.039,          # G2.5 Flash Image
+        "batch_cost": 0.0195,   # 50% batch discount
         "model": "gemini-2.5-flash-image"
     },
     "standard": {
         "resolution": "2k",
-        "cost": 0.134,  # G3 Pro 2K
+        "cost": 0.134,          # G3 Pro 2K
+        "batch_cost": 0.067,
         "model": "gemini-3-pro-image-preview"
     },
     "premium": {
         "resolution": "4k",
-        "cost": 0.24,   # G3 Pro 4K
+        "cost": 0.24,           # G3 Pro 4K
+        "batch_cost": 0.12,
         "model": "gemini-3-pro-image-preview"
     }
 }
@@ -331,11 +342,22 @@ class SmartRouter:
         return MODEL_TIERS.get(tier, MODEL_TIERS["standard"])["model"]
     
     @classmethod
-    def estimate_cost(cls, tier: str, input_tokens: int, output_tokens: int) -> float:
-        """Estimate cost for a query using precise math."""
+    def estimate_cost(cls, tier: str, input_tokens: int, output_tokens: int, 
+                      use_batch: bool = False) -> float:
+        """Estimate cost for a query using precise math and official pricing."""
         tier_info = MODEL_TIERS.get(tier, MODEL_TIERS["standard"])
-        input_cost = (input_tokens / 1000) * tier_info["cost_per_1k_input"]
-        output_cost = (output_tokens / 1000) * tier_info["cost_per_1k_output"]
+        
+        if use_batch:
+            input_price = tier_info.get("batch_input", tier_info["cost_per_1m_input"] * 0.5)
+            output_price = tier_info.get("batch_output", tier_info["cost_per_1m_output"] * 0.5)
+        else:
+            input_price = tier_info["cost_per_1m_input"]
+            output_price = tier_info["cost_per_1m_output"]
+        
+        # Calculate cost (per 1M tokens → divide by 1,000,000)
+        input_cost = (input_tokens / 1_000_000) * input_price
+        output_cost = (output_tokens / 1_000_000) * output_price
+        
         # Use math.fsum for precise floating-point addition
         return math.fsum([input_cost, output_cost])
 

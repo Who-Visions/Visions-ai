@@ -240,6 +240,61 @@ python cost_tracker.py --log gemini-3-pro 1000 500
 5. **Stay under $9.41/day** to maximize credit value
 6. **Usage tracker alerts** help prevent hitting limits unexpectedly
 
+## 📊 Smart Expense Tracker
+
+Inspired by [FreeCodeCamp's expense tracker](https://www.freecodecamp.org/news/build-smart-expense-tracker-with-python-and-llms/), adapted for GCP cost tracking.
+
+### Features
+- ✅ **Auto-categorization** using LLM-style model/note matching
+- ✅ **Pie charts** for expense breakdown by category
+- ✅ **Bar charts** for category comparison
+- ✅ **Trend charts** for daily spending with budget line
+- ✅ **Smart insights** with spending recommendations
+- ✅ Uses `math.fsum` for precise calculations
+
+### Categories
+| Category | Emoji | Models |
+|----------|-------|--------|
+| Text Generation | 💬 | gemini-3-pro, gemini-2.5-* |
+| Image Generation | 🎨 | gemini-*-image, imagen-* |
+| Video Generation | 🎬 | veo-* |
+| Embedding | 🔗 | text-embedding |
+| Grounding | 🌐 | google-search, google-maps |
+| Other | 📦 | Unknown models |
+
+### CLI Commands
+
+```bash
+# Show expense summary with insights
+python expense_tracker.py --summary
+python expense_tracker.py --summary 30  # Last 30 days
+
+# Generate charts (pie, bar, trend)
+python expense_tracker.py --charts
+python expense_tracker.py --charts 14  # Last 14 days
+
+# Add expense manually
+python expense_tracker.py --add gemini-3-pro 0.05 "test query"
+
+# Export to CSV
+python expense_tracker.py --export expenses.csv
+```
+
+### In Visions CLI
+
+```
+/insights    # Show smart spending insights
+/charts      # Generate all expense charts
+/charts 14   # Generate charts for last 14 days
+```
+
+### Visualizations
+
+Charts are saved to `charts/` directory:
+- `expense_pie_YYYY-MM-DD.png` - Category breakdown
+- `expense_bar_YYYY-MM-DD.png` - Category comparison
+- `expense_trend_YYYY-MM-DD.png` - Daily spending trend
+
 ---
 
 ## 📁 Files
