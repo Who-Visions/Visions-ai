@@ -1,0 +1,13 @@
+google-cloud-aiplatform[reasoningengine,langchain]
+google-adk
+google-genai
+cloudpickle
+requests
+Pillow
+faiss-cpu
+langchain-community
+langchain-google-vertexai
+google-cloud-storage
+google-cloud-spanner
+google-cloud-kms
+rich

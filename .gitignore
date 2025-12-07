@@ -1,0 +1,38 @@
+# Virtual environments
+venv/
+.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# Environment files
+.env
+.env.local
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# Project specific
+vector_store/
+generated_images/
+outputs/
+memory/
+*.png
+*.jpg
+*.jpeg
+*.mp4
+*.webp
+last_generation_test.txt
+
+# Large temp repos
+temp_genai_repo/
+visions-ai-brain/
