@@ -106,15 +106,27 @@ class KnowledgeRetriever:
 class ImageGenerator:
     """Image generation using Gemini 3 Pro Image Preview - flagship model."""
     MODEL = "gemini-3-pro-image-preview"  # Flagship native image generation
+    MODEL_KEY = "gemini-3-pro-image"  # Key for usage tracking
     
     def __init__(self):
         self._client = None
+        self._usage_tracker = None
 
     def _get_client(self):
         if self._client is None:
             print(f"Loading Gemini 3 Pro Image Preview...")
             self._client = genai.Client(vertexai=True, project="endless-duality-480201-t3", location="global")
         return self._client
+    
+    def _get_tracker(self):
+        """Lazy load usage tracker."""
+        if self._usage_tracker is None:
+            try:
+                from usage_tracker import get_tracker
+                self._usage_tracker = get_tracker()
+            except ImportError:
+                self._usage_tracker = None
+        return self._usage_tracker
 
     def generate_image(self, prompt: str) -> str:
         """
@@ -122,6 +134,13 @@ class ImageGenerator:
         Returns a base64 encoded string of the generated image.
         Use this tool whenever the user asks to 'generate', 'create', or 'draw' an image.
         """
+        # Check if we can generate
+        tracker = self._get_tracker()
+        if tracker:
+            can_gen, msg = tracker.check_can_generate(self.MODEL_KEY)
+            if not can_gen:
+                return f"❌ {msg}"
+        
         client = self._get_client()
         print(f"🎨 Generating image with Gemini 3 Pro: {prompt}")
         try:
@@ -139,6 +158,15 @@ class ImageGenerator:
                     if hasattr(part, 'inline_data') and part.inline_data:
                         img_bytes = part.inline_data.data
                         b64_string = base64.b64encode(img_bytes).decode('utf-8')
+                        
+                        # Record usage and get alert
+                        if tracker:
+                            alert = tracker.record_generation(self.MODEL_KEY)
+                            status = tracker.get_status_line(self.MODEL_KEY)
+                            if alert:
+                                print(alert)
+                            print(f"📊 Daily quota: {status}")
+                        
                         return f"IMAGE_GENERATED:{b64_string}"
             
             return "Error: No image generated."
