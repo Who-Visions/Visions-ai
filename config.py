@@ -18,10 +18,8 @@ class Config:
     """Visions AI Configuration"""
     
     # Google AI Studio (Fallback/Development)
-    GOOGLE_AI_STUDIO_API_KEY = os.getenv(
-        "GOOGLE_AI_STUDIO_API_KEY",
-        "AIzaSyBRSb1uD8hWirVzSRSpQA_zPXffbCGR_7c"  # Fallback for development
-    )
+    # IMPORTANT: Set this via environment variable, never hardcode!
+    GOOGLE_AI_STUDIO_API_KEY = os.getenv("GOOGLE_AI_STUDIO_API_KEY", "")
     
     # Vertex AI (Production)
     VERTEX_PROJECT_ID = os.getenv("VERTEX_PROJECT_ID", "endless-duality-480201-t3")
