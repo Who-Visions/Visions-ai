@@ -206,6 +206,8 @@ def create_welcome_panel():
         (f"{EMOJI['chart']} /stats", "System performance stats"),
         (f"💰 /costs", "Cost intelligence dashboard"),
         (f"📊 /usage", "Today's generation usage"),
+        (f"📈 /charts", "Generate expense charts (pie/bar/trend)"),
+        (f"💡 /insights", "Smart spending insights"),
         (f"📁 /export", "Export usage report (csv/json)"),
         (f"{EMOJI['info']} /help", "Show all commands"),
         (f"{EMOJI['lock']} /exit", "Terminate session"),
@@ -351,6 +353,33 @@ def main():
                 console.print(f"[green]{EMOJI['check']} Exported to: {filepath}[/green]")
             else:
                 console.print(f"[yellow]{EMOJI['warning']} Cost tracking not available[/yellow]")
+            continue
+        
+        # Generate charts (expense visualizations)
+        if user_input.lower().startswith("/charts"):
+            try:
+                from expense_tracker import get_expense_tracker
+                tracker = get_expense_tracker()
+                parts = user_input.split()
+                days = int(parts[1]) if len(parts) > 1 else 7
+                console.print(f"[cyan]📊 Generating charts for last {days} days...[/cyan]")
+                charts = tracker.generate_all_charts(days)
+                for chart in charts:
+                    console.print(f"[green]{EMOJI['check']} Saved: {chart}[/green]")
+                if not charts:
+                    console.print("[yellow]No expense data to visualize[/yellow]")
+            except ImportError:
+                console.print(f"[yellow]{EMOJI['warning']} Expense tracker not available[/yellow]")
+            continue
+        
+        # Smart insights
+        if user_input.lower() in ["/insights", "insights"]:
+            try:
+                from expense_tracker import get_expense_tracker
+                tracker = get_expense_tracker()
+                tracker.print_summary(7)
+            except ImportError:
+                console.print(f"[yellow]{EMOJI['warning']} Expense tracker not available[/yellow]")
             continue
         
         # Generate image

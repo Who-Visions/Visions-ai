@@ -541,6 +541,13 @@ class CostIntelligence:
         self.predictor = UsagePredictor(self.logger)
         self.batch = BatchProcessor()
         self.console = Console() if Console else None
+        
+        # Import expense tracker for visualizations
+        try:
+            from expense_tracker import get_expense_tracker
+            self.expense_tracker = get_expense_tracker()
+        except ImportError:
+            self.expense_tracker = None
     
     def route_query(self, query: str) -> Tuple[str, str]:
         """Route query to optimal model.
@@ -573,7 +580,7 @@ class CostIntelligence:
     
     def log_query(self, query_type: str, model: str, tier: str, 
                   input_tokens: int, output_tokens: int, cached: bool = False, batch: bool = False):
-        """Log a query with cost."""
+        """Log a query with cost (also to expense tracker for visualizations)."""
         cost = SmartRouter.estimate_cost(tier, input_tokens, output_tokens)
         if batch:
             cost *= 0.5  # 50% batch discount
@@ -592,6 +599,12 @@ class CostIntelligence:
             batch=batch
         )
         self.logger.log(entry)
+        
+        # Also log to expense tracker for visualizations
+        if self.expense_tracker:
+            note = f"{query_type} query" + (" (cached)" if cached else "") + (" (batch)" if batch else "")
+            self.expense_tracker.add_expense(model, cost, note, input_tokens, output_tokens)
+        
         return cost
     
     def get_predictions(self, remaining_credits: float = 1584.58) -> Dict:
