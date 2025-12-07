@@ -104,54 +104,44 @@ class KnowledgeRetriever:
         return result
 
 class ImageGenerator:
-    """Image generation using Imagen 4."""
-    IMAGEN_MODEL = "imagen-4.0-generate-001"  # Latest Imagen 4
+    """Image generation using Gemini 3 Pro Image Preview - flagship model."""
+    MODEL = "gemini-3-pro-image-preview"  # Flagship native image generation
     
     def __init__(self):
-        self._model = None
+        self._client = None
 
-    def _load_model(self):
-        if self._model is None:
-            print(f"Loading Imagen 4 Model ({self.IMAGEN_MODEL})...")
-            self._model = ImageGenerationModel.from_pretrained(self.IMAGEN_MODEL)
+    def _get_client(self):
+        if self._client is None:
+            print(f"Loading Gemini 3 Pro Image Preview...")
+            self._client = genai.Client(vertexai=True, project="endless-duality-480201-t3", location="global")
+        return self._client
 
     def generate_image(self, prompt: str) -> str:
         """
-        Generates an image based on the text prompt using Imagen 4.
+        Generates an image based on the text prompt using Gemini 3 Pro Image Preview.
         Returns a base64 encoded string of the generated image.
         Use this tool whenever the user asks to 'generate', 'create', or 'draw' an image.
         """
-        self._load_model()
-        print(f"🎨 Generating image for: {prompt}")
+        client = self._get_client()
+        print(f"🎨 Generating image with Gemini 3 Pro: {prompt}")
         try:
-            response = self._model.generate_images(
-                prompt=prompt,
-                number_of_images=1,
-                aspect_ratio="1:1"
+            response = client.models.generate_content(
+                model=self.MODEL,
+                contents=prompt,
+                config=types.GenerateContentConfig(
+                    response_modalities=["IMAGE", "TEXT"],
+                )
             )
-            if response and response.images:
-                # Convert the first image to base64 string to return to the agent
-                # Response.images[0] is a GeneratedImage object which has ._image_bytes or similar?
-                # Actually, Vertex SDK GeneratedImage has .save() and .show().
-                # We need bytes. It has `_image_bytes` (protected) or we can use a temp buffer.
-                # Let's assume we can access bytes.
-                # Checking SDK: GeneratedImage has no public bytes property easily. 
-                # Workaround: Save to memory.
-                import io
-                buffer = io.BytesIO()
-                response.images[0].save(buffer, include_generation_parameters=False)
-                img_bytes = buffer.getvalue()
-                b64_string = base64.b64encode(img_bytes).decode('utf-8')
-                
-                # We return a special marker that the Agent will interpret? 
-                # No, the tool returns a string. We return the base64.
-                # The Agent will then need to put this into the JSON response.
-                # Wait, if the tool returns a huge base64 string, the LLM context might explode.
-                # BETTER: Return a "reference" or handle it.
-                # BUT for this "Final Fix", I will return "IMAGE_GENERATED:<base64>"
-                return f"IMAGE_GENERATED:{b64_string}"
-            else:
-                return "Error: No image generated."
+            
+            # Gemini 3 Pro Image Preview returns images in response.candidates[0].content.parts
+            if response.candidates:
+                for part in response.candidates[0].content.parts:
+                    if hasattr(part, 'inline_data') and part.inline_data:
+                        img_bytes = part.inline_data.data
+                        b64_string = base64.b64encode(img_bytes).decode('utf-8')
+                        return f"IMAGE_GENERATED:{b64_string}"
+            
+            return "Error: No image generated."
         except Exception as e:
             print(f"❌ Image Generation Error: {e}")
             return f"Error generating image: {e}"

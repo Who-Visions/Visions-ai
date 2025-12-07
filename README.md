@@ -23,7 +23,7 @@
 - 🎥 **Cinematic Direction** - Framing, color grading, visual storytelling
 - 📷 **Camera Equipment** - Recommendations for Canon, Sony, Leica, Phase One
 - 🖼️ **Image Analysis** - Critique your work with actionable feedback
-- 🎨 **Image Generation** - Create visuals with Imagen 4
+- 🎨 **Image Generation** - Create visuals with Gemini 3 Pro Image Preview
 
 ---
 
@@ -66,7 +66,7 @@ Visions uses an **intelligent multi-model architecture** that routes queries to 
 | `gemini-2.5-flash-lite` | 📍 us-central1 | Query triage & quick instinct |
 | `gemini-2.5-flash` | 📍 us-central1 | Grounded search (real-time data) |
 | `gemini-2.5-pro` | 📍 us-central1 | Deep thinking & analysis |
-| `imagen-4.0-generate-001` | 📍 us-central1 | Image generation |
+| `gemini-3-pro-image-preview` | 🌍 Global | Native image generation |
 
 ---
 
@@ -234,11 +234,11 @@ Visions is deployed as a **Reasoning Engine** on Google Cloud, enabling:
 - ✅ System instructions
 - ✅ Visual understanding
 
-### Imagen 4
-- ✅ Text-to-image generation
-- ✅ Multiple aspect ratios (1:1, 16:9, 9:16, 4:3, 3:4)
-- ✅ High resolution (up to 2816x1536)
-- ✅ Multi-language prompts
+### Gemini 3 Pro Image Preview
+- ✅ Native image generation (text-to-image)
+- ✅ Image editing and enhancement
+- ✅ Multi-modal understanding
+- ✅ Integrated with conversation context
 
 ---
 
