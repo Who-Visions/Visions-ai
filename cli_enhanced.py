@@ -27,7 +27,22 @@ from rich.table import Table
 sys.path.append(os.getcwd())
 from visions_assistant.agent import get_chat_response
 
+# Cost Intelligence System
+try:
+    from cost_intelligence import get_intelligence, route_query, log_query
+    from usage_tracker import get_tracker
+    COST_TRACKING_ENABLED = True
+except ImportError:
+    COST_TRACKING_ENABLED = False
+    get_intelligence = None
+    route_query = None
+    get_tracker = None
+
 console = Console()
+
+# Initialize cost intelligence
+cost_intel = get_intelligence() if COST_TRACKING_ENABLED else None
+usage_tracker = get_tracker() if COST_TRACKING_ENABLED else None
 
 # Theme
 BORDER_STYLE = "bright_cyan"

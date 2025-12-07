@@ -42,8 +42,23 @@ from animations import (
     cascade_animation
 )
 
+# Cost Intelligence System
+try:
+    from cost_intelligence import get_intelligence, route_query, check_cache, log_query
+    from usage_tracker import get_tracker
+    COST_TRACKING_ENABLED = True
+except ImportError:
+    COST_TRACKING_ENABLED = False
+    get_intelligence = None
+    route_query = None
+    get_tracker = None
+
 console = Console()
 memory = MemoryManager()
+
+# Initialize cost intelligence
+cost_intel = get_intelligence() if COST_TRACKING_ENABLED else None
+usage_tracker = get_tracker() if COST_TRACKING_ENABLED else None
 
 # Visual Theme - Emoji-Enhanced
 EMOJI = {
@@ -189,6 +204,9 @@ def create_welcome_panel():
         (f"{EMOJI['eye']} /image", "Analyze uploaded image"),
         (f"{EMOJI['brain']} /memory", "View memory statistics"),
         (f"{EMOJI['chart']} /stats", "System performance stats"),
+        (f"💰 /costs", "Cost intelligence dashboard"),
+        (f"📊 /usage", "Today's generation usage"),
+        (f"📁 /export", "Export usage report (csv/json)"),
         (f"{EMOJI['info']} /help", "Show all commands"),
         (f"{EMOJI['lock']} /exit", "Terminate session"),
     ]
@@ -308,6 +326,33 @@ def main():
             console.print(create_welcome_panel())
             continue
         
+        # Cost tracking commands
+        if user_input.lower() in ["/costs", "/cost", "costs"]:
+            if cost_intel:
+                cost_intel.print_dashboard()
+            else:
+                console.print(f"[yellow]{EMOJI['warning']} Cost tracking not available[/yellow]")
+            continue
+        
+        # Usage tracking
+        if user_input.lower() in ["/usage", "usage"]:
+            if usage_tracker:
+                usage_tracker.print_daily_summary()
+            else:
+                console.print(f"[yellow]{EMOJI['warning']} Usage tracking not available[/yellow]")
+            continue
+        
+        # Export reports
+        if user_input.lower().startswith("/export"):
+            if cost_intel:
+                parts = user_input.split()
+                format = parts[1] if len(parts) > 1 else "json"
+                filepath = cost_intel.export_report(format)
+                console.print(f"[green]{EMOJI['check']} Exported to: {filepath}[/green]")
+            else:
+                console.print(f"[yellow]{EMOJI['warning']} Cost tracking not available[/yellow]")
+            continue
+        
         # Generate image
         if user_input.startswith("/generate"):
             prompt_text = user_input[10:].strip()
@@ -386,8 +431,22 @@ def main():
         context = memory.get_context_for_model(limit=5)
         full_prompt = f"Context from previous turn:\n{context}\n\nCurrent User Question: {prompt_text}" if context else prompt_text
 
+        # Smart routing - determine best tier for this query
+        query_tier = "standard"
+        query_model = "gemini-3-pro"
+        if COST_TRACKING_ENABLED and route_query:
+            query_model, query_tier = route_query(prompt_text)
+
+        # Check cache first
+        cached_response = None
+        if COST_TRACKING_ENABLED and check_cache:
+            cached_response = check_cache(full_prompt)
+            if cached_response:
+                console.print(f"[green]{EMOJI['lightning']} Cache hit! (90% cost saved)[/green]")
+
         # Show cascade animation while loading
         console.print(f"\n[bold cyan]{EMOJI['brain']} Activating Model Cascade...[/bold cyan]")
+        console.print(f"[dim]   Smart Route: {query_tier} → {query_model}[/dim]")
         
         # Animated cascade indicator
         cascade_steps = [
@@ -404,7 +463,21 @@ def main():
 
         # Get response with animated status
         with console.status(f"[bold magenta]{EMOJI['brain']} Gemini 3 Pro synthesizing...[/bold magenta]", spinner="dots12"):
-            response = get_chat_response(full_prompt, image_path)
+            if cached_response:
+                response = cached_response
+            else:
+                response = get_chat_response(full_prompt, image_path)
+        
+        # Log the query cost
+        if COST_TRACKING_ENABLED and log_query and cost_intel:
+            # Estimate tokens (rough: 4 chars = 1 token)
+            input_tokens = len(full_prompt) // 4
+            output_tokens = len(response) // 4
+            cost = log_query("text", query_model, query_tier, input_tokens, output_tokens, cached=bool(cached_response))
+            
+            # Cache the response for future use
+            if not cached_response and cost_intel:
+                cost_intel.cache_response(full_prompt, response, input_tokens)
         
         # Save to memory with animation
         memory.remember_conversation(prompt_text, response)
@@ -421,6 +494,11 @@ def main():
             expand=True,
             box=box.DOUBLE
         ))
+        
+        # Show cost after response
+        if COST_TRACKING_ENABLED and cost_intel:
+            breakdown = cost_intel.get_cost_breakdown(1)  # Today only
+            console.print(f"[dim]{EMOJI['chart']} Session: ${breakdown['total_cost']:.4f} | Tier: {query_tier}[/dim]")
 
 if __name__ == "__main__":
     try:

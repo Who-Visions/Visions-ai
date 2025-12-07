@@ -1,0 +1,4 @@
+Credit name,Status,Currency,Percent remaining,Remaining value,Original value,Type,Credit ID,Scope,Start date,End date,Credit application type
+Free Trial,Expired,$,95.40636633333335,286.22,300.00,One-time,FreeTrial:Credit-016067-A4817F-3FE7CE,Certain usage; see the terms for free trial.,2025-12-03,2025-12-06,Net pricing,
+Free Trial,Available,$,99.68815078255126,298.36,299.29,One-time,FreeTrialUpgrade:CreditId-FreeTrial:Credit-016067-A4817F-3FE7CE,Certain usage; see the terms for free trial.,2025-12-06,2026-03-05,Net pricing,
+Trial credit for GenAI App Builder,Available,$,100,1000.00,1000.00,One-time,7f4c29e4e78f3abe79e33d7c8ab7ad51dcf0c823774093255e165e0547942d9f,Certain usage; see the terms of the promotion for details.,2025-12-04,2026-12-04,Net pricing,
