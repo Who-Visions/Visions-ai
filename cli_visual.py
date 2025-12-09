@@ -218,6 +218,7 @@ def create_welcome_panel():
         (f"{EMOJI['rhea']} /rhea", "Network: Rhea (Intel)"),
         (f"{EMOJI['dav1d']} /dav1d", "Network: Dav1d (Video)"),
         (f"{EMOJI['yuki']} /yuki", "Network: Yuki (Code)"),
+        (f"{EMOJI['crystal']} /council", "Convene Agent Council"),
         (f"{EMOJI['lock']} /exit", "Terminate session"),
     ]
     
@@ -359,6 +360,66 @@ def main():
                 border_style="cyan",
                 expand=True
             ))
+            continue
+
+        # Handle council command
+        elif user_input.lower().startswith("/council "):
+            query = user_input[9:].strip()
+            if not query:
+                console.print(f"[red]{EMOJI['warning']} Usage: /council <your question>[/red]")
+                continue
+            
+            console.print(Panel(
+                f"{EMOJI['network']} [bold]Convening Neural Agent Council...[/bold]\n\n"
+                f"Query: {query}\n\n"
+                f"Council Members:\n"
+                f"  {EMOJI['camera']} Dr. Visions (Photography)\n"
+                f"  {EMOJI['rhea']} Rhea (Intelligence)\n"
+                f"  {EMOJI['dav1d']} Dav1d (Creative)\n"
+                f"  {EMOJI['yuki']} Yuki (Strategy)",
+                title="Council Assembly",
+                border_style="cyan"
+            ))
+            
+            # Run council
+            try:
+                from tools.neural_council import AgentCouncil
+                import asyncio
+                
+                council = AgentCouncil()
+                
+                # Run async in sync context
+                try:
+                    loop = asyncio.get_event_loop()
+                except RuntimeError:
+                    loop = asyncio.new_event_loop()
+                    asyncio.set_event_loop(loop)
+                
+                with console.status(f"[bold cyan]{EMOJI['brain']} Council deliberating...[/bold cyan]", spinner="dots12"):
+                    result = loop.run_until_complete(council.convene(query, show_progress=False))
+                
+                # Display individual opinions
+                console.print(f"\n[bold cyan]Individual Perspectives:[/bold cyan]")
+                for r in result['stage1']:
+                    if r.get('response'):
+                        console.print(Panel(
+                            r['response'][:500] + "..." if len(r.get('response', '')) > 500 else r.get('response', ''),
+                            title=f"{r.get('emoji', '🤖')} {r['name']}",
+                            border_style="dim"
+                        ))
+                
+                # Display final synthesis
+                console.print(Panel(
+                    result['stage3'].get('response', 'No response'),
+                    title=f"[bold green]{EMOJI['star']} Council's Final Answer[/bold green]",
+                    border_style="green"
+                ))
+                
+                create_memory_animation()
+                
+            except Exception as e:
+                console.print(f"[red]{EMOJI['error']} Council error: {e}[/red]")
+            
             continue
 
         # Help command

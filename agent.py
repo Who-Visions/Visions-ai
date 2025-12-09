@@ -24,6 +24,7 @@ from tools.vision_tools import VisionTools
 from tools.youtube_tools import YouTubeTools
 from tools.cinema_tools import CinemaTools
 from tools.agent_connect import AgentConnector
+from tools.neural_council import convene_council
 
 # Define the Retriever Tool
 class KnowledgeRetriever:
@@ -690,6 +691,7 @@ JSON only:"""
             "   - **Rhea**: Intelligence Analyst. Ask her for deep research, data analysis, and fact-checking. "
             "   - **Dav1d**: Creative Director. Ask him for video concepts, script ideas, and editing workflows. "
             "   - **Yuki**: Strategic Planner. Ask him for project organization, operational logic, and code architecture. "
+            "8. **Neural Council** ('convene_council'): For complex questions, convene ALL agents to deliberate and synthesize a comprehensive answer. "
             
             "**When Students Upload Images**: "
             "Use 'visual_question_answer' to analyze their work. Provide constructive critique covering: composition, lighting, technical execution, and improvements. "
@@ -765,7 +767,9 @@ JSON only:"""
             self.vision_tools.analyze_ui_design,
             self.vision_tools.generate_web_design_prompt,
             # Agent Communication
-            self.agent_connector.talk_to_agent
+            self.agent_connector.talk_to_agent,
+            # Neural Council (Multi-Agent Deliberation)
+            convene_council
         ]
         
         # Note: If you need Google Search, you'll need to implement it as a custom function
