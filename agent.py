@@ -23,6 +23,7 @@ from google.cloud import storage
 from tools.vision_tools import VisionTools
 from tools.youtube_tools import YouTubeTools
 from tools.cinema_tools import CinemaTools
+from tools.agent_connect import AgentConnector
 
 # Define the Retriever Tool
 class KnowledgeRetriever:
@@ -367,6 +368,9 @@ class VisionsAgent:
         # Cinema Tools (Character + Video Generation)
         self.cinema_tools = CinemaTools()
         
+        # Agent Connector (Inter-Agent Communication)
+        self.agent_connector = AgentConnector()
+        
         # Advanced vision tools powered by Gemini 3 Pro Image Preview
         self.vision_tools = VisionTools(project_id=project, location="global")
         
@@ -682,6 +686,9 @@ JSON only:"""
             "4. **Camera Advisor**: Recommend cameras, compare equipment "
             "5. **Lighting Advisor**: Design lighting setups, analyze conditions "
             "6. **Composition Advisor**: Provide composition guidelines "
+            "7. **Agent Network** ('talk_to_agent'): Communicate with specialized agents: "
+            "   - **Rhea**: Intelligence Analyst. Ask her for deep research, data analysis, and fact-checking. "
+            "   - **Dav1d**: Creative Director. Ask him for video concepts, script ideas, and editing workflows. "
             
             "**When Students Upload Images**: "
             "Use 'visual_question_answer' to analyze their work. Provide constructive critique covering: composition, lighting, technical execution, and improvements. "
@@ -755,7 +762,9 @@ JSON only:"""
             self.vision_tools.generate_json_prompt,
             self.vision_tools.enhance_simple_prompt,
             self.vision_tools.analyze_ui_design,
-            self.vision_tools.generate_web_design_prompt
+            self.vision_tools.generate_web_design_prompt,
+            # Agent Communication
+            self.agent_connector.talk_to_agent
         ]
         
         # Note: If you need Google Search, you'll need to implement it as a custom function
