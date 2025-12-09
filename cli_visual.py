@@ -91,6 +91,10 @@ EMOJI = {
     "crystal": "🔮",
     "books": "📚",
     "cascade": "⚡",
+    "network": "🔗",
+    "rhea": "🕵️‍♀️",
+    "dav1d": "🎬",
+    "yuki": "❄️",
 }
 
 # Aspect Ratio Visuals
@@ -210,6 +214,10 @@ def create_welcome_panel():
         (f"💡 /insights", "Smart spending insights"),
         (f"📁 /export", "Export usage report (csv/json)"),
         (f"{EMOJI['info']} /help", "Show all commands"),
+        (f"{EMOJI['network']} /network", "Agent network status"),
+        (f"{EMOJI['rhea']} /rhea", "Network: Rhea (Intel)"),
+        (f"{EMOJI['dav1d']} /dav1d", "Network: Dav1d (Video)"),
+        (f"{EMOJI['yuki']} /yuki", "Network: Yuki (Code)"),
         (f"{EMOJI['lock']} /exit", "Terminate session"),
     ]
     
@@ -248,6 +256,7 @@ def create_stats_panel():
     stats_table.add_row(f"{EMOJI['memory']} Long-Term", "SQLite (Persistent)")
     stats_table.add_row(f"{EMOJI['fire']} Model", "Gemini 3 Pro Image")
     stats_table.add_row(f"{EMOJI['lightning']} Status", "Dual-Mode Active")
+    stats_table.add_row(f"{EMOJI['network']} Network", "3 Agents Connected")
     
     return Panel(
         stats_table,
@@ -323,6 +332,35 @@ def main():
             console.print(memory_panel)
             continue
         
+        # Handle Agent Network Commands
+        if user_input.lower().startswith("/rhea "):
+            prompt_text = f"Ask Rhea (Intelligence Analyst): {user_input[6:]}"
+            console.print(Panel(f"{EMOJI['rhea']} Uplinking to Rhea (Intelligence)...", style="dim cyan"))
+            image_path = None
+            
+        elif user_input.lower().startswith("/dav1d "):
+            prompt_text = f"Ask Dav1d (Creative Director): {user_input[7:]}"
+            console.print(Panel(f"{EMOJI['dav1d']} Uplinking to Dav1d (Creative)...", style="dim cyan"))
+            image_path = None
+            
+        elif user_input.lower().startswith("/yuki "):
+            prompt_text = f"Ask Yuki (Strategic Planner): {user_input[6:]}"
+            console.print(Panel(f"{EMOJI['yuki']} Uplinking to Yuki (Strategy)...", style="dim cyan"))
+            image_path = None
+
+        # Handle network status
+        elif user_input.lower() == "/network":
+            console.print(Panel(
+                f"{EMOJI['network']} [bold]Neural Agent Network (NAN)[/bold]\n\n"
+                f"{EMOJI['rhea']} [bold cyan]Rhea[/bold cyan]: Intelligence & Data [green]ONLINE[/green]\n"
+                f"{EMOJI['dav1d']} [bold purple]Dav1d[/bold purple]: Video & Direction [green]ONLINE[/green]\n"
+                f"{EMOJI['yuki']} [bold white]Yuki[/bold white]: Strategy & Code [green]ONLINE[/green]\n",
+                title="Active Uplinks",
+                border_style="cyan",
+                expand=True
+            ))
+            continue
+
         # Help command
         if user_input.lower() in ["help", "/help"]:
             console.print(create_welcome_panel())
