@@ -159,7 +159,9 @@ def show_aspect_ratio_selector():
     return ASPECT_RATIOS[choice]
 
 def show_cascade_animation():
-    """Show animated cascade indicator"""
+    """Show animated cascade indicator using Live"""
+    from rich.group import Group
+    
     cascade_steps = [
         ("🎯 Triage", "routing query...", 0.15),
         ("⚡ Flash-Lite", "quick assessment...", 0.1),
@@ -168,10 +170,22 @@ def show_cascade_animation():
         ("📚 RAG", "knowledge lookup...", 0.1),
     ]
     
-    console.print("\n[bold cyan]🧠 Model Cascade Active[/bold cyan]")
-    for step, desc, delay in cascade_steps:
-        console.print(f"   {step} [dim]{desc}[/dim]")
-        time.sleep(delay)
+    step_visuals = []
+    title = Text("\n🧠 Model Cascade Active", style="bold cyan")
+    
+    with Live(console=console, refresh_per_second=10, transient=True) as live:
+        for step, desc, delay in cascade_steps:
+            step_visuals.append(Text(f"   {step} {desc}", style="dim"))
+            
+            panel_content = Group(title, *step_visuals)
+            live.update(Panel(panel_content, border_style="cyan", title="Routing", expand=False))
+            
+            time.sleep(delay)
+            
+            # Highlight active
+            step_visuals[-1].style = "bold white"
+            live.update(Panel(Group(title, *step_visuals), border_style="cyan", title="Routing", expand=False))
+
 
 def print_agent_response(text, image_path=None):
     """Print agent response with cascade animation and memory save"""

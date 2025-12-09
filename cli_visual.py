@@ -486,9 +486,22 @@ def main():
             (f"   {EMOJI['books']} RAG", "knowledge lookup...", 0.15),
         ]
         
-        for step, desc, delay in cascade_steps:
-            console.print(f"{step} [dim]{desc}[/dim]")
-            time.sleep(delay)
+        step_visuals = []
+        title_text = Text(f"\n{EMOJI['brain']} Model Cascade Active", style="bold cyan")
+        
+        with Live(console=console, refresh_per_second=12, transient=True) as live:
+            for step, desc, delay in cascade_steps:
+                step_visuals.append(Text(f"{step} {desc}", style="dim"))
+                
+                # Update visuals
+                live.update(Panel(Group(title_text, *step_visuals), border_style="cyan", title="Routing Intelligence"))
+                
+                time.sleep(delay)
+                
+                # Pulse effect
+                step_visuals[-1].style = "bold white"
+                live.update(Panel(Group(title_text, *step_visuals), border_style="cyan", title="Routing Intelligence"))
+
 
         # Get response with animated status
         with console.status(f"[bold magenta]{EMOJI['brain']} Gemini 3 Pro synthesizing...[/bold magenta]", spinner="dots12"):

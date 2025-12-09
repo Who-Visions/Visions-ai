@@ -59,6 +59,23 @@ def query():
     """
     return chat()
 
+@app.route('/v1/chat', methods=['POST'])
+def v1_chat():
+    """
+    Alias for /chat to support standardized agent communication.
+    """
+    return chat()
+
+@app.route('/v1/chat/completions', methods=['POST'])
+def v1_chat_completions():
+    """
+    OpenAI-compatible chat completions endpoint.
+    Maps standard chat completion requests to Visions agent.
+    """
+    # Just redirect to standard chat for now, but handle potential structure diffs if needed
+    # Simple pass-through for experimental agent-to-agent chat
+    return chat()
+
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 8080))
     app.run(host='0.0.0.0', port=port, debug=False)
