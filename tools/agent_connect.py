@@ -13,7 +13,8 @@ class AgentConnector:
     
     AGENTS = {
         "rhea": "https://rhea-noir-145241643240.us-central1.run.app",
-        "dav1d": "https://dav1d-322812104986.us-central1.run.app"
+        "dav1d": "https://dav1d-322812104986.us-central1.run.app",
+        "yuki": "https://yuki-ai-914641083224.us-central1.run.app"
     }
     
     def __init__(self):

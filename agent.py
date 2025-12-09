@@ -689,6 +689,7 @@ JSON only:"""
             "7. **Agent Network** ('talk_to_agent'): Communicate with specialized agents: "
             "   - **Rhea**: Intelligence Analyst. Ask her for deep research, data analysis, and fact-checking. "
             "   - **Dav1d**: Creative Director. Ask him for video concepts, script ideas, and editing workflows. "
+            "   - **Yuki**: Strategic Planner. Ask him for project organization, operational logic, and code architecture. "
             
             "**When Students Upload Images**: "
             "Use 'visual_question_answer' to analyze their work. Provide constructive critique covering: composition, lighting, technical execution, and improvements. "
