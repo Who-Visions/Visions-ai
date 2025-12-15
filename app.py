@@ -1,30 +1,77 @@
 """
 Visions AI - Cloud Run HTTP Server
-Flask app that exposes the agent as an HTTP API with A2A protocol support.
+FastAPI app that exposes the agent as an HTTP API with A2A protocol support.
 """
 import os
-from flask import Flask, request, jsonify, send_from_directory
-from flask_cors import CORS
+import time
+from typing import Optional, List, Dict, Any
+from fastapi import FastAPI, HTTPException, Request
+from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
 
 # Import the agent
 from visions_assistant.agent import get_chat_response
 
-app = Flask(__name__)
-CORS(app)
+app = FastAPI(
+    title="Visions AI",
+    description="World-class photography mentor and creative director",
+    version="3.0.0"
+)
 
-@app.route('/', methods=['GET'])
-def health():
+# Add CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Configure as needed for production
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
+# Pydantic models for request/response validation
+class ChatRequest(BaseModel):
+    message: str
+    image_path: Optional[str] = None
+
+
+class ChatResponse(BaseModel):
+    response: str
+    status: str = "success"
+
+
+class Message(BaseModel):
+    role: str
+    content: str
+
+
+class OpenAIChatRequest(BaseModel):
+    messages: List[Message]
+    model: Optional[str] = "visions-ai"
+
+
+class OpenAIChatResponse(BaseModel):
+    id: str
+    object: str
+    created: int
+    model: str
+    choices: List[Dict[str, Any]]
+    usage: Dict[str, int]
+
+
+@app.get("/")
+async def health():
     """Health check endpoint."""
-    return jsonify({
+    return {
         "status": "healthy",
         "service": "visions-ai",
         "version": "3.0.0"
-    })
+    }
 
-@app.route('/.well-known/agent.json', methods=['GET'])
-def agent_json():
+
+@app.get("/.well-known/agent.json")
+async def agent_json():
     """A2A Protocol - Agent Identity Card (Who Visions Fleet Standard)"""
-    return jsonify({
+    return {
         "name": "Dr. Visions",
         "version": "3.0.0",
         "description": "World-class photography mentor and creative director with 80 years of visual arts experience. Expert in composition theory (Rudolf Arnheim), advanced camera gear, cinematic lighting, and visual storytelling. Powered by Google Gemini 3 Pro multi-model intelligence cascade.",
@@ -59,10 +106,11 @@ def agent_json():
                 "Cinematic lighting setups"
             ]
         }
-    })
+    }
 
-@app.route('/chat', methods=['POST'])
-def chat():
+
+@app.post("/chat", response_model=ChatResponse)
+async def chat(request: ChatRequest):
     """
     Chat endpoint for Visions AI.
     
@@ -73,85 +121,80 @@ def chat():
     }
     """
     try:
-        data = request.get_json() or {}
-        message = data.get('message', '')
-        image_path = data.get('image_path', None)
+        if not request.message:
+            raise HTTPException(status_code=400, detail="Message is required")
         
-        if not message:
-            return jsonify({"error": "Message is required"}), 400
+        response = get_chat_response(request.message, request.image_path)
         
-        response = get_chat_response(message, image_path)
-        
-        return jsonify({
-            "response": response,
-            "status": "success"
-        })
+        return ChatResponse(
+            response=response,
+            status="success"
+        )
     except Exception as e:
-        return jsonify({
-            "error": str(e),
-            "status": "error"
-        }), 500
+        raise HTTPException(status_code=500, detail=str(e))
 
-@app.route('/query', methods=['POST'])
-def query():
+
+@app.post("/query", response_model=ChatResponse)
+async def query(request: ChatRequest):
     """
     Query endpoint (alias for chat).
     """
-    return chat()
+    return await chat(request)
 
-@app.route('/v1/chat', methods=['POST'])
-def v1_chat():
+
+@app.post("/v1/chat")
+async def v1_chat(request: Request):
     """
     Alias for /chat to support standardized agent communication.
     Handles both OpenAI format and simple message format.
     """
     try:
-        data = request.get_json() or {}
+        data = await request.json()
         
         # Handle OpenAI messages format
         if 'messages' in data:
             messages = data.get('messages', [])
-            if messages:
-                # Extract the last user message
-                user_messages = [m for m in messages if m.get('role') == 'user']
-                if user_messages:
-                    message = user_messages[-1].get('content', '')
-                else:
-                    message = messages[-1].get('content', '')
+            if not messages:
+                raise HTTPException(status_code=400, detail="Messages array is empty")
+            
+            # Extract the last user message
+            user_messages = [m for m in messages if m.get('role') == 'user']
+            if user_messages:
+                message = user_messages[-1].get('content', '')
             else:
-                return jsonify({"error": "Messages array is empty"}), 400
+                message = messages[-1].get('content', '')
         else:
             # Handle simple message format
             message = data.get('message', '')
         
         if not message:
-            return jsonify({"error": "Message is required"}), 400
+            raise HTTPException(status_code=400, detail="Message is required")
         
         image_path = data.get('image_path', None)
         response = get_chat_response(message, image_path)
         
-        return jsonify({
+        return {
             "response": response,
             "status": "success"
-        })
+        }
+    except HTTPException:
+        raise
     except Exception as e:
-        return jsonify({
-            "error": str(e),
-            "status": "error"
-        }), 500
+        raise HTTPException(status_code=500, detail=str(e))
 
-@app.route('/v1/chat/completions', methods=['POST'])
-def v1_chat_completions():
+
+@app.post("/v1/chat/completions")
+async def v1_chat_completions(request: Request):
     """
     OpenAI-compatible chat completions endpoint.
     Maps OpenAI API format to Visions agent response format.
     """
     try:
-        data = request.get_json() or {}
+        data = await request.json()
         messages = data.get('messages', [])
         
         if not messages:
-            return jsonify({"error": "Messages array is required"}), 400
+            raise HTTPException(status_code=400, detail="Messages array is required")
         
         # Extract the last user message
         user_messages = [m for m in messages if m.get('role') == 'user']
@@ -161,16 +204,16 @@ def v1_chat_completions():
             message = messages[-1].get('content', '')
         
         if not message:
-            return jsonify({"error": "Message content is required"}), 400
+            raise HTTPException(status_code=400, detail="Message content is required")
         
         # Get response from agent
         response_text = get_chat_response(message, image_path=None)
         
         # Return OpenAI-compatible format
-        return jsonify({
+        return {
             "id": "chatcmpl-visions-ai",
             "object": "chat.completion",
-            "created": int(os.times().elapsed),
+            "created": int(time.time()),
             "model": "visions-ai",
             "choices": [
                 {
@@ -187,20 +230,24 @@ def v1_chat_completions():
                 "completion_tokens": len(response_text.split()),
                 "total_tokens": len(message.split()) + len(response_text.split())
             }
-        })
+        }
+    except HTTPException:
+        raise
     except Exception as e:
-        return jsonify({
-            "error": {
+        raise HTTPException(
+            status_code=500,
+            detail={
                 "message": str(e),
                 "type": "visions_error",
                 "code": "internal_error"
             }
-        }), 500
+        )
 
-@app.route('/v1/models', methods=['GET'])
-def list_models():
+
+@app.get("/v1/models")
+async def list_models():
     """OpenAI-compatible models endpoint."""
-    return jsonify({
+    return {
         "object": "list",
         "data": [
             {
@@ -213,8 +260,10 @@ def list_models():
                 "parent": None
             }
         ]
-    })
+    }
+
 
 if __name__ == '__main__':
+    import uvicorn
     port = int(os.environ.get('PORT', 8080))
-    app.run(host='0.0.0.0', port=port, debug=False)
+    uvicorn.run(app, host='0.0.0.0', port=port)
