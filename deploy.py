@@ -52,6 +52,7 @@ remote_agent = reasoning_engines.ReasoningEngine.create(
         "langchain-community",
         "langchain-google-vertexai",
         "google-cloud-storage",
+        "rich",
         # Memory System Dependencies
         "google-cloud-bigquery",
         "firebase-admin",
