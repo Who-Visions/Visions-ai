@@ -27,7 +27,7 @@ class Config:
     VERTEX_GLOBAL_LOCATION = os.getenv("VERTEX_GLOBAL_LOCATION", "global")
     
     # Reasoning Engine
-    REASONING_ENGINE_ID = os.getenv("REASONING_ENGINE_ID", "1068094182523928576")
+    REASONING_ENGINE_ID = os.getenv("REASONING_ENGINE_ID", "5378250132150026240")
     REASONING_ENGINE_RESOURCE = (
         f"projects/620633534056/locations/{VERTEX_LOCATION}/"
         f"reasoningEngines/{REASONING_ENGINE_ID}"
