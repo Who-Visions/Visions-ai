@@ -57,7 +57,15 @@ class FirestoreShortTermMemory:
             
         # Initialize Firebase Admin if not already done
         if not firebase_admin._apps:
-            firebase_admin.initialize_app()
+            # Check for local service account key
+            key_path = Path("firebase_key.json")
+            if key_path.exists():
+                print(f"🔑 Loading credentials from {key_path}")
+                cred = credentials.Certificate(str(key_path))
+                firebase_admin.initialize_app(cred)
+            else:
+                print("☁️  Using Application Default Credentials")
+                firebase_admin.initialize_app()
         
         self._db = firestore.client()
         self._initialized = True

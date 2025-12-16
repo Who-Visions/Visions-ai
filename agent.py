@@ -527,15 +527,16 @@ JSON only:"""
                 return f"[Grounded unavailable: {e}]"
         
         def pro_thinking():
-            """Gemini 2.5 Pro - deep thinking with budget."""
+            """Gemini 3 Pro - deep thinking with budget."""
             try:
-                model = "gemini-2.5-pro"
+                model = "gemini-3-pro-preview"
+                # Gemini 3 is global
                 client = self._get_client(model)
                 response = client.models.generate_content(
                     model=model,
                     contents=f"Think deeply about this photography question and provide expert analysis: {question}",
                     config=types.GenerateContentConfig(
-                        thinking_config=types.ThinkingConfig(thinking_budget=2048)
+                        thinking_config=types.ThinkingConfig(thinking_level="high")
                     )
                 )
                 # Extract thinking and response

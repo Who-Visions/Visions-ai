@@ -36,3 +36,7 @@ last_generation_test.txt
 # Large temp repos
 temp_genai_repo/
 visions-ai-brain/
+
+# Secrets
+firebase_key.json
+*.json

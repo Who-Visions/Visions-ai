@@ -10,7 +10,7 @@ import re
 PROJECT_ID = "endless-duality-480201-t3"
 LOCATION = "us-central1"
 # NEW DEPLOYMENT RESOURCE (Deploy #10 - Fixed Lazy Loading)
-REASONING_ENGINE_RESOURCE = "projects/620633534056/locations/us-central1/reasoningEngines/6042524480117407744"
+REASONING_ENGINE_RESOURCE = "projects/620633534056/locations/us-central1/reasoningEngines/1068094182523928576"
 
 _remote_agent = None
 _initialized = False
