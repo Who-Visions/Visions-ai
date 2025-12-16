@@ -15,8 +15,8 @@ COPY requirements.txt .
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Install Flask and Gunicorn for production
-RUN pip install --no-cache-dir flask flask-cors gunicorn
+# Install Gunicorn for production (FastAPI/uvicorn already in requirements.txt)
+RUN pip install --no-cache-dir gunicorn
 
 # Copy application code
 COPY . .
@@ -28,6 +28,6 @@ ENV PYTHONUNBUFFERED=1
 # Expose port
 EXPOSE 8080
 
-# Run with Gunicorn for production
-CMD ["gunicorn", "--bind", "0.0.0.0:8080", "--workers", "1", "--threads", "8", "--timeout", "300", "app:app"]
+# Run with Gunicorn + UvicornWorker for FastAPI ASGI support
+CMD ["gunicorn", "--bind", "0.0.0.0:8080", "--workers", "1", "--worker-class", "uvicorn.workers.UvicornWorker", "--timeout", "300", "app:app"]
 
