@@ -1,11 +1,17 @@
 steps:
   # Build the container image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/cloud-run-source-deploy/visions-assistant-service', '.']
+    args: 
+      - 'build'
+      - '-t'
+      - 'us-central1-docker.pkg.dev/$PROJECT_ID/cloud-run-source-deploy/visions-assistant-service'
+      - '.'
   
   # Push the container image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/cloud-run-source-deploy/visions-assistant-service']
+    args: 
+      - 'push'
+      - 'us-central1-docker.pkg.dev/$PROJECT_ID/cloud-run-source-deploy/visions-assistant-service'
   
   # Deploy to Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
@@ -22,9 +28,15 @@ steps:
       - 'managed'
       - '--allow-unauthenticated'
       - '--memory'
-      - '2Gi'
+      - '4Gi'
+      - '--cpu'
+      - '2'
       - '--timeout'
       - '300s'
+      - '--min-instances'
+      - '0'
+      - '--max-instances'
+      - '10'
 
 images:
   - 'us-central1-docker.pkg.dev/$PROJECT_ID/cloud-run-source-deploy/visions-assistant-service'

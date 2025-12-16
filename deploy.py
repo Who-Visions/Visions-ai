@@ -47,15 +47,19 @@ remote_agent = reasoning_engines.ReasoningEngine.create(
         "google-genai",
         "cloudpickle",
         "requests",
-        "Pillow",  # Added for vision tools
+        "Pillow",
         "faiss-cpu",
         "langchain-community",
         "langchain-google-vertexai",
-        "google-cloud-storage"
+        "google-cloud-storage",
+        # Memory System Dependencies
+        "google-cloud-bigquery",
+        "firebase-admin",
+        "aiosqlite",  # SQLite fallback
     ],
-    extra_packages=["agent.py", "tools/"],  # Include tools directory for vision_tools.py
+    extra_packages=["agent.py", "tools/", "memory_cloud.py", "config.py"],
     display_name="Visions-AI-Reasoning-Agent",
-    description="Visions AI Agent powered by Gemini 3 & ADK",
+    description="Visions AI Agent with Cloud Memory (Firestore + BigQuery)",
 )
 
 print("\n[SUCCESS] Deployment Complete!")

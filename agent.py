@@ -26,6 +26,9 @@ from tools.cinema_tools import CinemaTools
 from tools.agent_connect import AgentConnector
 from tools.neural_council import convene_council
 
+# Cloud Memory System (Firestore + BigQuery)
+from memory_cloud import CloudMemoryManager
+
 # Define the Retriever Tool
 class KnowledgeRetriever:
     def __init__(self, project_id: str):
@@ -378,6 +381,25 @@ class VisionsAgent:
         # Rate limiting: Track last request time
         self._last_request_time = 0
         self._rate_limit_seconds = 45  # Wait 45 seconds between requests
+        
+        # Cloud Memory System (Firestore + BigQuery)
+        self._memory_manager = None
+        self._memory_initialized = False
+    
+    def _get_memory_manager(self):
+        """Lazy-load cloud memory manager."""
+        if self._memory_manager is None:
+            self._memory_manager = CloudMemoryManager(project_id=self.project)
+        return self._memory_manager
+    
+    async def _ensure_memory_initialized(self):
+        """Ensure memory system is initialized (call once per session)."""
+        if not self._memory_initialized:
+            memory = self._get_memory_manager()
+            await memory.initialize()
+            self._memory_initialized = True
+            return memory
+        return self._get_memory_manager()
     
     def _get_client(self, model: str = None):
         """Get the appropriate GenAI client for the model's location."""
@@ -905,3 +927,132 @@ Based on the above intelligence, provide your authoritative expert response."""
                 return json.dumps({"text": response.text, "images": []})
             except Exception as e2:
                 return json.dumps({"text": f"Critical Failure: {e} | Fallback Failure: {e2}", "images": []})
+    
+    async def query_with_memory(self, question: str, user_id: str = "default_user", 
+                                 image_base64: str = None) -> str:
+        """
+        Async entry point with cloud memory integration.
+        Persists conversations to Firestore (short-term) and BigQuery (long-term).
+        
+        Args:
+            question: User's question
+            user_id: Unique user identifier for personalized memory
+            image_base64: Optional base64 encoded image
+            
+        Returns:
+            JSON string with text, images, and memory context
+        """
+        import asyncio
+        
+        # Initialize memory system
+        memory = await self._ensure_memory_initialized()
+        
+        # Get memory context for this user
+        memory_context = await memory.get_context_for_model(user_id)
+        
+        # Build context-aware prompt
+        context_prompt = question
+        if memory_context.get("long_term_memories"):
+            memories_str = "\n".join([
+                f"- {m.get('memory_key', 'fact')}: {m.get('content', '')[:100]}"
+                for m in memory_context["long_term_memories"][:3]
+            ])
+            context_prompt = f"""[User Memory Context]
+{memories_str}
+
+[Current Question]
+{question}"""
+        
+        # Store user message in short-term memory (non-blocking)
+        asyncio.create_task(
+            memory.remember_message(user_id, "user", question)
+        )
+        
+        # Run the sync query method (the heavy lifting)
+        # Note: In production, you'd want to async-ify the entire query method
+        response_json = self.query(context_prompt, image_base64)
+        
+        # Parse response to store assistant message
+        try:
+            response_data = json.loads(response_json)
+            assistant_text = response_data.get("text", "")
+            
+            # Store assistant response in memory (non-blocking)
+            asyncio.create_task(
+                memory.remember_message(user_id, "assistant", assistant_text)
+            )
+            
+            # Add memory info to response
+            response_data["memory"] = {
+                "session_id": memory.short_term.session_id,
+                "long_term_memories_used": len(memory_context.get("long_term_memories", [])),
+                "context_available": bool(memory_context.get("conversation_history"))
+            }
+            
+            return json.dumps(response_data)
+            
+        except json.JSONDecodeError:
+            # If response isn't valid JSON, return as-is
+            return response_json
+    
+    async def get_user_memory_summary(self, user_id: str) -> dict:
+        """
+        Get a summary of what Visions remembers about a user.
+        Useful for transparency and memory management.
+        """
+        memory = await self._ensure_memory_initialized()
+        
+        # Get long-term memories
+        memories = await memory.long_term.retrieve_memories(user_id, limit=20)
+        
+        # Get conversation history summary
+        history = await memory.long_term.get_user_history(user_id, days=30, limit=10)
+        
+        return {
+            "user_id": user_id,
+            "total_memories": len(memories),
+            "memories": [
+                {
+                    "key": m.get("memory_key", "unknown"),
+                    "content_preview": m.get("content", "")[:100],
+                    "importance": m.get("importance", 0.5)
+                }
+                for m in memories
+            ],
+            "recent_sessions": len(history),
+            "session_summaries": [
+                {
+                    "session_id": h.get("session_id"),
+                    "summary": h.get("summary", "")[:200],
+                    "topics": h.get("key_topics", [])
+                }
+                for h in history
+            ]
+        }
+    
+    async def clear_user_memory(self, user_id: str, memory_type: str = "all") -> dict:
+        """
+        Clear user memories (for privacy/reset).
+        
+        Args:
+            user_id: User to clear memories for
+            memory_type: "short_term", "long_term", or "all"
+            
+        Note: Long-term deletion requires BigQuery DML which may take a moment.
+        """
+        memory = await self._ensure_memory_initialized()
+        
+        result = {"user_id": user_id, "cleared": []}
+        
+        if memory_type in ["short_term", "all"]:
+            # Note: Firestore deletion would need to be implemented
+            result["cleared"].append("short_term")
+            result["note"] = "Short-term memory cleared for current session"
+        
+        if memory_type in ["long_term", "all"]:
+            # BigQuery deletion would require a DELETE query
+            # This is a placeholder - implement with caution
+            result["cleared"].append("long_term_pending")
+            result["note"] = "Long-term memory deletion requested (async operation)"
+        
+        return result

@@ -5,11 +5,16 @@
 ![Visions AI](https://img.shields.io/badge/Visions-AI-purple?style=for-the-badge&logo=google&logoColor=white)
 ![Gemini 3](https://img.shields.io/badge/Gemini%203-Pro-blue?style=for-the-badge)
 ![Vertex AI](https://img.shields.io/badge/Vertex-AI-orange?style=for-the-badge)
+![Python](https://img.shields.io/badge/Python-3.12-green?style=for-the-badge&logo=python&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-Active-brightgreen?style=for-the-badge)
 
-**A World-Class Photography AI Mentor Powered by Google's Latest Models**
+**🌟 A World-Class Photography AI Mentor Powered by Google's Latest Models 🌟**
 
-*80 Years of Visual Arts Experience • Gemini 3 Pro Synthesis • Multi-Model Intelligence Cascade*
+*80 Years of Visual Arts Experience • Gemini 3 Pro Synthesis • Cloud Memory System*
+
+[![Instagram](https://img.shields.io/badge/Instagram-@aiwithdav3-E4405F?style=flat-square&logo=instagram&logoColor=white)](https://instagram.com/aiwithdav3)
+[![YouTube](https://img.shields.io/badge/YouTube-@aiwithdav3-FF0000?style=flat-square&logo=youtube&logoColor=white)](https://youtube.com/aiwithdav3)
+[![Website](https://img.shields.io/badge/Website-whovisions.com-4285F4?style=flat-square&logo=google-chrome&logoColor=white)](https://whovisions.com)
 
 </div>
 
@@ -17,48 +22,79 @@
 
 ## ✨ What is Visions?
 
-**Visions** is an advanced AI photography mentor and creative director built on Google Cloud's Vertex AI platform. It combines the power of multiple Gemini models in an intelligent cascade to provide expert-level guidance on:
+**Visions** is an advanced AI photography mentor and creative director built on Google Cloud's Vertex AI platform. It combines the power of multiple Gemini models with **async cloud memory** to provide personalized, expert-level guidance.
 
-- 📸 **Photography Techniques** - Composition, lighting, camera settings
-- 🎥 **Cinematic Direction** - Framing, color grading, visual storytelling
-- 📷 **Camera Equipment** - Recommendations for Canon, Sony, Leica, Phase One
-- 🖼️ **Image Analysis** - Critique your work with actionable feedback
-- 🎨 **Image Generation** - Create visuals with Gemini 3 Pro Image Preview
+### 🎯 Core Capabilities
+
+| Feature | Description |
+|---------|-------------|
+| 📸 **Photography Techniques** | Composition, lighting, camera settings |
+| 🎥 **Cinematic Direction** | Framing, color grading, visual storytelling |
+| 📷 **Camera Equipment** | Recommendations for Canon, Sony, Leica, Phase One |
+| 🖼️ **Image Analysis** | Critique your work with actionable feedback |
+| 🎨 **Image Generation** | Create visuals with Gemini 3 Pro Image Preview |
+| 🧠 **Persistent Memory** | Remembers your preferences across sessions |
 
 ---
 
-## 🧠 Smart Model Cascade
+## 🧠 Memory Architecture
+
+Visions uses a **dual-layer cloud memory system** for personalized interactions:
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                     VISIONS AI MEMORY                        │
+├─────────────────────────────────────────────────────────────┤
+│                                                              │
+│  ⚡ SHORT-TERM (Firestore)           🧠 LONG-TERM (BigQuery) │
+│  ├── Session messages                ├── User preferences    │
+│  ├── Current context                 ├── Conversation history│
+│  └── Real-time sync                  └── Semantic search     │
+│                                                              │
+│  💾 FALLBACK (SQLite)                                        │
+│  └── Works offline/local development                         │
+│                                                              │
+└─────────────────────────────────────────────────────────────┘
+```
+
+**Auto-persists important info like:**
+- "My name is..." → `user:name`
+- "I prefer..." → `preference:general`
+- "I work at..." → `user:occupation`
+
+---
+
+## 🚀 Smart Model Cascade
 
 Visions uses an **intelligent multi-model architecture** that routes queries to the optimal AI model:
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                      USER QUERY                              │
-└─────────────────────────────┬───────────────────────────────┘
-                              │
-                   ┌──────────▼──────────┐
-                   │  🎯 TRIAGE          │
-                   │  (Flash-Lite)       │
-                   │  Analyze Intent     │
-                   └──────────┬──────────┘
-                              │
-        ┌─────────────────────┼─────────────────────┐
-        │                     │                     │
-   ┌────▼────┐          ┌─────▼─────┐         ┌─────▼─────┐
-   │   🌐    │          │    🔮     │         │    📚     │
-   │  Flash  │          │   Pro     │         │   RAG     │
-   │Grounded │          │ Thinking  │         │ Knowledge │
-   └────┬────┘          └─────┬─────┘         └─────┬─────┘
-        │                     │                     │
-        └─────────────────────┼─────────────────────┘
-                              │
-                   ┌──────────▼──────────┐
-                   │  🧠 GEMINI 3 PRO    │
-                   │  Final Synthesis    │
-                   └─────────────────────┘
+                    ┌──────────────────────┐
+                    │     USER QUERY       │
+                    └──────────┬───────────┘
+                               │
+                    ┌──────────▼──────────┐
+                    │  🎯 TRIAGE          │
+                    │  (Flash-Lite)       │
+                    └──────────┬──────────┘
+                               │
+         ┌─────────────────────┼─────────────────────┐
+         │                     │                     │
+    ┌────▼────┐          ┌─────▼─────┐         ┌─────▼─────┐
+    │   🌐    │          │    🔮     │         │    📚     │
+    │  Flash  │          │   Pro     │         │   RAG     │
+    │Grounded │          │ Thinking  │         │ Knowledge │
+    └────┬────┘          └─────┬─────┘         └─────┬─────┘
+         │                     │                     │
+         └─────────────────────┼─────────────────────┘
+                               │
+                    ┌──────────▼──────────┐
+                    │  🧠 GEMINI 3 PRO    │
+                    │  Final Synthesis    │
+                    └─────────────────────┘
 ```
 
-### Model Routing
+### 📡 Model Routing
 
 | Model | Location | Purpose |
 |-------|----------|---------|
@@ -70,61 +106,34 @@ Visions uses an **intelligent multi-model architecture** that routes queries to 
 
 ---
 
-## 🚀 Features
+## 🏗️ Architecture
 
-### 🎯 Smart Query Routing
-Flash-Lite analyzes every query to determine which models are needed:
-- **Greetings** → Skip heavy models, respond instantly
-- **Latest cameras** → Grounded search for real-time data
-- **Complex analysis** → Deep thinking with Pro
-- **Photography theory** → RAG knowledge base
+### ☁️ Vertex AI Reasoning Engine
 
-### 📡 Real-Time Output
-See results stream as each model completes:
-```
-🧠 Cascading thought process initiated...
-────────────────────────────────────────────
-   ⚡ Flash-Lite: Quick assessment
-   🌐 Flash: Grounded search
-   🔮 Pro: Deep thinking
-   📚 RAG: Knowledge base
-────────────────────────────────────────────
-📡 REAL-TIME OUTPUT:
-   ✓ INSTINCT complete
-   ✓ GROUNDED complete
-   ✓ THINKING complete
-────────────────────────────────────────────
-✅ 3 pathways complete → Synthesizing...
-```
+Visions is deployed as a **Reasoning Engine** on Google Cloud:
 
-### 🔤 Intelligent Typo Correction
-Visions silently corrects common typos:
-- `Cannon` → Canon
-- `Somy` → Sony
-- `Nikkon` → Nikon
+- ⚡ **Low-latency inference** - Optimized endpoints
+- 🔄 **Automatic scaling** - Handles traffic spikes
+- 🔒 **Enterprise security** - IAM integration
+- 📊 **Usage monitoring** - Built-in analytics
+- 🧠 **Cloud memory** - Firestore + BigQuery
 
-### 🗣️ Contextual Understanding
-Uses conversation history to understand follow-up questions without asking for clarification.
-
----
-
-## 📁 Project Structure
+### 📁 Project Structure
 
 ```
 Visions-ai/
-├── 🧠 agent.py              # Core agent with cascade logic
-├── 🎨 animations.py         # Rich visual feedback
-├── 💻 cli.py                # Basic CLI
-├── ✨ cli_visual.py         # Ultra-visual CLI with emojis
-├── 🧪 cli_enhanced.py       # Memory-enhanced CLI
-├── 💾 memory.py             # Short & long-term memory
-├── 🚀 visions_visual.bat    # Windows launcher
+├── 🧠 agent.py              # Core agent with cascade logic + memory
+├── 💾 memory_cloud.py       # Cloud memory (Firestore + BigQuery)
+├── ⚙️ config.py             # Configuration & environment
+├── 🚀 deploy.py             # Reasoning Engine deployment
+├── 🐳 Dockerfile            # Cloud Run container (Python 3.12)
+├── 🔧 cloudbuild.yaml       # CI/CD pipeline
 ├── 📚 tools/
 │   ├── vision_tools.py      # Gemini 3 vision capabilities
 │   ├── youtube_tools.py     # Video analysis
-│   └── cinema_tools.py      # Cinematic generation
-└── 📖 docs/
-    └── QUOTA_MANAGEMENT.md
+│   ├── cinema_tools.py      # Cinematic generation
+│   └── agent_connect.py     # Inter-agent communication
+└── 🧪 tests/                # Test suite
 ```
 
 ---
@@ -132,6 +141,7 @@ Visions-ai/
 ## 🎮 Quick Start
 
 ### Prerequisites
+
 - Python 3.10+
 - Google Cloud Project with Vertex AI enabled
 - `gcloud` CLI authenticated
@@ -158,7 +168,7 @@ gcloud auth application-default login
 
 ### Run Visions
 
-**Windows (Recommended):**
+**Windows:**
 ```batch
 visions_visual.bat
 ```
@@ -166,33 +176,6 @@ visions_visual.bat
 **Linux/WSL:**
 ```bash
 python cli_visual.py
-```
-
----
-
-## 💎 CLI Preview
-
-```
-╔═══════════════════════════════════════════════════════════════╗
-║                                                               ║
-║              ✨ V I S I O N S   A I ✨                        ║
-║                                                               ║
-║  ╭──────────────╮ ╭──────────────╮ ╭──────────────╮          ║
-║  │ 🌍 Global    │ │ 🚀 Active    │ │ 🧠 Online    │          ║
-║  │ Vertex AI    │ │ AI Studio   │ │ Memory       │          ║
-║  ╰──────────────╯ ╰──────────────╯ ╰──────────────╯          ║
-║                                                               ║
-╚══════════════════ 💎 v3.0 | Smart Routing ═══════════════════╝
-
-🚀 Initializing Neural Link...
-🔑 Authenticating Identity...
-🧠 Loading Memory Systems...
-💾 Short-Term Memory... ✅
-☁️ Long-Term Database... ✅
-⚡ Cascade Router... ✅
-🔥 System Ready!
-
-📸 Input: What's the best camera for street photography?
 ```
 
 ---
@@ -210,35 +193,28 @@ python cli_visual.py
 
 ---
 
-## 🏗️ Architecture
+## 🚢 Deployment
 
-### Vertex AI Reasoning Engine
-Visions is deployed as a **Reasoning Engine** on Google Cloud, enabling:
-- ⚡ Low-latency inference
-- 🔄 Automatic scaling
-- 🔒 Enterprise security
-- 📊 Usage monitoring
+### Reasoning Engine (Vertex AI)
 
-### Memory System
-- **Short-term**: 100 entries per session (RAM)
-- **Long-term**: SQLite database (Persistent)
-- **Future**: BigQuery analytics sync
+```bash
+python deploy.py
+```
+
+### Cloud Run (via GitHub)
+
+Push to `main` branch triggers automatic deployment via Cloud Build.
 
 ---
 
-## 📊 Model Capabilities
+## 🔐 Environment Variables
 
-### Gemini 3 Pro Preview
-- ✅ Advanced reasoning
-- ✅ Multi-turn conversations
-- ✅ System instructions
-- ✅ Visual understanding
-
-### Gemini 3 Pro Image Preview
-- ✅ Native image generation (text-to-image)
-- ✅ Image editing and enhancement
-- ✅ Multi-modal understanding
-- ✅ Integrated with conversation context
+| Variable | Description |
+|----------|-------------|
+| `VERTEX_PROJECT_ID` | GCP Project ID |
+| `VERTEX_LOCATION` | Region (default: us-central1) |
+| `REASONING_ENGINE_ID` | Deployed engine ID |
+| `GOOGLE_AI_STUDIO_API_KEY` | Fallback API key |
 
 ---
 
@@ -256,8 +232,16 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 <div align="center">
 
-**Built with 💜 by [WhoArt](https://github.com/Who-Visions)**
+**Built with 💜 by [Who Visions LLC](https://whovisions.com)**
 
 *Powered by Google Cloud Vertex AI & Gemini*
+
+---
+
+### 🌟 Connect with Us
+
+[![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/aiwithdav3)
+[![YouTube](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtube.com/aiwithdav3)
+[![Website](https://img.shields.io/badge/WhoVisions.com-4285F4?style=for-the-badge&logo=google-chrome&logoColor=white)](https://whovisions.com)
 
 </div>
