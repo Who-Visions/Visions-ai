@@ -30,10 +30,10 @@ def _initialize_backend():
         _remote_agent = None
     _initialized = True
 
-def get_chat_response(user_message: str, image_path: str = None):
+def get_chat_response(user_message: str, image_path: str = None, user_id: str = "default_user"):
     """
     Proxies the chat request to the Vertex AI Reasoning Engine.
-    Supports optional image input.
+    Supports optional image input and persistent memory via user_id.
     Handles JSON response and text-embedded images.
     """
     # Lazy init
@@ -64,14 +64,26 @@ def get_chat_response(user_message: str, image_path: str = None):
              return f"System Error: Unable to connect to AI service. Local Error: {local_e}"
              
         try:
-            # Call the 'query' method defined in the remote agent
+            # Call the 'query_with_memory' method defined in the remote agent
+            # This ensures persistence works!
+            
+            print(f"🧠 Querying Reasoning Engine with memory for user: {user_id}")
+            
             if image_base64:
-                response_str = _remote_agent.query(question=user_message, image_base64=image_base64)
+                response_str = _remote_agent.query_with_memory(question=user_message, user_id=user_id, image_base64=image_base64)
             else:
-                response_str = _remote_agent.query(question=user_message)
+                response_str = _remote_agent.query_with_memory(question=user_message, user_id=user_id)
         except Exception as remote_e:
              print(f"Error querying Reasoning Engine: {remote_e}")
-             return "I'm sorry, I encountered an error while processing your request."
+             # Fallback to standard query if memory method fails (e.g. older deployment)
+             try:
+                 print("⚠️ 'query_with_memory' failed, falling back to legacy 'query'...")
+                 if image_base64:
+                     response_str = _remote_agent.query(question=user_message, image_base64=image_base64)
+                 else:
+                     response_str = _remote_agent.query(question=user_message)
+             except Exception as fallback_e:
+                 return f"System Error: Unable to connect to AI service. Remote Error: {remote_e}. Fallback Error: {fallback_e}"
 
     try:
         text_output = response_str

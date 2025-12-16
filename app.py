@@ -32,6 +32,7 @@ app.add_middleware(
 class ChatRequest(BaseModel):
     message: str
     image_path: Optional[str] = None
+    user_id: Optional[str] = "user"
 
 
 class ChatResponse(BaseModel):
@@ -124,7 +125,7 @@ async def chat(request: ChatRequest):
         if not request.message:
             raise HTTPException(status_code=400, detail="Message is required")
         
-        response = get_chat_response(request.message, request.image_path)
+        response = get_chat_response(request.message, request.image_path, request.user_id)
         
         return ChatResponse(
             response=response,
@@ -171,7 +172,8 @@ async def v1_chat(request: Request):
             raise HTTPException(status_code=400, detail="Message is required")
         
         image_path = data.get('image_path', None)
-        response = get_chat_response(message, image_path)
+        user_id = data.get('user_id', 'user') or data.get('user', 'user')
+        response = get_chat_response(message, image_path, user_id)
         
         return {
             "response": response,
