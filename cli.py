@@ -105,7 +105,7 @@ def simulate_boot_sequence():
 def show_cascade_animation():
     """Show animated cascade indicator using Live"""
     from rich.live import Live
-    from rich.group import Group
+    from rich.console import Group
     from rich.panel import Panel
     
     cascade_steps = [

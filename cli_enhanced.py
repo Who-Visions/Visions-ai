@@ -160,7 +160,7 @@ def show_aspect_ratio_selector():
 
 def show_cascade_animation():
     """Show animated cascade indicator using Live"""
-    from rich.group import Group
+    from rich.console import Group
     
     cascade_steps = [
         ("🎯 Triage", "routing query...", 0.15),
