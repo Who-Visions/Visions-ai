@@ -1,0 +1,64 @@
+Source: https://www.youtube.com/watch?v=slJKVfLPY4g
+Video ID: slJKVfLPY4g
+----------------------------------------
+
+🎓 **Workflow Extraction** (Gemini 3 Pro)
+URL: https://www.youtube.com/watch?v=slJKVfLPY4g
+
+Here is the actionable workflow extracted from the tutorial, focusing on client management, on-set styling, and image analysis for headshot photography.
+
+### **Workflow 1: Client Management & Direction Strategy**
+**Goal:** reconciling the photographer's artistic vision with the client's comfort and preferences.
+
+1.  **Assess Client Comfort (The "90% Therapy" Rule)** `00:00 - 0:50`
+    *   **Concept:** If a client is unhappy with the shots, do not force your game plan. You must be flexible.
+    *   **Action:** Make the client believe they are in control and getting exactly what they want, while subtly steering the session to get the shots you need.
+
+2.  **Identify the Disconnect** `01:37 - 02:14`
+    *   **Scenario:** The photographer loves high-energy, big smiles. The client (an actor) feels the smiles are "too much" and prefers a serious look.
+    *   **Action:** Stop the current direction immediately if the client rejects the results on the monitor. Do not try to convince them they are wrong.
+
+3.  **Pivot the Direction** `02:50 - 03:25`
+    *   **Adjustment:** Tone down your own energy. If the client hates big smiles, stop trying to provoke laughter.
+    *   **Compromise:** Aim for "micro-expressions" or tiny smiles rather than full teeth, satisfying the client's desire for seriousness while avoiding a "dead" expression.
+
+4.  **Adjust Shooting Angle to Client Preference** `03:25 - 03:42`
+    *   **Scenario:** Photographer prefers angular shots (turning the face); Client prefers straight-on.
+    *   **Action:** Abandon the angular shots. Shoot straight-on to build confidence, even if you prefer the other angle.
+
+---
+
+### **Workflow 2: On-Set Styling & Wardrobe Adjustments**
+**Goal:** Eliminating distractions in the frame before taking the shot.
+
+1.  **Fixing "Puffy" Sleeves** `04:10 - 04:55`
+    *   **Problem:** Shirts designed with puffy shoulders/sleeves create a silhouette that draws the eye away from the face and distorts the arm shape.
+    *   **Action:** "Cap" the sleeves. Physically pull the sleeve fabric down the arm to flatten the puff.
+    *   **Result:** This creates a streamlined arm line and keeps attention on the face.
+
+2.  **Managing Ears with Ponytails** `05:28 - 06:10`
+    *   **Problem:** Pulling hair straight back tightly exposes the entire ear, which can be a major distraction in a headshot (too much "pull").
+    *   **Action:** Loosen the hair slightly and drape it over the *tops* of the ears.
+    *   **Result:** This frames the face and reduces the visual weight of the ears.
+
+3.  **Positioning the Ponytail** `07:07 - 07:29`
+    *   **Problem:** If the ponytail hangs straight back, it disappears, leaving the client looking like they have short slicked-back hair.
+    *   **Action:** Pull the ponytail over one shoulder so the hair is visible in the shot.
+
+---
+
+### **Workflow 3: Image Analysis & Retouching Prep**
+**Goal:** Identifying specific distractions during the review process (Tethered Capture).
+
+1.  **Identify "Ear Creep" / "Ear Poke"** `06:15 - 06:45`
+    *   **Definition:** When the subject has their hair down, but a small section of the ear pokes through a gap in the hair.
+    *   **Analysis:** This creates a high-contrast distraction point.
+
+2.  **The Fix (On-Set vs. Post)** `06:45 - 07:05`
+    *   **On-Set:** Instruct the subject to brush hair forward to cover the gap.
+    *   **Post-Production:** If missed on set, this must be retouched. Use a **Clone Stamp** or **Healing Brush** to fill the gap with hair texture, completely covering the ear tip.
+
+### **Tools Used**
+*   **Camera:** DSLR/Mirrorless on a tripod (allows for interaction with the client).
+*   **Lighting:** Kino Flo style continuous lighting (visible in reflections).
+*   **Software:** Tethering software (likely Capture One) for immediate client review on a monitor.

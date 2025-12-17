@@ -1,0 +1,80 @@
+Source: https://www.youtube.com/watch?v=h2jubvY2Cpk
+Video ID: h2jubvY2Cpk
+----------------------------------------
+
+🎓 **Workflow Extraction** (Gemini 3 Pro)
+URL: https://www.youtube.com/watch?v=h2jubvY2Cpk
+
+Here is the actionable workflow for lighting a white background for headshots, based on Peter Hurley’s method.
+
+### **Tools & Equipment**
+*   **Main Lighting:** Continuous lighting (Kino Flo or Westcott Flex Kit) for the subject.
+*   **Background Lighting:** 2x Strobes (e.g., Profoto D1).
+*   **Modifiers:** V-Flats (Black/White Gator Board).
+*   **Background:** White Cyclorama (Cyc) wall, seamless paper, or a portable White Matte ProBoard.
+*   **Software:** Tethering software with RGB readout (e.g., Capture One).
+*   **Misc:** Tape measure.
+
+---
+
+### **Phase 1: Physical Setup & Placement**
+
+**1. Establish Subject & Camera Position**
+*   **03:27** | Place the subject in the center relative to the background.
+*   **04:54** | Set camera height to align with the subject's mouth/jawline (approx. 67.5" for a tall subject).
+
+**2. Background Strobe Placement**
+*   **03:45** | Use two strobes, one on each side of the subject, behind them.
+*   **04:03** | **Crucial:** Do not point strobes at the center of the background. Offset them slightly outward so the beams cross and converge in the center for even coverage.
+*   **05:15** | Set the height of the strobe heads to the subject's **shoulder height** (approx. 64.5").
+*   **06:45** | Ensure strobe heads are perpendicular (flat) against the wall. Do not angle them up or down.
+
+**3. Flare Control (V-Flats)**
+*   **07:13** | Place V-Flats (black side facing the subject) between the background strobes and the subject.
+*   **07:37** | This "flags" the light to prevent background flare from hitting the subject's face or wrapping around the ears/hair.
+
+---
+
+### **Phase 2: The "Dialing In" Process (Testing Exposure)**
+
+*Goal: Achieve a pure white background (RGB ~247-250) without causing lens flare or washing out the subject.*
+
+**1. The "Fall Off to Gray" Baseline**
+*   **08:26** | Take a test shot with **only** the main continuous light (background strobes OFF).
+*   **09:10** | Review the image. The white wall should render as a clean gray. This confirms your main light exposure and provides a secondary background option.
+
+**2. Incremental Power Testing**
+*   **09:31** | Turn background strobes on to their lowest power setting (e.g., Profoto setting **4.0**).
+*   **10:03** | Take a test shot. Check the background tone; it should be a lighter gray.
+*   **10:27** | Increase power by **1 stop** (Setting **5.0**). Take a test shot.
+*   **11:43** | Increase power by **1 stop** (Setting **6.0**). Take a test shot.
+
+**3. Identifying the "Flare Point"**
+*   **12:22** | Increase power by **1 stop** (Setting **7.0**).
+*   **12:31** | **Analyze:** At this level, check for "Flare City." Look for loss of contrast on the face or light wrapping around the back of the hair. If the background is blowing out past 255, it is too bright.
+
+---
+
+### **Phase 3: Final Parameters & Troubleshooting**
+
+**1. The Sweet Spot**
+*   **13:25** | Dial the power back down to find the balance between pure white and flare. (e.g., Setting **6.5**).
+*   **11:24** | **Target Parameter:** Use the color picker in your software (Capture One). You want the background RGB values to read between **245 and 250**.
+    *   *< 240:* It will look muddy/gray in print.
+    *   *255:* You risk flare reducing contrast on the subject.
+    *   *Ideal:* **247-250**.
+
+**2. Environmental Awareness**
+*   **07:52** | Be aware of your room. A white floor and white ceiling will bounce light everywhere, increasing exposure. A dark ceiling/floor will absorb light. Adjust strobe power accordingly.
+
+---
+
+### **Phase 4: Portable Workflow (No White Wall)**
+
+**1. Using a ProBoard**
+*   **16:11** | If a white wall isn't available, use a matte white ProBoard.
+*   **16:44** | **Note:** Matte is preferred over glossy to avoid specular reflections.
+
+**2. Adjusting for Proximity**
+*   **17:05** | Because a portable board is usually placed closer to the subject than a studio wall, you must lower the strobe power.
+*   **17:12** | **Adjustment:** Drop power from the studio setting (e.g., 6.5) down to approx **5.8** to maintain the target RGB 247 range without flare.

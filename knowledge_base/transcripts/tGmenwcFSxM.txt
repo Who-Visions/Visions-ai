@@ -1,0 +1,53 @@
+Source: https://www.youtube.com/watch?v=tGmenwcFSxM
+Video ID: tGmenwcFSxM
+----------------------------------------
+
+🎓 **Workflow Extraction** (Gemini 3 Pro)
+URL: https://www.youtube.com/watch?v=tGmenwcFSxM
+
+Based on the video, here is the workflow for assembling a professional photography support system using Feisol gear, as presented by Peter Hurley.
+
+### **Workflow: Professional Camera Support Setup**
+
+**1. Select and Deploy the Base Tripod**
+*   **Timestamp:** 00:17 - 01:30
+*   **Tool:** **Feisol CT-3472 Rapid Carbon Fiber Tripod**
+*   **Action:** Unbox the tripod and remove it from the carrying case.
+*   **Technique:** Extend the legs to the desired height. The presenter notes that this model has **3 leg sections**, allowing for significant adjustability. He prefers adjusting the legs manually by hand to gauge the distance and stability.
+*   **Key Features:** Lightweight carbon fiber construction, robust build, and "Rapid" non-rotating legs for quick setup.
+
+**2. Install the Center Column**
+*   **Timestamp:** 01:43 - 02:15
+*   **Tool:** **Feisol Center Column (for CT-3472)**
+*   **Action:** Insert the center column into the main tripod chassis.
+*   **Purpose:** Provides adjustable vertical height extension for the camera.
+*   **Alternative Option:** The presenter mentions an alternative configuration using a **Leveling Base (LV)** instead of a center column for video or panoramic work, though the center column is used in this specific setup.
+
+**3. Attach the Ball Head**
+*   **Timestamp:** 02:22 - 02:50
+*   **Tool:** **Feisol CB-60D Ball Head**
+*   **Action:** Unbox the ball head. This unit mounts to the top of the center column (or tripod plate).
+*   **Key Features:** The design includes cutouts in the metal casing to significantly reduce weight without compromising strength. It is described as "super robust."
+
+**4. Configure for Overhead/Product Shots (Optional)**
+*   **Timestamp:** 02:50 - 03:30
+*   **Tool:** **Feisol VH-60 Horizontal Adapter Kit**
+*   **Action:** If shooting product photography or requiring an overhead angle:
+    1.  Mount the adapter kit onto the tripod head.
+    2.  Insert the carbon fiber tube horizontally through the adapter.
+*   **Use Case:** This setup allows the camera to be positioned away from the center axis, enabling the photographer to shoot straight down over a subject or reach into difficult spaces.
+
+**5. Travel Configuration (Alternative Workflow)**
+*   **Timestamp:** 04:15 - 04:25
+*   **Tool:** **Feisol CT-3442 Tripod** (Travel Version)
+*   **Insight:** For traveling photographers who need a lighter kit than the studio setup (CT-3472), the presenter recommends the **CT-3442** combined with the **CT-3472 LV** (Leveling) setup for a balance of portability and stability.
+
+---
+
+### **Tools & Equipment List**
+
+*   **Main Tripod:** Feisol CT-3472 Rapid (Carbon Fiber)
+*   **Extension:** Feisol Center Column
+*   **Head:** Feisol CB-60D Ball Head
+*   **Specialty Adapter:** Feisol VH-60 Horizontal Adapter Kit
+*   **Travel Alternative:** Feisol CT-3442

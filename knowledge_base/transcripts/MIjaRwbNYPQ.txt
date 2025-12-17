@@ -1,0 +1,72 @@
+Source: https://www.youtube.com/watch?v=MIjaRwbNYPQ
+Video ID: MIjaRwbNYPQ
+----------------------------------------
+
+🎓 **Workflow Extraction** (Gemini 3 Pro)
+URL: https://www.youtube.com/watch?v=MIjaRwbNYPQ
+
+Here is the actionable workflow for managing client expectations and preparation before a headshot session, based on Peter Hurley’s "Can of Worms" philosophy.
+
+### **Workflow: The Pre-Session Consultation Call**
+
+**Goal:** To "keep the lid on the can of worms" (avoid chaos) by setting strict expectations regarding hair, makeup, and clothing *before* the client arrives at the studio.
+
+#### **1. The Male Client Protocol ("Burt")**
+*   **0:51 - Makeup Strategy:**
+    *   **Rule:** Advise against professional makeup for men.
+    *   **Reasoning:** It often looks detectable. Blemishes should be handled in post-production (Photoshop).
+    *   **Exceptions:** Only use makeup if the client has a severe skin condition or massive blemishes.
+    *   **On-Set Tools:** Have **moisturizer** (for dry skin), **toner/powder** (for oily skin), and **lip balm** ready.
+*   **1:18 - Hair Preparation:**
+    *   **Instruction:** Ask the client to arrive with *less* product than usual.
+    *   **Workflow:** Bring their hair product with them. Start dry/natural and add product incrementally during the shoot.
+    *   **Avoid:** The "wet/nappy" look caused by arriving with too much product.
+*   **2:34 - Facial Hair:**
+    *   **Instruction:** If they can grow scruff/beard, arrive with it.
+    *   **Reasoning:** Facial hair absorbs light and adds shape to the face.
+    *   **Workflow:** Shoot the scruffy look first, then have the client shave mid-session for a clean look.
+    *   **Tool:** Client must bring their own grooming kit/razor.
+*   **3:01 - Wardrobe (Layering is Key):**
+    *   **Quantity:** Request 10–15 options for a full session (5–10 for a 1-hour session).
+    *   **Variety:** Range from casual (T-shirts) to upscale (Suit/Tie).
+    *   **The Layering System:**
+        1.  T-shirts (Crew and V-neck).
+        2.  Collared shirts / Button-downs / Polos.
+        3.  Sweaters.
+        4.  Light Jackets (Avoid puffy/bulky jackets).
+    *   **Colors:** Neutrals are preferred, but bright colors are acceptable. Avoid busy patterns unless the client loves them.
+
+#### **2. The Female Client Protocol ("Phyllis")**
+*   **5:18 - Makeup Arrival:**
+    *   **Rule:** Arrive with a completely clean face. No residue, no leftover mascara.
+    *   **Tool:** Client should bring **makeup remover** if coming from work/auditions.
+*   **5:56 - Makeup Progression:**
+    *   **Workflow:** Start with a "Light/Natural" base.
+    *   **Progression:** Add makeup as the session moves forward.
+    *   **End State:** Finish with the darkest/smokiest eye or lip for a "sexy/sophisticated" look.
+*   **6:48 - Wardrobe:**
+    *   **Instruction:** "No rules." Bring a massive range of options.
+    *   **Logistics:** Don't worry about wrinkles; the studio has a **steamer**.
+*   **7:12 - Hair Preparation:**
+    *   **Rule:** Arrive having a "Good Hair Day."
+    *   **Instruction:** If the client needs a blowout, they must get it *before* arriving.
+    *   **Reasoning:** The studio makeup artist is there for tweaking and fine-tuning, not for fixing "bedhead" or starting from scratch.
+    *   **On-Set Workflow:** Start with hair down, move to ponytail/updo later (ponytails are great for headshots).
+
+#### **3. The "Energy Reset" Technique**
+*   **9:40 - Managing Session Energy:**
+    *   **Trigger:** If the photographer feels the energy draining or the client becoming stiff.
+    *   **Action:** Tell the client to "Go Change."
+    *   **Result:** Changing clothes acts as a mental reset, bringing the client back with fresh energy.
+
+#### **4. The "Ownership" Philosophy**
+*   **11:28 - Liability Management:**
+    *   **Concept:** By discussing these details beforehand, you shift the responsibility of the "base look" to the client.
+    *   **Outcome:** If the client arrives looking disheveled or unprepared, it is on them, not the photographer. This prevents post-shoot complaints like "That doesn't look like my hair."
+
+### **Tools & Parameters Mentioned**
+*   **Session Length:** Full session (approx. 2 hours) vs. Short session (1 hour).
+*   **Wardrobe Count:** 10–15 tops for full sessions.
+*   **Studio Equipment:** Steamer (for clothes).
+*   **Grooming Supplies:** Moisturizer, Toner, Anti-shine powder, Lip balm.
+*   **Software:** Adobe Photoshop (preferred over heavy makeup for men).

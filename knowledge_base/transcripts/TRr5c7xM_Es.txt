@@ -1,0 +1,68 @@
+Source: https://www.youtube.com/watch?v=TRr5c7xM_Es
+Video ID: TRr5c7xM_Es
+----------------------------------------
+
+🎓 **Workflow Extraction** (Gemini 3 Pro)
+URL: https://www.youtube.com/watch?v=TRr5c7xM_Es
+
+Here is the actionable workflow for directing headshot subjects using the "Camera Prodding" and layering techniques described by Peter Hurley.
+
+### **Tools & Settings**
+*   **Camera:** DSLR or Mirrorless.
+*   **Focus Mode:** Single Point Auto-Focus.
+*   **Technique:** Focus on the front eye (closest to camera), hold focus, and recompose downwards/outwards to frame the shot.
+
+---
+
+### **Workflow: Layering Headshot Direction**
+
+This workflow is designed to be executed in a specific sequence (layers). Do not start with "Camera Prodding" immediately; ease the client into the movements using verbal and hand gestures first.
+
+#### **1. Phase 1: Verbal Direction (The Warm-up)**
+**Timestamp:** 06:15
+Start with standard verbal commands to get the subject moving before introducing complex gestures.
+*   **Action:** Instruct the subject simply: "Turn your head left," "Turn right," "Chin up," or "Chin down."
+*   **Goal:** Establish basic communication and get the subject comfortable moving their head independent of their body.
+
+#### **2. Phase 2: Hand Gestures (Visual Cues)**
+Once the subject is moving, use hand gestures to refine the angle and tilt. Choose the gesture that feels most natural to you or the situation.
+
+*   **The "Suction Cup"**
+    *   **Timestamp:** 00:37
+    *   **Action:** Hold your hand up as if gripping a large ball. Tell the subject to imagine your hand is suction-cupped to their face. Tilt your hand; they mirror the tilt.
+*   **The "Finger Lead" (For Nose Direction)**
+    *   **Timestamp:** 01:01
+    *   **Action:** Hold up one finger. Instruct the subject: "Follow my finger with your nose." Move your finger to place their nose exactly where you want it.
+*   **The "Karate Chop" (For Head Tilt)**
+    *   **Timestamp:** 00:50
+    *   **Action:** Hold a flat hand (karate chop style) in the air to indicate the angle of the face.
+    *   **Note:** This is best used *after* the nose is positioned (via the Finger Lead) to dial in the specific tilt.
+
+#### **3. Phase 3: Camera Prodding (The Advanced Layer)**
+**Timestamp:** 01:12 - 02:30
+Introduce this only after the subject is "warmed up" and understands the flow. This expedites the process by removing the need to take your eye off the viewfinder.
+
+*   **Concept:** Use the physical movement of the camera body to signal where the subject should move their face.
+*   **Action:**
+    1.  While looking through the viewfinder (or just above it), jerk or tilt the camera in the direction you want their nose to go.
+    2.  **Example:** If you want them to look more to the left, physically move the camera to the left.
+    3.  **Focusing:** Lock focus on the front eye using your single point, then "prod" (move camera), let them adjust, recompose, and shoot.
+*   **Why it works:** It keeps the shoot "live" and fast-paced, preventing the subject from overthinking their expression.
+
+#### **4. Phase 4: Refining the "Good Side"**
+**Timestamp:** 03:40
+Once you identify the subject's best angle (based on jawline definition or lighting highlights), lock it in using micro-adjustments.
+
+*   **The "Freeze" Command:** When they hit the perfect angle, say "Freeze."
+*   **Micro-adjustments:** Use the "Karate Chop" or verbal cues to adjust by millimeters.
+    *   *Instruction:* "Go back an inch" or "Tilt a little less."
+*   **Abstract Verbal Cues:** Use weird instructions to break tension or get micro-movements.
+    *   *Example (05:05):* "Narrow the distance between your nose and the window."
+    *   *Example (04:30):* "Tilt towards the Canadian border" (Use humor/confusion to reset their expression).
+
+#### **5. Phase 5: Continuous Movement (The Flow)**
+**Timestamp:** 03:05
+*   **Goal:** Do not shoot the same frame twice.
+*   **Action:** Encourage the subject to move slightly after every shutter click.
+*   **Instruction:** "Every time I take a picture, move a little bit. Hit your angle, hit your good side."
+*   **Result:** This keeps the brain engaged on movement rather than "posing," resulting in more natural expressions.

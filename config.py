@@ -41,6 +41,9 @@ class Config:
     ENABLE_AI_STUDIO_FALLBACK = os.getenv("ENABLE_AI_STUDIO_FALLBACK", "true").lower() == "true"
     ENABLE_QUOTA_ALERTS = os.getenv("ENABLE_QUOTA_ALERTS", "false").lower() == "true"
     
+    # Knowledge Base
+    CHUNK_SIZE = 4000  # Characters for RecursiveCharacterTextSplitter (Gemini has large context window)
+    CHUNK_OVERLAP = 500
     # Storage
     GCS_BUCKET = f"{VERTEX_PROJECT_ID}-reasoning-artifacts"
     VECTOR_STORE_PREFIX = "vector_store"

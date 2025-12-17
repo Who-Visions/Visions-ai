@@ -1,0 +1,59 @@
+Source: https://www.youtube.com/watch?v=g-cHu9tUOwA
+Video ID: g-cHu9tUOwA
+----------------------------------------
+
+🎓 **Workflow Extraction** (Gemini 3 Pro)
+URL: https://www.youtube.com/watch?v=g-cHu9tUOwA
+
+Based on the visual evidence and audio from the promotional video for "The Headshot Intensive," here is the extracted workflow, philosophy, and equipment list used by Peter Hurley.
+
+**Note:** As this is a promotional trailer rather than a full technical tutorial, specific camera settings (ISO, Shutter, Aperture) are not explicitly stated. However, the equipment and coaching methodology are visually demonstrated.
+
+### **Workflow: The Peter Hurley Headshot Method**
+
+#### **1. Subject Psychology & Diffusion**
+*   **Timestamp:** 00:00 - 00:12
+*   **Concept:** The primary role of the headshot photographer is not technical, but psychological.
+*   **Action:** Identify that the subject arrives "uncomfortable, stiff, scared, uncertain, and petrified."
+*   **Step:** The photographer must actively "diffuse the situation" before expecting a quality image. This involves conversation and energy management before the camera is even raised.
+
+#### **2. The Lighting Setup (Continuous LED)**
+*   **Timestamp:** 00:27, 00:37, 00:44
+*   **Tools:** Westcott Flex Cine Mats (LED).
+*   **Configuration:**
+    *   **Key/Fill:** The video shows a multi-light setup surrounding the subject's face to eliminate shadows and create a clean, high-key look.
+    *   **Positioning:** Lights are placed in a square or triangular formation (often referred to as the "Hurley Shabang" setup in his broader teachings).
+    *   **Distance:** The lights are placed very close to the subject (within arm's reach) to create soft light and large catchlights in the eyes.
+
+#### **3. Micro-Coaching & Direction**
+*   **Timestamp:** 00:17 - 00:19
+*   **Action:** Use specific, micro-adjustments rather than broad posing commands.
+*   **Commands Heard:**
+    *   "Chin down."
+    *   "A little bit up with the [chin/head]."
+    *   "Nose a little bit that way."
+*   **Goal:** These small movements are designed to accentuate the jawline and engage the eyes (the "Squinch" technique, implied by the visual results).
+
+#### **4. Tethered Shooting & Review**
+*   **Timestamp:** 00:36, 1:13
+*   **Tools:** Tether Tools Cable (High-visibility Orange), Laptop/Monitor.
+*   **Workflow:**
+    *   The camera is physically connected to a computer.
+    *   Images are reviewed instantly on a large screen.
+    *   **Purpose:** This allows the subject to see what the photographer sees, helping to coach them into better expressions by showing them the difference between a "scared" look and a confident one.
+
+### **Tools & Equipment Identified**
+
+1.  **Lighting:**
+    *   **Westcott Flex Cine DMX LED Mats:** (Seen clearly at 00:41 and 00:44). These are flexible, continuous light sources used to wrap light around the face.
+2.  **Camera System:**
+    *   **Canon DSLR/Mirrorless Body:** (Seen at 00:36).
+    *   **Lens:** Likely a Canon L-Series lens (indicated by the red ring at 1:13).
+3.  **Support & Accessories:**
+    *   **Tether Tools:** Orange USB tether cable (Seen at 1:13).
+    *   **Light Stands:** C-Stands or heavy-duty stands to hold the square LED framework.
+
+### **Workshop Details (Promotional Info)**
+*   **Event:** The Headshot Intensive (2-Day Workshop).
+*   **Locations Mentioned (01:15):** Los Angeles, New York, Chicago, Boston, Toronto.
+*   **Website:** Headshotcrew.com

@@ -1,0 +1,50 @@
+Source: https://www.youtube.com/watch?v=1uFDjyaMD34
+Video ID: 1uFDjyaMD34
+----------------------------------------
+
+🎓 **Workflow Extraction** (Gemini 3 Pro)
+URL: https://www.youtube.com/watch?v=1uFDjyaMD34
+
+Here is the detailed workflow for the "Tilt-Untilt Maneuver" in headshot photography, based on Peter Hurley’s tutorial.
+
+### **Workflow: The "Tilt-Untilt" Headshot Maneuver**
+
+**Goal:** To capture a dynamic headshot where the subject is physically tilted (to define the jawline and engage the camera) while making them appear square and upright in the final image.
+
+**Prerequisites & Tools:**
+*   **Background:** Must be a clean, solid background (white, grey, seamless). **Do not** use this technique with architectural lines, horizons, or busy backgrounds (0:50).
+*   **Camera Support:** A tripod with a center column that allows for rotation/play, or a ball head that allows the camera to tilt off-axis (2:50).
+*   **Lighting:** Studio lighting (setup shown includes a Broncolor Para).
+
+---
+
+#### **1. Camera Settings & Positioning**
+*   **Settings (Visible on Camera LCD at 3:25 & 5:13):**
+    *   **Mode:** Manual (M)
+    *   **Shutter Speed:** 1/100 - 1/160
+    *   **Aperture:** f/7.1
+    *   **ISO:** 250
+*   **Height:** Position the camera lens approximately at the subject's **earlobe height** (3:05).
+
+#### **2. The Setup & Pose**
+*   **0:50** | **Verify Background:** Ensure there are no vertical or horizontal lines (windows, buildings, trees) behind the subject. These lines will become diagonal when you tilt the camera, ruining the illusion.
+*   **2:26** | **Body Position:** Have the subject turn their body slightly away from the camera.
+*   **3:30** | **Shoulder Drop:** Instruct the subject to drop their front shoulder down significantly.
+*   **3:40** | **The Lean:** Have the subject lean back slightly.
+*   **3:48** | **Height Adjustment:** Because the subject dropped their shoulder and leaned, they are physically lower. Lower your camera on the tripod to maintain the "earlobe height" perspective relative to their new position.
+
+#### **3. The "Tilt-Untilt" Execution**
+*   **3:52** | **Tilt the Camera:** Physically rotate the camera on the tripod axis.
+    *   *Direction:* Tilt the camera in the *same direction* the subject is leaning.
+    *   *Goal:* Align the camera's vertical axis with the subject's tilted shoulder/head axis.
+*   **4:33** | **Check the Frame:** Look at the LCD/Viewfinder. Even though the camera is crooked physically, the subject should look straight up-and-down in the monitor.
+
+#### **4. Facial Refinement (Micro-Posing)**
+*   **4:09** | **Head Tilt:** Instruct the subject to tilt their head slightly towards the higher shoulder.
+*   **4:11** | **Nose Direction:** Direct the nose slightly toward the light/camera.
+*   **4:13** | **Forehead Extension:** Instruct the subject to "jam the forehead out" (pushing the face forward toward the lens to tighten the jawline).
+*   **4:15** | **Shoulder Tweak:** Ask the subject to turn the shoulder back just a touch if it is dominating the frame.
+
+#### **5. Capture & Review**
+*   **4:54** | **The Result:** The final image shows the subject looking square in the frame with straight shoulders, despite them being physically tilted in reality. This prevents the "sloped shoulder" look while keeping the jawline tension created by the tilt.
+*   **5:04** | **Quality Control:** Ensure no background elements betray the camera tilt (e.g., slanted buildings).

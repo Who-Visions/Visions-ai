@@ -1,0 +1,51 @@
+Source: https://www.youtube.com/watch?v=NqOW4tNjs9I
+Video ID: NqOW4tNjs9I
+----------------------------------------
+
+🎓 **Workflow Extraction** (Gemini 3 Pro)
+URL: https://www.youtube.com/watch?v=NqOW4tNjs9I
+
+Here is the actionable workflow extracted from the tutorial on eliminating "Big Pupil Syndrome" (B.P.S.) to maximize eye color in headshot photography.
+
+### **Workflow: Maximizing Eye Color by Reducing Pupil Size**
+
+**Goal:** To shrink the subject's pupil (the black center) to maximize the visible surface area of the iris (the color), creating a more striking headshot.
+
+**Tools Required:**
+*   Camera (DSLR/Mirrorless) with Portrait Lens
+*   **Option A:** Continuous Light Source (LED or similar)
+*   **Option B:** Strobe with strong Modeling Light (e.g., Profoto B1)
+*   **Option C:** Natural Window Light
+
+---
+
+#### **1. Diagnosis: Identifying "Big Pupil Syndrome"**
+*   **Timestamp:** 00:00 - 01:25
+*   **Concept:** In low-light environments (dark studios, night shoots), a subject's pupils naturally dilate (expand).
+*   **The Problem:** A large black pupil covers the iris, hiding the natural color of the eye (blue, green, hazel, etc.).
+*   **The Fix:** You must introduce enough constant light to force the pupil to constrict *before* the shutter is clicked.
+
+#### **2. Method A: Using Continuous Lighting**
+*   **Timestamp:** 02:03 - 02:29
+*   **Step 1:** Place a continuous light source close to the subject's face.
+*   **Step 2:** Ensure the light is bright enough to trigger the physiological reaction of pupil constriction.
+*   **Step 3:** Shoot with the continuous light as your main source (or fill).
+*   **Result:** The constant brightness keeps the pupil small throughout the shoot, revealing the maximum amount of eye color.
+
+#### **3. Method B: Using Strobes (Flash)**
+*   **Timestamp:** 02:30 - 02:59
+*   **The Challenge:** Standard strobes only flash for a fraction of a second. If the room is dark, the pupil remains dilated until the flash fires, capturing a large pupil.
+*   **Step 1:** Use a strobe with a powerful LED modeling light (Example tool: **Profoto B1**).
+*   **Step 2:** Adjust the **Modeling Light Parameter**: Crank the modeling light power to **100%**.
+*   **Step 3:** If using heavy diffusion (softboxes), ensure the modeling light is strong enough to penetrate the diffusion and still affect the subject's eyes.
+*   **Note:** If the modeling light is too weak, this method will fail, and you must move to Method C.
+
+#### **4. Method C: The "Window Trick" (Ambient Light Positioning)**
+*   **Timestamp:** 03:00 - 03:38
+*   **Scenario:** You do not have strong modeling lights, or you are shooting in a location without professional lighting gear.
+*   **Step 1:** Locate the brightest ambient light source (usually a window).
+*   **Step 2:** Position the subject facing the window.
+*   **Step 3:** Position yourself (the photographer) with your back to the window.
+    *   *Critical Alignment:* The light source must be **behind the camera**.
+*   **Step 4:** Even if you are blocking a portion of the light, the ambient brightness surrounding you will force the subject's pupils to constrict as they look into the lens.
+*   **Alternative:** If no window is available, use a "stinger" (a small, dedicated LED light) placed near the camera lens specifically to shine into the subject's eyes to shrink the pupils.

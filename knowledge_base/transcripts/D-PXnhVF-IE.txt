@@ -1,0 +1,49 @@
+Source: https://www.youtube.com/watch?v=D-PXnhVF-IE
+Video ID: D-PXnhVF-IE
+----------------------------------------
+
+🎓 **Workflow Extraction** (Gemini 3 Pro)
+URL: https://www.youtube.com/watch?v=D-PXnhVF-IE
+
+Here is the actionable workflow for photographing children, extracted from the tutorial by Peter Hurley.
+
+### **1. Lighting & Studio Configuration**
+**Goal:** Create flat, even lighting to highlight clothing details while freezing motion.
+
+*   **0:46** | **Background Tone:** Set the background to a light gray rather than pure white. This ensures white clothing retains detail and texture.
+*   **0:53** | **Light Source:** Use strobes (flash) rather than continuous light to freeze the motion of energetic children.
+*   **1:02** | **Key Light:** Use a large parabolic modifier.
+    *   *Tool:* **Broncolor Para 133**.
+    *   *Technique:* Mount a **Profoto head** facing *into* the modifier (indirect) to bounce the light out for maximum softness.
+*   **1:13** | **Fill Light:** Place a large soft source opposite the key light.
+    *   *Tool:* **Profoto B1** with a **Photek Softlighter**.
+*   **1:25** | **Background Lights:** Position two strobes aimed low at the floor/lower wall, as children are short and will be positioned low in the frame.
+
+### **2. Camera Support & Positioning**
+**Goal:** Establish a low shooting angle comfortably while maintaining consistency for a lookbook.
+
+*   **1:56** | **Height:** Shoot from a low angle.
+*   **2:06** | **Tripod Selection:** Use a leveling tripod to adjust the horizon quickly without adjusting legs.
+    *   *Tool:* **Feisol CT-3472LV**.
+*   **2:15** | **Tripod Stance:** Splay the tripod legs wide open. This allows you to sit on the floor and fit your knee underneath the tripod for stability and comfort.
+*   **2:35** | **Seating:** Sit on a **Half Apple Box** to stay at the subject's eye level.
+
+### **3. Subject Management & Prep**
+**Goal:** Control the environment to keep children natural and engaged.
+
+*   **2:44** | **Marking the Spot:** Place two pieces of tape on the floor to indicate exactly where the child's feet should go. This ensures focus and framing consistency.
+*   **3:00** | **Parent Control:** "Own your turf." If a parent is "barking" orders (e.g., "stand up straight," "smile"), politely ask them to leave the immediate area. Their pressure often makes the child stiff.
+*   **5:33** | **Atmosphere:** Play familiar music to put the child at ease.
+    *   *Tool:* **Pandora / Disney Children's Radio** (e.g., Frozen soundtrack).
+
+### **4. Coaching & Posing Techniques**
+**Goal:** Elicit natural expressions and movement through games rather than strict posing commands.
+
+*   **4:16** | **Mirroring:** Use hand gestures and make noises. Children will naturally mimic your energy and movements.
+*   **4:27** | **Jumping:** Have the child jump to loosen up a stiff posture or fix a bunched-up dress.
+    *   *Note:* You don't necessarily shoot the jump; you shoot the relaxed state immediately *after* they land.
+*   **4:55** | **The "Shimmy Shake":** Ask the child to shake their body to get the fabric moving.
+    *   *Trigger:* Wait for them to stop shaking; the dress will continue to move for a split second. Capture that moment.
+*   **5:12** | **Positive Reinforcement:** Use high-fives frequently to build rapport. If shooting two children, pair a confident child with a shy one to help them warm up.
+*   **6:10** | **Misdirection:** Ask the child to look away from the camera or turn their body away, then call them to turn back. This captures a natural, reactive expression rather than a forced smile.
+*   **7:05** | **Observation:** Do not over-direct. Watch for the child's natural fidgets (e.g., pointing a toe, swaying). Capture these authentic moments instead of correcting them.

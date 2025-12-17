@@ -1,0 +1,45 @@
+Source: https://www.youtube.com/watch?v=JnJ9kcyxl-M
+Video ID: JnJ9kcyxl-M
+----------------------------------------
+
+🎓 **Workflow Extraction** (Gemini 3 Pro)
+URL: https://www.youtube.com/watch?v=JnJ9kcyxl-M
+
+Here is the actionable workflow for determining the best facial angle based on hair parting, extracted from the tutorial video.
+
+### **Workflow: "Sherlock Holmesing" the Face & Hair Part Strategy**
+
+**Goal:** Determine the subject's "sweet spot" and avoid blocking the face with hair by analyzing the relationship between the facial angle and the hair part.
+
+#### **1. Analyze the Subject's Natural Preferences**
+*   **Step:** Observe the angle the subject naturally presents to you when talking. This is often their subconscious "sweet spot."
+*   **Step:** Identify the direction of the hair part (Left vs. Right).
+    *   *Note:* 90% of the time, the hair part aligns with the subject's "sweet spot" to open up the face.
+*   **Timestamp:** 00:00 - 00:40
+
+#### **2. Apply the "Open Side" Rule**
+*   **Concept:** The "Open Side" is the side of the face the hair is parted *away* from.
+*   **Action:** Position the camera to shoot into the open side of the face.
+*   **Why:** This ensures the face is framed by the hair rather than obscured by it. It allows the "mojo" of the face to be visible.
+*   **Timestamp:** 01:25 - 01:33
+
+#### **3. Avoid the "Reverse Hair Part"**
+*   **Concept:** The "Reverse Hair Part" is shooting the side of the face where the part actually sits (the "back side" of the hair).
+*   **Warning:** Shooting this angle usually results in the hair acting as a wall, blocking the eye line and facial features. It often creates a "clump" of hair pointing at the lens.
+*   **Action:** Unless there is a specific reason, avoid shooting the side where the hair creates a visual block.
+*   **Timestamp:** 01:06 - 01:55 / 03:09
+
+#### **4. Exception Handling (Shooting the "Bad" Side)**
+If you must shoot the side with the hair part (the "closed" side) or if the subject is ambifacial:
+*   **Technique A (The Ear Tuck):** Tuck the hair behind the ear on the parting side to manually "open" the face.
+    *   *Timestamp:* 02:10
+*   **Technique B (The Ponytail):** Pull the hair back entirely to remove the hair part variable and see the face structure clearly.
+    *   *Timestamp:* 04:45
+*   **Technique C (The Flip):** Ask the subject to flip their hair part to the opposite side to see if it favors the other angle better.
+    *   *Timestamp:* 04:55
+
+#### **5. Verification & Selection**
+*   **Step:** Shoot both angles (the "Open Side" and the "Reverse Part") during the session to compare.
+*   **Analysis:** Review the images. Look for "dorkiness" or visual obstruction in the Reverse Part shots (referenced using the Mark Wahlberg *Ted 2* poster example).
+*   **Action:** Curate the portfolio to prioritize the "Open Side" shots unless the Reverse Part is exceptionally flattering for a specific reason.
+*   **Timestamp:** 05:02 - 06:35

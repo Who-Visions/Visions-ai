@@ -66,15 +66,36 @@ class YouTubeTools:
         except Exception as e:
             return f"Error searching YouTube: {e}"
 
+    def _generate_with_retry(self, func, *args, **kwargs):
+        """Helper to retry API calls with exponential backoff."""
+        retries = 8
+        base_delay = 4
+        for i in range(retries):
+            try:
+                return func(*args, **kwargs)
+            except Exception as e:
+                is_rate_limit = "429" in str(e) or "ResourceExhausted" in str(e) or "Quota" in str(e) or "TooManyRequests" in str(e)
+                if is_rate_limit:
+                    if i == retries - 1:
+                        print(f"   ❌ Rate limit exhausted after {retries} retries.")
+                        raise e
+                    import time, random
+                    sleep_time = base_delay * (2 ** i) + (random.random() * 1.0)
+                    print(f"   ⏳ Rate limit hit (Attempt {i+1}/{retries}). Retrying in {sleep_time:.2f}s...")
+                    time.sleep(sleep_time)
+                else:
+                    raise e
+
     def analyze_video(self, video_url: str, question: str = "Summarize this video") -> str:
         """
-        Analyzes a YouTube video using Gemini 2.5 Flash native support.
+        Analyzes a YouTube video using Gemini 2.5 Pro (Fallback).
         """
         if "youtube.com" not in video_url and "youtu.be" not in video_url:
             return "Error: Invalid YouTube URL provided."
             
         try:
-            model_id = "gemini-2.5-flash"
+            # User requested 2.5 Pro for fallback
+            model_id = "gemini-2.5-pro"
             print(f"   Analyzing video: {video_url} with {model_id}...")
             
             video_part = types.Part.from_uri(
@@ -89,17 +110,19 @@ class YouTubeTools:
             Provide a detailed breakdown of key points, timestamps if possible, and actionable insights.
             """
             
-            response = self.client.models.generate_content(
+            # Use regional client for 2.5 Pro (us-central1)
+            response = self._generate_with_retry(
+                self.client.models.generate_content,
                 model=model_id,
                 contents=[video_part, prompt],
                 config=types.GenerateContentConfig(
                     temperature=0.3,
-                    max_output_tokens=2048
+                    max_output_tokens=4096  # Increased for Pro
                 )
             )
             
             if response.text:
-                return f"🎬 **Video Analysis**\nURL: {video_url}\n\n{response.text}"
+                return f"🎬 **Video Analysis** ({model_id})\nURL: {video_url}\n\n{response.text}"
             else:
                 return "No text response generated from video analysis."
                  
@@ -141,19 +164,33 @@ class YouTubeTools:
                 prompt = """
                 You are an expert at analyzing tutorial videos and extracting actionable workflows.
                 
-                1. Extract detailed steps & tools.
-                2. Note parameters/code.
-                3. Include timestamps.
+                Analyze this video and return a **valid JSON object** with the following structure:
+                {
+                    "title": "Video Title",
+                    "summary": "Brief summary",
+                    "steps": [
+                        {
+                            "time": "MM:SS",
+                            "action": "Step description",
+                            "code": "Optional code snippet",
+                            "tool": "Tool used"
+                        }
+                    ],
+                    "key_takeaways": ["Point 1", "Point 2"]
+                }
                 
-                Format as a clear, numbered Markdown workflow.
+                Do not wrap in markdown code blocks. Return RAW JSON only.
                 """
             
-            response = self.global_client.models.generate_content(
+            response = self._generate_with_retry(
+                self.global_client.models.generate_content,
                 model=model_id,
                 contents=[video_part, prompt],
+                # Force JSON response mime type if possible, but raw text parsing is fine for now
                 config=types.GenerateContentConfig(
                     temperature=0.2,
                     max_output_tokens=4096,
+                    response_mime_type="application/json", # Force JSON
                     thinking_config=types.ThinkingConfig(
                         thinking_level="high"
                     )
@@ -161,9 +198,9 @@ class YouTubeTools:
             )
             
             if response.text:
-                return f"🎓 **Workflow Extraction** (Gemini 3 Pro)\nURL: {video_url}\n\n{response.text}"
+                return response.text # Return raw JSON string
             else:
-                return "No workflow extracted from video."
+                return '{"error": "No workflow extracted"}'
                  
         except Exception as e:
             return f"Error extracting workflow: {str(e)}"

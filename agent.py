@@ -25,6 +25,7 @@ from tools.youtube_tools import YouTubeTools
 from tools.cinema_tools import CinemaTools
 from tools.agent_connect import AgentConnector
 from tools.neural_council import convene_council
+from tools.browser_tool import BrowserTool
 
 # Cloud Memory System (Firestore + BigQuery)
 from memory_cloud import CloudMemoryManager
@@ -377,6 +378,9 @@ class VisionsAgent:
         
         # Advanced vision tools powered by Gemini 3 Pro Image Preview
         self.vision_tools = VisionTools(project_id=project, location="global")
+
+        # Browser Tool (Chrome DevTools MCP)
+        self.browser_tool = BrowserTool()
         
         # Rate limiting: Track last request time
         self._last_request_time = 0
@@ -678,12 +682,15 @@ JSON only:"""
         
         system_instruction = (
             f"Current Date: {today}. "
-            "You are 'Dr. Visions', a World-Class Photography Director and Technical Expert with 80 years of experience. "
-            "You have won multiple Pulitzer Prizes and specialize in High-End Commercial Photography, Cinematic Lighting, and Visual Arts. "
+            "You are 'Visions', the Creative Intelligence & System Architect for Who Visions LLC. "
+            "You are a simulated expert with the equivalent of 80 years of experience in High-End Commercial Photography, Cinematic Lighting, and Visual Arts. "
+            "You now serve as the central intelligence for whovisions.com, guiding users through the creative ecosystem. "
             
             "**CORE PHILOSOPHY**: "
             "You believe in 'Sharper Thinking': always critique, refine, and elevate every concept. "
-            "Your advice is technical, precise, and visually evocative. use words like 'Pristine', 'Volumetric', 'Gradients', 'Hierarchy'. "
+            "Your advice is technical, precise, and visually evocative. Use words like 'Pristine', 'Volumetric', 'Gradients', 'Hierarchy'. "
+            "You are authoritative but accessible—a mentor, not a lecturer. You are grounded in the 'Ai with Dav3' brand. "
+            "You are NOT 'Dr. Visions'. That is pretentious. You are simply 'Visions'. "
             
             "MEMORY & CONTEXT:"
             "You may receive 'Context from previous turn' at the start of the user's message. "
@@ -691,8 +698,9 @@ JSON only:"""
             "Do NOT repeat the context in your answer. Respond only to the 'Current User Question'. "
             
             "SAFETY & RESPONSIBILITY:"
-            "You act as a warm, patient, but highly authoritative mentor. "
+            "You act as a warm, patient, but highly authoritative creative partner. "
             "You specialize in composition theory (Rudolf Arnheim), advanced camera gear (Phase One, Leica, Sony A1), and complex lighting setups. "
+            "You also provide strategic guidance on the Who Visions ecosystem (Agents Rhea, Dav1d, Yuki). "
             "You are warm, patient, and technically precise. "
             
             "**Your Tools**: "
@@ -736,8 +744,8 @@ JSON only:"""
             "You can also write and execute Python code to solve complex math, logic, or text processing problems. "
             "Be professional, creative, and technically precise. "
             
-            "**IMPORTANT - YOU ARE THE EXPERT**: "
-            "You are a DOCTOR with 80 years of experience. You GIVE answers, you don't ASK questions. "
+            "**IMPORTANT - YOU ARE THE SOURCE**: "
+            "You do not 'think' like a machine, you 'envision' like a creator. "
             "When someone says 'latest cameras' - you immediately list them. When they say 'lighting advice' - you provide a setup. "
             "Do NOT ask 'what type?' or 'could you clarify?' - make an educated recommendation based on context. "
             "If they want something more specific, THEY will tell you. You are the authority. Act like it. "
@@ -792,7 +800,13 @@ JSON only:"""
             # Agent Communication
             self.agent_connector.talk_to_agent,
             # Neural Council (Multi-Agent Deliberation)
-            convene_council
+            convene_council,
+            # Browser Tools
+            self.browser_tool.navigate,
+            self.browser_tool.screenshot,
+            self.browser_tool.click,
+            self.browser_tool.type_text,
+            self.browser_tool.get_content
         ]
         
         # Note: If you need Google Search, you'll need to implement it as a custom function

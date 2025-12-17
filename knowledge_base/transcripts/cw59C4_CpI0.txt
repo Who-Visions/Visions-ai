@@ -1,0 +1,42 @@
+Source: https://www.youtube.com/watch?v=cw59C4_CpI0
+Video ID: cw59C4_CpI0
+----------------------------------------
+
+🎓 **Workflow Extraction** (Gemini 3 Pro)
+URL: https://www.youtube.com/watch?v=cw59C4_CpI0
+
+Here is the actionable workflow for the "Camera Prodding" technique extracted from Peter Hurley’s tutorial.
+
+### **Workflow: The "Camera Prodding" Technique for Headshots**
+
+**Goal:** To direct a subject's head position without taking your hands off the camera or the shutter button, allowing for instant capture of fleeting expressions.
+
+**Tools Required:**
+*   **Camera:** DSLR or Mirrorless (Canon 5D series shown in video).
+*   **Lens:** Ideally a lens with a visible hood to act as a pointer (e.g., 85mm or 70-200mm).
+*   **Support:** Tripod with a ball head (recommended for stability while allowing movement).
+
+---
+
+#### **Phase 1: The Setup (The Hurley Sequence)**
+Before using the prodding technique, establish the base pose using the standard sequence.
+*   **0:05** | **Position the Body:** Set the subject's stance and shoulder angle first.
+*   **0:14** | **Position the Head:** Get the general head angle.
+*   **0:16** | **Hair & Clothing:** Perform a "scan" to fix flyaways or collar issues.
+*   **0:18** | **Compose:** Frame the shot.
+
+#### **Phase 2: The "Camera Prodding" Execution**
+Once the session is "warmed up" and the subject understands your shooting rhythm, switch to this technique to maintain speed.
+
+1.  **0:48** | **Establish Rhythm:** Ensure the subject is already comfortable with your verbal cues and general shooting style.
+2.  **1:05** | **Secure the Grip:** Keep your right hand firmly on the camera grip with your index finger resting on the shutter button. Do **not** remove your hand to gesture.
+3.  **1:30** | **The "Prod" (Directional Cueing):** Instead of using your hand to point, use the camera lens/hood as a physical pointer to guide the subject.
+    *   **1:40** | **For Head Tilt:** Physically tilt the camera body to the left or right. The subject will mirror this movement.
+    *   **1:44** | **For Nose Direction:** Pan the camera slightly left or right to indicate where they should point their nose.
+4.  **2:10** | **Micro-Adjustments:** Use the camera to signal small corrections (e.g., "Tilt back this way," "Nose a little that way").
+5.  **2:30** | **Maintain Focus:** While moving the camera to signal direction, ensure your autofocus point remains locked on the subject's **front eye**.
+6.  **2:45** | **Fire Instantly:** Because your hand never left the trigger, capture the image the nanosecond the subject hits the desired angle or expression.
+
+#### **Phase 3: Troubleshooting & Context**
+*   **0:35** | **Traditional Methods (For Comparison):** If the subject is confused, you may need to revert to hand gestures (the "suction cup" or "karate chop" to the face) to establish the angle, then return to camera prodding.
+*   **2:31** | **Autofocus Warning:** Be careful not to lose focus on the eye while gesturing with the camera. The movement should be distinct enough for the subject to see, but controlled enough to keep the composition ready.

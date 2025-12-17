@@ -1,0 +1,97 @@
+Source: https://www.youtube.com/watch?v=3IxXPWNlygY
+Video ID: 3IxXPWNlygY
+----------------------------------------
+
+🎓 **Workflow Extraction** (Gemini 3 Pro)
+URL: https://www.youtube.com/watch?v=3IxXPWNlygY
+
+Here is the actionable workflow for headshot photography based on Peter Hurley’s tutorial on eliciting genuine smiles.
+
+### **Phase 1: Preparation & Philosophy**
+
+**1. Develop Your "Shtick"**
+*   **Timestamp:** 00:50 - 01:40
+*   **Action:** Create a repertoire of jokes, phrases, and directions that fit your specific personality.
+*   **Tool:** Notebook/Phone Notes.
+*   **Step:** Every time you say something during a shoot that makes a subject laugh or smile naturally, write it down immediately. Build a database of "wins" to use on future clients.
+
+**2. The Golden Rule: Never Say "Smile"**
+*   **Timestamp:** 01:50 - 02:08
+*   **Concept:** Asking a subject to smile creates pressure and results in a "fake" look.
+*   **Action:** If you see a fake smile, tell the subject to stop immediately. Do not proceed until the fake expression is reset.
+
+---
+
+### **Phase 2: Eliciting the Smile (The Techniques)**
+
+Use the following specific prompts ("Hurleyisms") to trigger a reaction. Choose based on your comfort level and the client's vibe.
+
+**Technique A: The "Misery" Opener**
+*   **Timestamp:** 01:41
+*   **Prompt:** "Don't look so miserable."
+*   **Result:** Usually generates an immediate, easy smile.
+
+**Technique B: The "Half-Ass" Callout**
+*   **Timestamp:** 02:55 - 03:30
+*   **Context:** Use when a subject is trying to smile but holding back.
+*   **Prompt:** "Don't half-ass that smile."
+*   **Note:** Requires confidence. The mild swear word usually shocks them into a real laugh.
+
+**Technique C: The Deliberate Fake Smile**
+*   **Timestamp:** 03:30 - 05:18
+*   **Prompt:** "I want you to give me a big, fake smile."
+*   **Why it works:** It makes the subject feel ridiculous. The absurdity of the request usually transitions the fake smile into a genuine laugh.
+
+**Technique D: Directional/Physical Confusion**
+*   **Timestamp:** 07:27 - 08:25
+*   **Concept:** Give instructions that are physically impossible or absurd to distract the brain.
+*   **Prompts:**
+    *   "Move your left shoulder toward the Eiffel Tower."
+    *   "Turn your hips slightly toward the Canadian border."
+    *   "Lean your head at the exact angle of the Leaning Tower of Pisa."
+    *   "Squinch up your [body part] about an inch." *(Note: Use discretion/appropriateness with this one).*
+
+**Technique E: The Mechanical Smile**
+*   **Timestamp:** 08:27
+*   **Prompt:** "Pull the corners of your mouth toward your earlobes so your mouth starts to form a U."
+
+---
+
+### **Phase 3: Managing the Interaction**
+
+**3. The "Backpedal" Maneuver**
+*   **Timestamp:** 02:00 - 02:54
+*   **Scenario:** You use a line or joke that falls flat (the subject stays serious).
+*   **Action:** Immediately acknowledge the failure to maintain authority and confidence.
+*   **Script:** "Well, that one didn't fly. I'm going to have to go a different direction with you."
+*   **Goal:** Do not let the awkward silence linger; pivot immediately.
+
+**4. Use Physicality**
+*   **Timestamp:** 08:58 - 09:13
+*   **Action:** Move your body behind the camera/tripod. Use hand gestures or weird movements to draw attention away from the lens and onto you.
+
+---
+
+### **Phase 4: The Capture Workflow (Residual Laughter)**
+
+This is the technical process of capturing the image once the reaction is triggered.
+
+**5. Trigger the Spike**
+*   **Timestamp:** 09:13 - 09:25
+*   **Action:** Deliver your "shtick" to get the subject to laugh out loud.
+*   **Capture:** Take photos during the peak laugh (the "spike") just in case, though these are often too intense for a headshot.
+
+**6. Capture the "Way Down" (Residual Laughter)**
+*   **Timestamp:** 09:25 - 10:00
+*   **Concept:** We do not hold laughter long; it drains out of the face. The perfect natural smile exists on the "way down" from the laugh.
+*   **Action:**
+    *   As the laughter fades, keep shooting.
+    *   Look for the curve where the laugh relaxes into a genuine smile.
+    *   **Directing:** Tell them, "Keep that energy! That's great!" to prevent them from dropping back to a neutral face too quickly.
+
+**7. The Shooting Cadence**
+*   **Timestamp:** 10:00 - 10:25
+*   **Workflow:**
+    *   Shoot ~3 frames on the way up (the laugh).
+    *   Shoot ~3 frames on the way down (the residual smile).
+    *   **Goal:** Capture the moment the face relaxes but the eyes are still engaged from the laughter.

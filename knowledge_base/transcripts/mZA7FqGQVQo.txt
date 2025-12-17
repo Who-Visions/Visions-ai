@@ -1,0 +1,58 @@
+Source: https://www.youtube.com/watch?v=mZA7FqGQVQo
+Video ID: mZA7FqGQVQo
+----------------------------------------
+
+🎓 **Workflow Extraction** (Gemini 3 Pro)
+URL: https://www.youtube.com/watch?v=mZA7FqGQVQo
+
+Here is the actionable workflow for coaching headshot clients, extracted from the tutorial by Peter Hurley.
+
+### **Workflow: The "Turf" Coaching Method**
+
+**Goal:** Eliminate client performance anxiety by timing your coaching correctly and prioritizing rapport over technical instruction during the initial meeting.
+
+**Tools Mentioned:**
+*   **Camera/Viewfinder:** The primary tool for validation and coaching.
+*   **Mirror:** Secondary tool for correcting specific expressions (only used if in-camera coaching fails).
+*   **Paper Towel:** Used for the "Paper Towel Trick" to fix loose shirt collars.
+
+---
+
+#### **1. The Arrival Phase: Acclimation & Rapport**
+*   **Action:** When the client enters the studio, strictly avoid discussing photography techniques, posing, or facial expressions.
+*   **Objective:** Lower the client's heart rate and remove performance pressure. Treat them as "fragile" until they are comfortable.
+*   **Topics to Cover:**
+    *   Small talk (How they found you, common interests).
+    *   Wardrobe selection.
+    *   Hair and makeup checks.
+*   **Timestamp:** 01:06 - 02:39
+
+#### **2. The Pre-Shoot Prep: Aesthetic Check**
+*   **Action:** Transition into "shoot mode" by focusing solely on physical appearance rather than behavior.
+*   **Workflow:**
+    *   Check facial hair and hairstyle.
+    *   Check clothing fit (specifically shirt/tie combinations for corporate clients).
+    *   **The Collar Check:** If a collar is too loose, utilize the **"Paper Towel Trick"** (placing a paper towel behind the neck to tighten the fit).
+*   **Timestamp:** 02:40 - 03:19
+
+#### **3. The "Turf" Rule: Active Coaching**
+*   **Rule:** Do not give technical instructions (jawline, squinch, shoulder drops) until the client is physically standing on your "turf" (in front of the camera).
+*   **Execution:**
+    *   Start taking photos immediately.
+    *   Deliver coaching instructions *while* shooting.
+    *   **Shoot Through the Coaching:** Do not stop shooting to talk. Continue clicking the shutter while explaining to capture the client's natural movement and fleeting expressions.
+*   **Timestamp:** 03:36 - 04:15
+
+#### **4. The Visual Validation Technique**
+*   **Scenario:** If a physical adjustment is needed (e.g., a messy collar) or the client isn't understanding a pose.
+*   **Action:** Do not "manhandle" or fix them immediately.
+    1.  Take a photo of the issue.
+    2.  Show the client the image on the screen/tether.
+    3.  Explain the fix (e.g., "See how the collar is loose? Let's fix that.").
+*   **Reasoning:** This validates the need for adjustment without invading personal space prematurely.
+*   **Timestamp:** 03:20 - 03:30
+
+#### **5. The Mirror Contingency**
+*   **Scenario:** The client fails to execute a specific expression (like the "squinch") based on verbal coaching while shooting.
+*   **Action:** Only *after* attempting to coach in-camera, move the client to a mirror to practice the specific facial mechanic.
+*   **Timestamp:** 03:49 - 03:55

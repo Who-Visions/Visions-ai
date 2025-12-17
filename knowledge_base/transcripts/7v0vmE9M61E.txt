@@ -1,0 +1,56 @@
+Source: https://www.youtube.com/watch?v=7v0vmE9M61E
+Video ID: 7v0vmE9M61E
+----------------------------------------
+
+🎓 **Workflow Extraction** (Gemini 3 Pro)
+URL: https://www.youtube.com/watch?v=7v0vmE9M61E
+
+Here is the actionable workflow for setting up and shooting with the Profoto Soft Zoom Reflector 180, based on Peter Hurley’s tutorial.
+
+### **Tools & Gear Used**
+*   **Lighting:** Profoto Soft Zoom Reflector 180, Profoto B10X Strobe, Profoto Connect Pro Trigger.
+*   **Camera:** Canon EOS R5 with Canon RF 28-70mm f/2 lens.
+*   **Support:** Feisol CT-3472LV Tripod, Arca-Swiss Monoball p1.
+*   **Tethering:** MacBook Pro (M2), Tether Tools Cable, Capture One Pro.
+*   **Background:** Oliphant Backdrops (set up as a corner).
+
+---
+
+### **Workflow Steps**
+
+#### **1. Assembly and Mounting**
+*   **01:13** | Remove the Zoom Rod and attach it directly to the light stand first.
+*   **01:40** | Slide the collapsed reflector onto the rod.
+*   **01:45** | **Action:** Expand the reflector by pulling the ribs up until they "pop" and lock into place (one-click mechanism).
+*   **02:07** | Attach the Profoto strobe (B10X) to the back of the mounting ring on the Zoom Rod.
+
+#### **2. Light Placement & Theory**
+*   **02:50** | **Placement:** Position the light as close to the subject as possible without entering the frame.
+*   **03:00** | **Theory (Inverse Square Law):** The closer the light source, the softer the light and the faster the fall-off into shadow.
+*   **03:15** | **Angle:** Feather the light so the subject is illuminated, but the light falls off into a soft shadow on the background (creating depth).
+
+#### **3. Camera & Flash Settings**
+*   **04:01** | **Camera Settings:**
+    *   **Aperture:** f/2.0 (for shallow depth of field).
+    *   **Shutter Speed:** 1/200s (sync speed).
+    *   **ISO:** 100.
+    *   **Focal Length:** Varied between 28mm and 70mm.
+*   **04:45** | **Flash Power:** Start at **5.0** on the Profoto B10X.
+
+#### **4. Shooting & Dynamic Exposure Adjustment**
+*   **05:26** | **Technique:** Focus on the eye closest to the camera. Look for the shadow transition on the cheek (rembrandt/loop lighting).
+*   **05:55** | **Adjustment:** If the subject moves further away from the light (e.g., leaning back against a wall), increase flash power.
+    *   *Parameter Change:* Increase power by +0.5 stops (to **5.5**) via the Connect Pro trigger.
+*   **07:45** | **Re-Adjustment:** If the subject moves closer to the light again, drop power back to **5.0** to maintain consistent exposure.
+
+#### **5. Background Setup**
+*   **09:29** | **Configuration:** Use two backdrops to create a corner. One serves as the "wall" the subject leans on, the other as the background depth.
+*   **09:40** | **Trajectory:** Angle the light downward slightly but facing the "wall" backdrop to ensure the background behind the subject falls into shadow/darkness.
+
+#### **6. Modifying Light Hardness (Zoom Rod)**
+*   **11:50** | **Action:** Use the focusing rod to change the light characteristic.
+*   **12:00** | **Technique:** Push the light head deeper into the umbrella (away from the diffusion panel) to fill the entire 180cm surface area. This maximizes softness. Pulling it out would increase contrast/specularity.
+
+#### **7. Tethering & Remote Control**
+*   **09:08** | **Remote Control:** Use the Profoto App or Connect Pro to adjust strobe power remotely to avoid lowering the light stand manually.
+*   **11:00** | **Tethering:** Shoot directly into Capture One for immediate review of focus and lighting fall-off.

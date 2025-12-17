@@ -1,0 +1,40 @@
+Source: https://www.youtube.com/watch?v=sNe9Pccttc0
+Video ID: sNe9Pccttc0
+----------------------------------------
+
+🎓 **Workflow Extraction** (Gemini 3 Pro)
+URL: https://www.youtube.com/watch?v=sNe9Pccttc0
+
+The provided video is an acceptance speech by photographer Peter Hurley rather than a technical tutorial. Consequently, there are no technical workflows, parameters, or code to extract.
+
+However, below is a summary of the key points and entities mentioned in his speech, formatted as a chronological breakdown of the event.
+
+### Acceptance Speech Overview
+
+**1. Award Presentation & Initial Reaction**
+*   **00:00 - 00:20**: Peter Hurley receives a medal/award on stage. He expresses surprise and gratitude for the recognition.
+
+**2. Acknowledgments of Organizations & Sponsors**
+*   **00:28**: Thanks **WPPI** (Wedding & Portrait Photographers International) for the nod.
+*   **00:33**: Lists the sponsors that have supported his career:
+    *   **Westcott**
+    *   **Canon**
+    *   **B&H**
+    *   **Tether Tools**
+
+**3. Career Background**
+*   **00:47**: Discusses his transition from modeling to photography.
+    *   Modeled for 8 years.
+    *   Initially did not pay attention to the photography process while modeling (admits to sleeping or eating at craft services).
+    *   Picked up a camera and became "the most annoying photographer on set."
+
+**4. Personal & Team Acknowledgments**
+*   **00:52**: Thanks his parents for his "devilish looks" and support, noting his father is present.
+*   **01:50**: Acknowledges his team:
+    *   **Brittany** (Assistant for 9 years).
+    *   **Joe** (Retoucher for 20 years).
+*   **02:47**: Credits his wife, Yeli, as the "power behind the throne" for managing their family and twins while he travels.
+
+**5. Closing Anecdote**
+*   **03:04**: Shares a story about receiving a call from **Richard Corman** (famous for photographing Madonna).
+*   **03:20**: Corman told him: "I have to thank you for making headshots cool."

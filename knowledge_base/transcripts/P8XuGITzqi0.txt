@@ -1,0 +1,60 @@
+Source: https://www.youtube.com/watch?v=P8XuGITzqi0
+Video ID: P8XuGITzqi0
+----------------------------------------
+
+🎓 **Workflow Extraction** (Gemini 3 Pro)
+URL: https://www.youtube.com/watch?v=P8XuGITzqi0
+
+Here is the actionable workflow for the "Turn, Tilt & Drop" headshot technique, analyzed from Peter Hurley’s tutorial.
+
+### **Workflow: The "Turn, Tilt & Drop" Headshot Technique**
+
+**Goal:** To correctly photograph a subject with their shoulder turned forward without distorting perspective or including excessive body mass in the frame.
+
+**Tools Required:**
+*   DSLR/Mirrorless Camera
+*   Tripod (recommended for stability, though Peter demonstrates handheld flexibility)
+*   Studio Lighting (Continuous or Strobe)
+
+---
+
+#### **1. The Setup: Shoulder Placement**
+*   **00:45 - 01:05**: Position the subject facing the camera. Have them bring one shoulder forward toward the lens.
+    *   *Purpose:* This accentuates the jawline.
+*   **02:50 - 03:00**: Instruct the subject to drop the front shoulder slightly.
+    *   **Parameter:** The shoulder should drop **no more than 1 to 2 inches**.
+    *   *Warning:* Do not let the subject drop the shoulder all the way down; this creates a sloping body line that looks unflattering.
+*   **02:51**: Utilize the "Egyptian" technique (pushing the chin forward and down) to tighten the jawline further without needing an excessive shoulder drop.
+
+#### **2. Hair Management (For Long Hair)**
+*   **03:41 - 03:55**: Assess the hair. When facing straight on, hair can be in front of both shoulders.
+*   **03:56 - 04:30**: When the subject turns the shoulder forward, check if the hair blocks the neck line.
+    *   *Decision Logic:* If the hair dives down and obscures the neck, it creates a visual block.
+    *   *Action:* Pull the hair back behind the front shoulder to reveal the neck.
+*   **04:40**: If the turn is subtle, hair in front may be acceptable. If the turn is sharp, move the hair back. **Test both variations.**
+
+#### **3. Camera Positioning: The "Drop"**
+*   **06:06 - 06:25**: **Crucial Step.** As the subject drops their shoulder, you must physically lower the camera height.
+    *   *The Mistake:* Keeping the camera high and tilting down creates a "looking down" perspective and shows too much body/chest.
+    *   **Parameter:** The camera lens should be roughly at **mouth or nose height** relative to the subject.
+*   **06:40 - 06:50**: If using a tripod, drop the center column. If handheld, squat or lower your stance.
+
+#### **4. Camera Angle: The "Untilt"**
+*   **06:52 - 07:15**: Once the camera is lowered, adjust the pitch of the lens.
+    *   **Action:** "Untilt" the camera. Instead of angling the lens downward at the subject, level it out so it is pointing straight at their face.
+    *   *Visual Check:* The sensor plane should be parallel to the face plane.
+*   **07:43**: Verify the framing. You should not see the top of the shoulder sloping dramatically downward. The body should appear to go "straight out of frame" at the bottom.
+
+#### **5. The Shot Execution**
+*   **08:35 - 08:45**: Final pose check:
+    *   Subject turned slightly.
+    *   Front shoulder dropped 1 inch.
+    *   Chin out and down (The Egyptian).
+    *   Forehead pushed slightly toward the camera ("Squinch").
+*   **11:25 - 11:35**: Take the shot.
+*   **12:27 - 13:00**: **Review the image.**
+    *   *Success Criteria:* The subject looks slim, the perspective is flattering (not looking down on them), and the body mass does not form a large triangle at the bottom of the frame. The arms/shoulders should exit the frame vertically or horizontally, not diagonally downward.
+
+#### **6. Troubleshooting (The "Too Much Turn")**
+*   **10:50 - 11:20**: If you see too much of the *back* of the shoulder, the subject has turned too far.
+    *   *Correction:* Have the subject rotate their body slightly back toward the center until the back of the shoulder is minimized, then re-apply the Drop and Untilt steps.

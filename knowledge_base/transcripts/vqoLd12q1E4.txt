@@ -1,0 +1,51 @@
+Source: https://www.youtube.com/watch?v=vqoLd12q1E4
+Video ID: vqoLd12q1E4
+----------------------------------------
+
+🎓 **Workflow Extraction** (Gemini 3 Pro)
+URL: https://www.youtube.com/watch?v=vqoLd12q1E4
+
+Here is the actionable workflow for setting up the "Hurley Triangle" lighting configuration using strobes, based on Peter Hurley’s tutorial.
+
+### **1. Equipment & Studio Preparation**
+*   **Lighting:** 3x Profoto Strobes (Battery-powered B1s or B10s recommended for mobility).
+*   **Modifiers:**
+    *   **Sides:** 2x Profoto 1x4' Strip Softboxes.
+    *   **Bottom:** 1x Profoto 1x3' Strip Softbox (preferred for better fit) or 1x4'.
+*   **Stands:** Rolling stands (C-stands on wheels) are highly recommended for micro-adjustments.
+*   **Camera Gear:** Canon EOS R5 (or equivalent) with a 70-200mm lens.
+*   **00:32** – Ensure softboxes are assembled correctly; Profoto strip boxes use a color-coded rod system for quick setup.
+
+### **2. The "Hurley Triangle" Configuration**
+*   **01:35** – Arrange the lights in an inverted triangle shape.
+    *   Two 1x4' strips stand vertically on the left and right.
+    *   One 1x3' strip lays horizontally at the bottom connecting them.
+*   **02:20** – **Subject Placement:** The subject stands inside the triangle gap.
+    *   *Adjustment:* If the camera is too low, the subject looks down, making the light top-heavy. If the subject is too close, they enter light convergence. Have the subject step back slightly from the lights to find the sweet spot.
+*   **03:38** – **Proximity:** Keep the lights as close to the subject as possible without entering the frame. This utilizes the Inverse Square Law to create the softest possible light.
+
+### **3. Light Positioning & Feathering (The "Cocoon")**
+*   **05:50** – **Feathering Technique:** Do **not** point the side lights directly at the subject's face.
+    *   Point the side lights forward, aiming in front of the subject's shoulder/chest.
+    *   This allows the light to "wrap" around the face rather than hitting it directly.
+*   **06:08** – **Cocooning:** Angle the side lights slightly downward and inward to wrap the light around the face.
+*   **08:18** – **The Bottom Light (Money Light):** Place the horizontal strip just below the subject's chin level. This light is critical for filling in neck shadows and laugh lines, creating a "shadowless" beauty look.
+
+### **4. Camera & Strobe Parameters**
+*   **09:50** – **Camera Settings:**
+    *   **Shutter Speed:** 1/200 sec (to sync with flash).
+    *   **Aperture:** f/4.0 (Hurley’s standard for headshots).
+    *   **ISO:** 100.
+    *   **Focal Length:** ~92mm (on a 70-200mm lens).
+*   **09:55** – **Strobe Power:**
+    *   Set strobe power to match the f/4.0 aperture (approx. 4.0 - 4.2 on the Profoto scale).
+    *   Keep power low to allow shooting at f/4 without overexposing.
+
+### **5. The Shooting Workflow**
+*   **03:00** – **Modeling Lights:** Turn modeling lights to **Full Power**.
+    *   *Why?* Bright continuous light constricts the subject's pupils, revealing more color in the iris. This prevents "BPS" (Big Pupil Syndrome).
+*   **04:33** – **Subject Posing:**
+    *   Instruct subject to push their chin out and down slightly.
+    *   "Squinch" the eyes (narrow the lower lids).
+    *   Tilt the head slightly toward one shoulder.
+*   **08:56** – **Capture:** Shoot with all three lights firing. The result should be a clean, high-key image with light reflected in the eyes and no harsh shadows on the face.

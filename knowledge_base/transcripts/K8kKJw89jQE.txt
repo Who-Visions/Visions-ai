@@ -1,0 +1,61 @@
+Source: https://www.youtube.com/watch?v=K8kKJw89jQE
+Video ID: K8kKJw89jQE
+----------------------------------------
+
+🎓 **Workflow Extraction** (Gemini 3 Pro)
+URL: https://www.youtube.com/watch?v=K8kKJw89jQE
+
+Here is the actionable workflow for removing glare from glasses in headshot photography, based on Peter Hurley’s tutorial.
+
+### **Tools Required**
+*   **Camera:** DSLR or Mirrorless (Canon used in video).
+*   **Lighting:** Studio lighting (Kino Flo continuous lights used in video, but applies to strobes/softboxes).
+*   **Subject:** Person wearing glasses (various anti-reflective coatings).
+
+### **Core Concept: The Three Variables**
+To eliminate glare without compromising the lighting style, you have control over three specific variables. You should adjust them in this order:
+1.  **The Lights** (Position/Angle)
+2.  **The Subject** (Head Angle)
+3.  **The Glasses** (Physical Angle on Face)
+
+---
+
+### **Workflow: Eliminating Glasses Glare**
+
+#### **1. Initial Diagnosis (00:54 - 01:19)**
+*   Take a test shot with your standard lighting setup.
+*   **Analyze:** Zoom in on the eyes. Identify exactly where the softbox/light source is reflecting (e.g., directly over the pupil, on the frame rim, or covering the iris).
+*   *Note:* Different lens coatings (green, purple, clear) behave differently.
+
+#### **2. Method A: Adjust Light Height (02:28 - 03:22)**
+*   **Action:** Raise your main light source higher.
+*   **Technique:** While looking at the subject, physically lift the light stand.
+*   **Visual Cue:** Watch the reflection in the glasses. You want the bottom edge of the light reflection to sit **just at the top of the frame** or the very top of the eye, clearing the pupil.
+*   **Trade-off:** Raising the light too high may increase shadows under the nose or chin. You may need to angle the light down slightly after raising it.
+
+#### **3. Method B: Adjust Subject Head Angle (03:23 - 04:01)**
+*   **Action:** Instruct the subject to lower their chin.
+*   **Command:** "Chin down slightly."
+*   **Why it works:** This changes the angle of incidence, reflecting the light downward instead of back into the camera lens.
+*   **Refinement:** Have them tilt their head until the glare moves out of the critical eye area.
+
+#### **4. Method C: The "Glasses Tilt" Trick (04:29 - 06:27)**
+*   *Use this if moving the light or chin affects the look of the portrait too negatively.*
+*   **Action:** Change the trajectory of the glass lenses by tilting them forward.
+*   **Technique:** Ask the subject to lift the temple arms (earpieces) of the glasses **off their ears**.
+    *   Rest the arms about an inch above the ears.
+    *   This angles the lenses downward toward the floor.
+*   **Result:** The camera angle (straight on) cannot see that the glasses are floating off the ears, but the downward angle of the glass kills the reflection entirely.
+*   **Verification:** Take a shot and zoom in. The glare should be gone, and the glasses should still look natural.
+
+#### **5. The "Combo" Adjustment (06:47 - 08:18)**
+*   *Scenario:* If the subject changes glasses or has difficult lenses, one method may not suffice.
+*   **Step 1:** Apply **Method C** (Lift glasses off ears).
+*   **Step 2:** Apply **Method B** (Chin down slightly).
+*   **Step 3:** Apply **Method A** (Raise lights slightly if a sliver of glare remains).
+*   **Goal:** Find the balance where the eyes are clear, but the lighting on the face remains flattering (avoiding deep shadows in eye sockets).
+
+### **Summary Checklist (08:51 - 09:32)**
+1.  **Move the Light:** Raise it up.
+2.  **Move the Person:** Chin down / forehead forward.
+3.  **Move the Glasses:** Lift arms off ears to tilt lenses down.
