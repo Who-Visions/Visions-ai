@@ -14,8 +14,8 @@ from visions_assistant.agent import get_chat_response
 
 app = FastAPI(
     title="Visions AI",
-    description="World-class photography mentor and creative director",
-    version="3.0.0"
+    description="World-class photography mentor and creative director. Powered by Gemini 3 multi-model cascade.",
+    version="3.1.0"  # Updated for Gemini 3 integration
 )
 
 # Add CORS middleware
@@ -73,9 +73,9 @@ async def health():
 async def agent_json():
     """A2A Protocol - Agent Identity Card (Who Visions Fleet Standard)"""
     return {
-        "name": "Dr. Visions",
-        "version": "3.0.0",
-        "description": "World-class photography mentor and creative director with 80 years of visual arts experience. Expert in composition theory (Rudolf Arnheim), advanced camera gear, cinematic lighting, and visual storytelling. Powered by Google Gemini 3 Pro multi-model intelligence cascade.",
+        "name": "Visions",
+        "version": "3.1.0",
+        "description": "Legendary Creative Director with 80 years shaping visual culture. Oscar-winner. Pulitzer laureate. Powered by Gemini 3 multi-model cascade.",
         "capabilities": [
             "photography-technique-guidance",
             "composition-analysis",
@@ -96,15 +96,23 @@ async def agent_json():
             "role": "Photography Expert & Creative Director",
             "models": {
                 "synthesis": "gemini-3-pro-preview",
+                "fast_synthesis": "gemini-3-flash-preview",  # FREE TIER available
                 "image_generation": "gemini-3-pro-image-preview",
                 "grounded_search": "gemini-2.5-flash",
-                "deep_thinking": "gemini-2.5-pro"
+                "deep_thinking": "gemini-2.5-pro",
+                "embeddings": "gemini-embedding-001"
+            },
+            "gemini_3_features": {
+                "thinking_levels": ["low", "medium", "high", "minimal"],
+                "media_resolution": "medium",  # Optimal for PDFs
+                "flash_free_tier": True
             },
             "specialties": [
                 "Rudolf Arnheim composition theory",
                 "Phase One / Leica / Sony A1 expertise",
                 "High-end commercial photography",
-                "Cinematic lighting setups"
+                "Cinematic lighting setups",
+                "Screenwriting & narrative structure"
             ]
         }
     }

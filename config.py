@@ -27,18 +27,32 @@ class Config:
     VERTEX_GLOBAL_LOCATION = os.getenv("VERTEX_GLOBAL_LOCATION", "global")
     
     # Reasoning Engine
-    REASONING_ENGINE_ID = os.getenv("REASONING_ENGINE_ID", "5378250132150026240")
+    REASONING_ENGINE_ID = os.getenv("REASONING_ENGINE_ID", "542433066447011840")
     REASONING_ENGINE_RESOURCE = (
         f"projects/620633534056/locations/{VERTEX_LOCATION}/"
         f"reasoningEngines/{REASONING_ENGINE_ID}"
     )
     
     # Model Configuration
-    PRIMARY_IMAGE_MODEL = "gemini-3-pro-image-preview"  # Global endpoint with dynamic routing
-    FALLBACK_IMAGE_MODEL = "gemini-2.5-flash-image"  # Flash fallback for resilience
+    # RESTRICTION: Gemini 3 Global Models Only (User Mandate)
+    PRIMARY_IMAGE_MODEL = "gemini-3-pro-preview" 
+    FALLBACK_IMAGE_MODEL = "gemini-3-flash-preview"
+    
+    # Gemini 3 Thinking Levels (replaces deprecated thinking_budget)
+    # low: Minimizes latency, good for simple queries
+    # high: Deep reasoning, longer time-to-first-token
+    # minimal: Flash-only, almost no thinking
+    # medium: Flash-only, balanced thinking
+    THINKING_LEVEL_SIMPLE = "low"
+    THINKING_LEVEL_COMPLEX = "high"
+    
+    # Embedding Model (Gemini Embedding 001 - stable, high rate limits)
+    EMBEDDING_MODEL = "gemini-embedding-001"
+    EMBEDDING_DIMENSIONS = 768  # Can be 768, 1536, or 3072
     
     # Feature Flags
-    ENABLE_AI_STUDIO_FALLBACK = os.getenv("ENABLE_AI_STUDIO_FALLBACK", "true").lower() == "true"
+    ENABLE_AI_STUDIO_FALLBACK = True  # Enabled (Key updated)
+    ENABLE_GEMINI_3_FLASH_FREE = True  # Gemini 3 Flash has free tier!
     ENABLE_QUOTA_ALERTS = os.getenv("ENABLE_QUOTA_ALERTS", "false").lower() == "true"
     
     # Knowledge Base

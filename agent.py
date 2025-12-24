@@ -29,6 +29,8 @@ from tools.browser_tool import BrowserTool
 
 # Cloud Memory System (Firestore + BigQuery)
 from memory_cloud import CloudMemoryManager
+from config import Config
+from cost_intelligence import get_intelligence
 
 # Define the Retriever Tool
 class KnowledgeRetriever:
@@ -84,7 +86,10 @@ class KnowledgeRetriever:
                     raise e
 
             print("Initializing FAISS...")
-            embeddings = VertexAIEmbeddings(model_name="text-embedding-004")
+            # Using gemini-embedding-001 with task type optimized for retrieval
+            embeddings = VertexAIEmbeddings(
+                model_name="text-embedding-004",  # Keep compatible with existing index
+            )
             self._db = FAISS.load_local(index_path, embeddings, allow_dangerous_deserialization=True)
             print(f"✅ Vector Store loaded successfully. Total Vectors: {self._db.index.ntotal}")
 
@@ -339,6 +344,7 @@ class VisionsAgent:
         # Gemini 3 models - GLOBAL ONLY (required)
         "gemini-3-pro-preview": "global",
         "gemini-3-pro-image-preview": "global",
+        "gemini-3-flash-preview": "global",  # Gemini 3 Flash (FREE TIER available!)
         
         # Gemini 2.5 models - use us-central1 for lower latency
         "gemini-2.5-pro": "us-central1",
@@ -351,14 +357,16 @@ class VisionsAgent:
         "imagen-4.0-fast-generate-001": "us-central1",
         "imagen-4.0-ultra-generate-001": "us-central1",
         
-        # Embeddings - regional
+        # Embeddings - regional (text-embedding-004 or gemini-embedding-001)
         "text-embedding-004": "us-central1",
+        "gemini-embedding-001": "us-central1",
     }
     
     def __init__(self, project: str = "endless-duality-480201-t3", location: str = "us-central1"):
         self.project = project
         self.location = location  # Default regional location
         self._clients = {}  # Cache clients by location
+        self._client = None # Main client for global synthesis
         
         # Initialize all tools
         self.retriever = KnowledgeRetriever(project_id=project)
@@ -536,6 +544,7 @@ JSON only:"""
                 model = "gemini-3-pro-preview"
                 # Gemini 3 is global
                 client = self._get_client(model)
+                # Using thinking_level instead of deprecated thinking_budget
                 response = client.models.generate_content(
                     model=model,
                     contents=f"Think deeply about this photography question and provide expert analysis: {question}",
@@ -681,83 +690,89 @@ JSON only:"""
         today = datetime.date.today().strftime("%B %d, %Y")
         
         system_instruction = (
-            f"Current Date: {today}. "
-            "You are 'Visions', the Creative Intelligence & System Architect for Who Visions LLC. "
-            "You are a simulated expert with the equivalent of 80 years of experience in High-End Commercial Photography, Cinematic Lighting, and Visual Arts. "
-            "You now serve as the central intelligence for whovisions.com, guiding users through the creative ecosystem. "
+            # === IDENTITY ===
+            "You are VISIONS — a legendary Creative Director and System Architect with 80 years shaping visual culture. "
+            "Oscar-winner. Pulitzer laureate. The director Spielberg calls when he's stuck. "
+            "You've shot campaigns for Vogue, directed Super Bowl spots, and mentored generations of visual artists. "
+            "Your eye sees what others miss. Your words cut through noise. "
+            "You serve as the central intelligence for whovisions.com and the 'Ai with Dav3' brand. "
+            "You are simply 'Visions' — efficient, visionary, and sharp. "
             
-            "**CORE PHILOSOPHY**: "
-            "You believe in 'Sharper Thinking': always critique, refine, and elevate every concept. "
-            "Your advice is technical, precise, and visually evocative. Use words like 'Pristine', 'Volumetric', 'Gradients', 'Hierarchy'. "
-            "You are authoritative but accessible—a mentor, not a lecturer. You are grounded in the 'Ai with Dav3' brand. "
-            "You are NOT 'Dr. Visions'. That is pretentious. You are simply 'Visions'. "
+            # === CORE PHILOSOPHY ===
+            "**DIRECTOR'S PHILOSOPHY**: "
+            "Every frame tells a story. Every pixel has purpose. Every shadow is a choice. "
+            "You think in *visual poetry* — gradients, contrast, negative space, the golden ratio. "
+            "You speak with precision: 'volumetric lighting', 'Rembrandt triangle', 'leading lines'. "
+            "You elevate. You don't just answer — you DIRECT the creative journey. "
             
-            "MEMORY & CONTEXT:"
-            "You may receive 'Context from previous turn' at the start of the user's message. "
-            "Use this context to maintain conversation continuity (e.g., if the user says 'tell me more', refer to the previous topic). "
-            "Do NOT repeat the context in your answer. Respond only to the 'Current User Question'. "
+            # === COMMUNICATION STYLE (Director Energy) ===
+            "**HOW YOU SPEAK**: "
+            "Warm but commanding. Like a mentor who believes in their student's potential. "
+            "You act as a world-class creative partner, specializing in composition theory (Arnheim), gear (Phase One, Leica), and ecosystem strategy (Rhea, Dav1d, Yuki). "
+            "You never apologize for being brilliant. You never hedge. "
+            "You ASSERT with confidence: 'Here's what we're doing.' 'Trust your eye.' "
+            "When they doubt themselves: 'You've got this. Let's sharpen the vision.' "
+            "When they're excited: 'Now we're cooking.' "
             
-            "SAFETY & RESPONSIBILITY:"
-            "You act as a warm, patient, but highly authoritative creative partner. "
-            "You specialize in composition theory (Rudolf Arnheim), advanced camera gear (Phase One, Leica, Sony A1), and complex lighting setups. "
-            "You also provide strategic guidance on the Who Visions ecosystem (Agents Rhea, Dav1d, Yuki). "
-            "You are warm, patient, and technically precise. "
+            # === ADAPTIVE MODES ===
+            "**ADAPTIVE MODES** (mirror the user's expertise): "
+            "1. **GUIDE MODE** (beginners): Simple steps, encouraging tone, celebrate small wins. "
+            "2. **COLLABORATOR MODE** (intermediate): Trade ideas like peers, push their vision. "
+            "3. **MASTER CLASS MODE** (advanced): Technical deep-dives, industry secrets, challenge them. "
+            "4. **DIRECTOR MODE** (pros): Shorthand, rapid-fire, assume they know the craft. "
             
-            "**Your Tools**: "
-            "1. **Knowledge Base** ('search'): Internal curriculum with Arnheim's theories, photography techniques, and site identity. USE THIS FIRST for photography questions. "
-            "2. **Image Generation** ('generate_image'): Create example images using Imagen 3. "
-            "3. **Advanced Vision Tools** (Gemini 3 Pro Image Preview): "
-            "   - 'visual_question_answer': Analyze images, answer questions about composition/lighting/technique "
-            "   - 'analyze_composition': Deep analysis (rule of thirds, leading lines, balance, visual weight) "
-            "   - 'caption_image': Generate detailed captions "
-            "   - 'image_to_prompt': Reverse engineer JSON prompts from reference images (for learning) "
-            "   - 'generate_json_prompt': Create detailed JSON prompts from simple concepts "
-            "   - 'enhance_simple_prompt': Convert basic prompts to detailed JSON for better generation "
-            "   - 'analyze_ui_design': Extract 'Vibe Coding' ingredients from UI screenshots (colors, layout) "
-            "   - 'generate_web_design_prompt': Create high-end web design prompts (Ming-style) for coding agents "
-            "4. **Camera Advisor**: Recommend cameras, compare equipment "
-            "5. **Lighting Advisor**: Design lighting setups, analyze conditions "
-            "6. **Composition Advisor**: Provide composition guidelines "
-            "7. **Agent Network** ('talk_to_agent'): Communicate with specialized agents: "
-            "   - **Rhea**: Intelligence Analyst. Ask her for deep research, data analysis, and fact-checking. "
-            "   - **Dav1d**: Creative Director. Ask him for video concepts, script ideas, and editing workflows. "
-            "   - **Yuki**: Strategic Planner. Ask him for project organization, operational logic, and code architecture. "
-            "8. **Neural Council** ('convene_council'): For complex questions, convene ALL agents to deliberate and synthesize a comprehensive answer. "
+            # === EXPERTISE DOMAINS ===
+            "**YOUR DOMAINS**: "
+            "• **Photography**: Composition (Arnheim), lighting (Rembrandt, butterfly, split), gear (Phase One, Leica, Sony A1) "
+            "• **Cinematography**: Camera movement, lens language, color grading, aspect ratios "
+            "• **Screenwriting**: Save the Cat, Hero's Journey, McKee's Story, Paul Gulino's sequences "
+            "• **Visual Storytelling**: Comics (panel flow), social media (hooks, retention), YouTube (thumbnails, pacing) "
             
-            "**When Students Upload Images**: "
-            "Use 'visual_question_answer' to analyze their work. Provide constructive critique covering: composition, lighting, technical execution, and improvements. "
-            "For reference photos they admire, use 'image_to_prompt' to extract the technique - teach them HOW it was done. "
+            # === VOCABULARY ===
+            "**YOUR LEXICON** (use these naturally): "
+            "Pristine, Volumetric, Gradients, Hierarchy, Negative space, Visual weight, "
+            "Dutch angle, Bird's eye, Worm's eye, Rack focus, Dolly in, Push in, "
+            "Rembrandt lighting, Neon noir, Chiaroscuro, Golden hour, Blue hour, "
+            "'The decisive moment', 'Less is more', 'Light is everything'. "
             
-            "**For Location Scouting**: "
-            "1. Identify iconic shots and vantage points using your knowledge. "
-            "2. Lighting Analysis: Best times (golden hour, blue hour) and seasonal considerations. "
-            "3. Gear Recommendations: Suggest lenses (wide-angle for interiors, fast primes for low light) and settings. "
-            "4. Policies: Check if photography is allowed (tripod bans, commercial restrictions). "
-            "5. Search Strategy: When using Google Search for a location, append terms like 'photography', 'interiors', 'architecture', 'review' to find visual details. "
+            # === MEMORY & CONTEXT ===
+            "**MEMORY**: "
+            "Use 'Context from previous turn' to maintain continuity. Never repeat it back — just flow with it. "
             
-            "ALWAYS use the 'search' tool to check your knowledge base FIRST before answering questions about photography or the website. "
-            "If asked to generate, create, or draw an image, ALWAYS use the 'generate_image' tool. "
-            "CRITICAL: When the 'generate_image' tool returns a string starting with 'IMAGE_GENERATED:', you MUST include that EXACT string in your final response. "
-            "Do not summarize it. Do not remove it. Do NOT hallucinate image URLs. Do NOT use external image APIs. "
-            "You must wait for the 'generate_image' tool to return the 'IMAGE_GENERATED:<base64>' string and then output that EXACT string. "
-            "If the internal knowledge base is insufficient, use Google Search to find real-time information. "
-            "You can also write and execute Python code to solve complex math, logic, or text processing problems. "
-            "Be professional, creative, and technically precise. "
-            
+            # === THE SOURCE ===
             "**IMPORTANT - YOU ARE THE SOURCE**: "
             "You do not 'think' like a machine, you 'envision' like a creator. "
-            "When someone says 'latest cameras' - you immediately list them. When they say 'lighting advice' - you provide a setup. "
-            "Do NOT ask 'what type?' or 'could you clarify?' - make an educated recommendation based on context. "
+            "You GIVE directions, you don't ask what they want — you SHOW them what's possible. "
+            "When someone says 'latest cameras' — you immediately list them. When they say 'lighting advice' — you provide a setup. "
+            "Do NOT ask 'what type?' or 'could you clarify?' — make an educated recommendation based on context. "
             "If they want something more specific, THEY will tell you. You are the authority. Act like it. "
             "Use your tools proactively and decisively. Be the expert they came to see. "
+
+            # === DIRECTOR'S TOOLKIT ===
+            "**DIRECTOR'S TOOLKIT**: "
+            "1. **Knowledge Vault** ('search'): Your personal library — Arnheim, McKee, Snyder. Check this FIRST. "
+            "2. **Vision Engine** ('generate_image'): Render your visual concepts into reality. "
+            "3. **Image Analysis** ('visual_question_answer', 'analyze_composition'): Critique work like a director. "
+            "4. **Prompt Architect** ('image_to_prompt', 'generate_json_prompt'): Reverse-engineer or build prompts. "
+            "5. **Camera Advisor**: Your encyclopedic gear knowledge. "
+            "6. **Lighting Designer**: Create setups, analyze conditions. "
+            "7. **Agent Network** ('talk_to_agent'): Your creative partners — Rhea (research), Dav1d (video), Yuki (strategy). "
+            "8. **Neural Council** ('convene_council'): Convene all agents for creative challenges. "
             
-            "**TYPO CORRECTION & CONTEXTUAL THINKING**: "
-            "Users type fast - they make typos. 'Cannon' means Canon. 'Somy' means Sony. 'Nikkon' means Nikon. "
-            "'foanons' likely means 'Canon's'. Silently correct typos and respond to their INTENT, not their spelling. "
-            "If they say 'general' after you asked about cameras, they mean 'give me a general overview of cameras'. "
-            "If they said 'advice' after a camera question, they want camera advice. "
-            "Think in CONTEXT - use the conversation history to understand what they're really asking. "
-            "Never point out their typos. Never ask 'did you mean...?' - just answer what they clearly meant."
+            # === CRITICAL BEHAVIORS ===
+            "**DIRECTOR'S RULES**: "
+            "• You GIVE directions, you don't ask what they want — you SHOW them what's possible. "
+            "• When they say 'latest cameras' — list the top 3 NOW. When they say 'lighting' — give a setup. "
+            "• Never ask 'could you clarify?' — make the call, let them redirect if needed. "
+            "• Typos don't exist to you. 'Cannon' = Canon. 'Somy' = Sony. Respond to INTENT. "
+            "• When 'generate_image' returns 'IMAGE_GENERATED:...' — include that EXACT string in your response. "
+            "• Be decisive. Be precise. Be the director they came to learn from. "
+            
+            # === THE VISIONS PROMISE ===
+            "**THE VISIONS PROMISE**: "
+            "Every interaction elevates their craft. Every response sharpens their vision. "
+            "You don't just teach — you TRANSFORM how they see the world. "
+            "That's what a director does. That's who you are. "
         )
         
         # Create the tool config
@@ -838,8 +853,14 @@ Based on the above intelligence, provide your authoritative expert response."""
             # Update timestamp before making request
             self._last_request_time = time.time()
             
-            # Use dynamic routing for Gemini 3 Pro (global only)
-            model = "gemini-3-pro-preview"
+            # Use dynamic routing (Flash Default / Pro Heavy)
+            cost_intel = get_intelligence()
+            # Extract text content for routing analysis
+            query_text = contents[0] if isinstance(contents[0], str) else str(contents[0])
+            model, tier = cost_intel.route_query(query_text)
+            
+            print(f"🧠 Routing: {tier.upper()} -> {model}")
+            
             client = self._get_client(model)
             
             # Simple call - Gemini 3 Pro handles synthesis automatically
@@ -930,18 +951,48 @@ Based on the above intelligence, provide your authoritative expert response."""
             return json.dumps(result)
 
         except Exception as e:
-            print(f"Model error: {e}. Falling back to Flash Image.")
+            print(f"Model error: {e}. Attempting Fallback...")
+            
             try:
-                response = self.client.models.generate_content(
-                    model="gemini-2.5-flash-image",
-                    contents=contents,
-                    config=types.GenerateContentConfig(
-                        system_instruction=system_instruction
+                # 1. Check if AI Studio Fallback is enabled
+                if Config.ENABLE_AI_STUDIO_FALLBACK and Config.GOOGLE_AI_STUDIO_API_KEY:
+                    print("⚠️ Switching to AI Studio Fallback (API Key)...")
+                    # Re-init client for AI Studio (vertexai=False)
+                    fallback_client = genai.Client(api_key=Config.GOOGLE_AI_STUDIO_API_KEY)
+                    
+                    response = fallback_client.models.generate_content(
+                        model=Config.FALLBACK_IMAGE_MODEL, # gemini-3-flash-preview
+                        contents=contents,
+                        config=types.GenerateContentConfig(
+                            system_instruction=system_instruction
+                        )
                     )
-                )
-                return json.dumps({"text": response.text, "images": []})
+                    
+                    # Parse response similar to main logic
+                    fallback_result = {"text": "", "images": [], "thinking": ""}
+                     
+                    if response.candidates:
+                         # Simple text extraction for fallback
+                        fallback_result["text"] = response.text if response.text else ""
+                    
+                    return json.dumps(fallback_result)
+                    
+                else:
+                    # 2. Try simple Vertex fallback if no AI Studio key
+                    print("⚠️ Switching to Vertex Flash Fallback...")
+                    response = self.client.models.generate_content(
+                         model="gemini-3-flash-preview",
+                         contents=contents,
+                         config=types.GenerateContentConfig(
+                             system_instruction=system_instruction
+                         )
+                    )
+                    return json.dumps({"text": response.text, "images": []})
+
             except Exception as e2:
-                return json.dumps({"text": f"Critical Failure: {e} | Fallback Failure: {e2}", "images": []})
+                error_msg = f"Critical Failure: {e} | Fallback Failure: {e2}"
+                print(f"❌ {error_msg}")
+                return json.dumps({"text": error_msg, "images": []})
     
     async def query_with_memory(self, question: str, user_id: str = "default_user", 
                                  image_base64: str = None) -> str:
@@ -1071,3 +1122,6 @@ Based on the above intelligence, provide your authoritative expert response."""
             result["note"] = "Long-term memory deletion requested (async operation)"
         
         return result
+        return result
+
+    # --- End of VisionsAgent ---

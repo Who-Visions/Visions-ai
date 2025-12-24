@@ -37,6 +37,12 @@ last_generation_test.txt
 temp_genai_repo/
 visions-ai-brain/
 
-# Secrets
+# Credentials (NEVER commit these!)
+service_account_key.json
 firebase_key.json
-*.json
+*_credentials.json
+*.pem
+
+# Ingestor logs
+knowledge_base/ingestor_errors.log
+knowledge_base/processed_pdfs.json

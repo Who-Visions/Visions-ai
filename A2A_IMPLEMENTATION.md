@@ -1,11 +1,13 @@
 # 🔗 A2A Protocol Implementation - Visions AI
 
 ## Overview
+
 Visions AI now supports the **Who Visions Fleet A2A (Agent-to-Agent) Protocol**, enabling seamless discovery and communication with other agents in the fleet.
 
 ## Implemented Endpoints
 
 ### 1. Agent Identity Card (A2A Standard)
+
 **Endpoint**: `GET /.well-known/agent.json`  
 **Content-Type**: `application/json`  
 **Authentication**: None (Public)
@@ -13,11 +15,12 @@ Visions AI now supports the **Who Visions Fleet A2A (Agent-to-Agent) Protocol**,
 Returns the agent's identity card with capabilities and endpoints.
 
 **Example Response**:
+
 ```json
 {
-  "name": "Dr. Visions",
-  "version": "3.0.0",
-  "description": "World-class photography mentor and creative director...",
+  "name": "Visions",
+  "version": "3.1.0",
+  "description": "Legendary Creative Director with director energy. Powered by Gemini 3 multi-model cascade.",
   "capabilities": [
     "photography-technique-guidance",
     "composition-analysis",
@@ -36,13 +39,22 @@ Returns the agent's identity card with capabilities and endpoints.
   "extensions": {
     "color": "purple",
     "role": "Photography Expert & Creative Director",
-    "models": {...},
-    "specialties": [...]
+    "models": {
+      "synthesis": "gemini-3-pro-preview",
+      "fast_synthesis": "gemini-3-flash-preview",
+      "image_generation": "gemini-3-pro-image-preview"
+    },
+    "gemini_3_features": {
+      "thinking_levels": ["low", "medium", "high"],
+      "flash_free_tier": true
+    },
+    "specialties": ["Composition (Arnheim)", "Screenwriting", "Cinematography"]
   }
 }
 ```
 
 ### 2. OpenAI-Compatible Chat Endpoint
+
 **Endpoint**: `POST /v1/chat/completions`  
 **Content-Type**: `application/json`  
 **Authentication**: Optional (Bearer token for Cloud Run)
@@ -50,6 +62,7 @@ Returns the agent's identity card with capabilities and endpoints.
 Accepts OpenAI-compatible chat requests with `messages` array.
 
 **Request Format**:
+
 ```json
 {
   "messages": [
@@ -60,6 +73,7 @@ Accepts OpenAI-compatible chat requests with `messages` array.
 ```
 
 **Response Format**:
+
 ```json
 {
   "id": "chatcmpl-visions-ai",
@@ -85,12 +99,14 @@ Accepts OpenAI-compatible chat requests with `messages` array.
 ```
 
 ### 3. Flexible Chat Endpoint
+
 **Endpoint**: `POST /v1/chat`  
 **Content-Type**: `application/json`
 
 Accepts both OpenAI format (`messages` array) and simple format (`message` string).
 
 **Simple Format**:
+
 ```json
 {
   "message": "What's the best camera for street photography?"
@@ -98,6 +114,7 @@ Accepts both OpenAI format (`messages` array) and simple format (`message` strin
 ```
 
 ### 4. Legacy Endpoints
+
 - `POST /chat` - Original Visions format
 - `POST /query` - Alias for `/chat`
 - `GET /v1/models` - OpenAI-compatible models list
@@ -105,11 +122,13 @@ Accepts both OpenAI format (`messages` array) and simple format (`message` strin
 ## Testing
 
 ### Test Agent Identity Card
+
 ```bash
 curl https://YOUR-CLOUD-RUN-URL/.well-known/agent.json
 ```
 
 ### Test Chat (OpenAI Format)
+
 ```bash
 curl -X POST https://YOUR-CLOUD-RUN-URL/v1/chat/completions \
   -H "Content-Type: application/json" \
@@ -121,6 +140,7 @@ curl -X POST https://YOUR-CLOUD-RUN-URL/v1/chat/completions \
 ```
 
 ### Test Chat (Simple Format)
+
 ```bash
 curl -X POST https://YOUR-CLOUD-RUN-URL/v1/chat \
   -H "Content-Type: application/json" \
@@ -144,6 +164,7 @@ curl -X POST https://YOUR-CLOUD-RUN-URL/v1/chat \
 ## Fleet Integration
 
 Visions AI can be discovered by:
+
 - **Who-Tester** (Fleet Leader)
 - **Rhea** (Intelligence Analyst)
 - **Dav1d** (Creative Director)
@@ -154,6 +175,7 @@ Other agents can call Visions for photography expertise, image generation, or vi
 ## Deployment
 
 Deploy to Cloud Run with:
+
 ```bash
 gcloud run deploy visions-ai \
   --source . \
@@ -165,6 +187,7 @@ gcloud run deploy visions-ai \
 ## Notes
 
 - All endpoints support CORS for cross-origin requests
-- The agent uses Gemini 3 Pro for final synthesis
-- Multi-model cascade (Flash-Lite → Flash → Pro → Gemini 3) for intelligent routing
+- Uses Gemini 3 Pro (synthesis), Flash (grounding), and 2.5 Pro (deep thinking)
+- `thinking_level` parameter: low/medium/high for adaptive reasoning
+- Gemini 3 Flash has FREE TIER available
 - Rate limiting: 45 seconds between Gemini 3 Pro requests

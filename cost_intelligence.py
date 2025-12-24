@@ -60,33 +60,33 @@ TOTAL_CREDITS = math.fsum([CREDITS["glitched"]["amount"], CREDITS["genai"]["amou
 # Model tiers for smart routing (Official pricing from ai.google.dev Dec 2025)
 MODEL_TIERS = {
     "triage": {
-        "model": "gemini-2.5-flash-lite",
-        "cost_per_1m_input": 0.10,      # $0.10/1M tokens
-        "cost_per_1m_output": 0.40,     # $0.40/1M tokens
-        "batch_input": 0.05,            # 50% batch discount
+        "model": "gemini-3-flash-preview",
+        "cost_per_1m_input": 0.10,      
+        "cost_per_1m_output": 0.40,
+        "batch_input": 0.05,            
         "batch_output": 0.20,
         "use_for": ["greeting", "simple_question", "routing"]
     },
     "standard": {
-        "model": "gemini-2.5-flash",
-        "cost_per_1m_input": 0.30,      # $0.30/1M tokens
-        "cost_per_1m_output": 2.50,     # $2.50/1M tokens
-        "batch_input": 0.15,
-        "batch_output": 1.25,
+        "model": "gemini-3-flash-preview",
+        "cost_per_1m_input": 0.10,      
+        "cost_per_1m_output": 0.40,
+        "batch_input": 0.05,            
+        "batch_output": 0.20,
         "use_for": ["general", "code", "analysis"]
     },
     "advanced": {
-        "model": "gemini-2.5-pro", 
-        "cost_per_1m_input": 1.25,      # $1.25/1M tokens
-        "cost_per_1m_output": 10.00,    # $10.00/1M tokens
-        "batch_input": 0.625,
-        "batch_output": 5.00,
+        "model": "gemini-3-pro-preview", 
+        "cost_per_1m_input": 2.00,      
+        "cost_per_1m_output": 12.00,
+        "batch_input": 1.00,
+        "batch_output": 6.00,
         "use_for": ["complex_reasoning", "research", "synthesis"]
     },
     "flagship": {
         "model": "gemini-3-pro-preview",
-        "cost_per_1m_input": 2.00,      # $2.00/1M tokens
-        "cost_per_1m_output": 12.00,    # $12.00/1M tokens
+        "cost_per_1m_input": 2.00,      
+        "cost_per_1m_output": 12.00,
         "batch_input": 1.00,
         "batch_output": 6.00,
         "use_for": ["expert", "multimodal", "final_output"]

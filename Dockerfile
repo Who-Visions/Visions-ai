@@ -1,4 +1,5 @@
 # Visions AI - Cloud Run Deployment
+# v3.1.0 - Gemini 3 Multi-Model Cascade
 FROM python:3.12-slim
 
 # Set working directory
@@ -15,8 +16,8 @@ COPY requirements.txt .
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Install Gunicorn for production (FastAPI/uvicorn already in requirements.txt)
-RUN pip install --no-cache-dir gunicorn
+# Install FastAPI, Uvicorn, and Gunicorn for production
+RUN pip install --no-cache-dir fastapi uvicorn[standard] gunicorn
 
 # Copy application code
 COPY . .
@@ -24,10 +25,11 @@ COPY . .
 # Set environment variables
 ENV PORT=8080
 ENV PYTHONUNBUFFERED=1
+ENV PYTHONPATH=/app
 
 # Expose port
 EXPOSE 8080
 
 # Run with Gunicorn + UvicornWorker for FastAPI ASGI support
+# Using UvicornWorker for ASGI (FastAPI) compatibility
 CMD ["gunicorn", "--bind", "0.0.0.0:8080", "--workers", "1", "--worker-class", "uvicorn.workers.UvicornWorker", "--timeout", "300", "app:app"]
-
