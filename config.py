@@ -60,7 +60,19 @@ class Config:
     CHUNK_OVERLAP = 500
     # Storage
     GCS_BUCKET = f"{VERTEX_PROJECT_ID}-reasoning-artifacts"
+    GCS_MEMORY_BUCKET = f"{VERTEX_PROJECT_ID}-visions-memory"
     VECTOR_STORE_PREFIX = "vector_store"
+    
+    # Gemini Live API (Native Audio)
+    LIVE_AUDIO_MODEL = "gemini-live-2.5-flash-native-audio"
+    LIVE_API_HOST = "us-central1-aiplatform.googleapis.com"
+    LIVE_WS_PORT = int(os.getenv("VISIONS_LIVE_WS_PORT", "8080"))
+    LIVE_HTTP_PORT = int(os.getenv("VISIONS_LIVE_HTTP_PORT", "8000"))
+    LIVE_VOICE_NAME = os.getenv("VISIONS_VOICE", "Charon")  # Deep, authoritative
+    AUDIO_INPUT_SAMPLE_RATE = 16000   # 16kHz PCM input (required)
+    AUDIO_OUTPUT_SAMPLE_RATE = 24000  # 24kHz PCM output
+    ENABLE_AFFECTIVE_DIALOG = True    # Emotional intelligence
+    ENABLE_PROACTIVE_AUDIO = False    # Respond only when spoken to
     
     @classmethod
     def validate(cls):
