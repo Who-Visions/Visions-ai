@@ -9,7 +9,7 @@ Usage: python flow_watcher.py
 import sqlite3
 import time
 import asyncio
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 from typing import Optional, Callable
 import google.generativeai as genai
 import os
@@ -114,21 +114,32 @@ Current time: {current_time} (Eastern)
 **SYSTEM (type: "system")**:
 - Actions: mute, unmute, volume_up, volume_down, screenshot, lock, sleep, open_browser, open_explorer, open_terminal, time
 
+**GOOGLE (type: "google")**:
+- Actions: add_task (for reminders/todos), list_tasks, complete_task, today (view calendar), tomorrow (view calendar), create_event (for calendar meetings/events)
+- title: The name of the task or event
+- date: In YYYY-MM-DD format  
+- time: In HH:MM format (24hr)
+
 Command: "{command}"
 
 Return ONLY a JSON array. Each action has:
-- type: "light" or "system"
+- type: "light", "system", or "google"
 - For lights: selector, action, color (optional), brightness (optional), kelvin (optional), delay_seconds (optional)
 - For system: action, value (optional for volume 0-100)
+- For google: action, title (REQUIRED for add_task and create_event), date (optional), time (optional)
 
 Examples:
 "turn lights purple" -> [{{"type": "light", "selector": "all", "action": "color", "color": "purple"}}]
 "mute" -> [{{"type": "system", "action": "mute"}}]
-"take a screenshot" -> [{{"type": "system", "action": "screenshot"}}]
 "what time is it" -> [{{"type": "system", "action": "time"}}]
-"lock my computer" -> [{{"type": "system", "action": "lock"}}]
-"open terminal" -> [{{"type": "system", "action": "open_terminal"}}]
-"turn off lights in 5 minutes and screenshot" -> [{{"type": "light", "selector": "all", "action": "off", "delay_seconds": 300}}, {{"type": "system", "action": "screenshot"}}]
+"add buy milk to my tasks" -> [{{"type": "google", "action": "add_task", "title": "buy milk"}}]
+"remind me to call mom tomorrow" -> [{{"type": "google", "action": "add_task", "title": "call mom", "date": "{(datetime.now(eastern) + timedelta(days=1)).strftime('%Y-%m-%d')}"}}]
+"what's on my calendar today" -> [{{"type": "google", "action": "today"}}]
+"what's my schedule tomorrow" -> [{{"type": "google", "action": "tomorrow"}}]
+"list my tasks" -> [{{"type": "google", "action": "list_tasks"}}]
+"add a meeting to my calendar for Friday" -> [{{"type": "google", "action": "create_event", "title": "meeting", "date": "2025-12-26"}}]
+"schedule team standup on December 26 at 2pm" -> [{{"type": "google", "action": "create_event", "title": "team standup", "date": "2025-12-26", "time": "14:00"}}]
+"put dentist appointment on my calendar tomorrow at 10am" -> [{{"type": "google", "action": "create_event", "title": "dentist appointment", "date": "{(datetime.now(eastern) + timedelta(days=1)).strftime('%Y-%m-%d')}", "time": "10:00"}}]
 
 JSON only, no explanation:"""
 
@@ -172,6 +183,16 @@ JSON only, no explanation:"""
                     print(f"💻 System: {action}")
                     result = system_command(action, value)
                     results.append(f"System: {result}")
+                
+                elif act_type == "google":
+                    # Google Tasks/Calendar command
+                    from tools.google_tools import google_command
+                    title = act.get("title")
+                    date = act.get("date")
+                    time = act.get("time")
+                    print(f"📅 Google: {action} - {title}")
+                    result = google_command(action, title, date, time)
+                    results.append(f"Google: {result}")
                 
                 elif act_type == "light":
                     # Light command

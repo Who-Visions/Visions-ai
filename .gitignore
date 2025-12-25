@@ -41,6 +41,9 @@ visions-ai-brain/
 service_account_key.json
 firebase_key.json
 *_credentials.json
+credentials.json
+token.json
+client_secret*.json
 *.pem
 
 # Ingestor logs
