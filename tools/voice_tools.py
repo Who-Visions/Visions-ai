@@ -138,6 +138,29 @@ class VoiceToolsRegistry:
                     },
                     "required": ["action"]
                 }
+            },
+            {
+                "name": "get_flow_context",
+                "description": "Access your Wispr Flow dictation history. Get recent dictations, search past conversations, or view stats. Use when user asks about what they've said before, recent conversations, or voice history.",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "action": {
+                            "type": "string",
+                            "enum": ["recent", "today", "search", "stats"],
+                            "description": "Action: recent (last dictations), today, search (find by text), stats"
+                        },
+                        "query": {
+                            "type": "string",
+                            "description": "Search text for 'search' action"
+                        },
+                        "limit": {
+                            "type": "integer",
+                            "description": "Number of results (default 10)"
+                        }
+                    },
+                    "required": ["action"]
+                }
             }
         ]
 
@@ -247,6 +270,16 @@ class VoiceToolExecutor:
                 )
                 # Clear completion message to prevent model loops
                 return f"DONE. {result}"
+            
+            elif function_name == "get_flow_context":
+                # Wispr Flow history access
+                from tools.flow_tools import get_flow_context
+                result = get_flow_context(
+                    action=args.get("action", "recent"),
+                    query=args.get("query"),
+                    limit=args.get("limit", 10)
+                )
+                return result
             
             else:
                 return f"Unknown function: {function_name}"

@@ -105,6 +105,19 @@ const VISIONS_TOOLS = [
             },
             required: ["action"]
         }
+    },
+    {
+        name: "get_flow_context",
+        description: "Access your Wispr Flow dictation history. Get recent dictations, search past conversations, or view stats. Say 'what did I say earlier' or 'search my dictations for...'",
+        parameters: {
+            type: "object",
+            properties: {
+                action: { type: "string", enum: ["recent", "today", "search", "stats"] },
+                query: { type: "string", description: "Search text for search action" },
+                limit: { type: "integer", description: "Number of results" }
+            },
+            required: ["action"]
+        }
     }
 ];
 
