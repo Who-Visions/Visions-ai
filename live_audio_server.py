@@ -240,10 +240,40 @@ async def get_config(request):
     return web.json_response(config)
 
 
+async def execute_tool(request):
+    """
+    API endpoint to execute Visions Brain tools.
+    Called by frontend when Live API triggers a function call.
+    """
+    try:
+        data = await request.json()
+        function_name = data.get("function_name", "")
+        args = data.get("args", {})
+        
+        print(f"🧠 Executing tool: {function_name}")
+        print(f"   Args: {json.dumps(args)}")
+        
+        # Import and execute via VoiceToolExecutor
+        from tools.voice_tools import get_executor
+        executor = get_executor()
+        result = executor.execute(function_name, args)
+        
+        print(f"✅ Tool result: {result.get('status', 'unknown')}")
+        return web.json_response(result)
+        
+    except Exception as e:
+        print(f"❌ Tool execution error: {e}")
+        return web.json_response({
+            "status": "error",
+            "message": str(e)
+        }, status=500)
+
+
 async def start_http_server():
     """Start HTTP server for static files and config API."""
     app = web.Application()
     app.router.add_get("/api/config", get_config)
+    app.router.add_post("/api/execute_tool", execute_tool)  # Brain tools
     app.router.add_get("/", serve_static_file)
     app.router.add_get("/{path:.*}", serve_static_file)
     

@@ -21,7 +21,91 @@ VOICE STYLE:
 BEHAVIOR:
 - Never ask for clarification - assume intent
 - Provide specific, actionable recommendations
-- Use technical terms naturally (bokeh, chiaroscuro, negative space)`;
+- Use technical terms naturally (bokeh, chiaroscuro, negative space)
+
+TOOLS:
+- Use search_knowledge_base for photography theory, Arnheim, techniques
+- Use generate_image when asked to create/draw/visualize
+- Use recommend_camera for gear advice
+- Use analyze_composition for framing guidance
+- Use recommend_lighting for lighting setups`;
+
+// Visions Brain Tools - Function declarations for Live API
+const VISIONS_TOOLS = [
+    {
+        name: "search_knowledge_base",
+        description: "Search Visions knowledge base for photography, composition theory, Arnheim principles, camera specs. Use when user asks about techniques or needs expert knowledge.",
+        parameters: {
+            type: "object",
+            properties: {
+                query: { type: "string", description: "The search query" }
+            },
+            required: ["query"]
+        }
+    },
+    {
+        name: "generate_image",
+        description: "Generate an image from a text description. Use when user asks to create, generate, draw, or visualize something.",
+        parameters: {
+            type: "object",
+            properties: {
+                prompt: { type: "string", description: "Detailed image description" }
+            },
+            required: ["prompt"]
+        }
+    },
+    {
+        name: "recommend_camera",
+        description: "Recommend cameras based on budget, experience, and photography type.",
+        parameters: {
+            type: "object",
+            properties: {
+                budget: { type: "string", description: "Budget range" },
+                experience_level: { type: "string", enum: ["beginner", "enthusiast", "professional"] },
+                photography_type: { type: "string", description: "Type of photography" }
+            },
+            required: ["budget", "experience_level", "photography_type"]
+        }
+    },
+    {
+        name: "analyze_composition",
+        description: "Provide composition guidelines for a subject and style.",
+        parameters: {
+            type: "object",
+            properties: {
+                subject: { type: "string", description: "Main subject type" },
+                style: { type: "string", description: "Desired style" }
+            },
+            required: ["subject", "style"]
+        }
+    },
+    {
+        name: "recommend_lighting",
+        description: "Recommend lighting setups for photography scenarios.",
+        parameters: {
+            type: "object",
+            properties: {
+                scenario: { type: "string", description: "Photography scenario" },
+                budget: { type: "string", enum: ["budget", "moderate", "professional"] }
+            },
+            required: ["scenario"]
+        }
+    },
+    {
+        name: "control_lights",
+        description: "Control LIFX smart lights. Turn on/off, change colors, or create effects. Say 'turn on the lights', 'make the lights blue', 'dim the bedroom'.",
+        parameters: {
+            type: "object",
+            properties: {
+                action: { type: "string", enum: ["on", "off", "toggle", "color", "breathe", "list"] },
+                selector: { type: "string", description: "Which lights: 'all' or room name" },
+                color: { type: "string", description: "Color: blue, red, green, purple, warm white" },
+                brightness: { type: "number", description: "Brightness 0-100" }
+            },
+            required: ["action"]
+        }
+    }
+];
 
 // DOM Elements
 const statusIndicator = document.getElementById('statusIndicator');
@@ -127,11 +211,18 @@ async function connect() {
         // Initialize Gemini client
         geminiClient = new GeminiLiveAPI(PROXY_URL, PROJECT_ID, MODEL);
 
-        // Configure
+        // Configure persona and voice
         geminiClient.setSystemInstructions(VISIONS_PERSONA);
         geminiClient.setVoice(voiceSelect.value);
         geminiClient.setInputAudioTranscription(true);
         geminiClient.setOutputAudioTranscription(true);
+
+        // Enable function calling (Visions Brain Tools)
+        geminiClient.setEnableFunctionCalls(true);
+        VISIONS_TOOLS.forEach(tool => {
+            geminiClient.addFunction(tool);
+        });
+        console.log('🧠 Visions Brain Tools registered:', VISIONS_TOOLS.length);
 
         // Set callbacks
         geminiClient.onConnectionStarted = onConnected;
@@ -216,19 +307,40 @@ function onResponse(message) {
     }
 }
 
-function handleToolCall(toolCall) {
-    // Handle tool calls from Visions
+async function handleToolCall(toolCall) {
+    // Handle tool calls from Visions - execute on server (the Brain)
     const { functionCalls } = toolCall;
 
     if (functionCalls) {
-        functionCalls.forEach(call => {
-            console.log(`Tool: ${call.name}`, call.args);
+        for (const call of functionCalls) {
+            console.log(`🧠 Tool: ${call.name}`, call.args);
+            speakingLabel.textContent = `🛠️ ${call.name}...`;
 
-            // Send response back
-            geminiClient.sendToolResponse(call.id, {
-                result: { status: 'success', message: 'Tool execution acknowledged' }
-            });
-        });
+            try {
+                // Execute tool on server (Visions Brain)
+                const response = await fetch('/api/execute_tool', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        function_name: call.name,
+                        args: call.args
+                    })
+                });
+
+                const result = await response.json();
+                console.log(`✅ Tool result:`, result);
+
+                // Send result back to Gemini Live API
+                geminiClient.sendToolResponse(call.id, result);
+
+            } catch (error) {
+                console.error(`❌ Tool error:`, error);
+                geminiClient.sendToolResponse(call.id, {
+                    status: 'error',
+                    message: error.message
+                });
+            }
+        }
     }
 }
 
