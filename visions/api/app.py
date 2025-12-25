@@ -133,7 +133,7 @@ async def chat(request: ChatRequest):
         if not request.message:
             raise HTTPException(status_code=400, detail="Message is required")
         
-        response = get_chat_response(request.message, request.image_path, request.user_id)
+        response = get_chat_response(user_message=request.message, image_path=request.image_path, user_id=request.user_id)
         
         return ChatResponse(
             response=response,
@@ -181,7 +181,7 @@ async def v1_chat(request: Request):
         
         image_path = data.get('image_path', None)
         user_id = data.get('user_id', 'user') or data.get('user', 'user')
-        response = get_chat_response(message, image_path, user_id)
+        response = get_chat_response(user_message=message, image_path=image_path, user_id=user_id)
         
         return {
             "response": response,
@@ -217,7 +217,7 @@ async def v1_chat_completions(request: Request):
             raise HTTPException(status_code=400, detail="Message content is required")
         
         # Get response from agent
-        response_text = get_chat_response(message, image_path=None)
+        response_text = get_chat_response(user_message=message, image_path=None)
         
         # Return OpenAI-compatible format
         return {

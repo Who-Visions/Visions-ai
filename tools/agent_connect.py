@@ -12,9 +12,16 @@ class AgentConnector:
     """
     
     AGENTS = {
-        "rhea": "https://rhea-noir-145241643240.us-central1.run.app",
+        "kronos": "https://who-tester-agent-10579507338.us-central1.run.app",
         "dav1d": "https://dav1d-322812104986.us-central1.run.app",
-        "yuki": "https://yuki-ai-914641083224.us-central1.run.app"
+        "rhea": "https://rhea-noir-145241643240.us-central1.run.app",
+        "yuki": "https://yuki-ai-914641083224.us-central1.run.app",
+        "bandit": "https://bandit-849984150802.us-central1.run.app",
+        "kaedra": "https://kaedra-69017097813.us-central1.run.app",
+        "visions_cloud": "https://visions-assistant-service-620633534056.us-central1.run.app",
+        "unk": "https://unk-agent-574321322006.us-central1.run.app",
+        "kam": "https://kam-api-587184277060.us-central1.run.app",
+        "iris": "https://iris-agent-618147264860.us-central1.run.app"
     }
     
     def __init__(self):
@@ -56,8 +63,20 @@ class AgentConnector:
         if not target_url:
             return f"❌ Unknown agent '{agent_name}'. Available agents: {', '.join(self.AGENTS.keys())}"
         
-        endpoint = f"{target_url}/chat"
-        # Also try /v1/chat if standard endpoint fails, or assuming standard architecture
+        # KRONOS uses /generate endpoint, others use /chat
+        is_kronos = "kronos" in agent_key
+        # KRONOS uses /generate, KAEDRA might use root or /chat, others use /chat
+        is_kronos = "kronos" in agent_key
+        is_kaedra = "kaedra" in agent_key
+        
+        if is_kronos:
+            endpoint = f"{target_url}/generate"
+        elif is_kaedra:
+            # Kaedra v0.0.6 seems to respond at root or has specific routing. 
+            # We'll try /chat first, but add root as primary fallback.
+            endpoint = f"{target_url}/chat" 
+        else:
+            endpoint = f"{target_url}/chat"
         
         print(f"📡 Connecting to Agent {agent_name.title()} at {target_url}...")
         
@@ -68,8 +87,8 @@ class AgentConnector:
             if token:
                 headers["Authorization"] = f"Bearer {token}"
             
-            # Payload
-            payload = {"message": message}
+            # Payload - KRONOS uses 'prompt', others use 'message'
+            payload = {"prompt": message} if is_kronos else {"message": message}
             
             # Request
             response = requests.post(endpoint, json=payload, headers=headers, timeout=60)
@@ -77,17 +96,23 @@ class AgentConnector:
             if response.status_code == 200:
                 data = response.json()
                 # Try to extract the response text from various common formats
-                return data.get("response") or data.get("text") or data.get("message") or str(data)
+                return data.get("response") or data.get("text") or data.get("message") or data.get("content") or str(data)
             elif response.status_code == 404:
-                 # Try fallback endpoint /query
-                fallback_endpoint = f"{target_url}/query"
-                print(f"🔄 Retrying with fallback endpoint {fallback_endpoint}...")
-                response = requests.post(fallback_endpoint, json=payload, headers=headers, timeout=60)
-                if response.status_code == 200:
-                    data = response.json()
-                    return data.get("response") or str(data)
-                else:
-                    return f"Error {response.status_code}: {response.text}"
+                # Try fallback endpoints
+                fallbacks = ["/generate", "/query", "/chat"] if not is_kronos else ["/chat", "/query"]
+                if "kaedra" in agent_key:
+                     # Kaedra verified online at root "/"
+                     fallbacks = ["/", "/v1/chat", "/api/chat"]
+                for fallback in fallbacks:
+                    fallback_endpoint = f"{target_url}{fallback}"
+                    print(f"🔄 Retrying with fallback endpoint {fallback_endpoint}...")
+                    # Adjust payload for fallback
+                    fb_payload = {"prompt": message} if "/generate" in fallback else {"message": message}
+                    response = requests.post(fallback_endpoint, json=fb_payload, headers=headers, timeout=60)
+                    if response.status_code == 200:
+                        data = response.json()
+                        return data.get("response") or data.get("text") or data.get("content") or str(data)
+                return f"Error {response.status_code}: All endpoints failed"
             else:
                 return f"Error {response.status_code}: {response.text}"
                 

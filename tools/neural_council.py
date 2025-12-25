@@ -25,31 +25,67 @@ from rich.console import Group
 
 console = Console()
 
-# Agent Registry
+# Agent Registry - The Who Visions Fleet
 COUNCIL_AGENTS = {
+    "kronos": {
+        "url": "https://who-tester-agent-10579507338.us-central1.run.app",
+        "name": "KRONOS",
+        "specialty": "Lead Orchestrator & Council Coordinator",
+        "emoji": "⚡"
+    },
     "visions": {
         "url": None,  # Local - uses internal agent
         "name": "Dr. Visions",
         "specialty": "Photography & Visual Arts Expert",
-        "emoji": "📸"
-    },
-    "rhea": {
-        "url": "https://rhea-noir-145241643240.us-central1.run.app",
-        "name": "Rhea",
-        "specialty": "Intelligence Analyst & Data Research",
-        "emoji": "🕵️‍♀️"
+        "emoji": "🎨"
     },
     "dav1d": {
         "url": "https://dav1d-322812104986.us-central1.run.app",
-        "name": "Dav1d",
-        "specialty": "Creative Director & Video Production",
-        "emoji": "🎬"
+        "name": "DAV1D",
+        "specialty": "Digital Avatar & Voice Intelligence Director",
+        "emoji": "🎭"
+    },
+    "rhea": {
+        "url": "https://rhea-noir-145241643240.us-central1.run.app",
+        "name": "Rhea Noir",
+        "specialty": "VTuber Mentor & Caribbean Vibes",
+        "emoji": "🌙"
     },
     "yuki": {
         "url": "https://yuki-ai-914641083224.us-central1.run.app",
         "name": "Yuki",
-        "specialty": "Strategic Planner & Code Architecture",
-        "emoji": "❄️"
+        "specialty": "Cosplay Architect & Anime Database",
+        "emoji": "🦊"
+    },
+    "bandit": {
+        "url": "https://bandit-849984150802.us-central1.run.app",
+        "name": "Bandit",
+        "specialty": "Snow's Agent & 4-Year Training Complete",
+        "emoji": "🦝"
+    },
+    "kaedra": {
+        "url": "https://kaedra-69017097813.us-central1.run.app",
+        "name": "Kaedra",
+        "specialty": "Shadow Tactician & Strategic Intelligence",
+        "emoji": "🌑"
+    },
+    "unk": {
+        "url": "https://unk-agent-574321322006.us-central1.run.app",
+        "name": "UNK",
+        "specialty": "Cognitive Orchestrator & 6-Tier Model Routing",
+        "emoji": "🧠"
+    },
+    "kam": {
+        "url": "https://kam-api-587184277060.us-central1.run.app",
+        "name": "K.A.M",
+        "specialty": "Kindness Alignment & Emotional Intelligence",
+        "emoji": "💛"
+    },
+    "iris": {
+        "url": "https://iris-agent-618147264860.us-central1.run.app",
+        "name": "IRIS",
+        "specialty": "Multimodal Agent, RAG & Embeddings",
+        "emoji": "👁️"
     }
 }
 

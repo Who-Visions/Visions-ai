@@ -77,7 +77,7 @@ def get_chat_response(user_message: str, image_path: str = None, video_path: str
     
     if _local_agent is None:
         try:
-            from agent import VisionsAgent
+            from visions.core.agent import VisionsAgent
             print("⚡ Using Local VisionsAgent (Dev Mode)")
             _local_agent = VisionsAgent()
         except Exception as init_e:

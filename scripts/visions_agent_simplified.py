@@ -69,7 +69,7 @@ class VisionsAgentSimplified:
         ]):
             # Check if it's complex enough for delegation
             if any(word in query_lower for word in ["recommend", "compare", "vs", "which", "best"]):
-return "camera-advisor"
+                return "camera-advisor"
         
         return None
     

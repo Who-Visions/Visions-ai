@@ -17,7 +17,7 @@ class CinemaTools:
     def cinema(self):
         if self._cinema is None:
             # Lazy import to avoid pickling issues during deployment
-            from visions_cinema import VisionsCinema
+            from visions.modules.cinema.visions_cinema import VisionsCinema
             self._cinema = VisionsCinema()
         return self._cinema
     

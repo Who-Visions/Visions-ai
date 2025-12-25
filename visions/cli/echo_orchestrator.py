@@ -55,12 +55,12 @@ ECHO STRUCTURAL CRITIQUE:"""
             return results[0], results[1]
 
     def make_layout() -> Layout:
-    layout = Layout()
-    layout.split_row(
-        Layout(name="ghost", ratio=1),
-        Layout(name="echo", ratio=1)
-    )
-    return layout
+        layout = Layout()
+        layout.split_row(
+            Layout(name="ghost", ratio=1),
+            Layout(name="echo", ratio=1)
+        )
+        return layout
 
 async def main():
     orchestrator = EchoOrchestrator()

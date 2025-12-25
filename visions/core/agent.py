@@ -18,7 +18,7 @@ import time
 from langchain_community.vectorstores import FAISS
 from langchain_google_vertexai import VertexAIEmbeddings
 from google.cloud import storage
-from genai_embeddings import GenAIEmbeddings
+from visions.modules.genai.genai_embeddings import GenAIEmbeddings
 
 # Import VisionTools for advanced image capabilities
 from tools.vision_tools import VisionTools
@@ -29,9 +29,10 @@ from tools.neural_council import convene_council
 from tools.browser_tool import BrowserTool
 
 # Cloud Memory System (Firestore + BigQuery)
-from memory_cloud import CloudMemoryManager
-from config import Config
-from cost_intelligence import get_intelligence
+# Cloud Memory System (Firestore + BigQuery)
+from visions.modules.memory.memory_cloud import CloudMemoryManager
+from .config import Config
+from visions.modules.cost.cost_intelligence import get_intelligence
 
 # Define the Retriever Tool
 class KnowledgeRetriever:

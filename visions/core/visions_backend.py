@@ -79,8 +79,9 @@ def create_visions_backend(runtime):
         CompositeBackend configured for Visions AI
     """
     
-    # Get base directory
-    base_dir = Path(__file__).parent
+    # Get base directory (Root of repository)
+    # visions/core/visions_backend.py -> visions/core -> visions -> ROOT
+    base_dir = Path(__file__).parent.parent.parent
     
     # Zone 1: Read-only curriculum (protected)
     curriculum_path = base_dir / "curriculum"
@@ -150,7 +151,7 @@ if __name__ == "__main__":
     print(f"  /generated/  → FilesystemBackend (outputs)")
     print("\nPaths verified:")
     
-    base = Path(__file__).parent
+    base = Path(__file__).parent.parent.parent
     for zone, path in VISIONS_PATHS.items():
         actual_path = base / zone.replace("/", "")
         if actual_path.exists():

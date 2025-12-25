@@ -3,7 +3,7 @@ from typing import List, Optional
 from langchain_core.embeddings import Embeddings
 from google import genai
 from google.genai import types
-from config import Config
+from visions.core.config import Config
 
 class GenAIEmbeddings(Embeddings):
     """

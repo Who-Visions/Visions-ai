@@ -1,6 +1,10 @@
 import time
 import random
 import concurrent.futures
+import concurrent.futures
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from visions_assistant.agent import get_chat_response
 
 # Ground Truth Data

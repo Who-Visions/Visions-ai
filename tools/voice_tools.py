@@ -181,31 +181,31 @@ class VoiceToolExecutor:
     
     def _get_retriever(self):
         if self._retriever is None:
-            from agent import KnowledgeRetriever
+            from visions.core.agent import KnowledgeRetriever
             self._retriever = KnowledgeRetriever(project_id="endless-duality-480201-t3")
         return self._retriever
     
     def _get_imager(self):
         if self._imager is None:
-            from agent import ImageGenerator
+            from visions.core.agent import ImageGenerator
             self._imager = ImageGenerator()
         return self._imager
     
     def _get_camera_advisor(self):
         if self._camera_advisor is None:
-            from agent import CameraAdvisor
+            from visions.core.agent import CameraAdvisor
             self._camera_advisor = CameraAdvisor()
         return self._camera_advisor
     
     def _get_lighting_advisor(self):
         if self._lighting_advisor is None:
-            from agent import LightingAdvisor
+            from visions.core.agent import LightingAdvisor
             self._lighting_advisor = LightingAdvisor()
         return self._lighting_advisor
     
     def _get_composition_advisor(self):
         if self._composition_advisor is None:
-            from agent import CompositionAdvisor
+            from visions.core.agent import CompositionAdvisor
             self._composition_advisor = CompositionAdvisor()
         return self._composition_advisor
     

@@ -1,6 +1,6 @@
 import vertexai
 from vertexai.preview import reasoning_engines
-from agent import VisionsAgent
+from visions.core.agent import VisionsAgent
 from google.cloud import storage
 import os
 import glob
@@ -58,7 +58,15 @@ remote_agent = reasoning_engines.ReasoningEngine.create(
         "firebase-admin",
         "aiosqlite",  # SQLite fallback
     ],
-    extra_packages=["agent.py", "tools/", "memory_cloud.py", "config.py"],
+    extra_packages=[
+        "visions/core/agent.py", 
+        "tools/", 
+        "visions/modules/memory/memory_cloud.py", 
+        "visions/core/config.py",
+        "visions/core/visions_backend.py",
+        "visions/modules/genai/genai_embeddings.py",
+        "visions/modules/cost/cost_intelligence.py"
+    ],
     display_name="Visions-AI-Reasoning-Agent",
     description="Visions AI Agent with Cloud Memory (Firestore + BigQuery)",
 )

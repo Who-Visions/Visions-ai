@@ -1,4 +1,7 @@
-from agent import KnowledgeRetriever
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from visions.core.agent import KnowledgeRetriever
 
 def debug():
     print("🔍 Debugging Knowledge Retriever...")

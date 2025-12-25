@@ -5,7 +5,10 @@ Tests rate limiting, adaptive thinking, and fallback mechanisms.
 """
 
 import time
-from agent import VisionsAgent
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from visions.core.agent import VisionsAgent
 import json
 
 # Test queries of varying complexity
