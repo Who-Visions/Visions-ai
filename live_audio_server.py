@@ -10,6 +10,10 @@ This server bridges the browser client and Gemini Live API, handling:
 - Static file serving for the voice interface
 """
 
+# Load environment variables FIRST
+from dotenv import load_dotenv
+load_dotenv()
+
 import asyncio
 import json
 import mimetypes

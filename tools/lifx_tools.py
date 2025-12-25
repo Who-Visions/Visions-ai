@@ -119,15 +119,16 @@ class LIFXController:
 
 # Voice Tool Functions for Visions
 def control_lights(action: str, selector: str = "all", color: str = None, 
-                   brightness: float = None) -> str:
+                   brightness: float = None, kelvin: int = None) -> str:
     """
     Control LIFX smart lights via voice command.
     
     Args:
-        action: Action to perform ("on", "off", "toggle", "color", "breathe", "list")
+        action: Action to perform ("on", "off", "toggle", "color", "kelvin", "breathe", "list")
         selector: Which lights ("all", or light name like "Living Room")
         color: Color for color action (e.g., "blue", "red", "warm white")
         brightness: Brightness level 0-100
+        kelvin: Color temperature in Kelvin (2500-9000, e.g., 2700 for warm, 5000 for daylight)
         
     Returns:
         Status message for voice response
@@ -161,6 +162,14 @@ def control_lights(action: str, selector: str = "all", color: str = None,
         bright = (brightness or 100) / 100.0
         result = controller.set_color(selector, color, bright)
         return f"Lights set to {color}." if "error" not in result else f"Error: {result['error']}"
+    
+    elif action == "kelvin" or (action == "color" and kelvin):
+        # Set color temperature in Kelvin
+        k = kelvin or 3000
+        bright = (brightness or 100) / 100.0
+        # LIFX API accepts kelvin as "kelvin:XXXX" in color field
+        result = controller.set_color(selector, f"kelvin:{k}", bright)
+        return f"Lights set to {k}K color temperature." if "error" not in result else f"Error: {result['error']}"
         
     elif action == "breathe":
         result = controller.breathe(selector, color or "blue")
@@ -174,20 +183,20 @@ def control_lights(action: str, selector: str = "all", color: str = None,
         return f"Error: {lights.get('error', 'Unknown error')}"
     
     else:
-        return f"Unknown action: {action}. Use on, off, toggle, color, breathe, or list."
+        return f"Unknown action: {action}. Use on, off, toggle, color, kelvin, breathe, or list."
 
 
 # Function declaration for Gemini Live API
 LIFX_FUNCTION_DECLARATION = {
     "name": "control_lights",
-    "description": "Control LIFX smart lights. Turn on/off, change colors, or create effects. Use when user says things like 'turn on the lights', 'make the lights blue', 'dim the bedroom'.",
+    "description": "Control LIFX smart lights. Turn on/off, change colors, set color temperature (Kelvin), or create effects. Use when user says 'turn on the lights', 'make the lights blue', 'set lights to 3000K', 'warm up the lights'.",
     "parameters": {
         "type": "object",
         "properties": {
             "action": {
                 "type": "string",
-                "enum": ["on", "off", "toggle", "color", "breathe", "list"],
-                "description": "Action: on, off, toggle, color (change color), breathe (pulse effect), list (show all lights)"
+                "enum": ["on", "off", "toggle", "color", "kelvin", "breathe", "list"],
+                "description": "Action: on, off, toggle, color (change color), kelvin (set color temperature), breathe (pulse effect), list (show all lights)"
             },
             "selector": {
                 "type": "string",
@@ -195,11 +204,15 @@ LIFX_FUNCTION_DECLARATION = {
             },
             "color": {
                 "type": "string",
-                "description": "Color name for color action: blue, red, green, purple, orange, warm white, cool white, etc."
+                "description": "Color name: blue, red, green, purple, orange, warm white, cool white, etc."
             },
             "brightness": {
                 "type": "number",
                 "description": "Brightness level 0-100"
+            },
+            "kelvin": {
+                "type": "integer",
+                "description": "Color temperature in Kelvin (2500-9000). 2700K=warm/cozy, 3000K=soft white, 4000K=neutral, 5000K=daylight, 6500K=cool daylight"
             }
         },
         "required": ["action"]

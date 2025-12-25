@@ -82,12 +82,12 @@ class GeminiLiveAPI {
         this.proactivity = { proactiveAudio: false };
         this.inputAudioTranscription = true;
         this.outputAudioTranscription = true;
-        
+
         // Function calling
         this.enableFunctionCalls = false;
         this.functions = [];
         this.functionsMap = {};
-        
+
         // Activity detection
         this.automaticActivityDetection = {
             disabled: false,
@@ -270,10 +270,24 @@ class GeminiLiveAPI {
         });
     }
 
-    sendToolResponse(toolCallId, response) {
-        this.sendMessage({
-            tool_response: { id: toolCallId, response },
-        });
+    sendToolResponse(toolCallId, functionName, result) {
+        // Gemini Live API expects function_responses array
+        // The response.output field must be a STRING, not an object
+        const outputString = typeof result === 'string' ? result : JSON.stringify(result);
+
+        const toolResponse = {
+            tool_response: {
+                function_responses: [{
+                    id: toolCallId,
+                    name: functionName,
+                    response: {
+                        output: outputString
+                    }
+                }]
+            }
+        };
+        console.log('📤 Sending tool response:', JSON.stringify(toolResponse));
+        this.sendMessage(toolResponse);
     }
 
     sendRealtimeInputMessage(data, mimeType) {

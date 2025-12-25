@@ -93,14 +93,15 @@ const VISIONS_TOOLS = [
     },
     {
         name: "control_lights",
-        description: "Control LIFX smart lights. Turn on/off, change colors, or create effects. Say 'turn on the lights', 'make the lights blue', 'dim the bedroom'.",
+        description: "Control LIFX smart lights. Turn on/off, change colors, set color temperature (Kelvin). Say 'turn on the lights', 'make the lights blue', 'set lights to 3000K', 'warm up the lights'.",
         parameters: {
             type: "object",
             properties: {
-                action: { type: "string", enum: ["on", "off", "toggle", "color", "breathe", "list"] },
+                action: { type: "string", enum: ["on", "off", "toggle", "color", "kelvin", "breathe", "list"] },
                 selector: { type: "string", description: "Which lights: 'all' or room name" },
                 color: { type: "string", description: "Color: blue, red, green, purple, warm white" },
-                brightness: { type: "number", description: "Brightness 0-100" }
+                brightness: { type: "number", description: "Brightness 0-100" },
+                kelvin: { type: "integer", description: "Color temp in Kelvin (2500-9000). 2700K=warm, 4000K=neutral, 5000K=daylight" }
             },
             required: ["action"]
         }
@@ -307,12 +308,28 @@ function onResponse(message) {
     }
 }
 
+// Track recent tool calls to prevent loops
+const recentToolCalls = new Map();
+
 async function handleToolCall(toolCall) {
     // Handle tool calls from Visions - execute on server (the Brain)
     const { functionCalls } = toolCall;
 
     if (functionCalls) {
         for (const call of functionCalls) {
+            // Deduplication: skip if same call within 3 seconds
+            const callKey = `${call.name}:${JSON.stringify(call.args)}`;
+            const lastCall = recentToolCalls.get(callKey);
+            const now = Date.now();
+
+            if (lastCall && (now - lastCall) < 3000) {
+                console.log(`⚠️ Skipping duplicate tool call: ${call.name}`);
+                // Still send a response to prevent API from retrying
+                geminiClient.sendToolResponse(call.id, call.name, "Already completed.");
+                continue;
+            }
+            recentToolCalls.set(callKey, now);
+
             console.log(`🧠 Tool: ${call.name}`, call.args);
             speakingLabel.textContent = `🛠️ ${call.name}...`;
 
@@ -330,12 +347,12 @@ async function handleToolCall(toolCall) {
                 const result = await response.json();
                 console.log(`✅ Tool result:`, result);
 
-                // Send result back to Gemini Live API
-                geminiClient.sendToolResponse(call.id, result);
+                // Send result back to Gemini Live API (id, name, result)
+                geminiClient.sendToolResponse(call.id, call.name, result);
 
             } catch (error) {
                 console.error(`❌ Tool error:`, error);
-                geminiClient.sendToolResponse(call.id, {
+                geminiClient.sendToolResponse(call.id, call.name, {
                     status: 'error',
                     message: error.message
                 });

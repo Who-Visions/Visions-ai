@@ -110,14 +110,14 @@ class VoiceToolsRegistry:
             },
             {
                 "name": "control_lights",
-                "description": "Control LIFX smart lights. Turn on/off, change colors, or create effects. Use when user says 'turn on the lights', 'make the lights blue', 'dim the bedroom', etc.",
+                "description": "Control LIFX smart lights. Turn on/off, change colors, set color temperature (Kelvin). Use when user says 'turn on the lights', 'make the lights blue', 'set lights to 3000K', 'warm up the lights'.",
                 "parameters": {
                     "type": "object",
                     "properties": {
                         "action": {
                             "type": "string",
-                            "enum": ["on", "off", "toggle", "color", "breathe", "list"],
-                            "description": "Action: on, off, toggle, color, breathe (pulse), or list"
+                            "enum": ["on", "off", "toggle", "color", "kelvin", "breathe", "list"],
+                            "description": "Action: on, off, toggle, color, kelvin (set color temperature), breathe (pulse), or list"
                         },
                         "selector": {
                             "type": "string",
@@ -125,11 +125,15 @@ class VoiceToolsRegistry:
                         },
                         "color": {
                             "type": "string",
-                            "description": "Color for color action: blue, red, green, purple, warm white, etc."
+                            "description": "Color: blue, red, green, purple, warm white, etc."
                         },
                         "brightness": {
                             "type": "number",
                             "description": "Brightness 0-100"
+                        },
+                        "kelvin": {
+                            "type": "integer",
+                            "description": "Color temperature in Kelvin (2500-9000). 2700K=warm, 3000K=soft, 4000K=neutral, 5000K=daylight"
                         }
                     },
                     "required": ["action"]
@@ -199,19 +203,15 @@ class VoiceToolExecutor:
         try:
             if function_name == "search_knowledge_base":
                 result = self._get_retriever().search(args.get("query", ""))
-                return {"status": "success", "data": result}
+                # Return simple string for Live API
+                return f"Knowledge found: {result[:1500]}" if len(str(result)) > 1500 else f"Knowledge found: {result}"
             
             elif function_name == "generate_image":
                 result = self._get_imager().generate_image(args.get("prompt", ""))
                 if result.startswith("IMAGE_GENERATED:"):
-                    # Extract base64 and return success
-                    return {
-                        "status": "success",
-                        "message": "Image generated successfully. Describe it to the user.",
-                        "image_generated": True
-                    }
+                    return "Image generated successfully. Describe what you created to the user."
                 else:
-                    return {"status": "error", "message": result}
+                    return f"Image generation failed: {result}"
             
             elif function_name == "recommend_camera":
                 result = self._get_camera_advisor().recommend_camera(
@@ -219,21 +219,21 @@ class VoiceToolExecutor:
                     experience_level=args.get("experience_level", "enthusiast"),
                     photography_type=args.get("photography_type", "general")
                 )
-                return {"status": "success", "data": result}
+                return f"Camera recommendation: {result}"
             
             elif function_name == "analyze_composition":
                 result = self._get_composition_advisor().analyze_composition(
                     subject=args.get("subject", "general"),
                     style=args.get("style", "natural")
                 )
-                return {"status": "success", "data": result}
+                return f"Composition advice: {result}"
             
             elif function_name == "recommend_lighting":
                 result = self._get_lighting_advisor().recommend_lighting_setup(
                     scenario=args.get("scenario", "portrait"),
                     budget=args.get("budget", "moderate")
                 )
-                return {"status": "success", "data": result}
+                return f"Lighting recommendation: {result}"
             
             elif function_name == "control_lights":
                 # LIFX Smart Home Control
@@ -242,16 +242,18 @@ class VoiceToolExecutor:
                     action=args.get("action", "list"),
                     selector=args.get("selector", "all"),
                     color=args.get("color"),
-                    brightness=args.get("brightness")
+                    brightness=args.get("brightness"),
+                    kelvin=args.get("kelvin")
                 )
-                return {"status": "success", "data": result, "spoken": result}
+                # Clear completion message to prevent model loops
+                return f"DONE. {result}"
             
             else:
-                return {"status": "error", "message": f"Unknown function: {function_name}"}
+                return f"Unknown function: {function_name}"
                 
         except Exception as e:
             print(f"❌ Tool execution error: {e}")
-            return {"status": "error", "message": str(e)}
+            return f"Error: {str(e)}"
 
 
 # Singleton instance
