@@ -1,54 +1,75 @@
 # 👻 GHOST // ECHO HANDOFF LOG
 
 **Protocol**: Asynchronous State Synchronization
-**Cycle**: 010
-**Status**: 🟢 COMPLETE - Voice Control Live
+**Cycle**: 011
+**Status**: 🟢 LIFX Complete | 🟡 Desktop App Pending
 
 ---
 
-### 🟢 GHOST (Current State)
+### 🟢 COMPLETED - Cycle 010
 
-**Timestamp**: 2025-12-25 03:03 EST
-**Objective**: Wispr Flow → Visions → LIFX Smart Home Voice Control
+**WISPR FLOW → VISIONS → LIFX** ✅
 
-**COMPLETED FEATURES**:
+- Flow Watcher monitors Wispr Flow database
+- Gemini parses complex multi-action commands
+- LIFX control: lights, groups, colors, kelvin, effects, timers
+- System commands: mute, screenshot, lock, time
 
-1. **WISPR FLOW WATCHER** 🔍
-   - `flow_watcher.py` - Monitors Wispr Flow SQLite for "Visions" commands
-   - Trigger words: "visions", "hey visions", "vision"
-   - Works from ANY app where you dictate
-
-2. **GEMINI-POWERED PARSING** 🧠
-   - Complex multi-action commands: *"Make Eve orange, Eden blue, Adam purple"*
-   - Timer support: *"Turn off lights in 5 minutes"*
-   - Eastern time awareness in prompts
-   - Model: `gemini-2.0-flash`
-
-3. **LIFX FULL CONTROL** 💡
-   - Lights: Eve (Bedroom), Adam, Eden (Living Room)
-   - Groups: `group:Bedroom`, `group:Living Room`
-   - Actions: on, off, toggle, color, kelvin (1500-9000K), breathe, pulse, scene
-   - Auto power-on when setting colors
-
-4. **WISPR FLOW CONTEXT** 📝
-   - `tools/flow_tools.py` - Access dictation history
-   - Voice: *"What did I say earlier?"*
-
-**Files Created/Modified**:
+**Files:**
 
 - `flow_watcher.py` - Main watcher daemon
-- `tools/flow_tools.py` - Wispr Flow SQLite reader
-- `tools/lifx_tools.py` - Full LIFX API with groups
-- `tools/voice_tools.py` - Voice tool declarations
-- `live_voice/script.js` - Frontend tool declarations
-- `.env` - Added GOOGLE_API_KEY
+- `tools/lifx_tools.py` - LIFX API with groups
+- `tools/system_tools.py` - System voice commands
+- `tools/flow_tools.py` - Wispr Flow reader
 
 ---
 
-### 🟡 ECHO (Next Steps)
+### 🟡 SCHEDULED - December 26, 2025
 
-1. **Run watcher**: `python flow_watcher.py`
-2. **Test commands**: Dictate "Visions, turn on the lights" anywhere
-3. **Expand**: Add web search, image gen, spotify to voice
+**VISIONS DESKTOP APP** 🎙️
 
-**The ambient AI dream is real. Your voice controls your environment.**
+- **Waiting on:** Picovoice Free Trial (under review, 24hr ETA)
+- **Goal:** Siri-like system tray AI assistant
+
+**Architecture:**
+
+```
+visions_desktop/
+├── main.py      # Entry point + threading
+├── tray.py      # System tray icon/menu
+├── voice_io.py  # Picovoice wake word + Edge TTS
+└── brain.py     # Gemini command processing
+```
+
+**Features to Complete:**
+
+1. Wake word: "Hey Visions" (custom Porcupine model)
+2. Microphone listening (Picovoice Cobra VAD)
+3. Speech-to-text (Cheetah or Gemini)
+4. Edge TTS voice responses
+5. System tray with status/notifications
+6. Package as .exe (PyInstaller)
+
+**Dependencies Installed:**
+
+- pystray, pillow, sounddevice, numpy, edge-tts
+
+**Pending:**
+
+- `PICOVOICE_ACCESS_KEY` in .env
+- Custom wake word model training
+
+---
+
+### 📅 CALENDAR
+
+| Date | Task |
+|------|------|
+| Dec 25 | ✅ Wispr Flow + LIFX voice control complete |
+| Dec 26 | 🎯 Visions Desktop tray app (Picovoice wake word) |
+| Dec 26 | Train custom "Visions" wake word on Picovoice Console |
+
+---
+
+**Message to Future Self:**
+Picovoice trial is pending review. Once approved, add key to .env and train "Visions" wake word. The app skeleton is ready in `visions_desktop/`.

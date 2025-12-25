@@ -101,31 +101,34 @@ class FlowWatcher:
         
         try:
             # Use Gemini to parse complex commands into structured actions
-            parse_prompt = f"""Parse this smart home voice command into JSON actions.
+            parse_prompt = f"""Parse this voice command into JSON actions.
 
 Current time: {current_time} (Eastern)
 
-Available lights: Eve (Bedroom), Adam (Living Room), Eden (Living Room)
-Available actions: on, off, toggle, color, kelvin, breathe, pulse
-Available colors: red, blue, green, purple, orange, pink, white, warm white
-Kelvin range: 1500-9000 (1500=candle, 2700=warm, 5000=daylight)
-Brightness: 0-100
+**LIGHTS (type: "light")**:
+- Lights: Eve (Bedroom), Adam (Living Room), Eden (Living Room)
+- Actions: on, off, toggle, color, kelvin, breathe, pulse
+- Colors: red, blue, green, purple, orange, pink, white, warm white
+- Groups: Bedroom, Living Room
+
+**SYSTEM (type: "system")**:
+- Actions: mute, unmute, volume_up, volume_down, screenshot, lock, sleep, open_browser, open_explorer, open_terminal, time
 
 Command: "{command}"
 
-Return ONLY a JSON array of actions. Each action has:
-- selector: "all", "Eve", "Adam", "Eden", "Bedroom", or "Living Room"
-- action: "on", "off", "toggle", "color", "kelvin", "breathe", "pulse"
-- color: color name (optional)
-- brightness: 0-100 (optional)
-- kelvin: 1500-9000 (optional)
-- delay_seconds: seconds to wait before executing (optional, for "in X minutes/seconds")
+Return ONLY a JSON array. Each action has:
+- type: "light" or "system"
+- For lights: selector, action, color (optional), brightness (optional), kelvin (optional), delay_seconds (optional)
+- For system: action, value (optional for volume 0-100)
 
 Examples:
-"turn lights purple at 50%" -> [{{"selector": "all", "action": "color", "color": "purple", "brightness": 50}}]
-"make Eden red and Adam blue" -> [{{"selector": "Eden", "action": "color", "color": "red"}}, {{"selector": "Adam", "action": "color", "color": "blue"}}]
-"turn off the lights in 5 minutes" -> [{{"selector": "all", "action": "off", "delay_seconds": 300}}]
-"set Eve to blue in 30 seconds" -> [{{"selector": "Eve", "action": "color", "color": "blue", "delay_seconds": 30}}]
+"turn lights purple" -> [{{"type": "light", "selector": "all", "action": "color", "color": "purple"}}]
+"mute" -> [{{"type": "system", "action": "mute"}}]
+"take a screenshot" -> [{{"type": "system", "action": "screenshot"}}]
+"what time is it" -> [{{"type": "system", "action": "time"}}]
+"lock my computer" -> [{{"type": "system", "action": "lock"}}]
+"open terminal" -> [{{"type": "system", "action": "open_terminal"}}]
+"turn off lights in 5 minutes and screenshot" -> [{{"type": "light", "selector": "all", "action": "off", "delay_seconds": 300}}, {{"type": "system", "action": "screenshot"}}]
 
 JSON only, no explanation:"""
 
@@ -143,12 +146,13 @@ JSON only, no explanation:"""
             
             print(f"📋 Parsed {len(actions)} action(s)")
             
-            # Execute each action
+            # Execute each action based on type
             from tools.lifx_tools import control_lights
+            from tools.system_tools import system_command
             import threading
             results = []
             
-            def execute_action(act):
+            def execute_light_action(act):
                 selector = act.get("selector", "all")
                 action = act.get("action", "color")
                 color = act.get("color")
@@ -158,22 +162,33 @@ JSON only, no explanation:"""
                 print(f"⏰ Timer fired: {action} {selector} → {result}")
             
             for act in actions:
-                selector = act.get("selector", "all")
-                action = act.get("action", "color")
-                color = act.get("color")
-                brightness = act.get("brightness")
-                kelvin = act.get("kelvin")
+                act_type = act.get("type", "light")
+                action = act.get("action", "")
                 delay = act.get("delay_seconds", 0)
                 
-                if delay and delay > 0:
-                    print(f"⏳ Scheduling: {action} {selector} in {delay}s")
-                    timer = threading.Timer(delay, execute_action, args=[act])
-                    timer.start()
-                    results.append(f"{selector}: scheduled in {delay}s")
-                else:
-                    print(f"⚡ {action} {selector}: color={color}, brightness={brightness}, kelvin={kelvin}")
-                    result = control_lights(action, selector, color, brightness=brightness, kelvin=kelvin)
-                    results.append(f"{selector}: {result}")
+                if act_type == "system":
+                    # System command
+                    value = act.get("value")
+                    print(f"💻 System: {action}")
+                    result = system_command(action, value)
+                    results.append(f"System: {result}")
+                
+                elif act_type == "light":
+                    # Light command
+                    selector = act.get("selector", "all")
+                    color = act.get("color")
+                    brightness = act.get("brightness")
+                    kelvin = act.get("kelvin")
+                    
+                    if delay and delay > 0:
+                        print(f"⏳ Scheduling: {action} {selector} in {delay}s")
+                        timer = threading.Timer(delay, execute_light_action, args=[act])
+                        timer.start()
+                        results.append(f"{selector}: scheduled in {delay}s")
+                    else:
+                        print(f"💡 Light: {action} {selector}")
+                        result = control_lights(action, selector, color, brightness=brightness, kelvin=kelvin)
+                        results.append(f"{selector}: {result}")
             
             final = " | ".join(results)
             print(f"✅ {final}")
