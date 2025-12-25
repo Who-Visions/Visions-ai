@@ -157,7 +157,12 @@ class SignalLog:
             if i < len(self.messages) - 1:
                 log_group.append(Rule(style="dim blue"))
         
-        content = Group(*[Text.from_markup(m) for m in self.messages]) if self.messages else Text("Awaiting signal sync...", style="dim")
+        # Fix: Ensure content is a renderable, Group handles list of renderables
+        if not self.messages:
+            content = Text("Awaiting signal sync...", style="dim")
+        else:
+            content = Group(*log_group)
+            
         return Panel(Padding(content, (0, 1)), title="[bold blue]🛰️ SIGNAL LOG[/]", border_style="blue")
 
 # --- MAIN DASHBOARD ENGINE ---
@@ -221,52 +226,96 @@ class AetherDashboard:
         return table
 
     def run(self):
-        layout = Layout()
-        layout.split_column(
-            Layout(name="header", size=3),
-            Layout(name="body", ratio=1),
-            Layout(name="footer", size=7)
-        )
-        layout["body"].split_row(
-            Layout(name="left", size=35),
-            Layout(name="right", ratio=1)
-        )
-        layout["left"].split_column(
-            Layout(name="brief", ratio=1),
-            Layout(name="topo", ratio=2)
-        )
-        layout["footer"].split_row(
-            Layout(name="logs", ratio=2),
-            Layout(name="telemetry", ratio=1)
+        # 1. Initialize Components
+        header_component = AetherHeader()
+        brief_component = Panel(Markdown(MISSION_MD), border_style="dim", title="[bold white]BRIEFING[/]")
+        topo_component = FleetTopology()
+        telemetry_component = SystemTelemetry()
+        # Initial logs
+        self.signal_log.log("AETHER_OS_v2.5 BOOTSTRAP COMPLETE.", "SYS")
+        log_component = self.signal_log
+        
+        # Initial dummy table
+        mesh_component = Panel(
+            self.build_node_mesh(), 
+            title="[bold blue]🛰️ GLOBAL NODE MESH[/]", 
+            border_style="bright_blue",
+            subtitle="[dim]Initializing...[/]"
         )
 
-        self.signal_log.log("AETHER_OS_v2.5 BOOTSTRAP COMPLETE.", "SYS")
+        # 2. Build Layout with Renderables (Constructor Injection)
+        layout = Layout()
         
-        with Live(layout, screen=True, refresh_per_second=4) as live:
+        # Header
+        l_header = Layout(header_component, name="header", size=3)
+        
+        # Body (Brief, Topo, Mesh)
+        l_brief = Layout(brief_component, name="brief", ratio=1)
+        l_topo = Layout(topo_component, name="topo", ratio=2)
+        l_left_col = Layout(name="left", size=35)
+        l_left_col.split_column(l_brief, l_topo)
+
+        l_mesh = Layout(mesh_component, name="right", ratio=1)
+        
+        l_body = Layout(name="body", ratio=1)
+        l_body.split_row(l_left_col, l_mesh)
+
+        # Footer (Logs, Telemetry)
+        l_logs = Layout(log_component, name="logs", ratio=2)
+        l_telemetry = Layout(telemetry_component, name="telemetry", ratio=1)
+        l_footer = Layout(name="footer", size=7)
+        l_footer.split_row(l_logs, l_telemetry)
+
+        # Root Assembly
+        layout.split_column(l_header, l_body, l_footer)
+
+        # 3. Launch Live Display
+        with Live(layout, console=console, screen=True, refresh_per_second=4) as live:
             while True:
-                now = time.time()
-                
-                # 1. Update Static Components
-                layout["header"].update(AetherHeader())
-                layout["brief"].update(Panel(Markdown(MISSION_MD), border_style="dim"))
-                layout["topo"].update(FleetTopology())
-                layout["telemetry"].update(SystemTelemetry())
-                layout["logs"].update(self.signal_log)
-                
-                # 2. Periodic Fleet Sync (every 20s)
-                if now - self.last_sync > 20:
-                    self.sync_fleet()
-                    self.last_sync = now
-                
-                # 3. Dynamic Mesh Update
-                layout["right"].update(Panel(
-                    self.build_node_mesh(),
-                    title="[bold blue]🛰️ GLOBAL NODE MESH[/]",
-                    border_style="bright_blue",
-                    subtitle=f"[dim]Next Sync Sequence in {int(20 - (now - self.last_sync))}s[/]"
-                ))
-                
-                time.sleep(0.25)
+                try:
+                    now = time.time()
+                    
+                    # Periodic Fleet Sync (every 20s)
+                    if now - self.last_sync > 20:
+                        self.sync_fleet()
+                        self.last_sync = now
+                    
+                    # Update Components logic
+                    # Since we used constructor injection, l_header.renderable IS the AetherHeader() object if we passed an instance.
+                    # Actually, we passed a NEW AetherHeader() instance. 
+                    # AetherHeader.__rich__() returns a NEW Panel each call.
+                    # But Layout(renderable) stores the renderable. 
+                    # If renderable is an object with __rich__, Rich calls it on render.
+                    # AetherHeader has __rich__. So Rich calls AetherHeader.__rich__() -> Panel.
+                    # That Panel is static. The AetherHeader() object itself doesn't change state, but __rich__ depends on time.
+                    # So it SHOULD update.
+                    
+                    # HOWEVER, to be safe and explicit:
+                    l_header.update(AetherHeader())
+                    l_telemetry.update(SystemTelemetry())
+                    
+                    # Mesh updates with new data
+                    l_mesh.update(Panel(
+                        self.build_node_mesh(),
+                        title="[bold blue]🛰️ GLOBAL NODE MESH[/]",
+                        border_style="bright_blue",
+                        subtitle=f"[dim]Next Sync Sequence in {int(20 - (now - self.last_sync))}s[/]"
+                    ))
+                    
+                    # Signal Log updates its internal messages list.
+                    l_logs.update(self.signal_log)
+                    
+                    time.sleep(0.25)
+
+                except KeyboardInterrupt:
+                    raise
+                except Exception as e:
+                    # Log error to file for debugging if screen is garbled
+                    with open("dashboard_error.log", "a") as f:
+                        f.write(f"{datetime.now()} - Error: {e}\n")
+                    # Also try to log to dashboard
+                    self.signal_log.log(f"UI ERROR: {str(e)[:20]}", "ERR")
+
 
 if __name__ == "__main__":
     try:
