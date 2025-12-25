@@ -10,148 +10,204 @@ from rich.layout import Layout
 from rich.text import Text
 from rich.align import Align
 from rich.style import Style
-from rich.columns import Columns
+from rich.spinner import Spinner
+from rich.progress import Progress, SpinnerColumn, BarColumn, TextColumn
+from rich.markdown import Markdown
 from tools.agent_connect import AgentConnector
 
 console = Console()
 
+# --- THEMES & EMOJIS ---
+AGENT_ICONS = {
+    "visions_cloud": "☁️",
+    "kaedra": "🛡️",
+    "bandit": "🥷",
+    "kam": "🧠",
+    "yuki": "❄️",
+    "dav1d": "👤",
+    "rhea": "⚖️",
+    "unk": "❓",
+    "iris": "👁️",
+    "kronos": "⏳"
+}
+
+MISSION_MD = """
+# 🛰️ MISSION: FLEET SYNC
+**Status**: ACTIVE
+**Objective**: Maintain 10/10 Node Integrity
+**Protocol**: Aether-X-4
+"""
+
 class Header:
-    """Display header with clock and title."""
+    """Animated Header with pulsing title."""
     def __rich__(self) -> Panel:
         grid = Table.grid(expand=True)
         grid.add_column(justify="left", ratio=1)
         grid.add_column(justify="center", ratio=1)
         grid.add_column(justify="right", ratio=1)
-        grid.add_row(
-            "[b]VISIONS[/b] FLEET",
-            "[bold magenta]Aether Command Center[/]",
-            datetime.now().ctime(),
+        
+        # Pulsing color logic (simulated by time)
+        colors = ["cyan", "bright_blue", "magenta", "bright_cyan"]
+        color = colors[int(time.time()) % len(colors)]
+        
+        title = Text.assemble(
+            (" 🛰️  ", "white"),
+            ("VISIONS", f"bold {color} underline"),
+            (" | ", "dim white"),
+            ("AETHER COMMAND", "bold white"),
+            (" ⚡ ", "bold yellow")
         )
-        return Panel(grid, style="bold cyan")
+        
+        grid.add_row(
+            "[dim]V_PRO_RECON[/]",
+            title,
+            f"[bold blue]{datetime.now().strftime('%H:%M:%S')}[/]",
+        )
+        return Panel(grid, style="bold blue", border_style="bright_blue")
 
-class FleetMetrics:
-    """Display real-time system metrics."""
+class SystemHealth:
+    """Animated system metrics."""
     def __rich__(self) -> Panel:
         cpu = psutil.cpu_percent()
         ram = psutil.virtual_memory().percent
-        metrics_text = Text.assemble(
-            ("CPU: ", "bold white"), (f"{cpu}%", "bold green" if cpu < 70 else "bold red"),
-            "  ",
-            ("RAM: ", "bold white"), (f"{ram}%", "bold green" if ram < 80 else "bold red"),
-            "  ",
-            ("NET: ", "bold white"), ("OPTIMAL", "bold green")
-        )
-        return Panel(Align.center(metrics_text), title="System Health", border_style="dim")
+        
+        def get_pulse(val):
+            if val < 50: return "green"
+            if val < 80: return "yellow"
+            return "red"
+
+        status_bar = "▆ " * 10
+        cpu_pulse = f"[{get_pulse(cpu)}]{status_bar[:int(cpu/10)*2]}[/][dim]{status_bar[int(cpu/10)*2:][/]"
+        ram_pulse = f"[{get_pulse(ram)}]{status_bar[:int(ram/10)*2]}[/][dim]{status_bar[int(ram/10)*2:][/]"
+
+        content = Columns([
+            Text.assemble(("  CPU ", "bold"), (f"{cpu}% ", f"bold {get_pulse(cpu)}"), cpu_pulse),
+            Text.assemble(("  RAM ", "bold"), (f"{ram}% ", f"bold {get_pulse(ram)}"), ram_pulse),
+            Text.assemble(("  LINK ", "bold"), ("STABLE ⚡", "bold green"))
+        ], expand=True)
+
+        return Panel(content, title="[bold white]CORE TELEMETRY[/]", border_style="dim")
 
 class EventLog:
-    """A scrolling log of fleet events."""
+    """Scrolling mission log with icons."""
     def __init__(self):
         self.logs = []
 
     def add_log(self, message: str, level="INFO"):
         timestamp = datetime.now().strftime("%H:%M:%S")
-        color = "green" if "ONLINE" in message else "yellow" if "ISSUE" in message else "cyan"
-        if "OFFLINE" in message: color = "red"
-        self.logs.append(f"[{timestamp}] [[bold {color}]{level}[/]] {message}")
+        icon = "📡"
+        if "ONLINE" in message: icon = "✅"
+        elif "OFFLINE" in message: icon = "❌"
+        elif "ISSUE" in message: icon = "⚠️"
+        elif "SYS" in level: icon = "⚙️"
+        
+        color = "green" if "ONLINE" in message else "red" if "OFFLINE" in message else "cyan"
+        self.logs.append(f"[dim]{timestamp}[/] {icon} [bold {color}]{message}[/]")
         if len(self.logs) > 10:
             self.logs.pop(0)
 
     def __rich__(self) -> Panel:
-        log_content = "\n".join(self.logs) if self.logs else "No events recorded..."
-        return Panel(log_content, title="Live Event Feed", border_style="blue")
+        return Panel("\n".join(self.logs) or "[dim]Waiting for signal...[/]", title="[bold cyan]MISSION LOG[/]", border_style="blue")
 
 class FleetDashboard:
     def __init__(self):
         self.connector = AgentConnector()
         self.agents = self.connector.AGENTS
-        self.statuses = {name: {"status": "📡 PENDING", "latency": "--", "response": "--"} for name in self.agents}
-        self.event_log = EventLog()
-        self.last_update = "---"
+        self.data = {name: {"status": "📡 SCANNING", "latency": "--", "response": "--", "online": True} for name in self.agents}
+        self.log = EventLog()
+        self.spinner = Spinner("dots", text="Scanning Fleet...")
 
     def make_layout(self) -> Layout:
         layout = Layout()
         layout.split_column(
             Layout(name="header", size=3),
-            Layout(name="main", ratio=1),
-            Layout(name="footer", size=3),
+            Layout(name="upper", ratio=1),
+            Layout(name="lower", size=15),
         )
-        layout["main"].split_row(
-            Layout(name="body", ratio=3),
-            Layout(name="side", ratio=1),
+        layout["upper"].split_row(
+            Layout(name="brief", size=30),
+            Layout(name="nodes", ratio=1),
+        )
+        layout["lower"].split_row(
+            Layout(name="logs", ratio=2),
+            Layout(name="system", ratio=1),
         )
         return layout
 
-    def check_agent(self, agent_key):
-        start_time = time.time()
+    def scan_agent(self, name):
+        start = time.time()
         try:
-            response = self.connector.talk_to_agent(agent_key, "Ping")
-            latency = f"{(time.time() - start_time):.2f}s"
+            res = self.connector.talk_to_agent(name, "Dashboard Sync Pulse")
+            lat = f"{(time.time() - start):.2f}s"
             
-            if "Error" in response or "❌" in response:
-                status_str = "[bold yellow]⚠️ ISSUE[/]"
-                msg = f"{agent_key.upper()} encountered an issue."
-            else:
-                status_str = "[bold green]🟢 ONLINE[/]"
-                msg = f"{agent_key.upper()} is active."
+            is_err = "Error" in res or "❌" in res
+            status = "[bold yellow]⚠️ ISSUE[/]" if is_err else "[bold green]🟢 ONLINE[/]"
             
-            # Simple check if status changed
-            old_status = self.statuses.get(agent_key, {}).get("status")
-            if old_status and old_status != status_str:
-                self.event_log.add_log(msg, "FLEET")
-
-            return agent_key, {"status": status_str, "latency": latency, "response": response[:60] + "..."}
+            if self.data[name]["status"] != status:
+                self.log.add_log(f"{name.upper()} { 'LINK STABILIZED' if not is_err else 'SIGNAL DRIFT'}")
+            
+            self.data[name] = {"status": status, "latency": lat, "response": res[:80], "online": not is_err}
         except Exception as e:
-            latency = f"{(time.time() - start_time):.2f}s"
-            status_str = "[bold red]🔴 OFFLINE[/]"
-            self.event_log.add_log(f"{agent_key.upper()} went offline.", "CRITICAL")
-            return agent_key, {"status": status_str, "latency": latency, "response": str(e)[:60]}
+            lat = f"{(time.time() - start):.2f}s"
+            if self.data[name]["online"]:
+                self.log.add_log(f"{name.upper()} SIGNAL LOST", "CRITICAL")
+            self.data[name] = {"status": "[bold red]🔴 OFFLINE[/]", "latency": lat, "response": str(e)[:80], "online": False}
 
-    def update_all_statuses(self):
-        with concurrent.futures.ThreadPoolExecutor(max_workers=len(self.agents)) as executor:
-            future_to_agent = {executor.submit(self.check_agent, name): name for name in self.agents}
-            for future in concurrent.futures.as_completed(future_to_agent):
-                name, result = future.result()
-                self.statuses[name] = result
-        self.last_update = datetime.now().strftime("%H:%M:%S")
+    def update_fleet(self):
+        with concurrent.futures.ThreadPoolExecutor(max_workers=10) as exe:
+            exe.map(self.scan_agent, self.agents.keys())
 
-    def generate_table(self) -> Table:
-        table = Table(expand=True, box=None)
-        table.add_column("Agent ID", style="bold cyan", ratio=1)
-        table.add_column("Status", justify="center", ratio=1)
-        table.add_column("Latency", justify="right", style="dim", ratio=1)
-        table.add_column("Signal Data", style="italic", ratio=3)
+    def get_node_table(self) -> Table:
+        table = Table(expand=True, box=None, show_edge=False)
+        table.add_column("NODE", ratio=1)
+        table.add_column("STRENGTH", ratio=1, justify="center")
+        table.add_column("LATENCY", ratio=1, justify="right")
+        table.add_column("DATA STREAM", ratio=3)
 
-        sorted_agents = sorted(self.statuses.items(), key=lambda x: (x[1]["status"], x[0]))
-        for name, info in sorted_agents:
-            table.add_row(name.upper(), info["status"], info["latency"], info["response"])
-        
+        for name in sorted(self.agents.keys()):
+            info = self.data[name]
+            icon = AGENT_ICONS.get(name, "🛰️")
+            table.add_row(
+                f"{icon} [bold cyan]{name.upper()}[/]",
+                info["status"],
+                f"[dim]{info['latency']}[/]",
+                f"[italic]{info['response']}[/]"
+            )
         return table
 
     def run(self):
         layout = self.make_layout()
-        layout["header"].update(Header())
-        layout["footer"].update(FleetMetrics())
-        layout["side"].update(Panel(self.event_log, title="Events"))
-        
-        self.event_log.add_log("Aether Link established.", "SYS")
-        self.event_log.add_log("Syncing with 10 agents...", "SYS")
+        self.log.add_log("Aether OS Bootstrap Complete.", "SYS")
+        self.log.add_log("Listening for fleet signals...", "SYS")
 
-        with Live(layout, refresh_per_second=4, screen=True) as live:
+        with Live(layout, screen=True, refresh_per_second=4) as live:
+            last_sync = 0
             while True:
-                # Update Header/Footer time and metrics
+                # 1. Update Layout Static Components
                 layout["header"].update(Header())
-                layout["footer"].update(FleetMetrics())
+                layout["brief"].update(Panel(Markdown(MISSION_MD), border_style="dim"))
+                layout["system"].update(SystemHealth())
+                layout["logs"].update(self.log)
                 
-                # Update Table
-                self.update_all_statuses()
-                layout["body"].update(Panel(self.generate_table(), title="Active Fleet", border_style="cyan"))
-                layout["side"].update(self.event_log)
+                # 2. Sync Logic
+                now = time.time()
+                if now - last_sync > 15:
+                    self.log.add_log("Broadcasting Sync Packet...")
+                    self.update_fleet()
+                    last_sync = now
                 
-                time.sleep(15) 
+                # 3. Update Dynamic Node View
+                layout["nodes"].update(Panel(
+                    self.get_node_table(),
+                    title="[bold blue]🛰️ GLOBAL NODE MESH[/]",
+                    border_style="bright_blue",
+                    subtitle=f"[dim]Next Sync in {int(15 - (now - last_sync))}s[/]"
+                ))
+                
+                time.sleep(0.25)
 
 if __name__ == "__main__":
-    dash = FleetDashboard()
     try:
-        dash.run()
+        FleetDashboard().run()
     except KeyboardInterrupt:
-        console.print("\n[bold cyan]Signal lost. Closing gateway... 🫡[/]")
+        console.print("\n[bold cyan]Signal Termination Sequence Initiated. Goodbye, Operator. 🫡[/]")
