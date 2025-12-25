@@ -41,7 +41,8 @@ def get_chat_response(user_message: str, image_path: str = None, video_path: str
         _initialize_backend()
 
     # --- VIDEO HANDLING (Via VisionTools) ---
-    if video_path:
+    # Defensive check: unintended positional arg shift can put 'user' into video_path
+    if video_path and video_path not in ["user", "default_user"] and not video_path.startswith("user"):
         try:
             from tools.vision_tools import VisionTools
             
