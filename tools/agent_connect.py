@@ -91,9 +91,12 @@ class AgentConnector:
             if token:
                 headers["Authorization"] = f"Bearer {token}"
             
-            # Payload - KRONOS and KAM use 'prompt', others use 'message'
+            # Payload - KRONOS and KAM use 'prompt', Kaedra uses OpenAI messages, others use 'message'
             if is_kronos or is_kam:
                 payload = {"prompt": message}
+            elif is_kaedra:
+                # Kaedra v0.0.6 updated to use OpenAI format on /chat
+                payload = {"messages": [{"role": "user", "content": message}]}
             else:
                 payload = {"message": message}
             
