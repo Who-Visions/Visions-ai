@@ -12,9 +12,11 @@ from rich.text import Text
 from rich.align import Align
 from rich.tree import Tree
 from rich.syntax import Syntax
+from rich.progress import Progress, SpinnerColumn, BarColumn, TextColumn
 from rich.markdown import Markdown
 from rich.columns import Columns
-from rich.progress import Progress, SpinnerColumn, BarColumn, TextColumn
+from rich.padding import Padding
+from rich.rule import Rule
 from rich.highlighter import RegexHighlighter
 from rich.theme import Theme
 from rich.traceback import install
@@ -148,11 +150,15 @@ class SignalLog:
         if len(self.messages) > 10: self.messages.pop(0)
 
     def __rich__(self) -> Panel:
-        return Panel(
-            Text("\n").join([Text.from_markup(m) for m in self.messages]) if self.messages else Text("Awaiting signal sync...", style="dim"),
-            title="[bold blue]🛰️ SIGNAL LOG[/]",
-            border_style="blue"
-        )
+        # Use Padding and Rules for log structure
+        log_group = []
+        for i, msg in enumerate(self.messages):
+            log_group.append(Text.from_markup(m))
+            if i < len(self.messages) - 1:
+                log_group.append(Rule(style="dim blue"))
+        
+        content = Group(*[Text.from_markup(m) for m in self.messages]) if self.messages else Text("Awaiting signal sync...", style="dim")
+        return Panel(Padding(content, (0, 1)), title="[bold blue]🛰️ SIGNAL LOG[/]", border_style="blue")
 
 # --- MAIN DASHBOARD ENGINE ---
 class AetherDashboard:
