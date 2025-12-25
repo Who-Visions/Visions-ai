@@ -153,7 +153,7 @@ class SignalLog:
         # Use Padding and Rules for log structure
         log_group = []
         for i, msg in enumerate(self.messages):
-            log_group.append(Text.from_markup(m))
+            log_group.append(Text.from_markup(msg))
             if i < len(self.messages) - 1:
                 log_group.append(Rule(style="dim blue"))
         
