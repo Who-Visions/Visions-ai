@@ -262,14 +262,14 @@ async def execute_tool(request):
         executor = get_executor()
         result = executor.execute(function_name, args)
         
-        print(f"✅ Tool result: {result.get('status', 'unknown')}")
-        return web.json_response(result)
+        # Result is now a simple string
+        print(f"✅ Tool result: success")
+        return web.json_response({"output": result})
         
     except Exception as e:
         print(f"❌ Tool execution error: {e}")
         return web.json_response({
-            "status": "error",
-            "message": str(e)
+            "output": f"Error: {str(e)}"
         }, status=500)
 
 

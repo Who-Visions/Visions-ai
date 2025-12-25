@@ -105,9 +105,29 @@ class LIFXController:
         }
         return self._request("POST", f"lights/{selector}/effects/breathe", data)
     
+    def pulse(self, selector: str = "all", color: str = "white",
+              period: float = 1.0, cycles: float = 3.0) -> Dict:
+        """Perform pulse effect (quick flash)."""
+        data = {
+            "color": color,
+            "period": period,
+            "cycles": cycles
+        }
+        return self._request("POST", f"lights/{selector}/effects/pulse", data)
+    
+    def effects_off(self, selector: str = "all") -> Dict:
+        """Stop any running effects."""
+        return self._request("POST", f"lights/{selector}/effects/off")
+    
+    def list_scenes(self) -> List[Dict]:
+        """Get all saved scenes."""
+        result = self._request("GET", "scenes")
+        if isinstance(result, list):
+            return [{"name": s.get("name"), "uuid": s.get("uuid")} for s in result]
+        return result
+    
     def scene_activate(self, scene_name: str) -> Dict:
         """Activate a saved scene by name."""
-        # First, get scenes
         scenes = self._request("GET", "scenes")
         if isinstance(scenes, list):
             for scene in scenes:
@@ -139,8 +159,9 @@ def control_lights(action: str, selector: str = "all", color: str = None,
         return "LIFX API token not configured. Add LIFX_API_TOKEN to environment."
     
     # Build selector - default to "all" or use label:
+    # Title case the name since LIFX labels are case-sensitive (Eve, Adam, Eden)
     if selector and selector.lower() != "all":
-        selector = f"label:{selector}"
+        selector = f"label:{selector.title()}"
     else:
         selector = "all"
     
@@ -174,6 +195,27 @@ def control_lights(action: str, selector: str = "all", color: str = None,
     elif action == "breathe":
         result = controller.breathe(selector, color or "blue")
         return f"Breathing effect activated." if "error" not in result else f"Error: {result['error']}"
+    
+    elif action == "pulse":
+        result = controller.pulse(selector, color or "white")
+        return f"Pulse effect activated." if "error" not in result else f"Error: {result['error']}"
+    
+    elif action == "stop":
+        result = controller.effects_off(selector)
+        return f"Effects stopped." if "error" not in result else f"Error: {result['error']}"
+    
+    elif action == "scene":
+        # Activate a saved scene by name
+        scene_name = color  # Use color field for scene name
+        if not scene_name:
+            # List available scenes
+            scenes = controller.list_scenes()
+            if isinstance(scenes, list):
+                names = [s['name'] for s in scenes]
+                return f"Available scenes: " + ", ".join(names)
+            return "No scenes found."
+        result = controller.scene_activate(scene_name)
+        return f"Scene '{scene_name}' activated." if "error" not in result else f"Error: {result.get('error', 'Scene not found')}"
         
     elif action == "list":
         lights = controller.list_lights()
@@ -183,28 +225,28 @@ def control_lights(action: str, selector: str = "all", color: str = None,
         return f"Error: {lights.get('error', 'Unknown error')}"
     
     else:
-        return f"Unknown action: {action}. Use on, off, toggle, color, kelvin, breathe, or list."
+        return f"Unknown action: {action}. Use on, off, toggle, color, kelvin, breathe, pulse, stop, scene, or list."
 
 
 # Function declaration for Gemini Live API
 LIFX_FUNCTION_DECLARATION = {
     "name": "control_lights",
-    "description": "Control LIFX smart lights. Turn on/off, change colors, set color temperature (Kelvin), or create effects. Use when user says 'turn on the lights', 'make the lights blue', 'set lights to 3000K', 'warm up the lights'.",
+    "description": "Control LIFX smart lights. Turn on/off, change colors, set Kelvin temperature, run effects, or activate scenes. Examples: 'turn on the lights', 'make Adam blue', 'set Eve to 3000K', 'activate Christmas scene', 'pulse the bedroom', 'stop effects'.",
     "parameters": {
         "type": "object",
         "properties": {
             "action": {
                 "type": "string",
-                "enum": ["on", "off", "toggle", "color", "kelvin", "breathe", "list"],
-                "description": "Action: on, off, toggle, color (change color), kelvin (set color temperature), breathe (pulse effect), list (show all lights)"
+                "enum": ["on", "off", "toggle", "color", "kelvin", "breathe", "pulse", "stop", "scene", "list"],
+                "description": "Action: on, off, toggle, color, kelvin (color temp), breathe (slow pulse), pulse (quick flash), stop (stop effects), scene (activate scene), list (show lights/scenes)"
             },
             "selector": {
                 "type": "string",
-                "description": "Which light(s) to control: 'all' or room name like 'Living Room', 'Bedroom'"
+                "description": "Which light(s): 'all', light name (Eve, Adam, Eden), or group (Bedroom, Living Room)"
             },
             "color": {
                 "type": "string",
-                "description": "Color name: blue, red, green, purple, orange, warm white, cool white, etc."
+                "description": "Color name OR scene name for scene action. Colors: blue, red, green, purple, orange, warm white. Scenes: Christmas, Winter Night, etc."
             },
             "brightness": {
                 "type": "number",
@@ -212,7 +254,7 @@ LIFX_FUNCTION_DECLARATION = {
             },
             "kelvin": {
                 "type": "integer",
-                "description": "Color temperature in Kelvin (2500-9000). 2700K=warm/cozy, 3000K=soft white, 4000K=neutral, 5000K=daylight, 6500K=cool daylight"
+                "description": "Color temperature 1500-9000K. 1500=candlelight, 2700=warm, 4000=neutral, 5000=daylight, 9000=cool"
             }
         },
         "required": ["action"]

@@ -110,22 +110,22 @@ class VoiceToolsRegistry:
             },
             {
                 "name": "control_lights",
-                "description": "Control LIFX smart lights. Turn on/off, change colors, set color temperature (Kelvin). Use when user says 'turn on the lights', 'make the lights blue', 'set lights to 3000K', 'warm up the lights'.",
+                "description": "Control LIFX smart lights. Turn on/off, change colors, set Kelvin, run effects, activate scenes. Say 'turn on Adam', 'make Eve blue', 'set Eden to 3000K', 'activate Christmas scene', 'pulse the bedroom'.",
                 "parameters": {
                     "type": "object",
                     "properties": {
                         "action": {
                             "type": "string",
-                            "enum": ["on", "off", "toggle", "color", "kelvin", "breathe", "list"],
-                            "description": "Action: on, off, toggle, color, kelvin (set color temperature), breathe (pulse), or list"
+                            "enum": ["on", "off", "toggle", "color", "kelvin", "breathe", "pulse", "stop", "scene", "list"],
+                            "description": "Action: on, off, toggle, color, kelvin, breathe (slow pulse), pulse (quick flash), stop (stop effects), scene, list"
                         },
                         "selector": {
                             "type": "string",
-                            "description": "Which lights: 'all' or room name like 'Living Room'"
+                            "description": "Light (Eve, Adam, Eden), group (Bedroom, Living Room), or 'all'"
                         },
                         "color": {
                             "type": "string",
-                            "description": "Color: blue, red, green, purple, warm white, etc."
+                            "description": "Color OR scene name. Colors: blue, red, green. Scenes: Christmas, Winter Night"
                         },
                         "brightness": {
                             "type": "number",
@@ -133,7 +133,7 @@ class VoiceToolsRegistry:
                         },
                         "kelvin": {
                             "type": "integer",
-                            "description": "Color temperature in Kelvin (2500-9000). 2700K=warm, 3000K=soft, 4000K=neutral, 5000K=daylight"
+                            "description": "Color temp 1500-9000K. 1500=candle, 2700=warm, 5000=daylight"
                         }
                     },
                     "required": ["action"]

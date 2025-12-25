@@ -93,15 +93,15 @@ const VISIONS_TOOLS = [
     },
     {
         name: "control_lights",
-        description: "Control LIFX smart lights. Turn on/off, change colors, set color temperature (Kelvin). Say 'turn on the lights', 'make the lights blue', 'set lights to 3000K', 'warm up the lights'.",
+        description: "Control LIFX smart lights. Turn on/off, change colors, set Kelvin, run effects, activate scenes. Say 'turn on Adam', 'make Eve blue', 'set Eden to 3000K', 'activate Christmas scene', 'pulse the bedroom'.",
         parameters: {
             type: "object",
             properties: {
-                action: { type: "string", enum: ["on", "off", "toggle", "color", "kelvin", "breathe", "list"] },
-                selector: { type: "string", description: "Which lights: 'all' or room name" },
-                color: { type: "string", description: "Color: blue, red, green, purple, warm white" },
+                action: { type: "string", enum: ["on", "off", "toggle", "color", "kelvin", "breathe", "pulse", "stop", "scene", "list"] },
+                selector: { type: "string", description: "Light (Eve, Adam, Eden), group (Bedroom, Living Room), or 'all'" },
+                color: { type: "string", description: "Color OR scene name. Colors: blue, red, green. Scenes: Christmas, Winter Night" },
                 brightness: { type: "number", description: "Brightness 0-100" },
-                kelvin: { type: "integer", description: "Color temp in Kelvin (2500-9000). 2700K=warm, 4000K=neutral, 5000K=daylight" }
+                kelvin: { type: "integer", description: "Color temp 1500-9000K. 1500=candle, 2700=warm, 5000=daylight" }
             },
             required: ["action"]
         }
@@ -347,15 +347,13 @@ async function handleToolCall(toolCall) {
                 const result = await response.json();
                 console.log(`✅ Tool result:`, result);
 
-                // Send result back to Gemini Live API (id, name, result)
-                geminiClient.sendToolResponse(call.id, call.name, result);
+                // Send result back to Gemini Live API (extract output string)
+                const output = result.output || JSON.stringify(result);
+                geminiClient.sendToolResponse(call.id, call.name, output);
 
             } catch (error) {
                 console.error(`❌ Tool error:`, error);
-                geminiClient.sendToolResponse(call.id, call.name, {
-                    status: 'error',
-                    message: error.message
-                });
+                geminiClient.sendToolResponse(call.id, call.name, `Error: ${error.message}`);
             }
         }
     }
