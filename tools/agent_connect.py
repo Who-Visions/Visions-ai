@@ -68,6 +68,7 @@ class AgentConnector:
         # KRONOS uses /generate, KAEDRA might use root or /chat, others use /chat
         is_kronos = "kronos" in agent_key
         is_kaedra = "kaedra" in agent_key
+        is_kam = "kam" in agent_key
         
         if is_kronos:
             endpoint = f"{target_url}/generate"
@@ -75,6 +76,9 @@ class AgentConnector:
             # Kaedra v0.0.6 seems to respond at root or has specific routing. 
             # We'll try /chat first, but add root as primary fallback.
             endpoint = f"{target_url}/chat" 
+        elif is_kam:
+            # Kam uses OpenAI-compatible /v1/chat/completions
+            endpoint = f"{target_url}/v1/chat/completions"
         else:
             endpoint = f"{target_url}/chat"
         
@@ -87,8 +91,11 @@ class AgentConnector:
             if token:
                 headers["Authorization"] = f"Bearer {token}"
             
-            # Payload - KRONOS uses 'prompt', others use 'message'
-            payload = {"prompt": message} if is_kronos else {"message": message}
+            # Payload - KRONOS and KAM use 'prompt', others use 'message'
+            if is_kronos or is_kam:
+                payload = {"prompt": message}
+            else:
+                payload = {"message": message}
             
             # Request
             response = requests.post(endpoint, json=payload, headers=headers, timeout=60)
