@@ -66,11 +66,46 @@ function init() {
     // Event listeners
     connectBtn.addEventListener('click', connect);
     disconnectBtn.addEventListener('click', disconnect);
-    micBtn.addEventListener('mousedown', startRecording);
-    micBtn.addEventListener('mouseup', stopRecording);
-    micBtn.addEventListener('mouseleave', stopRecording);
-    micBtn.addEventListener('touchstart', (e) => { e.preventDefault(); startRecording(); });
-    micBtn.addEventListener('touchend', stopRecording);
+
+    // Mic button - toggle in continuous mode, push-to-talk otherwise
+    micBtn.addEventListener('click', () => {
+        if (continuousMode.checked) {
+            // Toggle mode
+            if (isRecording) {
+                stopRecording();
+            } else {
+                startRecording();
+            }
+        }
+    });
+    micBtn.addEventListener('mousedown', () => {
+        if (!continuousMode.checked) startRecording();
+    });
+    micBtn.addEventListener('mouseup', () => {
+        if (!continuousMode.checked) stopRecording();
+    });
+    micBtn.addEventListener('mouseleave', () => {
+        if (!continuousMode.checked && isRecording) stopRecording();
+    });
+    micBtn.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        if (!continuousMode.checked) startRecording();
+    });
+    micBtn.addEventListener('touchend', () => {
+        if (!continuousMode.checked) stopRecording();
+    });
+
+    // Continuous mode toggle
+    continuousMode.addEventListener('change', () => {
+        if (geminiClient && geminiClient.connected) {
+            if (continuousMode.checked && !isRecording) {
+                startRecording();
+            } else if (!continuousMode.checked && isRecording) {
+                stopRecording();
+            }
+        }
+        updateMicButtonLabel();
+    });
 
     voiceSelect.addEventListener('change', () => {
         if (geminiClient) {
@@ -118,7 +153,13 @@ function onConnected() {
     disconnectBtn.disabled = false;
     connectBtn.disabled = true;
 
-    assistantTranscript.textContent = 'Connected! Hold the mic button and speak...';
+    // Check if continuous listening is enabled
+    if (continuousMode.checked) {
+        assistantTranscript.textContent = 'Connected! Listening continuously...';
+        startRecording(); // Auto-start listening
+    } else {
+        assistantTranscript.textContent = 'Connected! Hold the mic button and speak...';
+    }
     console.log('✅ Connected to Visions');
 }
 
@@ -148,9 +189,15 @@ function onResponse(message) {
         case MultimodalLiveResponseType.TURN_COMPLETE:
             speakingLabel.textContent = 'Listening...';
             speakingLabel.classList.remove('active');
-            waveformVisualizer.simulateIdle();
             // Reset for next turn
             currentAssistantTranscript = '';
+
+            // In continuous mode, keep listening
+            if (continuousMode.checked && geminiClient?.connected) {
+                waveformVisualizer.simulateActive(0.3);
+            } else {
+                waveformVisualizer.simulateIdle();
+            }
             break;
 
         case MultimodalLiveResponseType.TOOL_CALL:
@@ -236,6 +283,7 @@ async function startRecording() {
 
     await audioCapture.start();
     waveformVisualizer.simulateActive(0.5);
+    updateMicButtonLabel();
 }
 
 function stopRecording() {
@@ -251,10 +299,15 @@ function stopRecording() {
     }
 
     waveformVisualizer.simulateIdle();
+    updateMicButtonLabel();
+}
 
-    // If continuous mode, auto-restart after response
-    if (continuousMode.checked && geminiClient?.connected) {
-        // Will restart after response completes
+function updateMicButtonLabel() {
+    const btnText = micBtn.querySelector('.btn-text');
+    if (continuousMode.checked) {
+        btnText.textContent = isRecording ? '🔴 Listening' : '🎤 Start Listening';
+    } else {
+        btnText.textContent = isRecording ? 'Recording...' : 'Push to Talk';
     }
 }
 
