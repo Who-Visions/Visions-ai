@@ -13,6 +13,7 @@ LOCATION = "us-central1"
 REASONING_ENGINE_RESOURCE = "projects/620633534056/locations/us-central1/reasoningEngines/5378250132150026240"
 
 _remote_agent = None
+_local_agent = None
 _initialized = False
 
 def _initialize_backend():
@@ -30,16 +31,37 @@ def _initialize_backend():
         _remote_agent = None
     _initialized = True
 
-def get_chat_response(user_message: str, image_path: str = None, user_id: str = "default_user"):
+def get_chat_response(user_message: str, image_path: str = None, video_path: str = None, user_id: str = "default_user", config: dict = None):
     """
-    Proxies the chat request to the Vertex AI Reasoning Engine.
-    Supports optional image input and persistent memory via user_id.
-    Handles JSON response and text-embedded images.
+    Proxies the chat request to the Vertex AI Reasoning Engine or Direct Gemini 3.
+    Supports optional image or video input, persistent memory, and generation config.
     """
     # Lazy init
     if not _initialized:
         _initialize_backend()
 
+    # --- VIDEO HANDLING (Via VisionTools) ---
+    if video_path:
+        try:
+            from tools.vision_tools import VisionTools
+            
+            # Initialize VisionTools (wraps Gemini 3 Pro)
+            # Gemini 3 requires global location as per .gemini context
+            tools = VisionTools(project_id=PROJECT_ID, location="global")
+            
+            # Use specific thinking level in prompt if provided, or pass via config if VisionTools supported it.
+            # For now, we append it to the prompt to keep it simple, or just rely on the method.
+            prompt = user_message
+            if config and "thinking_level" in config:
+                print(f"🧠 Thinking Level request: {config['thinking_level']} (Handled by Model default)")
+            
+            return tools.analyze_video(video_path, prompt)
+
+        except Exception as video_e:
+             print(f"Error processing video via VisionTools: {video_e}")
+             return f"Error analyzing video: {video_e}"
+
+    # --- IMAGE HANDLING ---
     image_base64 = None
     if image_path:
         if not os.path.exists(image_path):
@@ -51,13 +73,36 @@ def get_chat_response(user_message: str, image_path: str = None, user_id: str = 
             return f"Error reading image: {e}"
 
     # Try Local Agent First (Development Mode)
-    try:
-        from agent import VisionsAgent
-        print("⚡ Using Local VisionsAgent (Dev Mode)")
-        local_agent = VisionsAgent()
-        response_str = local_agent.query(question=user_message, image_base64=image_base64)
-    except Exception as local_e:
-        print(f"⚠️ Local Agent skipped: {local_e}. Falling back to Remote.")
+    global _local_agent
+    
+    if _local_agent is None:
+        try:
+            from agent import VisionsAgent
+            print("⚡ Using Local VisionsAgent (Dev Mode)")
+            _local_agent = VisionsAgent()
+        except Exception as init_e:
+            print(f"⚠️ Failed to init Local Agent: {init_e}")
+            _local_agent = None
+
+    if _local_agent:
+        try:
+            # Pass config if local agent supports it, otherwise ignore
+            response_str = _local_agent.query(question=user_message, image_base64=image_base64)
+        except Exception as local_e:
+            print(f"⚠️ Local Agent skipped: {local_e}. Falling back to Remote.")
+            response_str = None
+    else:
+        response_str = None
+
+    if response_str is None:
+        # Fallback to Remote Reasoning Engine
+        pass # Flow continues below...
+    else:
+         # Skip remote if local succeeded
+         pass 
+
+    if response_str is None:
+
         
         # Fallback to Remote Reasoning Engine
         if not _remote_agent:
@@ -65,17 +110,17 @@ def get_chat_response(user_message: str, image_path: str = None, user_id: str = 
              
         try:
             # Call the 'query_with_memory' method defined in the remote agent
-            # This ensures persistence works!
-            
             print(f"🧠 Querying Reasoning Engine with memory for user: {user_id}")
             
+            # Note: Remote agent signature might not support 'config' yet unless redeployed.
+            # We pass standard args.
             if image_base64:
                 response_str = _remote_agent.query_with_memory(question=user_message, user_id=user_id, image_base64=image_base64)
             else:
                 response_str = _remote_agent.query_with_memory(question=user_message, user_id=user_id)
         except Exception as remote_e:
              print(f"Error querying Reasoning Engine: {remote_e}")
-             # Fallback to standard query if memory method fails (e.g. older deployment)
+             # Fallback to standard query
              try:
                  print("⚠️ 'query_with_memory' failed, falling back to legacy 'query'...")
                  if image_base64:
@@ -115,27 +160,19 @@ def get_chat_response(user_message: str, image_path: str = None, user_id: str = 
             except Exception as e:
                 text_output += f"\n\n[Error saving JSON image: {e}]"
 
-        # 2. Handle Text-Embedded images (Fallback/Tool Output leakage)
-        # Look for the marker we set in the tool
-        print(f"DEBUG RAW TEXT (Start): {text_output[:500]}") # DEBUG
-        
-        # Relaxed regex to capture whatever follows the marker
+        # 2. Handle Text-Embedded images (Fallback)
         match = re.search(r"IMAGE_GENERATED:(\S+)", text_output)
         if match:
             data_str = match.group(1)
-            
             if data_str.startswith("http"):
-                text_output += "\n\n[⚠️ **Warning:** The model hallucinated an image URL instead of generating an actual image file.]"
+                text_output += "\n\n[⚠️ **Warning:** The model hallucinated an image URL.]"
             else:
                 try:
                     timestamp = int(time.time())
                     filename = f"generated_images/img_{timestamp}_tool.png"
-                    
                     img_bytes = base64.b64decode(data_str)
                     with open(filename, "wb") as f:
                         f.write(img_bytes)
-                    
-                    # Replace the huge string with a nice link
                     text_output = text_output.replace(match.group(0), f"\n> [🖼️ **Image Generated:** `{filename}`]")
                 except Exception as e:
                     text_output += f"\n\n[❌ Error saving embedded image: {e}]"

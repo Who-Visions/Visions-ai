@@ -75,7 +75,7 @@ class LIFXController:
     def set_color(self, selector: str = "all", color: str = "blue", 
                   brightness: float = 1.0, duration: float = 1.0) -> Dict:
         """
-        Change light color and brightness.
+        Change light color and brightness. Automatically turns light on.
         
         Args:
             selector: Light selector
@@ -84,6 +84,7 @@ class LIFXController:
             duration: Fade duration in seconds
         """
         data = {
+            "power": "on",  # Auto turn on when setting color
             "color": color,
             "brightness": brightness,
             "duration": duration
@@ -158,10 +159,22 @@ def control_lights(action: str, selector: str = "all", color: str = None,
     if not controller.token:
         return "LIFX API token not configured. Add LIFX_API_TOKEN to environment."
     
-    # Build selector - default to "all" or use label:
-    # Title case the name since LIFX labels are case-sensitive (Eve, Adam, Eden)
+    # Build selector - handle groups vs individual lights
+    # Groups use group: prefix, individual lights use label: prefix
+    GROUPS = ["bedroom", "living room", "living_room"]
+    LIGHTS = ["eve", "adam", "eden"]
+    
     if selector and selector.lower() != "all":
-        selector = f"label:{selector.title()}"
+        sel_lower = selector.lower().replace("_", " ")
+        if sel_lower in [g.lower() for g in GROUPS]:
+            # It's a group
+            selector = f"group:{selector.title()}"
+        elif sel_lower in [l.lower() for l in LIGHTS]:
+            # It's an individual light
+            selector = f"label:{selector.title()}"
+        else:
+            # Default to label (try as light name)
+            selector = f"label:{selector.title()}"
     else:
         selector = "all"
     

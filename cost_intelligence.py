@@ -61,18 +61,18 @@ TOTAL_CREDITS = math.fsum([CREDITS["glitched"]["amount"], CREDITS["genai"]["amou
 MODEL_TIERS = {
     "triage": {
         "model": "gemini-3-flash-preview",
-        "cost_per_1m_input": 0.10,      
-        "cost_per_1m_output": 0.40,
-        "batch_input": 0.05,            
-        "batch_output": 0.20,
+        "cost_per_1m_input": 0.50,      
+        "cost_per_1m_output": 3.00,
+        "batch_input": 0.25,            
+        "batch_output": 1.50,
         "use_for": ["greeting", "simple_question", "routing"]
     },
     "standard": {
         "model": "gemini-3-flash-preview",
-        "cost_per_1m_input": 0.10,      
-        "cost_per_1m_output": 0.40,
-        "batch_input": 0.05,            
-        "batch_output": 0.20,
+        "cost_per_1m_input": 0.50,      
+        "cost_per_1m_output": 3.00,
+        "batch_input": 0.25,            
+        "batch_output": 1.50,
         "use_for": ["general", "code", "analysis"]
     },
     "advanced": {
@@ -97,20 +97,20 @@ MODEL_TIERS = {
 IMAGE_TIERS = {
     "draft": {
         "resolution": "1k",
-        "cost": 0.039,          # G2.5 Flash Image
-        "batch_cost": 0.0195,   # 50% batch discount
-        "model": "gemini-2.5-flash-image"
+        "cost": 0.064,          # G3 Pro Image 1K
+        "batch_cost": 0.032,   
+        "model": "gemini-3-pro-image-preview"
     },
     "standard": {
         "resolution": "2k",
-        "cost": 0.134,          # G3 Pro 2K
+        "cost": 0.134,          # G3 Pro Image 2K
         "batch_cost": 0.067,
         "model": "gemini-3-pro-image-preview"
     },
     "premium": {
         "resolution": "4k",
-        "cost": 0.24,           # G3 Pro 4K
-        "batch_cost": 0.12,
+        "cost": 0.28,           # G3 Pro Image 4K
+        "batch_cost": 0.14,
         "model": "gemini-3-pro-image-preview"
     }
 }

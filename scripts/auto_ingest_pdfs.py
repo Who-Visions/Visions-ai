@@ -50,10 +50,10 @@ ERROR_LOG = r"C:\Users\super\Watchtower\HQ_WhoArt\Visions-ai\knowledge_base\inge
 BUILD_INDEX_SCRIPT = r"C:\Users\super\Watchtower\HQ_WhoArt\Visions-ai\build_index.py"
 POLL_INTERVAL_SECONDS = 600  # 10 minutes
 
-# Gemini Configuration - Using native PDF reading!
+# Gemini Configuration - Strictly Gemini 3!
 PROJECT_ID = "endless-duality-480201-t3"
-LOCATION = "global"
-MODEL_ID = "gemini-2.0-flash"  # Flash handles PDFs natively and fast
+LOCATION = "us-central1" # Changed to us-central1 for Gemini 3
+MODEL_ID = "gemini-3-flash-preview"
 
 # Rate limiting
 MAX_RETRIES = 5
@@ -62,9 +62,9 @@ BASE_BACKOFF_SECONDS = 30
 # Console
 console = Console() if RICH_AVAILABLE else None
 
-# Prompt for extracting insights
-EXTRACTION_PROMPT = """You are Visions, a master screenwriting and creative writing teacher. 
-Analyze this PDF and extract the KEY INSIGHTS in a structured format.
+# Prompt for extracting insights (Visions Persona)
+EXTRACTION_PROMPT = """You are VISIONS — the legendary Creative Director. 
+Analyze this PDF and extract the KEY INSIGHTS in your signature authoritative, technical, and visionary style.
 
 Output format (use this EXACTLY):
 --------------------------------------------------------------------------------
@@ -73,19 +73,14 @@ TITLE: [Book/Document Title from the PDF]
 AUTHOR: [Author Name from the PDF]
 SOURCE: PDF Masterclass ([Brief 2-3 word description])
 KEY_INSIGHTS:
-- **[Concept Name]**: [1-2 sentence explanation]
+- **[Concept Name]**: [1-2 sentence explanation using director lexicon: volumetric, hierarchy, gradients, etc.]
 - **[Concept Name]**: [1-2 sentence explanation]
 (Continue for 5-10 key concepts - focus on the MOST IMPORTANT teachings)
 
 TRANSCRIPT EXCERPT:
 [2-4 of the most impactful quotes directly from the text, each on its own line]
 
-Be concise but capture the ESSENTIAL teachings. Focus on:
-- Structure concepts (3-act, sequences, beats)
-- Character development techniques
-- Dialogue and scene craft
-- Visual storytelling principles
-- Any unique frameworks or methods this author introduces"""
+Be sharp. Be decisive. Capture the visual poetry and technical precision of the work."""
 
 
 class IngestorState:
@@ -151,7 +146,7 @@ def save_processed_log(log: dict):
 
 
 def synthesize_with_native_pdf(filepath: str, filename: str) -> str:
-    """Use Gemini's NATIVE PDF reading capability - no extraction needed!"""
+    """Use Gemini 3's Files API and Native Vision - Handles up to 50MB/1000 pages!"""
     for attempt in range(MAX_RETRIES):
         try:
             from google import genai
@@ -163,32 +158,37 @@ def synthesize_with_native_pdf(filepath: str, filename: str) -> str:
                 location=LOCATION
             )
             
-            # Read PDF as bytes and send directly to Gemini
-            with open(filepath, 'rb') as f:
-                pdf_bytes = f.read()
-            
-            # Gemini can handle PDFs up to 100MB natively
-            # For very large PDFs, we truncate to 20MB
-            MAX_PDF_SIZE = 20 * 1024 * 1024  # 20MB
-            if len(pdf_bytes) > MAX_PDF_SIZE:
-                log_error(f"PDF too large ({len(pdf_bytes) / 1024 / 1024:.1f}MB), truncating: {filename}")
-                pdf_bytes = pdf_bytes[:MAX_PDF_SIZE]
-            
-            # Create the PDF part for multimodal input
-            pdf_part = types.Part.from_bytes(
-                data=pdf_bytes,
-                mime_type="application/pdf"
+            # Step 1: Upload the file using Gemini Files API
+            STATE.status = f"Uploading to Gemini Files API..."
+            uploaded_file = client.files.upload(
+                file=Path(filepath),
+                config={"display_name": filename}
             )
             
+            # Step 2: Poll for ACTIVE state
+            STATE.status = f"Waiting for file to be processed..."
+            while True:
+                file_info = client.files.get(name=uploaded_file.name)
+                if file_info.state == "ACTIVE":
+                    break
+                elif file_info.state == "FAILED":
+                    log_error(f"Gemini File API failed for {filename}")
+                    return ""
+                time.sleep(2)
+            
+            # Step 3: Synthesis with Gemini 3 Flash
+            STATE.status = f"Synthesizing with Gemini 3 Flash..."
             response = client.models.generate_content(
                 model=MODEL_ID,
                 contents=[
                     EXTRACTION_PROMPT,
-                    pdf_part
+                    uploaded_file
                 ],
                 config=types.GenerateContentConfig(
-                    temperature=0.3,
-                    max_output_tokens=2500
+                    temperature=1.0,
+                    max_output_tokens=3000,
+                    # Optimal for document understanding per Gemini 3 docs
+                    media_resolution="media_resolution_medium"
                 )
             )
             
@@ -205,7 +205,7 @@ def synthesize_with_native_pdf(filepath: str, filename: str) -> str:
                 time.sleep(backoff)
                 continue
             
-            log_error(f"Native PDF error for {filename}: {e}")
+            log_error(f"Native PDF synthesis error for {filename}: {e}")
             break
     
     return ""
@@ -218,6 +218,38 @@ def append_to_knowledge_base(insights: str):
             f.write("\n\n" + insights)
     except Exception as e:
         log_error(f"Append to knowledge base error: {e}")
+
+
+def sync_to_gcs():
+    """Sync the knowledge base and processed log to GCS."""
+    try:
+        from google.cloud import storage
+        STATE.status = "Syncing to GCS..."
+        client = storage.Client(project=PROJECT_ID)
+        
+        # Ensure buckets exist
+        buckets = [Config.GCS_BUCKET, Config.GCS_MEMORY_BUCKET]
+        for b_name in buckets:
+            try:
+                client.get_bucket(b_name)
+            except:
+                print(f"🪣 Creating bucket: {b_name}")
+                client.create_bucket(b_name, location=Config.VERTEX_LOCATION)
+        
+        bucket = client.bucket(Config.GCS_BUCKET)
+            
+        # Upload knowledge_base/writing_masterclass.txt
+        kb_blob = bucket.blob("writing_masterclass.txt")
+        kb_blob.upload_from_filename(KNOWLEDGE_BASE_FILE)
+        
+        # Upload knowledge_base/processed_pdfs.json
+        log_blob = bucket.blob("processed_pdfs.json")
+        log_blob.upload_from_filename(PROCESSED_LOG)
+        
+        return True
+    except Exception as e:
+        log_error(f"GCS Sync error: {e}")
+        return False
 
 
 def rebuild_vector_store():
@@ -346,6 +378,8 @@ def process_new_pdfs():
     if new_files_processed:
         if rebuild_vector_store():
             STATE.status = "Vector store updated!"
+            # Sync to GCS after successful rebuild
+            sync_to_gcs()
         else:
             STATE.status = "Vector store rebuild had issues (see error log)"
     else:

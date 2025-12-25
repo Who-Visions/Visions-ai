@@ -27,8 +27,10 @@ class FlowWatcher:
         self.last_timestamp = None
         self.running = False
         
-        # Initialize Gemini
-        genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+        # Initialize Gemini - try multiple API key env vars
+        api_key = os.getenv("GOOGLE_API_KEY") or os.getenv("GEMINI_API_KEY")
+        if api_key:
+            genai.configure(api_key=api_key)
         self.model = genai.GenerativeModel("gemini-2.0-flash")
         
         # Load tools
@@ -88,70 +90,111 @@ class FlowWatcher:
         return False, ""
     
     async def _process_command(self, command: str) -> str:
-        """Process a Visions command - simple keyword matching for now."""
+        """Process a Visions command using Gemini for intelligent parsing."""
         print(f"🧠 Processing command: {command}")
         
-        cmd_lower = command.lower()
+        # Get current Eastern time (UTC-5)
+        from datetime import datetime, timezone, timedelta
+        eastern = timezone(timedelta(hours=-5))
+        now = datetime.now(eastern)
+        current_time = now.strftime("%I:%M %p on %A, %B %d, %Y")
         
         try:
-            # Light control commands
-            if any(word in cmd_lower for word in ["light", "lights", "lamp", "eve", "adam", "eden"]):
-                from tools.lifx_tools import control_lights
-                
-                # Determine action
-                if "off" in cmd_lower:
-                    action = "off"
-                elif "on" in cmd_lower:
-                    action = "on"
-                elif "toggle" in cmd_lower:
-                    action = "toggle"
-                else:
-                    action = "color"
-                
-                # Determine selector
-                selector = "all"
-                for name in ["eve", "adam", "eden", "bedroom", "living room"]:
-                    if name in cmd_lower:
-                        selector = name.title()
-                        break
-                
-                # Determine color
-                color = None
-                for c in ["red", "blue", "green", "purple", "orange", "pink", "white", "warm white"]:
-                    if c in cmd_lower:
-                        color = c
-                        action = "color"
-                        break
-                
-                # Determine kelvin
-                kelvin = None
-                import re
-                k_match = re.search(r'(\d{4})k', cmd_lower)
-                if k_match:
-                    kelvin = int(k_match.group(1))
-                    action = "kelvin"
-                
-                result = control_lights(action, selector, color, kelvin=kelvin)
-                print(f"✅ {result}")
-                return result
+            # Use Gemini to parse complex commands into structured actions
+            parse_prompt = f"""Parse this smart home voice command into JSON actions.
+
+Current time: {current_time} (Eastern)
+
+Available lights: Eve (Bedroom), Adam (Living Room), Eden (Living Room)
+Available actions: on, off, toggle, color, kelvin, breathe, pulse
+Available colors: red, blue, green, purple, orange, pink, white, warm white
+Kelvin range: 1500-9000 (1500=candle, 2700=warm, 5000=daylight)
+Brightness: 0-100
+
+Command: "{command}"
+
+Return ONLY a JSON array of actions. Each action has:
+- selector: "all", "Eve", "Adam", "Eden", "Bedroom", or "Living Room"
+- action: "on", "off", "toggle", "color", "kelvin", "breathe", "pulse"
+- color: color name (optional)
+- brightness: 0-100 (optional)
+- kelvin: 1500-9000 (optional)
+- delay_seconds: seconds to wait before executing (optional, for "in X minutes/seconds")
+
+Examples:
+"turn lights purple at 50%" -> [{{"selector": "all", "action": "color", "color": "purple", "brightness": 50}}]
+"make Eden red and Adam blue" -> [{{"selector": "Eden", "action": "color", "color": "red"}}, {{"selector": "Adam", "action": "color", "color": "blue"}}]
+"turn off the lights in 5 minutes" -> [{{"selector": "all", "action": "off", "delay_seconds": 300}}]
+"set Eve to blue in 30 seconds" -> [{{"selector": "Eve", "action": "color", "color": "blue", "delay_seconds": 30}}]
+
+JSON only, no explanation:"""
+
+            response = self.model.generate_content(parse_prompt)
+            json_text = response.text.strip()
             
-            # Flow context commands
-            elif any(word in cmd_lower for word in ["dictation", "said", "history", "stats"]):
-                from tools.flow_tools import get_flow_context
-                if "stats" in cmd_lower:
-                    result = get_flow_context("stats")
-                else:
-                    result = get_flow_context("recent", limit=5)
-                print(f"✅ {result}")
-                return result
+            # Clean up response - extract JSON
+            if "```json" in json_text:
+                json_text = json_text.split("```json")[1].split("```")[0].strip()
+            elif "```" in json_text:
+                json_text = json_text.split("```")[1].split("```")[0].strip()
             
-            else:
-                print("❓ Unrecognized command")
-                return "Unrecognized command"
+            import json
+            actions = json.loads(json_text)
+            
+            print(f"📋 Parsed {len(actions)} action(s)")
+            
+            # Execute each action
+            from tools.lifx_tools import control_lights
+            import threading
+            results = []
+            
+            def execute_action(act):
+                selector = act.get("selector", "all")
+                action = act.get("action", "color")
+                color = act.get("color")
+                brightness = act.get("brightness")
+                kelvin = act.get("kelvin")
+                result = control_lights(action, selector, color, brightness=brightness, kelvin=kelvin)
+                print(f"⏰ Timer fired: {action} {selector} → {result}")
+            
+            for act in actions:
+                selector = act.get("selector", "all")
+                action = act.get("action", "color")
+                color = act.get("color")
+                brightness = act.get("brightness")
+                kelvin = act.get("kelvin")
+                delay = act.get("delay_seconds", 0)
                 
+                if delay and delay > 0:
+                    print(f"⏳ Scheduling: {action} {selector} in {delay}s")
+                    timer = threading.Timer(delay, execute_action, args=[act])
+                    timer.start()
+                    results.append(f"{selector}: scheduled in {delay}s")
+                else:
+                    print(f"⚡ {action} {selector}: color={color}, brightness={brightness}, kelvin={kelvin}")
+                    result = control_lights(action, selector, color, brightness=brightness, kelvin=kelvin)
+                    results.append(f"{selector}: {result}")
+            
+            final = " | ".join(results)
+            print(f"✅ {final}")
+            return final
+            
         except Exception as e:
             print(f"❌ Error: {e}")
-            return f"Error: {str(e)}"
+            # Fallback to simple parsing
+            return await self._simple_command(command)
+    
+    async def _simple_command(self, command: str) -> str:
+        """Fallback simple command parsing."""
+        cmd_lower = command.lower()
+        from tools.lifx_tools import control_lights
+        
+        if "off" in cmd_lower:
+            return control_lights("off", "all")
+        elif "on" in cmd_lower:
+            return control_lights("on", "all")
+        else:
+            return "Command not understood"
     
     def _on_new_dictation(self, dictation: dict):
         """Handle a new dictation."""

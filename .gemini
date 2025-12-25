@@ -1,0 +1,100 @@
+# META-CONTEXT: VISIONS AI ARCHITECTURE (HQ_WhoArt/Visions-ai)
+
+# TARGET_AUDIENCE: Advanced Agentic Systems (Antigravity, Gemini CI, Gemini CLI)
+
+# SECURITY_LEVEL: HIGH
+
+# DATE: 2025-12-24
+
+## 1. SYSTEM TOPOLOGY & INFRASTRUCTURE
+
+**Deployment Target**: Google Cloud Vertex AI Reasoning Engine (`reasoning_engines`).
+**Runtime Environment**: Python 3.12+ / Custom Docker Container.
+**Orchestration**: Cloud Build (`cloudbuild.yaml`) -> Cloud Run -> Reasoning Engine Resource.
+**Identity**: `Visions-AI-Reasoning-Agent` / `endless-duality-480201-t3` / `us-central1`.
+
+## 2. COGNITIVE ARCHITECTURE (Cascading Inference)
+
+The agent utilizes a directed acyclic graph (DAG) of model invocations to optimize for latency vs. depth (`agent.py`).
+
+### Phase I: Triage & Routing
+
+* **Model**: `gemini-3-flash-preview` (Global Endpoint).
+* **Mechanism**: Zero-shot classification of user query into boolean flags: `is_greeting`, `needs_realtime`, `needs_deep_thinking`, `needs_knowledge`.
+* **Output**: Determines the execution subgraph for Phase II.
+
+### Phase II: Parallel Intelligence Gathering (Task Graph)
+
+Executed concurrently via `ThreadPoolExecutor`:
+
+1. **Instinct Vector** (`gemini-3-flash-preview`): Immediate "gut check" response.
+2. **Grounding Vector** (`gemini-2.5-flash` @ `us-central1`): Real-time Google Search retrieval (`google_search_retrieval`).
+3. **Cognitive Vector** (`gemini-3-pro-preview` @ `global`): High-compute reasoning using `thinking_level="high"` (formerly `thinking_budget`).
+4. **Mnestic Vector** (`FAISS` + `gemini-embedding-001`): RAG retrieval from `vector_store/` (Static Knowledge: Arnheim, Camera Specs).
+
+### Phase III: Global Synthesis
+
+* **Model**: `gemini-3-pro-preview` (Global).
+* **Context Window**: Aggregates Phase I & II outputs + Session Memory.
+* **Persona Injection**: "Visions" (80yr Creative Director) applied via `system_instruction`.
+* **Output**: JSON-structured response containing text and base64 encoded media.
+
+## 3. MEMORY SUBSTRATE (`memory_cloud.py`)
+
+**Dual-Layer Hybrid Architecture**:
+
+* **Hot Layer (Firestore)**:
+  * **Scope**: Session-scoped context, short-term turn history.
+  * **Latency**: Sub-100ms.
+  * **Schema**: `session_id` -> `messages[]`.
+* **Cold Layer (BigQuery)**:
+  * **Scope**: User-scoped long-term preferences, analyzed patterns.
+  * **Schema**: `user_id` -> `preferences`, `style_profile`, `historical_context`.
+  * **Async**: Writes are detached from the critical path.
+* **Fallback**: `aiosqlite` for local/offline development.
+
+## 4. AGENTIC INTERFACE & TOOLS
+
+**Protocol**: Native Function Calling (`tools/` directory).
+
+| Tool Class | Capability Surface | Model Alignment |
+|:---:|:---|:---|
+| `VisionTools` | Multi-modal analysis (Image/Video) | `gemini-3-pro-image-preview` |
+| `CinemaTools` | Cinematic script generation, Character definition | `gemini-3-pro-preview` |
+| `BrowserTool` | Headless Chrome navigation (MCP Client) | N/A (External process) |
+| `AgentConnector` | Inter-agent RPC (Rhea, Dav1d, Yuki) | HTTP/REST |
+| `ImageGenerator` | Native image synthesis | `gemini-3-pro-image-preview` |
+
+## 5. OPERATIONAL CONTEXT & ACTIVE DIRECTIVES
+
+**Current State**: `VERIFICATION_PHASE`.
+**Primary Harness**: `stress_test_visions.py` (Rich CLI Dashboard).
+
+### Critical Objectives
+
+1. **Latency Optimization**: Target < 15s P95 latency for `Chat (Baseline)`.
+2. **Error Handling**: Mitigate `429 ResourceExhausted` via exponential backoff (Client-side implementation in `agent.py`).
+3. **Video Understanding**: Validating `VisionTools` against `verify_video_backend.py`.
+
+### Known Constraints
+
+* **Gemini 3 Global Restriction**: All Gemini 3 model calls MUST target `location="global"`.
+* **Thinking Config**: Use `thinking_level="high"`, NOT `thinking_budget` (Deprecated).
+* **Authentication**: `GOOGLE_AI_STUDIO_API_KEY` is strictly a fallback; Vertex AI ADC (Application Default Credentials) is primary.
+
+## 6. IDENTITY PARAMETERS (System Prompt)
+
+* **Archetype**: Master Mentor / Director.
+* **Lexicon**: Technical, Visual, Authoritative ("Volumetric", "Chiaroscuro", "Negative Space").
+* **Behavior**:
+  * NEVER ask for clarification; assume intent.
+  * ALWAYS provide specific recommendations (Models, Gear).
+  * DETECT & CORRECT typos ("Cannon" -> Canon).
+
+## 7. FILE SYSTEM MAP
+
+* `agent.py`: **KERNEL**. Main agent logic.
+* `config.py`: **CONSTANTS**. Environment & Model Registry.
+* `deploy.py`: **UPLINK**. Vertex AI Deployment routine.
+* `cli_visual.py`: **INTERFACE**. Local debug CLI.
+* `cloudbuild.yaml`: **PIPELINE**. CI/CD definition.

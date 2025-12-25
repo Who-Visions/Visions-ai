@@ -18,6 +18,7 @@ import time
 from langchain_community.vectorstores import FAISS
 from langchain_google_vertexai import VertexAIEmbeddings
 from google.cloud import storage
+from genai_embeddings import GenAIEmbeddings
 
 # Import VisionTools for advanced image capabilities
 from tools.vision_tools import VisionTools
@@ -85,10 +86,11 @@ class KnowledgeRetriever:
                     # If GCS fails and no local, we can't do RAG.
                     raise e
 
-            print("Initializing FAISS...")
-            # Using gemini-embedding-001 with task type optimized for retrieval
-            embeddings = VertexAIEmbeddings(
-                model_name="text-embedding-004",  # Keep compatible with existing index
+            # Using custom GenAIEmbeddings wrapper for Gemini 3
+            embeddings = GenAIEmbeddings(
+                model_name=Config.EMBEDDING_MODEL,
+                task_type="RETRIEVAL_QUERY",
+                output_dimensionality=Config.EMBEDDING_DIMENSIONS # 768
             )
             self._db = FAISS.load_local(index_path, embeddings, allow_dangerous_deserialization=True)
             print(f"✅ Vector Store loaded successfully. Total Vectors: {self._db.index.ntotal}")
@@ -156,7 +158,7 @@ class ImageGenerator:
         print(f"🎨 Generating image with Gemini 3 Pro: {prompt}")
         try:
             response = client.models.generate_content(
-                model=self.MODEL,
+                model=synthesis_model,
                 contents=prompt,
                 config=types.GenerateContentConfig(
                     response_modalities=["IMAGE", "TEXT"],
@@ -343,23 +345,7 @@ class VisionsAgent:
     MODEL_LOCATIONS = {
         # Gemini 3 models - GLOBAL ONLY (required)
         "gemini-3-pro-preview": "global",
-        "gemini-3-pro-image-preview": "global",
         "gemini-3-flash-preview": "global",  # Gemini 3 Flash (FREE TIER available!)
-        
-        # Gemini 2.5 models - use us-central1 for lower latency
-        "gemini-2.5-pro": "us-central1",
-        "gemini-2.5-flash": "us-central1",
-        "gemini-2.5-flash-lite": "us-central1",
-        "gemini-2.5-flash-image": "us-central1",
-        
-        # Imagen 4 - regional (us-central1)
-        "imagen-4.0-generate-001": "us-central1",
-        "imagen-4.0-fast-generate-001": "us-central1",
-        "imagen-4.0-ultra-generate-001": "us-central1",
-        
-        # Embeddings - regional (text-embedding-004 or gemini-embedding-001)
-        "text-embedding-004": "us-central1",
-        "gemini-embedding-001": "us-central1",
     }
     
     def __init__(self, project: str = "endless-duality-480201-t3", location: str = "us-central1"):
@@ -460,7 +446,7 @@ Classify into these boolean flags:
 
 JSON only:"""
 
-            model = "gemini-2.5-flash-lite"
+            model = "gemini-3-flash-preview"
             client = self._get_client(model)
             response = client.models.generate_content(
                 model=model,
@@ -510,9 +496,9 @@ JSON only:"""
             return results
         
         def flash_lite_instinct():
-            """Gemini 2.5 Flash Lite - instant gut check."""
+            """Gemini 3 Flash Preview - instant gut check."""
             try:
-                model = "gemini-2.5-flash-lite"
+                model = "gemini-3-flash-preview"
                 client = self._get_client(model)
                 response = client.models.generate_content(
                     model=model,
@@ -675,7 +661,13 @@ JSON only:"""
         
         gathered_context = "\n\n---\n\n".join(context_parts) if context_parts else ""
         
-        print("🧠 Synthesizing with Gemini 3 Pro...")
+        # Smart Synthesis Model Selection
+        if routing.get("is_simple") or routing.get("is_greeting"):
+             synthesis_model = "gemini-3-flash-preview"
+             print("⚡ Synthesizing with Gemini 3 Flash (Fast Mode)...")
+        else:
+             synthesis_model = "gemini-3-pro-preview"
+             print("🧠 Synthesizing with Gemini 3 Pro (Deep Mode)...")
         
         # Rate limiting: Wait if needed
         time_since_last = time.time() - self._last_request_time

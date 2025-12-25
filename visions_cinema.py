@@ -71,7 +71,7 @@ class VisionsCinema:
         
         # Use Gemini 3 Pro Image Preview (global routing)
         response = self.global_client.models.generate_images(
-            model='gemini-3-pro-image-preview',
+            model='imagen-3.0-generate-001',
             prompt=prompt,
             config=types.GenerateImagesConfig(
                 number_of_images=1,
@@ -88,67 +88,52 @@ class VisionsCinema:
         else:
             raise Exception("Failed to generate base character")
 
-    @retry_with_backoff
-    def generate_shot(self, base_image_path: str, shot_type: str, angle_prompt: str, character_description: str) -> str:
-        """
-        Step 3: Camera Angle Control using Gemini 3 Pro Image
-        """
-        print(f"📸 Generating Shot: {shot_type}...")
-        
-        full_prompt = (
-            f"CINEMATIC SHOT: {shot_type}. "
-            f"Character: {character_description}. "
-            f"Action/Angle: {angle_prompt}. "
-            "Ensure consistency with character features: [SAME HAIR, SAME CLOTHES, SAME FACE]. "
-            "Photorealistic, 8k, movie still."
-        )
-
-        # Read base image for consistency (Gemini 3 Pro supports reference images)
-        try:
-            with open(base_image_path, "rb") as f:
-                image_bytes = f.read()
-        except Exception as e:
-            print(f"❌ Could not read base image: {e}")
-            return None
-        
-        # Use generate_content for Multimodal input (Text + Image)
-        # This leverages Gemini 3 Pro's ability to use reference images
-        # TIP: Put image BEFORE text for best results
-        
-        # Add technical specifications to prompt since ImageConfig might not be supported in generic `generate_content`
-        full_prompt += " Output specs: Aspect Ratio 16:9, Photorealistic."
-
-        response = self.global_client.models.generate_content(
-            model='gemini-3-pro-image-preview',
-            contents=[
-                types.Part.from_bytes(data=image_bytes, mime_type="image/png"),
-                full_prompt
-            ],
-            config=types.GenerateContentConfig(
-                media_resolution="high",       # Supported per docs
-                response_mime_type="image/png" # Explicitly request image MIME if supported, or rely on prompt
+        @retry_with_backoff
+        def generate_shot(self, base_image_path: str, shot_type: str, angle_prompt: str, character_description: str, lens_type: str = "standard") -> str:
+            """
+            Step 3: Camera Angle Control using Gemini 3 Pro Image (generate_images)
+            """
+            print(f"📸 Generating Shot: {shot_type} (Lens: {lens_type})...")
+            
+            # Lens Logic
+            lens_specs = {
+                "standard": "35mm prime lens, natural depth of field.",
+                "anamorphic": "2.39:1 anamorphic lens, oval bokeh, blue horizontal lens flares, cinematic wide compression.",
+                "tilt-shift": "Tilt-shift lens, miniature effect, extreme selective focus, sharp center with blurred top/bottom.",
+                "macro": "100mm macro lens, extreme close-up, microscopic detail, paper-thin depth of field.",
+                "wide": "14mm wide-angle lens, slight barrel distortion, deep focus, expansive environment.",
+                "reality_bleed": "Practical projection mapping, volumetric blue hour lighting, digital noise overlay on physical surfaces, high contrast chiaroscuro."
+            }
+            
+            spec = lens_specs.get(lens_type, lens_specs["standard"])
+            
+            full_prompt = (
+                f"CINEMATIC SHOT: {shot_type}. "
+                f"Lens Specification: {spec}. "
+                f"Character: {character_description}. "
+                f"Action/Angle: {angle_prompt}. "
+                "Photorealistic, 8k, movie still."
             )
-        )
-        
-        filepath = None
-        if response.parts:
-            for part in response.parts:
-                if part.inline_data:
-                    filepath = OUTPUT_DIR / f"shot_{shot_type.replace(' ','_')}_{int(time.time())}.png"
-                    # SDK helper to save or we can write bytes manually
-                    # part.as_image().save() works if PIL is installed, else write bytes
-                    try:
-                        part.as_image().save(str(filepath))
-                    except:
-                        with open(filepath, "wb") as f:
-                            f.write(part.inline_data.data)
-                    
-                    print(f"✅ Shot saved to: {filepath}")
-                    return str(filepath)
-        
-        print("❌ Failed to generate shot image.")
-        return None
-
+    
+            # Using generate_images for native image synthesis
+            response = self.global_client.models.generate_images(
+                model='gemini-3-pro-image-preview',
+                prompt=full_prompt,
+                config=types.GenerateImagesConfig(
+                    number_of_images=1,
+                    aspect_ratio="16:9",
+                    output_mime_type="image/png"
+                )
+            )
+            
+            if response and response.generated_images:
+                filepath = OUTPUT_DIR / f"shot_{shot_type.replace(' ','_')}_{int(time.time())}.png"
+                response.generated_images[0].image.save(str(filepath))
+                print(f"✅ Shot saved to: {filepath}")
+                return str(filepath)
+            
+            print("❌ Failed to generate shot image.")
+            return None
     @retry_with_backoff
     def animate_shot(self, image_path: str, prompt: str) -> str:
         """
@@ -191,27 +176,35 @@ class VisionsCinema:
              return None
 
 def run_cinema_demo():
-    print("🎬 VISIONS CINEMA: Starting Workflow...")
+    print("🎬 VISIONS CINEMA: Starting Anamorphic Test (Ghost)...")
     cinema = VisionsCinema()
     
     # 1. Define Character
-    char_desc = "A futuristic cyberpunk detective with neon blue hair, wearing a trench coat, glowing cybernetic eye, rainy street background"
+    char_desc = "A futuristic cyberpunk detective, neon blue hair, trench coat, walking away into neon mist"
     
     try:
         # 2. Generate Base
-        base_img = cinema.generate_character_base(char_desc, "CyberDetective")
+        # base_img = cinema.generate_character_base(char_desc, "Ghost_Detective")
+        print(f"👤 [DRY RUN] Simulating base character generation for: {char_desc}")
+        base_img = "mock_output/ghost_base.png"
         
-        # 3. Generate one specific angle (for speed in this test)
-        # We'll do the 'Over Shoulder' as it's the complex one requested in the video
-        angle_name = "Over Shoulder"
-        angle_prompt = "Over the shoulder view looking at a holographic billboard, detective turning head slightly"
+        # 3. Generate Anamorphic Shot
+        angle_name = "Reality Bleed (Chiaroscuro)"
+        angle_prompt = "Detective finding their own hologram projected onto the wet pavement. Blue hour lighting vs red warning holograms."
         
-        shot_img = cinema.generate_shot(base_img, angle_name, angle_prompt, char_desc)
+        # NOTE: In a real run, we would call API. For DRY RUN, we mock the output.
+        print(f"🎭 [DRY RUN] Simulating shot generation for: {angle_name}")
+        print(f"   Lens: reality_bleed")
+        print(f"   Prompt: {angle_prompt}")
+        shot_img = "mock_output/reality_bleed_shot.png" # Mock path
+        # shot_img = cinema.generate_shot(base_img, angle_name, angle_prompt, char_desc, lens_type="reality_bleed")
         
-        # 4. Animate it
-        if shot_img:
+        # 4. Animate it (DISABLED PER ECHO CONSTRAINTS - DRY RUN ONLY)
+        if shot_img and False: # FORCE DISABLED
             print(f"\n🚀 Animating the Shot: {shot_img}")
             cinema.animate_shot(shot_img, f"The detective turns her head to look at the billboard, rain falling heavily. {angle_prompt}")
+        else:
+             print(f"\n🚫 Animation Skipped (DRY RUN PROTOCOL ACTIVE)")
             
     except Exception as e:
         print(f"\n❌ Workflow Failed: {e}")

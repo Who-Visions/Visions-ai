@@ -67,6 +67,16 @@ PRICING = {
         "location": "global",
     },
     
+    # Gemini 3 Flash Preview
+    "gemini-3-flash-preview": {
+        "input_text": 0.50,
+        "input_audio": 1.00,
+        "output": 3.00,
+        "location": "us-central1",
+        "context_cache": 0.05,
+        "cache_storage": 1.00,
+    },
+    
     # ===================== GEMINI 2.5 =====================
     # Gemini 2.5 Pro
     "gemini-2.5-pro": {
@@ -319,27 +329,12 @@ G3_IMAGE_COSTS = {
     },
 }
 
-# Gemini 2.5 Flash Image - fixed per-image pricing
-# Image output priced at $30/1M tokens, 1290 tokens = $0.039/image
-G25_FLASH_IMAGE_COST = 0.039  # $0.039/image
-
-# Imagen 4 - official per-image pricing
-IMAGEN4_COSTS = {
-    "fast": 0.02,      # imagen-4.0-fast-generate-001
-    "standard": 0.04,  # imagen-4.0-generate-001
-    "ultra": 0.06,     # imagen-4.0-ultra-generate-001
-}
-
-# Imagen 3 - per-image pricing  
-IMAGEN3_COST = 0.03  # $0.03/image
-
 # Veo Video Generation - per-second pricing
 VEO_COSTS = {
     "veo-3.1-standard": 0.40,  # $0.40/second with audio
     "veo-3.1-fast": 0.15,      # $0.15/second with audio
     "veo-3-standard": 0.40,
     "veo-3-fast": 0.15,
-    "veo-2": 0.35,
 }
 
 def get_daily_image_capacity():
@@ -348,9 +343,6 @@ def get_daily_image_capacity():
     
     capacity = {
         "g3_pro": {},
-        "g25_flash": {},
-        "imagen4": {},
-        "imagen3": {},
         "veo": {},
     }
     
@@ -361,25 +353,6 @@ def get_daily_image_capacity():
             "images_per_day": int(daily_budget / data["cost"]),
             "resolution": data["resolution"],
         }
-    
-    # G2.5 Flash Image
-    capacity["g25_flash"] = {
-        "cost_per_image": G25_FLASH_IMAGE_COST,
-        "images_per_day": int(daily_budget / G25_FLASH_IMAGE_COST),
-    }
-    
-    # Imagen 4 at different quality tiers
-    for tier, cost in IMAGEN4_COSTS.items():
-        capacity["imagen4"][tier] = {
-            "cost_per_image": cost,
-            "images_per_day": int(daily_budget / cost),
-        }
-    
-    # Imagen 3
-    capacity["imagen3"] = {
-        "cost_per_image": IMAGEN3_COST,
-        "images_per_day": int(daily_budget / IMAGEN3_COST),
-    }
     
     # Veo video (8 second videos)
     for model, cost_per_sec in VEO_COSTS.items():
@@ -428,47 +401,7 @@ def show_image_capacity():
         )
     
     console.print(table)
-    console.print()
-    
-    # Gemini 2.5 Flash Image
-    flash_limit = RATE_LIMITS.get("gemini-2.5-flash-image", {}).get("rpd", 2000)
-    flash_data = capacity["g25_flash"]
-    actual_flash = min(flash_data['images_per_day'], flash_limit)
-    console.print(f"[cyan]⚡ Gemini 2.5 Flash Image:[/cyan] ${flash_data['cost_per_image']:.3f}/image → Budget: {flash_data['images_per_day']:,}, [green bold]Actual: {actual_flash:,}/day[/green bold] [dim](Rate: {flash_limit} RPD)[/dim]")
-    console.print()
-    
-    # Imagen 4
-    table = Table(title="🖼️ Imagen 4", box=box.ROUNDED)
-    table.add_column("Tier", style="cyan")
-    table.add_column("Cost/Image", justify="right", style="yellow")
-    table.add_column("Budget Max", justify="right", style="dim")
-    table.add_column("Rate Limit", justify="right", style="red")
-    table.add_column("Actual Max", justify="right", style="green bold")
-    
-    tier_info = {
-        "fast": ("⚡ Fast", "imagen-4-fast"),
-        "standard": ("📷 Standard", "imagen-4-standard"),
-        "ultra": ("💎 Ultra", "imagen-4-ultra"),
-    }
-    for tier in ["fast", "standard", "ultra"]:
-        name, model_key = tier_info[tier]
-        data = capacity["imagen4"][tier]
-        rate_limit = RATE_LIMITS.get(model_key, {}).get("rpd", 999)
-        actual_max = min(data['images_per_day'], rate_limit)
-        table.add_row(
-            name,
-            f"${data['cost_per_image']:.2f}",
-            f"{data['images_per_day']:,}",
-            f"{rate_limit}",
-            f"{actual_max}"
-        )
-    
     console.print(table)
-    console.print()
-    
-    # Imagen 3
-    i3_data = capacity["imagen3"]
-    console.print(f"[cyan]🎨 Imagen 3:[/cyan] ${i3_data['cost_per_image']:.2f}/image → [green bold]{i3_data['images_per_day']:,}/day[/green bold]")
     console.print()
     
     # Veo Video
@@ -482,9 +415,10 @@ def show_image_capacity():
     veo_info = {
         "veo-3.1-standard": ("Veo 3.1 Standard", 10),
         "veo-3.1-fast": ("Veo 3.1 Fast", 10),
-        "veo-2": ("Veo 2", 10),
+        "veo-3-standard": ("Veo 3 Standard", 10),
+        "veo-3-fast": ("Veo 3 Fast", 10),
     }
-    for model in ["veo-3.1-standard", "veo-3.1-fast", "veo-2"]:
+    for model in ["veo-3.1-standard", "veo-3.1-fast", "veo-3-standard", "veo-3-fast"]:
         name, rate_limit = veo_info[model]
         data = capacity["veo"][model]
         actual_max = min(data['videos_per_day'], rate_limit)
@@ -732,12 +666,13 @@ def show_pricing():
     table.add_column("Output", justify="right", style="red")
     table.add_column("Location")
     
-    text_models = ["gemini-3-pro-preview", "gemini-2.5-pro", "gemini-2.5-flash", "gemini-2.5-flash-lite"]
+    text_models = ["gemini-3-pro-preview", "gemini-3-flash-preview"]
     for model in text_models:
         p = PRICING[model]
+        input_price = p.get('input', p.get('input_text', 0))
         table.add_row(
             model,
-            f"${p['input']:.2f}",
+            f"${input_price:.2f}",
             f"${p['output']:.2f}",
             p['location']
         )
@@ -753,8 +688,7 @@ def show_pricing():
     table.add_column("Est. Per Image", justify="right", style="magenta")
     
     table.add_row("gemini-3-pro-image-preview", "$2.00/1M", "$120.00/1M", "~$0.12")
-    table.add_row("gemini-2.5-flash-image", "$0.30/1M", "$30.00/1M", "~$0.03")
-    table.add_row("imagen-3", "-", "$0.04/img", "$0.04")
+    table.add_row("gemini-3-flash-preview", "$0.50/1M", "$3.00/1M", "-")
     
     console.print(table)
 

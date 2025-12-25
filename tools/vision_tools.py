@@ -564,6 +564,53 @@ class VisionTools:
         return response.text
     
     
+    # ==================== Video Understanding ====================
+
+    def analyze_video(self, video_path: str, prompt: str) -> str:
+        """
+        Analyze video content using Gemini 3 Pro.
+        
+        Args:
+            video_path: Path to video file
+            prompt: Question or instruction for video analysis
+            
+        Returns:
+            Analysis text from Gemini 3 Pro
+        """
+        import mimetypes
+        try:
+             print(f"🎬 Processing Video via VisionTools: {video_path}")
+             
+             # Read video data
+             with open(video_path, "rb") as f:
+                 video_data = f.read()
+             
+             # Determine mime
+             mime_type, _ = mimetypes.guess_type(video_path)
+             if not mime_type: mime_type = "video/mp4"
+             
+             video_part = types.Part.from_bytes(
+                 data=video_data, 
+                 mime_type=mime_type
+             )
+             
+             # Generate with Gemini 3 Pro (Video capable)
+             # Explicitly using gemini-3-pro-preview for video as per original implementation
+             print("📤 Sending video payload to Gemini 3 Pro...")
+             response = self.client.models.generate_content(
+                 model="gemini-3-pro-preview", 
+                 contents=[prompt, video_part],
+                 config=types.GenerateContentConfig(
+                     temperature=1.0
+                 )
+             )
+             
+             return f"**Gemini 3 Video Analysis**:\n{response.text}"
+             
+        except Exception as e:
+             return f"Error analyzing video: {str(e)}"
+
+
     # ==================== Helper Methods ====================
     
     def _get_mime_type(self, file_path: str) -> str:

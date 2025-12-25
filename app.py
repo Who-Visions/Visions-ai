@@ -98,8 +98,8 @@ async def agent_json():
                 "synthesis": "gemini-3-pro-preview",
                 "fast_synthesis": "gemini-3-flash-preview",  # FREE TIER available
                 "image_generation": "gemini-3-pro-image-preview",
-                "grounded_search": "gemini-2.5-flash",
-                "deep_thinking": "gemini-2.5-pro",
+                "grounded_search": "gemini-3-flash-preview",
+                "deep_thinking": "gemini-3-pro-preview",
                 "embeddings": "gemini-embedding-001"
             },
             "gemini_3_features": {
