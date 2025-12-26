@@ -13,7 +13,7 @@ class GenAIEmbeddings(Embeddings):
     
     def __init__(
         self, 
-        model_name: str = "gemini-embedding-001",
+        model_name: str = Config.EMBEDDING_MODEL,
         task_type: str = "RETRIEVAL_DOCUMENT",
         output_dimensionality: int = 768,
         batch_size: int = 5,

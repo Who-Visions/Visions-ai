@@ -57,10 +57,12 @@ GENAI_DAILY = CREDITS["genai"]["amount"] / CREDITS["genai"]["duration_days"]  # 
 DAILY_BUDGET = math.fsum([GLITCHED_DAILY, GENAI_DAILY])  # $9.41 (precise)
 TOTAL_CREDITS = math.fsum([CREDITS["glitched"]["amount"], CREDITS["genai"]["amount"]])  # $1600
 
+from visions.core.config import Config
+
 # Model tiers for smart routing (Official pricing from ai.google.dev Dec 2025)
 MODEL_TIERS = {
     "triage": {
-        "model": "gemini-3-flash-preview",
+        "model": Config.MODEL_FLASH,
         "cost_per_1m_input": 0.50,      
         "cost_per_1m_output": 3.00,
         "batch_input": 0.25,            
@@ -68,7 +70,7 @@ MODEL_TIERS = {
         "use_for": ["greeting", "simple_question", "routing"]
     },
     "standard": {
-        "model": "gemini-3-flash-preview",
+        "model": Config.MODEL_FLASH,
         "cost_per_1m_input": 0.50,      
         "cost_per_1m_output": 3.00,
         "batch_input": 0.25,            
@@ -76,7 +78,7 @@ MODEL_TIERS = {
         "use_for": ["general", "code", "analysis"]
     },
     "advanced": {
-        "model": "gemini-3-pro-preview", 
+        "model": Config.MODEL_PRO, 
         "cost_per_1m_input": 2.00,      
         "cost_per_1m_output": 12.00,
         "batch_input": 1.00,
@@ -84,7 +86,7 @@ MODEL_TIERS = {
         "use_for": ["complex_reasoning", "research", "synthesis"]
     },
     "flagship": {
-        "model": "gemini-3-pro-preview",
+        "model": Config.MODEL_PRO,
         "cost_per_1m_input": 2.00,      
         "cost_per_1m_output": 12.00,
         "batch_input": 1.00,
@@ -99,19 +101,19 @@ IMAGE_TIERS = {
         "resolution": "1k",
         "cost": 0.064,          # G3 Pro Image 1K
         "batch_cost": 0.032,   
-        "model": "gemini-3-pro-image-preview"
+        "model": Config.MODEL_IMAGE_PRO
     },
     "standard": {
         "resolution": "2k",
         "cost": 0.134,          # G3 Pro Image 2K
         "batch_cost": 0.067,
-        "model": "gemini-3-pro-image-preview"
+        "model": Config.MODEL_IMAGE_PRO
     },
     "premium": {
         "resolution": "4k",
         "cost": 0.28,           # G3 Pro Image 4K
         "batch_cost": 0.14,
-        "model": "gemini-3-pro-image-preview"
+        "model": Config.MODEL_IMAGE_PRO
     }
 }
 

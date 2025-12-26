@@ -1,65 +1,29 @@
-# 👻 GHOST // ECHO HANDOFF LOG
+# Handoff Notes - 2025-12-26
 
-**Protocol**: Asynchronous State Synchronization
-**Cycle**: 012
-**Status**: 🟢 Full Voice Control Live
+## Status: READY FOR TESTING
 
----
+The `Visions-ai` repository has been significantly upgraded to support **Gemini 3** capabilities.
 
-### 🟢 COMPLETED - Cycle 011-012 (Christmas Night Build)
+### Key Deliverables
 
-**VOICE CONTROL STACK** ✅
+1. **VisionsAgent Upgrade**: The core agent now supports Multimodal inputs (Audio/Video), Context Caching, and specialized Skill execution.
+2. **Cookbook Integration**: We have ingested and implemented 21+ patterns from the Gemini Cookbook, including JSON Mode, Anomaly Detection, and Self-Ask Prompting.
+3. **Deep Research**: A specialized `deep_research` skill is available for autonomous research tasks.
 
-- **LIFX Lights**: on/off, colors, kelvin, effects, timers, groups
-- **System Commands**: mute, screenshot, lock, time, open apps
-- **Google Tasks**: add, list, complete via voice
-- **Google Calendar**: create events, view schedule via voice
-- **Wispr Flow Integration**: Ambient voice from any app
+### Next Steps (Validation)
 
-**Voice Command Examples:**
+1. **Run the Deep Research Test**:
 
-```
-"Visions, lights purple"
-"Visions, remind me to call mom tomorrow"
-"Visions, schedule a meeting on Friday at 3pm"
-"Visions, what's on my calendar today"
-"Visions, mute"
-```
+    ```bash
+    python visions/skills/deep_research/programs/research.py --topic "Solid State Batteries"
+    ```
 
-**Files Created/Modified:**
+2. **Verify Multimodal Query**:
+    Test `VisionsAgent.query(question="Analyze this", audio_path="test.mp3")`.
+3. **Check Cost Tracking**:
+    Ensure the new `gemini-3-*` models are showing up in `python visions/modules/cost/cost_tracker.py`.
 
-- `flow_watcher.py` - Gemini-powered command parsing
-- `tools/lifx_tools.py` - LIFX API with groups
-- `tools/system_tools.py` - Windows system commands
-- `tools/google_tools.py` - Google Tasks + Calendar OAuth
-- `visions_desktop/` - Tray app skeleton (Dec 26 project)
+### Known Issues / Notes
 
-**OAuth Setup:**
-
-- Google Tasks API ✅
-- Google Calendar API ✅
-- Token saved: `token.json` (gitignored)
-
----
-
-### 🟡 SCHEDULED - December 26, 2025
-
-**VISIONS DESKTOP APP** 🎙️
-
-- Waiting on: Picovoice Free Trial approval
-- Goal: Siri-like system tray AI assistant with voice I/O
-
----
-
-### 🔒 Security
-
-**Gitignored (never commit):**
-
-- `.env`
-- `credentials.json`
-- `token.json`
-- `client_secret*.json`
-
----
-
-**Merry Christmas! 🎄**
+- **Audio/Video Uploads**: Currently uses inline data for small files. For larger files (>20MB), integration with the File API upload flow (in `visions/modules/genai/file_manager.py` if exists) is recommended.
+- **Thinking Level**: Default set to `HIGH`. Monitor latency; switch to `Config.THINKING_LEVEL_LOW` if too slow for real-time needs.

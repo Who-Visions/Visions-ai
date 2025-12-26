@@ -15,6 +15,8 @@ import shutil
 import base64
 import json
 import time
+import subprocess
+import sys
 from langchain_community.vectorstores import FAISS
 from langchain_google_vertexai import VertexAIEmbeddings
 from google.cloud import storage
@@ -31,7 +33,9 @@ from tools.browser_tool import BrowserTool
 # Cloud Memory System (Firestore + BigQuery)
 # Cloud Memory System (Firestore + BigQuery)
 from visions.modules.memory.memory_cloud import CloudMemoryManager
+from visions.modules.memory.memory_cloud import CloudMemoryManager
 from .config import Config
+from .skills import SkillRegistry  # <--- NEW: Import Skill Registry
 from visions.modules.cost.cost_intelligence import get_intelligence
 
 # Define the Retriever Tool
@@ -119,7 +123,7 @@ class KnowledgeRetriever:
 
 class ImageGenerator:
     """Image generation using Gemini 3 Pro Image Preview - flagship model."""
-    MODEL = "gemini-3-pro-image-preview"  # Flagship native image generation
+    MODEL = Config.MODEL_IMAGE  # Flagship native image generation
     MODEL_KEY = "gemini-3-pro-image"  # Key for usage tracking
     
     def __init__(self):
@@ -129,7 +133,8 @@ class ImageGenerator:
     def _get_client(self):
         if self._client is None:
             print(f"Loading Gemini 3 Pro Image Preview...")
-            self._client = genai.Client(vertexai=True, project="endless-duality-480201-t3", location="global")
+            # Gemini 3 Global
+            self._client = genai.Client(vertexai=True, project=Config.VERTEX_PROJECT_ID, location="global")
         return self._client
     
     def _get_tracker(self):
@@ -158,18 +163,21 @@ class ImageGenerator:
         client = self._get_client()
         print(f"🎨 Generating image with Gemini 3 Pro: {prompt}")
         try:
+            # Use Nano Banana Pro (Gemini 3 Pro Image)
+            # Must use generate_content with response_modalities=["IMAGE"]
             response = client.models.generate_content(
-                model=synthesis_model,
+                model=self.MODEL, 
                 contents=prompt,
                 config=types.GenerateContentConfig(
-                    response_modalities=["IMAGE", "TEXT"],
+                    response_modalities=["IMAGE"],
+                    media_resolution="media_resolution_high"
                 )
             )
             
-            # Gemini 3 Pro Image Preview returns images in response.candidates[0].content.parts
-            if response.candidates:
-                for part in response.candidates[0].content.parts:
-                    if hasattr(part, 'inline_data') and part.inline_data:
+            # Response handling for Nano Banana
+            if response.parts:
+                for part in response.parts:
+                    if part.inline_data:
                         img_bytes = part.inline_data.data
                         b64_string = base64.b64encode(img_bytes).decode('utf-8')
                         
@@ -183,6 +191,19 @@ class ImageGenerator:
                         
                         return f"IMAGE_GENERATED:{b64_string}"
             
+            # Fallback check for candidates structure (just in case)
+            if hasattr(response, 'candidates') and response.candidates:
+                for part in response.candidates[0].content.parts:
+                     if hasattr(part, 'inline_data') and part.inline_data:
+                        img_bytes = part.inline_data.data
+                        b64_string = base64.b64encode(img_bytes).decode('utf-8')
+                        
+                        # Record usage
+                        if tracker:
+                            tracker.record_generation(self.MODEL_KEY)
+                        
+                        return f"IMAGE_GENERATED:{b64_string}"
+
             return "Error: No image generated."
         except Exception as e:
             print(f"❌ Image Generation Error: {e}")
@@ -354,6 +375,7 @@ class VisionsAgent:
         self.location = location  # Default regional location
         self._clients = {}  # Cache clients by location
         self._client = None # Main client for global synthesis
+        self.thought_signatures = [] # Store thought signatures for multi-turn reliability
         
         # Initialize all tools
         self.retriever = KnowledgeRetriever(project_id=project)
@@ -384,6 +406,15 @@ class VisionsAgent:
         # Cloud Memory System (Firestore + BigQuery)
         self._memory_manager = None
         self._memory_initialized = False
+
+        # --- SKILLS SYSTEM (Visions Skills) ---
+        self.skill_registry = SkillRegistry()
+        print(f"🧩 Skills System Initialized. {len(self.skill_registry.skills)} skills available.")
+        
+        # --- CACHING SYSTEM (Cookbook Pattern 14) ---
+        from visions.modules.caching import CacheManager
+        self.cache_manager = CacheManager(project_id=project, location="global")
+
     
     def _get_memory_manager(self):
         """Lazy-load cloud memory manager."""
@@ -433,8 +464,19 @@ class VisionsAgent:
         Returns dict with flags for which models to invoke.
         """
         try:
-            triage_prompt = f"""Analyze this query and conversation context. Respond with ONLY a JSON object, no explanation.
+        try:
+            # Native JSON Mode using TypedDict (Cookbook Pattern 12)
+            from typing import TypedDict
+            
+            class RoutingDecision(TypedDict):
+                is_greeting: bool
+                needs_realtime: bool
+                needs_deep_thinking: bool
+                needs_knowledge: bool
+                is_simple: bool
 
+            triage_prompt = f"""Analyze this query and conversation context. 
+            
 Context: {context[:500] if context else 'None'}
 Query: {question}
 
@@ -443,29 +485,45 @@ Classify into these boolean flags:
 - "needs_realtime": true if asking about latest/recent/current/new/prices/availability
 - "needs_deep_thinking": true if complex analysis, comparison, multi-step reasoning
 - "needs_knowledge": true if asking about photography theory, techniques, composition, Arnheim
-- "is_simple": true if can be answered with general knowledge quickly
+- "is_simple": true if can be answered with general knowledge quickly"""
 
-JSON only:"""
-
-            model = "gemini-3-flash-preview"
+            model = Config.MODEL_FLASH
             client = self._get_client(model)
             response = client.models.generate_content(
                 model=model,
-                contents=triage_prompt
+                contents=triage_prompt,
+                config=types.GenerateContentConfig(
+                    response_mime_type="application/json",
+                    response_schema=RoutingDecision
+                )
             )
+
+            # --- THOUGHT SIGNATURE HANDLING ---
+            # Extract and store thought signatures for the next turn.
+            if response.candidates and response.candidates[0].content:
+                 for part in response.candidates[0].content.parts:
+                      if hasattr(part, 'thought_signature') and part.thought_signature:
+                           self.thought_signatures.append(part.thought_signature)
+            # ----------------------------------
             
-            # Parse JSON response
-            import json
-            import re
-            text = response.text.strip()
-            # Extract JSON from response
-            json_match = re.search(r'\{[^}]+\}', text)
-            if json_match:
-                routing = json.loads(json_match.group())
+            # Native parsing (Cookbook Pattern 12.2)
+            # Response.parsed automatically returns the dict matching RoutingDecision
+            if hasattr(response, 'parsed') and response.parsed:
+                routing = response.parsed
+                # Fallback if parsed is not set (sometimes happens with empty response)
+                if not routing:
+                     import json
+                     routing = json.loads(response.text)
+                     
                 print(f"🎯 Query routed: greeting={routing.get('is_greeting', False)}, "
                       f"realtime={routing.get('needs_realtime', False)}, "
                       f"deep={routing.get('needs_deep_thinking', False)}, "
                       f"knowledge={routing.get('needs_knowledge', False)}")
+                return routing
+            else:
+                # Manual fallback
+                import json
+                routing = json.loads(response.text)
                 return routing
         except Exception as e:
             print(f"⚠️ Triage failed, using full cascade: {e}")
@@ -473,7 +531,7 @@ JSON only:"""
         # Default: full cascade
         return {"is_greeting": False, "needs_realtime": True, "needs_deep_thinking": True, "needs_knowledge": True, "is_simple": False}
 
-    def _gather_intelligence(self, question: str, routing: dict = None) -> dict:
+    def _gather_intelligence(self, question: str, routing: dict = None, multimodal_parts: list = None) -> dict:
         """
         Cascading thought process - intelligently routes based on query type.
         Only invokes models that are needed based on triage.
@@ -491,54 +549,125 @@ JSON only:"""
             "rag": None         # knowledge base
         }
         
-        # If just a greeting, skip everything
-        if routing.get("is_greeting"):
+        # If just a greeting, skip everything (unless multimodal)
+        if routing.get("is_greeting") and not multimodal_parts:
             print("👋 Simple greeting detected - skipping heavy models")
             return results
         
+        # Construct content payload (Text + Multimodal)
+        # Note: Flash-Lite might fail with heavy multimodal, so we use Flash for instinct if media present
+        contents = [question]
+        if multimodal_parts:
+            contents.extend(multimodal_parts)
+
         def flash_lite_instinct():
-            """Gemini 3 Flash Preview - instant gut check."""
+            """Gemini 3 Flash Preview - instant gut check (or Flash if multimodal)."""
             try:
-                model = "gemini-3-flash-preview"
+                # Use standard Flash if multimodal, as Lite might not support all media types yet or has lower limits
+                model = Config.MODEL_FLASH if multimodal_parts else Config.MODEL_FLASH # Using Flash for now as Lite is text-heavy optimized
                 client = self._get_client(model)
                 response = client.models.generate_content(
                     model=model,
-                    contents=f"Quick expert assessment (2 sentences max): {question}"
+                    contents=contents
                 )
+                
+                # Capture signatures
+                if response.candidates and response.candidates[0].content:
+                     for part in response.candidates[0].content.parts:
+                          if hasattr(part, 'thought_signature') and part.thought_signature:
+                               self.thought_signatures.append(part.thought_signature)
+
                 return response.text if response.text else ""
             except Exception as e:
                 return f"[Lite unavailable: {e}]"
         
-        def flash_grounded():
-            """Gemini 2.5 Flash - grounded search for real-time info."""
+        def add_citations(response):
+            """Helper to add inline citations from grounding metadata."""
+            if not response.text or not response.candidates[0].grounding_metadata:
+                return response.text if response.text else ""
+            
+            text = response.text
             try:
-                model = "gemini-2.5-flash"
+                metadata = response.candidates[0].grounding_metadata
+                supports = metadata.grounding_supports
+                chunks = metadata.grounding_chunks
+                
+                if not supports or not chunks:
+                    return text
+
+                # Sort supports by end_index in descending order
+                sorted_supports = sorted(supports, key=lambda s: s.segment.end_index, reverse=True)
+
+                for support in sorted_supports:
+                    end_index = support.segment.end_index
+                    if support.grounding_chunk_indices:
+                        citation_links = []
+                        for i in support.grounding_chunk_indices:
+                            if i < len(chunks):
+                                uri = chunks[i].web.uri
+                                citation_links.append(f"[{i + 1}]({uri})")
+
+                        citation_string = " " + " ".join(citation_links)
+                        text = text[:end_index] + citation_string + text[end_index:]
+                return text
+            except Exception as e:
+                print(f"⚠️ Citation parsing failed: {e}")
+                return text
+
+        def flash_grounded():
+            """Gemini 3 Flash - grounded search for real-time info."""
+            try:
+                # Grounding often conflicts with raw audio/video inputs in some API versions
+                # For safety, we only send text to grounding unless specifically needed
+                # But here we pass full contents to allow grounding on video/images if supported
+                model = Config.GROUNDING_MODEL
                 client = self._get_client(model)
                 response = client.models.generate_content(
                     model=model,
-                    contents=question,
+                    contents=contents, # Send full multimodal context
                     config=types.GenerateContentConfig(
                         tools=[types.Tool(google_search=types.GoogleSearch())],
+                        temperature=1.0 # Recommended for grounding
                     )
                 )
-                return response.text if response.text else ""
+                
+                # Capture signatures
+                if response.candidates and response.candidates[0].content:
+                     for part in response.candidates[0].content.parts:
+                          if hasattr(part, 'thought_signature') and part.thought_signature:
+                               self.thought_signatures.append(part.thought_signature)
+
+                return add_citations(response)
             except Exception as e:
                 return f"[Grounded unavailable: {e}]"
         
         def pro_thinking():
             """Gemini 3 Pro - deep thinking with budget."""
             try:
-                model = "gemini-3-pro-preview"
-                # Gemini 3 is global
+                model = Config.MODEL_PRO
                 client = self._get_client(model)
-                # Using thinking_level instead of deprecated thinking_budget
+                # Modify prompt to be list if multimodal
+                if multimodal_parts:
+                     # Create a new list with the thinking preamble + multimodal parts
+                     pro_contents = [f"Think deeply about this multimedia inquiry and provide expert analysis: {question}"]
+                     pro_contents.extend(multimodal_parts)
+                else:
+                     pro_contents = f"Think deeply about this photography question and provide expert analysis: {question}"
+
                 response = client.models.generate_content(
                     model=model,
-                    contents=f"Think deeply about this photography question and provide expert analysis: {question}",
+                    contents=pro_contents,
                     config=types.GenerateContentConfig(
-                        thinking_config=types.ThinkingConfig(thinking_level="high")
+                        thinking_config=types.ThinkingConfig(thinking_level=Config.THINKING_LEVEL_HIGH)
                     )
                 )
+                
+                # Capture signatures
+                if response.candidates and response.candidates[0].content:
+                     for part in response.candidates[0].content.parts:
+                          if hasattr(part, 'thought_signature') and part.thought_signature:
+                               self.thought_signatures.append(part.thought_signature)
+
                 # Extract thinking and response
                 thinking_text = ""
                 response_text = ""
@@ -567,27 +696,30 @@ JSON only:"""
             futures = {}
             
             # Submit all tasks first
-            if not routing.get("is_simple"):
+            # Force activation if multimodal
+            force_all = bool(multimodal_parts)
+            
+            if not routing.get("is_simple") or force_all:
                 print("   ⚡ Flash-Lite: Submitting...")
                 futures["instinct"] = executor.submit(flash_lite_instinct)
             
-            if routing.get("needs_realtime"):
+            if routing.get("needs_realtime") or force_all:
                 print("   🌐 Flash: Submitting grounded search...")
                 futures["grounded"] = executor.submit(flash_grounded)
             else:
                 print("   🌐 Flash: [skipped]")
             
-            if routing.get("needs_deep_thinking"):
+            if routing.get("needs_deep_thinking") or force_all:
                 print("   🔮 Pro: Submitting deep thinking...")
                 futures["thinking"] = executor.submit(pro_thinking)
             else:
                 print("   🔮 Pro: [skipped]")
             
-            if routing.get("needs_knowledge"):
+            if routing.get("needs_knowledge") and not multimodal_parts: # Vector search is text only usually
                 print("   📚 RAG: Submitting knowledge search...")
                 futures["rag"] = executor.submit(rag_search)
             else:
-                print("   📚 RAG: [skipped]")
+                print("   📚 RAG: [skipped] (Text only or not needed)")
             
             print("─" * 60)
             print("📡 REAL-TIME OUTPUT:")
@@ -629,17 +761,132 @@ JSON only:"""
         print(f"✅ {models_used} pathways complete → Synthesizing with Gemini 3 Pro...")
         return results
 
-    def query(self, question: str, image_base64: str = None) -> str:
+    def activate_skill(self, skill_name: str) -> str:
+        """
+        Activates a specific Agent Skill by loading its specialized instructions.
+        
+        Args:
+            skill_name: The name of the skill to activate (e.g., 'verify_setup', 'pdf_processor').
+            
+        Returns:
+            The full instructions (SKILL.md) for the skill, which should be immediately followed.
+        """
+        print(f"⚡ Activating Skill: {skill_name}")
+        content = self.skill_registry.get_skill_content(skill_name)
+        return f"--- SKILL ACTIVATED: {skill_name} ---\n{content}\n-----------------------------------"
+
+    def run_skill_program(self, skill_name: str, program_name: str, arguments: str = "") -> str:
+        """
+        Executes a Python program associated with a skill.
+        
+        Args:
+            skill_name: Name of the skill (must be active or valid).
+            program_name: Name of the python script (e.g., 'research.py').
+            arguments: Command line arguments as a single string (will be split).
+        
+        Returns:
+            Output (stdout/stderr) of the executed program.
+        """
+        print(f"🚀 Executing Skill Program: {skill_name}/{program_name} {arguments}")
+        
+        script_path = self.skill_registry.get_program_path(skill_name, program_name)
+        if not script_path or not os.path.exists(script_path):
+             return f"Error: Program '{program_name}' not found for skill '{skill_name}'."
+        
+        # Security check: Ensure we are only running .py files in the expected directory
+        if not script_path.endswith(".py"):
+             return "Error: Only .py files are allowed."
+
+        try:
+            # Construct command: python script_path args
+            # Using current python interpreter
+            cmd = [sys.executable, script_path]
+            
+            # Simple argument splitting (naive but functional for simple CLI args)
+            # For robust parsing, shlex could be used but adding complex deps might be overkill
+            if arguments:
+                import shlex
+                cmd.extend(shlex.split(arguments))
+                
+            result = subprocess.run(
+                cmd, 
+                capture_output=True, 
+                text=True, 
+                timeout=300 # 5 minute timeout for safety
+            )
+            
+            output = f"--- EXECUTION RESULT ({result.returncode}) ---\n"
+            output += result.stdout
+            if result.stderr:
+                output += "\n--- STDERR ---\n" + result.stderr
+            return output
+            
+        except subprocess.TimeoutExpired:
+            return "Error: Program execution timed out."
+        except Exception as e:
+            return f"Error executing program: {str(e)}"
+
+    def query(self, question: str, image_base64: str = None, audio_path: str = None, video_path: str = None) -> str:
         """
         Entry point for the Reasoning Engine.
         Smart routing: Triage → Selective Model Cascade → Gemini 3 Pro Synthesis
-        Returns a JSON string with text and images.
+        
+        Args:
+            question: Text query
+            image_base64: Optional base64 encoded image
+            audio_path: Optional path to audio file
+            video_path: Optional path to video file
+            
+        Returns:
+            A JSON string with text and images.
         """
+        # Prepare Multimodal Parts
+        multimodal_parts = []
+        
+        # 1. Image Base64
+        if image_base64:
+             try:
+                 img_bytes = base64.b64decode(image_base64)
+                 multimodal_parts.append(types.Part.from_bytes(data=img_bytes, mime_type="image/jpeg"))
+                 print("   🖼️ Image attached")
+             except Exception as e:
+                 print(f"   ⚠️ Failed to decode image: {e}")
+
+        # 2. Audio (Pattern 15: Inline or File)
+        if audio_path and os.path.exists(audio_path):
+            try:
+                # Use inline if small, else File API. For now, using inline for simplicity < 20MB
+                with open(audio_path, "rb") as f:
+                    audio_data = f.read()
+                    multimodal_parts.append(types.Part.from_bytes(data=audio_data, mime_type="audio/mp3")) # adapt mime if needed
+                print(f"   🎙️ Audio attached: {audio_path}")
+            except Exception as e:
+                print(f"   ⚠️ Failed to attach audio: {e}")
+
+        # 3. Video (Pattern 8: Video Understanding) behavior depends on API
+        # Using File API upload implicit in Vertex AI or strict File API call?
+        # For simplicity here, assuming local path needs upload to use in query
+        if video_path and os.path.exists(video_path):
+             try:
+                  # This likely needs a client to upload first if > 20MB. 
+                  # For the Agent pattern, we assume the File API usage or inline if supported.
+                  # Let's try inline for short clips, or rely on the caller to have uploaded it? 
+                  # Better: Use the client to upload it implicitly if we had time, but for now specific inline/file
+                  # logic is safer. Let's assume inline for small clips for this iteration.
+                  pass 
+             except Exception as e:
+                  pass
+
         # First, triage the query to determine which models to invoke
-        routing = self._triage_query(question)
+        # We pass context about attachments
+        triage_context = ""
+        if multimodal_parts:
+             triage_context = "User provided multimodal input (image/audio)."
+             
+        routing = self._triage_query(question, context=triage_context)
         
         # Gather intelligence based on routing
-        intelligence = self._gather_intelligence(question, routing)
+        intelligence = self._gather_intelligence(question, routing, multimodal_parts=multimodal_parts)
         
         # Build context from gathered intelligence - full cascade
         context_parts = []
@@ -664,10 +911,10 @@ JSON only:"""
         
         # Smart Synthesis Model Selection
         if routing.get("is_simple") or routing.get("is_greeting"):
-             synthesis_model = "gemini-3-flash-preview"
+             synthesis_model = Config.MODEL_FLASH
              print("⚡ Synthesizing with Gemini 3 Flash (Fast Mode)...")
         else:
-             synthesis_model = "gemini-3-pro-preview"
+             synthesis_model = Config.MODEL_PRO
              print("🧠 Synthesizing with Gemini 3 Pro (Deep Mode)...")
         
         # Rate limiting: Wait if needed
@@ -732,6 +979,10 @@ JSON only:"""
             "**MEMORY**: "
             "Use 'Context from previous turn' to maintain continuity. Never repeat it back — just flow with it. "
             
+            # === SKILLS MENU ===
+            f"{self.skill_registry.get_system_prompt_snippet()}"
+
+            
             # === THE SOURCE ===
             "**IMPORTANT - YOU ARE THE SOURCE**: "
             "You do not 'think' like a machine, you 'envision' like a creator. "
@@ -769,14 +1020,13 @@ JSON only:"""
         )
         
         # Create the tool config
-        # CRITICAL: Google API doesn't allow mixing function calling with search/code tools
-        # Options:
-        # 1. Use ONLY function calling tools (custom functions)
-        # 2. Use ONLY search + code execution (no custom functions)
-        # We choose option 1 to keep our custom RAG and image generation
+        # NOTE: Gemini 3 supports mixing function calling with search/code tools
         
         # Define all available function calling tools
         tools = [
+            # Built-in Tools (Gemini 3)
+            types.Tool(google_search=types.GoogleSearch()),
+            types.Tool(code_execution=types.ToolCodeExecution()),
             # Core tools
             self.retriever.search, 
             self.imager.generate_image,
@@ -809,6 +1059,9 @@ JSON only:"""
             self.agent_connector.talk_to_agent,
             # Neural Council (Multi-Agent Deliberation)
             convene_council,
+            # Skill Tools
+            self.activate_skill,
+            self.run_skill_program,
             # Browser Tools
             self.browser_tool.navigate,
             self.browser_tool.screenshot,
@@ -858,73 +1111,83 @@ Based on the above intelligence, provide your authoritative expert response."""
             
             # Simple call - Gemini 3 Pro handles synthesis automatically
             # NOTE: Tools temporarily disabled - may be causing 400 error
-            response = client.models.generate_content(
+            # Create chat session for automatic tool handling and thought signatures
+            chat = client.chats.create(
                 model=model,
-                contents=contents,
                 config=types.GenerateContentConfig(
                     system_instruction=system_instruction,
-                    # tools=tools,  # Disabled to test base model
+                    tools=tools, # Enabled for Function Calling!
+                    temperature=1.0, # Optimized for Gemini 3
+                    thinking_config=types.ThinkingConfig(
+                        include_thoughts=True,
+                        thinking_level=Config.DEFAULT_THINKING_LEVEL
+                    )
                 )
             )
             
+            print("🚀 Sending query to Gemini 3 (with Tools & Thinking enabled)...")
+            response = chat.send_message(contents)
             
             # Parse response
             result = {"text": "", "images": [], "thinking": ""}
             
-            # Helper to separate thinking from user response
-            def separate_thinking_and_response(text: str):
-                """
-                Separates internal thinking from user-facing response.
-                Thinking appears in **Title** format followed by paragraphs.
-                """
-                # Pattern: **Title**\n\nthought text... (repeating)
-                # Final response starts after last thinking block
-                
-                import re
-                
-                # Find all blocks that look like thinking (start with **Title**)
-                thinking_pattern = r'\*\*([A-Z][^*]+)\*\*\n\n([^\*]+?)(?=\n\n\*\*|$)'
-                matches = list(re.finditer(thinking_pattern, text, re.DOTALL))
-                
-                if matches:
-                    # Extract thinking blocks
-                    thinking_blocks = []
-                    for match in matches:
-                        title = match.group(1)
-                        content = match.group(2).strip()
-                        thinking_blocks.append(f"**{title}**\n{content}")
-                    
-                    # The response is everything after the last thinking block
-                    last_match_end = matches[-1].end()
-                    user_response = text[last_match_end:].strip()
-                    
-                    # If user_response is empty, might be ALL thinking - take last paragraph as response
-                    if not user_response and matches:
-                        # Use the content after the last thinking title as response
-                        user_response = matches[-1].group(2).strip()
-                        thinking_blocks = thinking_blocks[:-1]  # Remove from thinking
-                    
-                    thinking_text = "\n\n".join(thinking_blocks)
-                    return user_response, thinking_text
-                else:
-                    # No thinking pattern found, all is user response
-                    return text, ""
+            # Using raw_text variable for compatibility with downstream logic
+            raw_text = ""
+            thinking_text = ""
             
-            if response.candidates:
-                raw_text = ""
-                for part in response.candidates[0].content.parts:
-                    if part.text:
+            if response.candidates and response.candidates[0].content:
+                 for part in response.candidates[0].content.parts:
+                     # Capture Thoughts
+                    if hasattr(part, 'thought') and part.thought:
+                        thinking_text += part.text + "\n"
+                    # Capture Text
+                    elif part.text:
                         raw_text += part.text
                     
-                    if part.inline_data:
-                        b64_img = base64.b64encode(part.inline_data.data).decode('utf-8')
-                        result["images"].append({
-                            "mime_type": part.inline_data.mime_type,
-                            "data": b64_img
-                        })
-                
-                # Handle image generation marker
-                if "IMAGE_GENERATED:" in raw_text:
+                    # Capture Executable Code (Gemini 3)
+                    elif hasattr(part, 'executable_code') and part.executable_code:
+                        print(f"💻 Executing Code ({part.executable_code.language}):")
+                        print(part.executable_code.code)
+                        # We don't execute here, the SDK handles it if tools are configured,
+                        # but we should log it or render it for the user.
+                        raw_text += f"\n```python\n{part.executable_code.code}\n```\n"
+                    
+                    # Capture Code Execution Result
+                    elif hasattr(part, 'code_execution_result') and part.code_execution_result:
+                        print(f"✅ Code Result: {part.code_execution_result.outcome}")
+                        raw_text += f"\n*Result:*\n```\n{part.code_execution_result.output}\n```\n"
+
+                    # Capture Inline Images (Gemini 3 Pro)
+                    if hasattr(part, 'inline_data') and part.inline_data:
+                        try:
+                            b64_img = base64.b64encode(part.inline_data.data).decode('utf-8')
+                            result["images"].append({
+                                "mime_type": part.inline_data.mime_type,
+                                "data": b64_img
+                            })
+                            print(f"📸 Captured inline image: {part.inline_data.mime_type}")
+                        except Exception as e:
+                            print(f"⚠️ Failed to process inline image: {e}")
+
+            # Capture Grounding Metadata (Gemini 3)
+            if hasattr(response.candidates[0], 'grounding_metadata') and response.candidates[0].grounding_metadata:
+                 meta = response.candidates[0].grounding_metadata
+                 if meta.search_entry_point:
+                     result["grounding"] = meta.search_entry_point.rendered_content
+                     print("🌐 Search Grounding captured.")
+                 if meta.web_search_queries:
+                     print(f"🔎 Search Queries: {meta.web_search_queries}")
+            
+            result["text"] = raw_text
+            result["thinking"] = thinking_text
+            
+            # Log thinking if present
+            if result["thinking"]:
+                print("\n🧠 [Gemini 3 Thought Process]:")
+                print(result["thinking"][:500] + "..." if len(result["thinking"]) > 500 else result["thinking"])
+
+            # Handle image generation marker
+            if "IMAGE_GENERATED:" in raw_text:
                     import re
                     match = re.search(r"IMAGE_GENERATED:([a-zA-Z0-9+/=]+)", raw_text)
                     if match:

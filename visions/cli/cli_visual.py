@@ -41,6 +41,7 @@ from animations import (
     thinking_animation,
     cascade_animation
 )
+from visions.core.config import Config
 
 # Cost Intelligence System
 try:
@@ -561,7 +562,7 @@ def main():
 
         # Smart routing - determine best tier for this query
         query_tier = "standard"
-        query_model = "gemini-3-pro"
+        query_model = Config.MODEL_PRO
         if COST_TRACKING_ENABLED and route_query:
             query_model, query_tier = route_query(prompt_text)
 

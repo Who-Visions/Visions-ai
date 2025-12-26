@@ -7,6 +7,7 @@ from google.genai import types
 from pydantic import BaseModel
 from typing import TypeVar, Type, Optional
 import json
+from visions.core.config import Config
 
 from schemas import (
     ImageGenerationRequest,
@@ -52,7 +53,7 @@ class StructuredGeminiClient:
         Generate content with structured JSON output
         
         Args:
-            model: Model name (e.g., "gemini-2.5-flash")
+            model: Model name (e.g., "gemini-3-flash-preview")
             prompt: User prompt
             response_model: Pydantic model class for response
             temperature: Model temperature
@@ -104,7 +105,7 @@ class VisionStructuredAPI:
     
     def __init__(self, api_key: str):
         self.client = StructuredGeminiClient(api_key=api_key)
-        self.model = "gemini-2.5-flash"  # Fast model for structured tasks
+        self.model = Config.MODEL_FLASH  # Fast model for structured tasks
     
     def enhance_prompt(self, user_prompt: str) -> EnhancedPrompt:
         """

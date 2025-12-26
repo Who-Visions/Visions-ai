@@ -11,10 +11,9 @@ from pathlib import Path
 from typing import List, Optional
 from google import genai
 from google.genai import types
+from visions.core.config import Config
 
 # Configuration
-PROJECT_ID = "endless-duality-480201-t3"
-LOCATION = "us-central1"
 OUTPUT_DIR = Path("outputs/cinema")
 
 def retry_with_backoff(func, retries=5, initial_delay=5):
@@ -38,8 +37,8 @@ def retry_with_backoff(func, retries=5, initial_delay=5):
 
 class VisionsCinema:
     def __init__(self):
-        self.project_id = PROJECT_ID
-        self.location = LOCATION
+        self.project_id = Config.VERTEX_PROJECT_ID
+        self.location = Config.VERTEX_LOCATION
         # LAZY initialization - DON'T create clients here (causes pickling errors on deploy)
         self._client = None
         self._global_client = None
@@ -69,24 +68,26 @@ class VisionsCinema:
         print(f"🎨 Creating Base Character: {name} (Gemini 3 Pro Image)...")
         print(f"📝 Prompt: {prompt}")
         
-        # Use Gemini 3 Pro Image Preview (global routing)
-        response = self.global_client.models.generate_images(
-            model='imagen-3.0-generate-001',
-            prompt=prompt,
-            config=types.GenerateImagesConfig(
-                number_of_images=1,
-                aspect_ratio="1:1",
-                output_mime_type="image/png"
+        # Use Gemini 3 Pro Image Preview (Nano Banana Pro)
+        # Note: Native image gen uses generate_content, not generate_images
+        response = self.global_client.models.generate_content(
+            model=Config.MODEL_IMAGE,
+            contents=prompt,
+            config=types.GenerateContentConfig(
+                response_mime_type="image/png",
+                media_resolution=Config.MEDIA_RES_HIGH
             )
         )
         
-        if response and response.generated_images:
-            filepath = OUTPUT_DIR / f"{name}_base.png"
-            response.generated_images[0].image.save(str(filepath))
-            print(f"✅ Base character saved to: {filepath}")
-            return str(filepath)
-        else:
-            raise Exception("Failed to generate base character")
+        if response.parts:
+            for part in response.parts:
+                if part.inline_data:
+                    filepath = OUTPUT_DIR / f"{name}_base.png"
+                    part.as_image().save(str(filepath))
+                    print(f"✅ Base character saved to: {filepath}")
+                    return str(filepath)
+            
+        raise Exception("Failed to generate base character (No image data returned)")
 
         @retry_with_backoff
         def generate_shot(self, base_image_path: str, shot_type: str, angle_prompt: str, character_description: str, lens_type: str = "standard") -> str:
@@ -115,22 +116,23 @@ class VisionsCinema:
                 "Photorealistic, 8k, movie still."
             )
     
-            # Using generate_images for native image synthesis
-            response = self.global_client.models.generate_images(
-                model='gemini-3-pro-image-preview',
-                prompt=full_prompt,
-                config=types.GenerateImagesConfig(
-                    number_of_images=1,
-                    aspect_ratio="16:9",
-                    output_mime_type="image/png"
+            # Using generate_content for Native Image Synthesis (Nano Banana Pro)
+            response = self.global_client.models.generate_content(
+                model=Config.MODEL_IMAGE,
+                contents=full_prompt,
+                config=types.GenerateContentConfig(
+                    response_mime_type="image/png",
+                    media_resolution=Config.MEDIA_RES_HIGH
                 )
             )
             
-            if response and response.generated_images:
-                filepath = OUTPUT_DIR / f"shot_{shot_type.replace(' ','_')}_{int(time.time())}.png"
-                response.generated_images[0].image.save(str(filepath))
-                print(f"✅ Shot saved to: {filepath}")
-                return str(filepath)
+            if response.parts:
+                for part in response.parts:
+                    if part.inline_data:
+                        filepath = OUTPUT_DIR / f"shot_{shot_type.replace(' ','_')}_{int(time.time())}.png"
+                        part.as_image().save(str(filepath))
+                        print(f"✅ Shot saved to: {filepath}")
+                        return str(filepath)
             
             print("❌ Failed to generate shot image.")
             return None

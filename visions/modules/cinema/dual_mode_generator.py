@@ -9,6 +9,7 @@ import vertexai
 import os
 import time
 from datetime import datetime, timedelta
+from visions.core.config import Config
 
 class DualModeImageGenerator:
     """
@@ -67,7 +68,7 @@ class DualModeImageGenerator:
             self.last_vertex_request = datetime.now()
             
             response = self.vertex_client.models.generate_content(
-                model="gemini-3-pro-image-preview",
+                model=Config.MODEL_IMAGE,
                 contents=[prompt],
                 config=types.GenerateContentConfig(temperature=1.0)
             )
@@ -121,7 +122,7 @@ class DualModeImageGenerator:
                     self.last_ai_studio_request = datetime.now()
                     
                     response = self.ai_studio_client.models.generate_content(
-                        model="gemini-3-pro-image-preview",
+                        model=Config.MODEL_IMAGE,
                         contents=[prompt],
                         config=types.GenerateContentConfig(temperature=1.0)
                     )

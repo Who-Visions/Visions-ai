@@ -30,6 +30,7 @@ from datetime import datetime
 # Ensure imports
 sys.path.append(os.getcwd())
 from visions_assistant.agent import get_chat_response
+from visions.core.config import Config
 
 # Cost Intelligence System
 try:
@@ -222,7 +223,7 @@ class DirectorUI:
         
         path_text = Text(f" {cwd} ", style=f"bold {GOOGLE_BLUE}")
         status_text = Text(" [v3.0-visions] ", style=f"bold {GOOGLE_GREEN}")
-        model_text = Text(" gemini-3-pro-image ", style=f"bold {ACCENT_PURPLE}")
+        model_text = Text(f" {Config.MODEL_IMAGE} ", style=f"bold {ACCENT_PURPLE}")
         
         footer_table = Table.grid(expand=True)
         footer_table.add_column(justify="left", ratio=1)

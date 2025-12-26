@@ -11,6 +11,7 @@ Author: Gemini - Web & Cloud Specialist
 import math
 from datetime import datetime, date
 from typing import Dict, Optional
+from visions.core.config import Config
 
 # ============================================================================
 # OFFICIAL PRICING (ai.google.dev - December 2025)
@@ -20,7 +21,7 @@ PRICING = {
     # ========================================================================
     # GEMINI 3 PRO PREVIEW
     # ========================================================================
-    "gemini-3-pro-preview": {
+    Config.MODEL_PRO: {
         "standard": {
             "input_short": 2.00,      # prompts <= 200k tokens
             "input_long": 4.00,       # prompts > 200k tokens
@@ -45,7 +46,7 @@ PRICING = {
     # ========================================================================
     # GEMINI 3 PRO IMAGE PREVIEW
     # ========================================================================
-    "gemini-3-pro-image-preview": {
+    Config.MODEL_IMAGE_PRO: {
         "standard": {
             "text_input": 2.00,
             "image_input_per_image": 0.0011,  # 560 tokens
@@ -65,7 +66,7 @@ PRICING = {
     # ========================================================================
     # GEMINI 3 FLASH PREVIEW
     # ========================================================================
-    "gemini-3-flash-preview": {
+    Config.MODEL_FLASH: {
         "standard": {
             "input_text_image_video": 0.50,
             "input_audio": 1.00,
@@ -88,35 +89,62 @@ PRICING = {
     # ========================================================================
     # VEO 3.1
     # ========================================================================
-    "veo-3.1-generate-preview": {
+    Config.MODEL_VEO: {
         "standard": 0.40,  # per second, with audio
-        "fast": 0.15,      # per second, with audio
     },
-    "veo-3.1": { # Alias
-        "standard": 0.40,  # per second, with audio
-        "fast": 0.15,      # per second, with audio
+    Config.MODEL_VEO_FAST: {
+        "standard": 0.15,      # per second, with audio
     },
     
     # ========================================================================
-    # VEO 3
+    # GEMINI 2.5 PRO (Legacy)
     # ========================================================================
-    "veo-3.0-generate-001": {
-        "standard": 0.40,  # per second, with audio
-    },
-    "veo-3.0-fast-generate-001": {
-        "fast": 0.15,      # per second, with audio
+    Config.MODEL_2_5_PRO: {
+        "standard": {
+            "input_short": 1.25,      # prompts <= 128k
+            "input_long": 2.50,       # prompts > 128k
+            "output_short": 3.75,     # prompts <= 128k
+            "output_long": 7.50,      # prompts > 128k
+            "context_cache_short": 0.3125,
+            "context_cache_long": 0.625,
+            "cache_storage_hourly": 1.00,
+        },
+        "batch": {
+            "input_short": 0.625,
+            "input_long": 1.25,
+            "output_short": 1.875,
+            "output_long": 3.75,
+        },
     },
 
     # ========================================================================
-    # EMBEDDINGS
+    # GEMINI 2.5 FLASH (Legacy / Fallback / Maps)
     # ========================================================================
-    "gemini-embedding-001": {
+    Config.MODEL_2_5_FLASH: {
         "standard": {
-            "input": 0.15,
+            "input_short": 0.075,     # prompts <= 128k
+            "input_long": 0.15,       # prompts > 128k
+            "output_short": 0.30,     # prompts <= 128k
+            "output_long": 0.60,      # prompts > 128k
+            "context_cache_short": 0.01875,
+            "context_cache_long": 0.0375,
+            "cache_storage_hourly": 1.00,
         },
         "batch": {
-            "input": 0.075,
+            "input_short": 0.0375,
+            "input_long": 0.075,
+            "output_short": 0.15,
+            "output_long": 0.30,
         },
+    },
+    
+    # ========================================================================
+    # EMBEDDINGS
+    # ========================================================================
+    Config.EMBEDDING_MODEL: {
+        "standard": {
+            "input": 0.15,        # 1M tokens (batch matches standard)
+        }
     },
 }
 

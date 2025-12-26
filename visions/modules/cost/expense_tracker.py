@@ -59,26 +59,31 @@ EXPENSE_CATEGORIES = {
     "other": "📦 Other",
 }
 
+from visions.core.config import Config
+
 # Model to category mapping
 MODEL_CATEGORIES = {
-    "gemini-3-pro": "text_generation",
-    "gemini-3-pro-image": "image_generation",
-    "gemini-2.5-pro": "text_generation",
-    "gemini-2.5-flash": "text_generation",
-    "gemini-2.5-flash-lite": "text_generation",
-    "gemini-2.5-flash-image": "image_generation",
-    "imagen-4-fast": "image_generation",
+    Config.MODEL_PRO: "text_generation",
+    Config.MODEL_IMAGE_PRO: "image_generation",
+    Config.MODEL_FLASH: "text_generation",
+    Config.MODEL_2_5_PRO: "text_generation",
+    Config.MODEL_2_5_FLASH: "text_generation",
+    Config.MODEL_2_5_FLASH_LITE: "text_generation",
+    Config.MODEL_IMAGE_FAST: "image_generation",
+    "imagen-4-fast": "image_generation", # Fallbacks
     "imagen-4-standard": "image_generation",
     "imagen-4-ultra": "image_generation",
     "imagen-3": "image_generation",
-    "veo-3.1-standard": "video_generation",
-    "veo-3.1-fast": "video_generation",
+    Config.MODEL_VEO: "video_generation",
+    Config.MODEL_VEO_FAST: "video_generation",
     "veo-3-standard": "video_generation",
     "veo-3-fast": "video_generation",
     "veo-2": "video_generation",
-    "text-embedding": "embedding",
+    Config.EMBEDDING_MODEL: "embedding",
+    "text-embedding": "embedding", # Legacy
     "google-search": "grounding",
-    "google-maps": "grounding",
+    Config.MODEL_MAPS: "grounding",
+    Config.MODEL_COMPUTER_USE: "reasoning", # Categorizing computer use as reasoning/action
 }
 
 # ============================================================================

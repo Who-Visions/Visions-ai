@@ -19,6 +19,7 @@ from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Optional
 from dataclasses import dataclass, field
+from visions.core.config import Config
 
 try:
     from rich.console import Console
@@ -49,7 +50,7 @@ console = Console()
 PRICING = {
     # ===================== GEMINI 3 =====================
     # Gemini 3 Pro Preview (Global endpoint only)
-    "gemini-3-pro-preview": {
+    Config.MODEL_PRO: {
         "input": 2.00,       # $2.00/1M (<=200k), $4.00 (>200k)
         "output": 12.00,     # $12.00/1M (<=200k), $18.00 (>200k)
         "location": "global",
@@ -58,7 +59,7 @@ PRICING = {
     },
     
     # Gemini 3 Pro Image Preview (Global endpoint only)
-    "gemini-3-pro-image-preview": {
+    Config.MODEL_IMAGE_PRO: {
         "input": 2.00,       # text/image input
         "output_text": 12.00,
         "output_image": 120.00,  # $120/1M tokens for images
@@ -68,7 +69,7 @@ PRICING = {
     },
     
     # Gemini 3 Flash Preview
-    "gemini-3-flash-preview": {
+    Config.MODEL_FLASH: {
         "input_text": 0.50,
         "input_audio": 1.00,
         "output": 3.00,
@@ -79,7 +80,7 @@ PRICING = {
     
     # ===================== GEMINI 2.5 =====================
     # Gemini 2.5 Pro
-    "gemini-2.5-pro": {
+    Config.MODEL_2_5_PRO: {
         "input": 1.25,       # $1.25/1M (<=200k), $2.50 (>200k)
         "output": 10.00,     # $10.00/1M (<=200k), $15.00 (>200k)
         "location": "us-central1",
@@ -88,7 +89,7 @@ PRICING = {
     },
     
     # Gemini 2.5 Flash
-    "gemini-2.5-flash": {
+    Config.MODEL_2_5_FLASH: {
         "input_text": 0.30,
         "input_audio": 1.00,
         "output": 2.50,
@@ -98,7 +99,7 @@ PRICING = {
     },
     
     # Gemini 2.5 Flash Lite
-    "gemini-2.5-flash-lite": {
+    Config.MODEL_2_5_FLASH_LITE: {
         "input": 0.10,
         "output": 0.40,
         "location": "us-central1",
@@ -107,14 +108,14 @@ PRICING = {
     },
     
     # Gemini 2.5 Flash Image
-    "gemini-2.5-flash-image": {
+    Config.MODEL_IMAGE_FAST: {
         "input": 0.30,
         "per_image": 0.039,  # 1290 tokens = $0.039
         "location": "us-central1",
     },
     
     # ===================== GEMINI 2.0 =====================
-    "gemini-2.0-flash": {
+    "gemini-2.0-flash": {  # Legacy
         "input_text": 0.10,
         "input_audio": 0.70,
         "output": 0.40,
@@ -122,7 +123,7 @@ PRICING = {
         "location": "us-central1",
     },
     
-    "gemini-2.0-flash-lite": {
+    "gemini-2.0-flash-lite": { # Legacy
         "input": 0.075,
         "output": 0.30,
         "location": "us-central1",
@@ -135,14 +136,14 @@ PRICING = {
     "imagen-3": {"per_image": 0.03},
     
     # ===================== VEO VIDEO =====================
-    "veo-3.1-standard": {"per_second": 0.40},
-    "veo-3.1-fast": {"per_second": 0.15},
+    Config.MODEL_VEO: {"per_second": 0.40},
+    Config.MODEL_VEO_FAST: {"per_second": 0.15},
     "veo-3-standard": {"per_second": 0.40},
     "veo-3-fast": {"per_second": 0.15},
     "veo-2": {"per_second": 0.35},
     
     # ===================== EMBEDDINGS =====================
-    "gemini-embedding-001": {"input": 0.15},
+    Config.EMBEDDING_MODEL: {"input": 0.15},
     "text-embedding-004": {"input": 0.000025},  # legacy
     
     # ===================== TOOLS =====================
