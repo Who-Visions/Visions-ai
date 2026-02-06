@@ -1,0 +1,56 @@
+{
+  "title": "My Favorite Gray Background & How to Use It",
+  "summary": "Photographer Lindsay Adler explains how to choose the right gray background based on tonality and warmth, reveals her favorite versatile option (Fashion Gray), and demonstrates lighting and post-processing techniques to change its appearance from light gray to black or cool tones.",
+  "steps": [
+    {
+      "time": "00:33",
+      "action": "Evaluate background options based on two categories: Tonality (lightness/darkness) and Warmth/Coolness.",
+      "code": null,
+      "tool": "Savage Universal Paper Guide"
+    },
+    {
+      "time": "01:23",
+      "action": "Select 'Fashion Gray' for a versatile, slightly cool and neutral starting point.",
+      "code": null,
+      "tool": "Fashion Gray Seamless Paper"
+    },
+    {
+      "time": "03:09",
+      "action": "Feather the key light by angling it away from the background to reduce spill, making the gray appear darker.",
+      "code": null,
+      "tool": "Strobe / Umbrella"
+    },
+    {
+      "time": "03:42",
+      "action": "Feather the light extremely by pointing it almost completely across the frame to turn the background nearly black.",
+      "code": null,
+      "tool": "Strobe / Umbrella"
+    },
+    {
+      "time": "04:23",
+      "action": "Place a V-Flat between the light source and the background to block all light, creating a pure black background.",
+      "code": null,
+      "tool": "V-Flat"
+    },
+    {
+      "time": "05:41",
+      "action": "Add a white V-Flat on the opposite side of the light to bounce fill light into the subject's shadows.",
+      "code": null,
+      "tool": "V-Flat"
+    },
+    {
+      "time": "06:41",
+      "action": "Use the Color Balance tool in post-processing to cool down shadows (blue) and warm up highlights (yellow) to color grade the neutral background.",
+      "code": null,
+      "tool": "Capture One / Lightroom"
+    }
+  ],
+  "key_takeaways": [
+    "Fashion Gray is a versatile middle-ground choice that is neutral enough to be easily manipulated.",
+    "You can change the brightness of a background significantly just by feathering the light (changing its angle).",
+    "V-Flats are useful for both blocking light (to darken backgrounds) and reflecting light (to fill shadows).",
+    "Neutral gray backgrounds are ideal for color grading in post-production as they easily take on cool or warm tints."
+  ],
+  "video_id": "niMJYOj5LIQ",
+  "url": "https://www.youtube.com/watch?v=niMJYOj5LIQ"
+}

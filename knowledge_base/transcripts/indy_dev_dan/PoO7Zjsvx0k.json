@@ -1,0 +1,54 @@
+{
+    "title": "Building Reliable Domain-Specific Agents with OpenAI Structured Outputs",
+    "summary": "This workflow demonstrates how to leverage OpenAI's Structured Outputs update to build highly reliable, domain-specific AI agents. By using Pydantic models to define strict schemas for function calling, the tutorial showcases an image processing agent that generates, converts, and resizes images with 100% schema adherence, eliminating previous reliability issues with tool calling.",
+    "steps": [
+        {
+            "time": "00:38",
+            "action": "Define Tool Schemas",
+            "tool": "Pydantic / Zod",
+            "reasoning": "Wrapping function parameters in Pydantic objects guarantees the LLM responds in the exact format required for execution, ensuring 100% reliability."
+        },
+        {
+            "time": "04:56",
+            "action": "Register Tools with API",
+            "tool": "openai.pydantic_function_tool",
+            "reasoning": "Passes the strict schemas (e.g., GenerateImageParams, ResizeImageParams) to the LLM so it understands the available actions and their specific data requirements."
+        },
+        {
+            "time": "05:51",
+            "action": "Constrain Options with Enums",
+            "tool": "Python Enum",
+            "reasoning": "Using Enums (like ImageRatio) narrows down the AI's choices to pre-defined valid values, preventing hallucinations or invalid parameter generation."
+        },
+        {
+            "time": "02:17",
+            "action": "Execute Generation Task",
+            "tool": "GenerateImageParams / DALL-E 3",
+            "reasoning": "The agent translates natural language requests into structured parameters (prompts, quality, ratio) to trigger image generation."
+        },
+        {
+            "time": "02:52",
+            "action": "Execute Modification Task (Convert)",
+            "tool": "ConvertImageParams / Pillow",
+            "reasoning": "The agent identifies specific file versions from context and applies format conversion logic using the structured output."
+        },
+        {
+            "time": "03:33",
+            "action": "Execute Modification Task (Resize)",
+            "tool": "ResizeImageParams / Pillow",
+            "reasoning": "Demonstrates granular control by extracting specific integer values (width/height) from the user's request to modify assets."
+        },
+        {
+            "time": "06:49",
+            "action": "Map and Execute Functions",
+            "tool": "Python Dictionary Map",
+            "reasoning": "A `tool_function_map` connects the LLM's structured decision (tool name) to the actual Python logic, closing the loop between intent and action."
+        }
+    ],
+    "key_takeaways": [
+        "Structured Outputs provide 100% guaranteed schema adherence for function calling, solving previous reliability issues.",
+        "Using Enums in data models restricts AI hallucinations and ensures valid parameter selection for critical functions.",
+        "Building narrow, domain-specific agents (e.g., image modification) is currently more effective than broad, generic assistants.",
+        "The update includes significant cost reductions (50% input, 33% output) for GPT-4o, making agentic workflows more affordable."
+    ]
+}

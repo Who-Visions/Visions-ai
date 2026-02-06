@@ -1,0 +1,73 @@
+{
+    "title": "Building TypeScript CLI Tools with AI Coding Assistants",
+    "summary": "This workflow demonstrates the iterative process of building and testing a TypeScript CLI application using AI coding assistants. It contrasts the capabilities of tools like Cursor and Aider against a set of standards for 'true' AI assistants, while addressing critical challenges such as file context management, accuracy, and skill atrophy.",
+    "steps": [
+        {
+            "time": "00:00",
+            "action": "Prompt AI to generate `prefixFilesinDir` function",
+            "tool": "AI Assistant (General)",
+            "reasoning": "Initiates the coding process by generating core logic from a natural language description."
+        },
+        {
+            "time": "00:17",
+            "action": "Prompt AI to refactor imports, update main, and add CLI arguments",
+            "tool": "AI Assistant (General)",
+            "reasoning": "Demonstrates iterative refinement and the ability to modify existing code structures."
+        },
+        {
+            "time": "00:55",
+            "action": "Run the script using `bun index.ts test_dir cool_prefix`",
+            "tool": "Bun / Terminal",
+            "reasoning": "Verifies the functionality of the AI-generated code in a real runtime environment."
+        },
+        {
+            "time": "01:27",
+            "action": "Prompt AI to generate `addTofilesInDir` function",
+            "tool": "AI Assistant (General)",
+            "reasoning": "Expands the application's utility by adding new features via simple prompts."
+        },
+        {
+            "time": "01:39",
+            "action": "Prompt AI to export functions and generate a test file",
+            "tool": "AI Assistant (General)",
+            "reasoning": "Transitions the workflow from prototyping to production-ready standards with modularity and testing."
+        },
+        {
+            "time": "02:19",
+            "action": "Execute tests using `bun test`",
+            "tool": "Bun / Terminal",
+            "reasoning": "Validates logic correctness using the generated test suite."
+        },
+        {
+            "time": "07:36",
+            "action": "Select code in `index.ts` and add `test.test.ts` to context via `@` symbol",
+            "tool": "Cursor",
+            "reasoning": "Manually manages file context, a critical requirement for AI to understand dependencies across files."
+        },
+        {
+            "time": "08:14",
+            "action": "Instruct Cursor to add a test for `prefixFilesInDir` and iteratively correct partial output",
+            "tool": "Cursor",
+            "reasoning": "Illustrates 'Iterative Control,' where the user guides the AI to correct mistakes or complete partial tasks."
+        },
+        {
+            "time": "09:22",
+            "action": "Run the updated test suite",
+            "tool": "Bun / Terminal",
+            "reasoning": "Confirms that the iteratively refined code meets the testing requirements."
+        },
+        {
+            "time": "18:50",
+            "action": "Open Aider and manipulate file context (add/remove files)",
+            "tool": "Aider",
+            "reasoning": "Compares context management workflows, highlighting the difference between manual selection and tool-assisted context handling."
+        }
+    ],
+    "key_takeaways": [
+        "True AI Coding Assistants must support CRUD operations on existing codebases, maintain file context, and allow iterative control.",
+        "The prompt is becoming the new fundamental unit of programming.",
+        "Current AI coding challenges include File Management, Accuracy, Speed, Security, and Skill Atrophy.",
+        "Tools like Cursor and Aider are currently leading the market by solving context and iterative control better than generic chat interfaces.",
+        "To prevent skill atrophy, developers must pay close attention to prompt results and treat the AI workflow as a collaboration rather than automation."
+    ]
+}

@@ -1,0 +1,42 @@
+{
+    "title": "Mastering o3-mini: A 3-Step Framework for Evaluating Reasoning Models",
+    "summary": "This tutorial introduces a rigorous three-step framework (Vibe Check, Compare, Eval) for evaluating the new OpenAI o3-mini model against competitors like DeepSeek-R1 and o1. Using a real-world engineering task—extracting structured financial data from Meta's Q4 2024 earnings report—the video demonstrates how to move from manual testing to automated benchmarking to objectively assess accuracy, latency, and cost.",
+    "steps": [
+        {
+            "time": "01:25",
+            "action": "Design a complex structured prompt",
+            "tool": "Code Editor / Markdown",
+            "reasoning": "Defining a strict JSON schema within the prompt ensures the model solves a legitimate engineering problem (data extraction) rather than arbitrary riddles."
+        },
+        {
+            "time": "01:38",
+            "action": "Step 1: Vibe Check (Manual Execution)",
+            "tool": "ChatGPT (o1, o3-mini-high)",
+            "reasoning": "Running the prompt manually allows for immediate qualitative verification of the model's ability to follow instructions and generate correct JSON formats."
+        },
+        {
+            "time": "12:13",
+            "action": "Step 2: Compare (Multi-Model Testing)",
+            "tool": "Thought Bench (BenchY)",
+            "reasoning": "Scaling the test to run side-by-side against multiple models (DeepSeek, Gemini, o3-mini variants) highlights specific failure modes like missing fields or hallucinated keys."
+        },
+        {
+            "time": "14:48",
+            "action": "Step 3: Eval (Automated Benchmarking)",
+            "tool": "ISO Speed Bench / BenchY",
+            "reasoning": "Running a dataset of prompts provides quantitative metrics (accuracy, cost, speed), proving o3-mini-high achieves ~96% accuracy at a fraction of o1's cost."
+        },
+        {
+            "time": "15:28",
+            "action": "Analyze benchmark failures and variance",
+            "tool": "BenchY Analysis UI",
+            "reasoning": "Reviewing specific errors (e.g., number extraction mismatches) helps distinguish between systematic prompt issues and model non-determinism."
+        }
+    ],
+    "key_takeaways": [
+        "o3-mini provides o1-level intelligence at approximately 1/8th the cost and significantly higher speeds.",
+        "The 'Vibe, Compare, Eval' framework moves engineering from subjective impressions to objective, data-driven model selection.",
+        "o3-mini-high demonstrated 96.67% accuracy on the financial extraction task, saturating the benchmark.",
+        "Reasoning effort (low, medium, high) in o3-mini allows developers to trade off cost and speed without necessarily sacrificing accuracy for simpler extraction tasks."
+    ]
+}

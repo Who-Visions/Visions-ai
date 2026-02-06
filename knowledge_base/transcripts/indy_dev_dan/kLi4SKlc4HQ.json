@@ -1,0 +1,54 @@
+{
+    "title": "Building a Personal AI Assistant: The PAR Framework & Keyword Routing",
+    "summary": "This tutorial demonstrates the creation of 'ADA', a proof-of-concept personal AI assistant. It introduces the PAR (Prompt, Agent, Response) framework as a continuous loop for handling user interactions. The system utilizes a Simple Keyword AI Agent Router to deterministically direct voice commands to specific Python functions (agents) for tasks like answering questions, controlling the browser, or generating shell commands. The video also critiques the current architecture, highlighting latency issues with STT/TTS and the need for future improvements in event-driven audio processing.",
+    "steps": [
+        {
+            "time": "00:55",
+            "action": "Initialize Assistant Loop",
+            "tool": "Terminal / Python",
+            "reasoning": "Starts the continuous PAR (Prompt, Agent, Response) cycle, waiting for user input."
+        },
+        {
+            "time": "07:08",
+            "action": "Capture & Transcribe Input (Prompt)",
+            "tool": "Speech-to-Text (STT) API",
+            "reasoning": "Converts physical audio signals into digital text to allow the system to parse intent."
+        },
+        {
+            "time": "07:08",
+            "action": "Detect Activation Keyword",
+            "tool": "String Matching Logic",
+            "reasoning": "Filters background noise by ensuring the agent only processes input when the specific wake word ('Ada') is detected."
+        },
+        {
+            "time": "08:20",
+            "action": "Route to Specific Agent",
+            "tool": "Keyword Router (Dictionary Mapping)",
+            "reasoning": "Deterministically selects the correct sub-agent (e.g., Browser, Shell, Chat) based on keywords found in the prompt, reducing latency and error compared to pure LLM routing."
+        },
+        {
+            "time": "09:27",
+            "action": "Execute Browser Agent",
+            "tool": "LLM + Bash Command",
+            "reasoning": "The LLM parses the natural language request into a specific bash command to open a URL, demonstrating the agent's ability to control the local environment."
+        },
+        {
+            "time": "11:00",
+            "action": "Execute Shell Command Agent",
+            "tool": "LLM + pyperclip",
+            "reasoning": "Generates complex terminal commands and copies them directly to the user's clipboard, acting as a productivity shortcut."
+        },
+        {
+            "time": "04:45",
+            "action": "Provide Audio Feedback (Response)",
+            "tool": "Text-to-Speech (TTS) API",
+            "reasoning": "Completes the interaction loop by confirming the action was taken, mimicking human collaboration."
+        }
+    ],
+    "key_takeaways": [
+        "The PAR Framework (Prompt, Agent, Response) creates a stable loop for continuous AI interaction.",
+        "Simple Keyword Routing is a robust, low-latency method for dispatching tasks to specific agents before invoking heavy LLM logic.",
+        "Personal AI assistants are most effective when they have access to local system tools (clipboard, browser, shell) to automate specific workflows.",
+        "Current limitations in STT (fixed chunks) and TTS (latency) highlight the need for streaming architectures and Voice Activity Detection (VAD) in future iterations."
+    ]
+}

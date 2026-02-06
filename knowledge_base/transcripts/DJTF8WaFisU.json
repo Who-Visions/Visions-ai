@@ -1,0 +1,80 @@
+{
+  "title": "Beauty Retouching Workflow in Evoto",
+  "summary": "Professional photographer Lindsay Adler demonstrates her step-by-step beauty retouching workflow using Evoto AI. She covers analyzing the image, removing blemishes and wrinkles, smoothing skin while retaining texture, unifying skin tones, enhancing eyes, applying digital makeup, and reshaping facial features to achieve a polished yet natural look.",
+  "steps": [
+    {
+      "time": "00:39",
+      "action": "Analyze the image to identify specific areas for improvement, such as blemishes, red veins, dark circles, shine, and color mismatches between face and body.",
+      "tool": "Analysis"
+    },
+    {
+      "time": "01:42",
+      "action": "Use the 'Portrait Retouching' panel to remove acne and blemishes. Adjust sliders to remove distractions without blurring the skin texture.",
+      "tool": "Evoto > Portrait Retouching > Blemish Removal"
+    },
+    {
+      "time": "02:27",
+      "action": "Remove neck wrinkles using the 'Neck Wrinkles' slider. This automates a typically time-consuming process.",
+      "tool": "Evoto > Portrait Retouching > Neck Wrinkles"
+    },
+    {
+      "time": "04:08",
+      "action": "Reduce excessive shine on the forehead using 'Reduce Face Shine', aiming to remove distractions rather than making the face completely matte.",
+      "tool": "Evoto > Portrait Retouching > Reduce Face Shine"
+    },
+    {
+      "time": "05:08",
+      "action": "Apply 'Skin Retouching' using 'Face Skin' smoothing and 'Dodge & Burn' to smooth transitions. Use the masking brush to erase the effect from hair or areas where it is too strong.",
+      "tool": "Evoto > Skin Retouching > Dodge & Burn"
+    },
+    {
+      "time": "06:49",
+      "action": "Add skin texture back into the image using the 'Skin Texture' panel, selecting the 'Dewy' option to create a healthy glow.",
+      "tool": "Evoto > Skin Texture"
+    },
+    {
+      "time": "07:34",
+      "action": "Use 'Unify Body Complexion' to match the color and brightness of the neck and chest to the face.",
+      "tool": "Evoto > Skin Color > Unify Body Complexion"
+    },
+    {
+      "time": "08:50",
+      "action": "Apply a 'Skin Color' preset to unify the overall skin tone and adjust 'Skin Radiance' to brighten the skin if it became too dark.",
+      "tool": "Evoto > Skin Color"
+    },
+    {
+      "time": "10:27",
+      "action": "Retouch eyes by removing red veins and brightening them. Unlink the eyes to adjust brightness individually if one eye is in shadow.",
+      "tool": "Evoto > Eyes"
+    },
+    {
+      "time": "11:25",
+      "action": "Enhance makeup using the 'Makeup Suite'. Apply presets like 'Elegant' to smooth out makeup and refine the look.",
+      "tool": "Evoto > Makeup"
+    },
+    {
+      "time": "12:33",
+      "action": "Adjust eyebrows by selecting the 'Eyebrows' tool to thicken or reshape them digitally.",
+      "tool": "Evoto > Makeup > Eyebrows"
+    },
+    {
+      "time": "13:11",
+      "action": "Remove stray hairs using the 'Remove Stray Hairs' slider in the Hair section.",
+      "tool": "Evoto > Hair"
+    },
+    {
+      "time": "14:16",
+      "action": "Use 'Facial Reshape' to slightly enlarge and tilt the eyes for a fresher look.",
+      "tool": "Evoto > Facial Reshape"
+    }
+  ],
+  "key_takeaways": [
+    "Evoto can complete about 90% of the retouching work, saving significant time before final touches in Photoshop.",
+    "Avoid over-smoothing; retaining skin texture is crucial for a professional beauty edit.",
+    "Unifying skin complexion between the face and body is essential for a cohesive image.",
+    "Digital makeup and reshaping tools allow for subtle enhancements that mimic real-world adjustments.",
+    "Settings can be synced across multiple images for efficient batch processing."
+  ],
+  "video_id": "DJTF8WaFisU",
+  "url": "https://www.youtube.com/watch?v=DJTF8WaFisU"
+}

@@ -1,0 +1,48 @@
+{
+    "title": "MAXING GenAI: The GenAI Prioritization Framework",
+    "summary": "This video introduces the 'GenAI Prioritization Framework,' a strategic mental model designed to help professionals, particularly software engineers and product builders, navigate the infinite possibilities of LLM technology. It focuses on identifying the most valuable asset a user generates daily to prioritize specific GenAI modalities (Text, Code, Images, Videos), ultimately aiming to maximize both Economic Output and Learning Ability.",
+    "steps": [
+        {
+            "time": "00:16",
+            "action": "Define the strategic scope",
+            "tool": "Strategic Inquiry",
+            "reasoning": "Before using tools, the agent must determine what they *should* do versus what they *can* do to avoid paralysis by infinite information."
+        },
+        {
+            "time": "01:25",
+            "action": "Map the Information Ecosystem",
+            "tool": "GenAI Prioritization Framework",
+            "reasoning": "Categorize available data inputs/outputs into four distinct circles: Text, Code, Images, and Videos to structure the prompt engineering approach."
+        },
+        {
+            "time": "03:10",
+            "action": "Contextualize Priority by Role",
+            "tool": "Role-Based Filtering",
+            "reasoning": "The agent must adjust weights based on the user persona (e.g., Marketing prioritizes Text/Images, while Software Engineers prioritize Code) to ensure relevance."
+        },
+        {
+            "time": "05:28",
+            "action": "Identify the Core Asset",
+            "tool": "Asset Audit",
+            "reasoning": "Answering 'What is the most valuable asset you generate daily?' focuses GenAI usage on the highest ROI activity (e.g., Code for Engineers)."
+        },
+        {
+            "time": "07:15",
+            "action": "Establish the Feedback Loop",
+            "tool": "The Prompt",
+            "reasoning": "Connect the user ('Composer') to the Information via prompts to drive two specific outcomes: Learning Ability (Filter, Specialize) and Economic Output (Quantity, Quality)."
+        },
+        {
+            "time": "13:12",
+            "action": "Execute Domain-Specific Prompting",
+            "tool": "LLM Tech",
+            "reasoning": "Apply the framework to generate prompts that manipulate the prioritized information type, ensuring the technology serves to increase the user's specific output and learning rate."
+        }
+    ],
+    "key_takeaways": [
+        "Success with GenAI requires focusing on the specific asset you generate most frequently and valuably (e.g., Code for Engineers).",
+        "The GenAI Prioritization Framework consists of a feedback loop: You -> Prompt -> Information -> Increased Learning & Economic Output.",
+        "Different roles require different prioritization of modalities; a 'one-size-fits-all' approach to GenAI is inefficient.",
+        "The ultimate goal of an Agentic Engineer is to use LLMs to simultaneously increase the quantity/quality of output and the rate of personal learning."
+    ]
+}

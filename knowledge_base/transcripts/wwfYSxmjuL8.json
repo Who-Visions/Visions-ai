@@ -1,0 +1,56 @@
+{
+  "title": "Photo Deconstruction: Colorful Editorial Hair Shoot with Gels",
+  "summary": "Photographer Lindsay Adler breaks down a creative editorial hair photoshoot, demonstrating a five-light setup using colored gels, camera settings, and post-processing techniques to achieve a vibrant, high-contrast look.",
+  "steps": [
+    {
+      "time": "01:30",
+      "action": "Set up the main light to illuminate the center of the face with a narrow beam of white light.",
+      "tool": "Profoto D2 with 5 Degree Grid"
+    },
+    {
+      "time": "02:12",
+      "action": "Position two back rim lights with strip softboxes and gels (Magenta on left, Green on right).",
+      "tool": "1x4ft Strip Softboxes with Grids, Gels"
+    },
+    {
+      "time": "02:58",
+      "action": "Add two front fill lights using zoom reflectors with gels contrasting the rim lights (Green on left, Magenta on right).",
+      "tool": "Zoom Reflectors, Gels"
+    },
+    {
+      "time": "04:39",
+      "action": "Select a dark gray background to absorb excess light and provide contrast.",
+      "tool": "Savage Universal Storm Gray Background"
+    },
+    {
+      "time": "05:03",
+      "action": "Configure camera settings for sharpness and depth of field.",
+      "code": "ISO 400, f/11, 1/200s, 88mm focal length",
+      "tool": "Canon EOS R5, RF 24-105mm Lens"
+    },
+    {
+      "time": "06:28",
+      "action": "Adjust Raw settings by desaturating the green channel slightly and cooling the white balance to shift colors towards teal/purple.",
+      "tool": "Raw Processor (Capture One)"
+    },
+    {
+      "time": "08:25",
+      "action": "Use the Liquify tool to add volume to the hair, elongate the neck, and refine the jawline.",
+      "tool": "Photoshop Liquify"
+    },
+    {
+      "time": "09:04",
+      "action": "Build the lighting setup step-by-step while shooting tethered, starting with the main light and adding gels one by one.",
+      "tool": "Capture One (Tethering)"
+    }
+  ],
+  "key_takeaways": [
+    "Mixing complementary colored lights (like Magenta and Green) can create white light where they overlap.",
+    "Hard light modifiers (grids, zoom reflectors) are effective for emphasizing hair texture.",
+    "Using contrasting colors for rim and fill lights (e.g., Pink rim vs Green fill) creates visual separation and pop.",
+    "Establish the lighting and pose with a static subject before introducing movement like wind.",
+    "Liquify is a crucial tool in hair photography to create shape, flow, and volume that wasn't captured in camera."
+  ],
+  "video_id": "wwfYSxmjuL8",
+  "url": "https://www.youtube.com/watch?v=wwfYSxmjuL8"
+}

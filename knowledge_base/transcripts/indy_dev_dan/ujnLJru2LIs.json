@@ -1,0 +1,61 @@
+{
+    "title": "The 4-Level Prompt Engineering Framework for Agentic Workflows",
+    "summary": "A comprehensive guide to evolving prompt engineering skills from basic CLI interactions to building scalable AI agents. The workflow progresses through four distinct levels: ad-hoc exploration, structured static prompts, example-driven guidance (few-shot), and dynamic templating for software integration.",
+    "steps": [
+        {
+            "time": "01:36",
+            "action": "Initialize Level 1: Create a basic prompt file and execute via CLI",
+            "tool": "Terminal, touch, llm, ollama",
+            "reasoning": "Establishes the fundamental feedback loop for rapid prototyping and interaction with local or cloud models."
+        },
+        {
+            "time": "02:40",
+            "action": "Iterate on Level 1: Modify keywords for specific output formats (XML, SQL)",
+            "tool": "llm CLI",
+            "reasoning": "Demonstrates how minor keyword adjustments can radically change model output without complex architecture."
+        },
+        {
+            "time": "05:56",
+            "action": "Automate Model Testing: Create a shell script to run the prompt against multiple models sequentially",
+            "tool": "Shell script (sh), Cursor",
+            "reasoning": "Ensures prompt robustness and allows for comparative analysis across different model providers (OpenAI, Anthropic, Gemini, Local)."
+        },
+        {
+            "time": "08:23",
+            "action": "Initialize Level 2: Refactor prompt into an XML structure",
+            "tool": "Text Editor",
+            "reasoning": "Using XML tags (like <purpose>, <instructions>) leverages the model's training on HTML/XML to improve instruction adherence and performance."
+        },
+        {
+            "time": "10:42",
+            "action": "Refine Level 2: Utilize static variables within the structure",
+            "tool": "Text Editor",
+            "reasoning": "Separating instructions from data (static variables) turns a one-off prompt into a reusable asset for solving specific problem types."
+        },
+        {
+            "time": "14:54",
+            "action": "Initialize Level 3: Add concrete examples (Few-Shot Prompting)",
+            "tool": "Text Editor",
+            "reasoning": "Providing an <example-output> block steers the model to follow specific formatting and logic patterns that instructions alone may miss."
+        },
+        {
+            "time": "22:53",
+            "action": "Initialize Level 4: Implement dynamic variables for scalability",
+            "tool": "Code Editor",
+            "reasoning": "Replacing static content with placeholders (e.g., {{content}}) transforms the prompt into a programmatic function suitable for production applications."
+        },
+        {
+            "time": "26:30",
+            "action": "Deploy: Integrate the Level 4 prompt into a UI or application workflow",
+            "tool": "Marimo / Custom App",
+            "reasoning": "Completes the agentic workflow by wrapping the scalable prompt in a tool that allows for dynamic input and execution."
+        }
+    ],
+    "key_takeaways": [
+        "The prompt is the new fundamental unit of knowledge work for 2025.",
+        "XML structure significantly improves LLM performance as models are trained on web data (HTML/XML).",
+        "Level 3 prompts (with examples) bridge the gap between generic instructions and production-ready outputs.",
+        "Level 4 prompts are the engine behind AI agents, utilizing dynamic variables for infinite scalability.",
+        "Avoid premature abstraction layers (like LangChain) in favor of mastering raw prompt engineering and CLI tools."
+    ]
+}

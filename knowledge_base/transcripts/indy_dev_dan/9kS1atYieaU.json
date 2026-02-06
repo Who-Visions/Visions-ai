@@ -1,0 +1,66 @@
+{
+    "title": "Engineering Multi-Agent Systems: YouTube Metadata Automation",
+    "summary": "This tutorial outlines a strategic approach to building multi-agent systems using the P5 Pyramid Framework (Principles, Plan, POC, POV, Future). It demonstrates a practical Proof of Concept by automating YouTube metadata generation. The workflow integrates deterministic code (for transcription and image resizing) with LLM agents (for creative generation), emphasizing modular architecture where 'everything is a function' to create reusable, testable building blocks.",
+    "steps": [
+        {
+            "time": "00:05",
+            "action": "Define the P5 Pyramid Framework",
+            "tool": "Conceptual Framework",
+            "reasoning": "Establishes a structured path from Principles to Future production, ensuring the system is built on a solid foundation."
+        },
+        {
+            "time": "01:15",
+            "action": "Establish Engineering Principles",
+            "tool": "Strategic Planning",
+            "reasoning": "Sets the rules for the agentic workflow: use the right tool (Agent vs Code), treat everything as a function, and build reusable blocks."
+        },
+        {
+            "time": "02:45",
+            "action": "Design the Agentic Workflow Diagram",
+            "tool": "Mermaid.live",
+            "reasoning": "Visualizes the flow of data between manual inputs, code execution, and LLM agents to identify dependencies and logic branches."
+        },
+        {
+            "time": "04:50",
+            "action": "Execute the Orchestrator Command",
+            "tool": "VS Code / IndyDevTools CLI",
+            "reasoning": "Triggers the `gen-meta` function which acts as the central orchestrator, calling sub-agents and functions in sequence."
+        },
+        {
+            "time": "06:50",
+            "action": "Transcribe Audio to Text",
+            "tool": "Fast Whisper (Python Code)",
+            "reasoning": "Applies the principle 'Use the right tool for the job' by using deterministic code for accuracy rather than an LLM."
+        },
+        {
+            "time": "06:00",
+            "action": "Generate and Resize Thumbnails",
+            "tool": "LLM Agent & Python Code",
+            "reasoning": "Demonstrates a hybrid workflow where an LLM creates the concept/image and code handles the strict formatting requirements."
+        },
+        {
+            "time": "07:20",
+            "action": "Generate Titles and Descriptions",
+            "tool": "LLM Agents",
+            "reasoning": "Utilizes LLMs for creative tasks by feeding them the deterministic output (script) from the previous step as context."
+        },
+        {
+            "time": "10:45",
+            "action": "Modularize Functions for Reusability",
+            "tool": "Python / Typer",
+            "reasoning": "Ensures each agentic task (e.g., `create_title`) is a standalone function that can be tested and reused independently."
+        },
+        {
+            "time": "14:50",
+            "action": "Manual Review of Generated Assets",
+            "tool": "VS Code / JSON Files",
+            "reasoning": "Integrates a 'Human-in-the-loop' step to validate the POC's output before the final action (uploading)."
+        }
+    ],
+    "key_takeaways": [
+        "Everything is a Function: Treat both LLM calls and standard code as functions with strict inputs and outputs to simplify orchestration.",
+        "Right Tool for the Job: Distinguish between tasks requiring creative intelligence (LLMs) and those requiring deterministic precision (Code/Whisper).",
+        "Reusable Building Blocks: Design agents as small, independent modules that can be composed into larger workflows or run individually for debugging.",
+        "P5 Framework: Structure development from Principles and Planning before moving to Proof of Concept (POC) to ensure scalability."
+    ]
+}

@@ -1,0 +1,44 @@
+{
+  "title": "Cinematic Fashion Photography with RGB Light Tubes",
+  "summary": "Photographer Lindsay Adler breaks down a moody, cinematic fashion photoshoot using RGB LED tubes and a haze machine. She explains the lighting setup step-by-step, discusses the benefits of constant lighting for visualizing effects, and demonstrates how to post-process images to restore contrast lost by atmospheric haze.",
+  "steps": [
+    {
+      "time": "01:35",
+      "action": "Introduce a haze machine to the environment to create texture in the air and make light beams visible.",
+      "tool": "Haze Machine"
+    },
+    {
+      "time": "02:24",
+      "action": "Set up the main backlight directly behind the subject pointing upwards. Use a Fresnel modifier to focus the light into a strong, spotlight-like beam.",
+      "tool": "Nanlite Forza 500 + Fresnel"
+    },
+    {
+      "time": "04:05",
+      "action": "Add two 4-foot RGB tubes set to Cyan. Place one to the left and one overhead to create rim lighting and separation on the subject's hair and shoulders.",
+      "tool": "Nanlite PavoTube 30X (Cyan)"
+    },
+    {
+      "time": "04:50",
+      "action": "Add two front lights using 4-foot RGB tubes. Set the left one to Blue and the right one to Purple. Keep them dimmer to create colorful reflections on the shiny fabric and skin without overpowering the exposure.",
+      "tool": "Nanlite PavoTube 30X (Blue & Purple)"
+    },
+    {
+      "time": "05:52",
+      "action": "Configure camera settings. Lindsay shoots at f/4, ISO 400, and 1/200s using a 24-70mm lens.",
+      "tool": "Canon R5 + RF 24-70mm"
+    },
+    {
+      "time": "06:30",
+      "action": "Post-process the Raw image. Since haze reduces contrast, increase Clarity, Dehaze, Contrast, and Highlights in editing to restore depth and pop.",
+      "tool": "Adobe Camera Raw / Lightroom"
+    }
+  ],
+  "key_takeaways": [
+    "Using a haze machine adds cinematic atmosphere and makes light beams visible, but it flattens image contrast which must be fixed in post-processing.",
+    "RGB LED tubes offer precise control over color (hue and saturation) compared to traditional gels.",
+    "Constant lighting (LEDs) allows for 'What You See Is What You Get' (WYSIWYG) adjustments, making it easier to position light beams and reflections in real-time.",
+    "When using haze, use the 'Dehaze' and 'Clarity' sliders in post-production to bring back detail and black levels."
+  ],
+  "video_id": "j7NoA0imA5E",
+  "url": "https://www.youtube.com/watch?v=j7NoA0imA5E"
+}

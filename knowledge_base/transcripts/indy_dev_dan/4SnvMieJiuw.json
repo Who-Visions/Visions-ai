@@ -1,0 +1,54 @@
+{
+    "title": "Engineering in 2025: AI Agentic Workflows & Tooling",
+    "summary": "A strategic overview and technical demonstration of leveraging next-generation AI tooling to transform software engineering. The video showcases 'Ada', a personal AI assistant powered by Realtime API and o1 Reasoning, performing end-to-end database operations via voice commands. It further outlines a framework for maximizing productivity by moving tasks up the 'AI composition chain'—from simple prompts to autonomous agentic software—transforming engineers into 'Commanders of Compute'.",
+    "steps": [
+        {
+            "time": "0:48",
+            "action": "Initialize AI Assistant 'Ada' via voice command",
+            "tool": "Realtime API",
+            "reasoning": "Establishes a low-latency, speech-to-speech interface, allowing for fluid, hands-free orchestration of complex tasks."
+        },
+        {
+            "time": "0:56",
+            "action": "Ingest Database Schema into Active Memory",
+            "tool": "Structured Outputs / active_memory.json",
+            "reasoning": "Provides the agent with the specific context (table definitions) required to reason about the data structure before generating code."
+        },
+        {
+            "time": "1:08",
+            "action": "Synthesize Schema Documentation",
+            "tool": "create_file",
+            "reasoning": "Demonstrates the agent's ability to convert raw memory context into human-readable documentation (Markdown) for verification."
+        },
+        {
+            "time": "1:20",
+            "action": "Generate and Execute SQL Query",
+            "tool": "generate_sql_and_execute",
+            "reasoning": "Combines reasoning (writing SQL) with action (execution) to autonomously retrieve specific data and export it to a usable format (CSV)."
+        },
+        {
+            "time": "1:53",
+            "action": "Generate Data Visualization",
+            "tool": "create_python_chart",
+            "reasoning": "Leverages Python code generation to synthesize raw data (CSV) into visual media (PNG), completing the data-to-insight loop."
+        },
+        {
+            "time": "2:11",
+            "action": "Perform File System Cleanup",
+            "tool": "delete_file",
+            "reasoning": "Shows the agent's capability to manage the workspace and file system, ensuring the environment remains clean after task completion."
+        },
+        {
+            "time": "14:10",
+            "action": "Apply AI Composition Chain Strategy",
+            "tool": "Strategic Framework (Prompts -> Agents -> Assistants)",
+            "reasoning": "The engineer analyzes task frequency and importance to decide whether to use a simple prompt (2x gain), an agent (5x gain), or a full assistant (10x gain)."
+        }
+    ],
+    "key_takeaways": [
+        "The 'Prompt' is the new fundamental unit of knowledge work, serving as the base layer for all AI interactions.",
+        "Productivity gains scale exponentially with the AI composition layer: Prompts (2x) -> Agents (5x) -> Assistants (10x) -> Agentics (100x).",
+        "The role of the engineer is shifting from writing code to becoming a 'Commander of Compute', orchestrating AI tools to handle ingestion and synthesis.",
+        "To maximize efficiency in 2025, engineers must identify high-frequency tasks and push them up the composition chain to higher levels of automation."
+    ]
+}

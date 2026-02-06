@@ -1,0 +1,73 @@
+{
+    "title": "Benchmarking Local vs. Cloud LLMs for Production Readiness",
+    "summary": "A systematic workflow for evaluating the viability of on-device local LLMs against industry-standard cloud models. The process utilizes automated testing frameworks to establish performance baselines, identify stability issues, and measure accuracy gaps to determine when local models are ready for production deployment.",
+    "steps": [
+        {
+            "time": "01:56",
+            "action": "Configure evaluation environment for Cloud LLMs",
+            "tool": "VS Code / promptfooconfig.yaml",
+            "reasoning": "Establishes a high-performance baseline using state-of-the-art models (GPT-4, Gemini) to define the 'gold standard' for the specific use case (NLQ to SQL)."
+        },
+        {
+            "time": "02:36",
+            "action": "Define deterministic test cases",
+            "tool": "VS Code / test.yaml",
+            "reasoning": "Creates objective assertions (e.g., checking for specific SQL keywords) to quantitatively measure model accuracy rather than relying on subjective vibes."
+        },
+        {
+            "time": "02:46",
+            "action": "Execute baseline evaluation",
+            "tool": "Terminal / promptfoo eval",
+            "reasoning": "Generates empirical data regarding pass rates, latency, and costs for cloud providers to serve as a comparison point."
+        },
+        {
+            "time": "03:13",
+            "action": "Analyze baseline results",
+            "tool": "Promptfoo Web Viewer",
+            "reasoning": "Confirms that the prompt structure works effectively with high-end models (achieving ~90-100% success) before testing weaker models."
+        },
+        {
+            "time": "04:57",
+            "action": "Enable Local LLM providers",
+            "tool": "VS Code / promptfooconfig.yaml",
+            "reasoning": "Switches the testing focus to privacy-centric, zero-cost local models (Mistral, Phi-2) to assess their current capabilities."
+        },
+        {
+            "time": "06:32",
+            "action": "Execute Local LLM evaluation",
+            "tool": "Terminal / promptfoo eval",
+            "reasoning": "Stress-tests the local hardware and model logic to identify performance bottlenecks and accuracy deficiencies."
+        },
+        {
+            "time": "07:51",
+            "action": "Troubleshoot and exclude unstable models",
+            "tool": "Terminal",
+            "reasoning": "Iteratively refines the test suite by removing models (like Rocket-3b) that cause system hangs or crashes, ensuring a reliable evaluation process."
+        },
+        {
+            "time": "08:30",
+            "action": "Compare Local vs. Cloud performance",
+            "tool": "Promptfoo Web Viewer",
+            "reasoning": "Visualizes the performance gap (Local models scoring 30-60%) to make an informed decision on production readiness."
+        },
+        {
+            "time": "11:30",
+            "action": "Test for non-determinism",
+            "tool": "VS Code / promptfooconfig.yaml",
+            "reasoning": "Uses the 'repeat' configuration to run the same tests multiple times, assessing the consistency and probability distribution of local model responses."
+        },
+        {
+            "time": "14:17",
+            "action": "Integrate custom local execution",
+            "tool": "Llamafile / Custom JS Provider",
+            "reasoning": "Demonstrates how to wrap arbitrary local model executables (via Llamafile) into the testing framework for maximum flexibility."
+        }
+    ],
+    "key_takeaways": [
+        "Local LLMs currently lag significantly behind Cloud LLMs in accuracy for complex tasks (e.g., 60% vs 100%).",
+        "Automated testing is the only reliable way to track when local models become viable for production.",
+        "Local testing incurs zero financial cost, allowing for high-volume iteration compared to paid API testing.",
+        "Hardware constraints (RAM/GPU) are a major factor in local model stability and performance.",
+        "Tools like Llamafile and Promptfoo allow for standardized benchmarking across diverse model architectures."
+    ]
+}

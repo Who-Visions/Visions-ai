@@ -1,0 +1,75 @@
+{
+  "title": "Frida Kahlo Inspired Photo Deconstruction",
+  "summary": "Photographer Lindsay Adler breaks down a Frida Kahlo-inspired beauty shoot, detailing the research process, a complex 5-light setup using gels and optical modifiers, camera settings, and post-processing techniques to achieve a dramatic, painterly look.",
+  "steps": [
+    {
+      "time": "01:21",
+      "action": "Research the artist's style (Frida Kahlo) to identify key elements: self-portraiture, nature/jungle themes, saturated colors, and specific physical traits like the unibrow.",
+      "code": null,
+      "tool": "Research / Mood Board"
+    },
+    {
+      "time": "02:50",
+      "action": "Set up the Main Light using an optical spot to create a tight slice of light down the center of the subject's face.",
+      "code": null,
+      "tool": "Westcott Optical Spot + Kit Lens"
+    },
+    {
+      "time": "03:40",
+      "action": "Set up the Fill Light to the front right using a large umbrella with diffusion and a Magenta gel to add pink detail to the shadows.",
+      "code": null,
+      "tool": "Large Umbrella + Diffusion + Magenta Gel"
+    },
+    {
+      "time": "04:26",
+      "action": "Set up two Rim Lights behind the subject on either side using barn doors and full CTO (Color Temperature Orange) gels to create separation and match the orange dress.",
+      "code": null,
+      "tool": "Strobes + Barn Doors + CTO Gels"
+    },
+    {
+      "time": "05:01",
+      "action": "Add atmosphere to the scene using haze spray. The backlighting from the rim lights catches the haze to create texture and depth.",
+      "code": null,
+      "tool": "Atmosphere Aerosol"
+    },
+    {
+      "time": "05:37",
+      "action": "Set up a Background Light using a bare strobe with a Magenta gel hidden behind the subject to create a color gradient on the background.",
+      "code": null,
+      "tool": "Bare Strobe + Magenta Gel"
+    },
+    {
+      "time": "06:11",
+      "action": "Configure camera settings for a sharp studio shot: 1/200 sec shutter speed, f/11 aperture, and ISO 400.",
+      "code": null,
+      "tool": "Canon R5 + Canon RF 24-105mm"
+    },
+    {
+      "time": "08:02",
+      "action": "Use a diffusion filter on the lens to bloom highlights and soften skin for a more painterly look.",
+      "code": null,
+      "tool": "Tiffen Black Pro-Mist 1/2 Filter"
+    },
+    {
+      "time": "08:29",
+      "action": "Process the RAW file by increasing contrast, popping the whites, and lightening/desaturating the skin tone in the center of the face.",
+      "code": null,
+      "tool": "RAW Processor (e.g., Capture One/Lightroom)"
+    },
+    {
+      "time": "09:58",
+      "action": "Retouch the image to extend the hair (if cut off in frame) and remove distracting elements like moles that interfere with shadow lines.",
+      "code": null,
+      "tool": "Photoshop"
+    }
+  ],
+  "key_takeaways": [
+    "Use historical art for inspiration to give work longevity.",
+    "Assign a specific job to every light in a multi-light setup (Main, Fill, Rim, Background).",
+    "Use gels (Magenta and CTO) to create a cohesive analogous color palette.",
+    "Atmosphere (haze) combined with backlighting adds significant depth and texture.",
+    "In-camera filtration (Black Pro-Mist) can reduce the 'digital' look and add a painterly glow."
+  ],
+  "video_id": "rVO5rNsqycs",
+  "url": "https://www.youtube.com/watch?v=rVO5rNsqycs"
+}

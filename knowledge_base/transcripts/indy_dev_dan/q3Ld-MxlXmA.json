@@ -1,0 +1,48 @@
+{
+    "title": "Building Multi-Agent YouTube Automation: Core Engineering Principles",
+    "summary": "This tutorial establishes the engineering foundation for building a multi-agent YouTube metadata generator. It introduces a strategic framework for deciding when to use AI agents versus traditional code (CRUD) and emphasizes the architectural principle that 'everything is a function,' treating LLMs as deterministic components within a larger software pipeline.",
+    "steps": [
+        {
+            "time": "02:08",
+            "action": "Map the Manual Process",
+            "tool": "Flowchart Analysis",
+            "reasoning": "Identify the full lifecycle of the asset (video) from rendering to upload (SEO, Titles, Thumbnails) to understand the scope of automation needed."
+        },
+        {
+            "time": "04:08",
+            "action": "Decompose Problem into Sub-tasks",
+            "tool": "System Design",
+            "reasoning": "Break the large problem (Metadata Generation) into tiny, manageable components like Title, Thumbnail, and Description."
+        },
+        {
+            "time": "05:14",
+            "action": "Select Tools using CRUD Framework",
+            "tool": "Strategic Framework (Create/Read vs Update/Delete)",
+            "reasoning": "Determine where to use Agents vs Code. Agents excel at Creating and Reading; Code is better for Updating and Deleting."
+        },
+        {
+            "time": "06:14",
+            "action": "Design the Agentic Pipeline",
+            "tool": "Architecture Design",
+            "reasoning": "Apply the selection strategy to the specific workflow: Transcribe (Code) -> Read Transcription (Agent) -> Create Metadata (Agent)."
+        },
+        {
+            "time": "10:09",
+            "action": "Define LLM Function Interfaces",
+            "tool": "Code Structure (Functions)",
+            "reasoning": "Treat LLMs as functions with strict inputs and outputs (e.g., `generateYTMetadata(video): Metadata`) to ensure reliability and testability."
+        },
+        {
+            "time": "10:39",
+            "action": "Chain Functions for Workflow",
+            "tool": "Function Chaining",
+            "reasoning": "Connect discrete functions to form the solution: `transcribe` output feeds `generateDescription`, which feeds `generateThumbnail`."
+        }
+    ],
+    "key_takeaways": [
+        "Principle: Everything is a Function. Treat LLMs as components with defined inputs and outputs.",
+        "Decision Framework: Use Agents for Creating and Reading; use Code for Updating and Deleting.",
+        "Workflow Design: Break complex agentic tasks into chains of small, testable functions.",
+        "Risk Management: Only use agents for problems you understand well and can define clear inputs/outputs for."
+    ]
+}

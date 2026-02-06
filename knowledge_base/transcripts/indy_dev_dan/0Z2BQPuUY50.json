@@ -1,0 +1,59 @@
+{
+    "title": "Cost-Effective Agentic Workflows: The GPT-4o Mini Fusion Chain Pattern",
+    "summary": "This workflow demonstrates how to leverage the low cost of GPT-4o mini to achieve state-of-the-art results using a 'Fusion Chain' architecture. By running multiple parallel prompt chains and merging them with an evaluator function, the system filters noise and recommends relevant content within the 'Zero Noise' application. The workflow includes a feedback loop where user interactions refine future agentic decisions.",
+    "steps": [
+        {
+            "time": "05:01",
+            "action": "Aggregate Information Sources",
+            "tool": "Zero Noise App (Custom Scraper)",
+            "reasoning": "Establishes the raw data layer by fetching relevant content from blogs, changelogs, and websites to ensure the agent has fresh context."
+        },
+        {
+            "time": "07:54",
+            "action": "Load Context and Feedback Memory",
+            "tool": "Python / config.json",
+            "reasoning": "Retrieves previous positive and negative user feedback to provide the agent with 'memory,' enabling personalized decision-making in subsequent steps."
+        },
+        {
+            "time": "08:11",
+            "action": "Initialize Fusion Chain",
+            "tool": "GPT-4o mini (x4 Parallel Instances)",
+            "reasoning": "Instead of one expensive model, multiple cheap instances are initialized to run parallel chains, increasing the probability of high-quality output through redundancy."
+        },
+        {
+            "time": "13:20",
+            "action": "Execute Prompt 1: Keyword Extraction",
+            "tool": "GPT-4o mini",
+            "reasoning": "The agent analyzes scraped markdown content to extract specific, relevant keywords, structuring unstructured data for the next logic step."
+        },
+        {
+            "time": "13:33",
+            "action": "Execute Prompt 2: Prioritization and Filtering",
+            "tool": "GPT-4o mini",
+            "reasoning": "The agent applies logic using the loaded feedback memory (Step 2) to filter out negative keywords and prioritize positive ones, effectively 'thinking' about relevance."
+        },
+        {
+            "time": "08:50",
+            "action": "Run Evaluator Function",
+            "tool": "Python Logic / Evaluator",
+            "reasoning": "Merges the outputs from the parallel chains. It scores and selects the best results, defining what constitutes a 'good' result programmatically."
+        },
+        {
+            "time": "06:15",
+            "action": "Perform SEO Search Action",
+            "tool": "Exa AI",
+            "reasoning": "The agent takes the refined keywords and uses an external tool (Exa AI) to search for and retrieve specific recommended articles."
+        },
+        {
+            "time": "10:54",
+            "action": "Process User Feedback Loop",
+            "tool": "UI / config.json",
+            "reasoning": "Captures user thumbs up/down interactions and saves them to the configuration file, updating the agent's memory for future execution cycles."
+        }
+    ],
+    "key_takeaways": [
+        "The 'Fusion Chain' pattern allows developers to replace expensive state-of-the-art models with multiple parallel instances of cheaper models (like GPT-4o mini) without sacrificing result quality.",
+        "Agentic workflows should include a feedback loop (Memory) where user interactions (thumbs up/down) directly modify the configuration, allowing the agent to learn and refine its filtering logic over time.",
+        "Prompt Chaining breaks complex tasks into steps (Extraction -> Filtering), allowing the LLM to 'reason' more effectively than a single zero-shot prompt."
+    ]
+}

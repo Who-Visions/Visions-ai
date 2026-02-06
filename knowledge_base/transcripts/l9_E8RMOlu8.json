@@ -1,0 +1,57 @@
+{
+  "title": "Creating Dappled Light with Two Optical Spots",
+  "summary": "Fashion photographer Lindsay Adler deconstructs a warm beauty image, demonstrating how to use two separate optical spots to create controlled dappled light on both the subject and the background. The tutorial covers the lighting setup, gear choices, camera settings, and post-processing techniques used to achieve a high-end, luxury look.",
+  "steps": [
+    {
+      "time": "01:26",
+      "action": "Select a medium texture beige hand-painted canvas background to add depth and detail.",
+      "code": null,
+      "tool": "Gravity Backdrops"
+    },
+    {
+      "time": "01:49",
+      "action": "Set up the main light using an optical spot with a 'Leaves' gobo. Defocus the lens slightly to create soft, textured pockets of light on the subject's face.",
+      "code": null,
+      "tool": "Profoto D2, Optical Spot, Kit Lens"
+    },
+    {
+      "time": "03:44",
+      "action": "Add a second optical spot focused solely on the background to control the spread and sharpness of the pattern independently from the main light. Use a wider lens (24-70mm) to cover the entire background.",
+      "code": null,
+      "tool": "Profoto D2, Optical Spot, Canon EF 24-70mm Lens"
+    },
+    {
+      "time": "04:38",
+      "action": "Place a large fill light (XL Umbrella with diffusion) near the camera to lift deep shadows created by the hard optical spots.",
+      "code": null,
+      "tool": "Profoto D2, XL Umbrella + Diffusion"
+    },
+    {
+      "time": "05:03",
+      "action": "Configure camera settings. Use a wide aperture (f/4.0) to keep focus on the face while letting the background fall slightly out of focus.",
+      "code": "ISO 200, f/4.0, 1/200 sec",
+      "tool": "Canon R5, Canon RF 24-105mm"
+    },
+    {
+      "time": "06:19",
+      "action": "Process the RAW file by warming the white balance, adding yellow to highlights, and red/magenta to shadows to enhance the warm, luxury feel.",
+      "code": null,
+      "tool": "Capture One / RAW Processor"
+    },
+    {
+      "time": "07:30",
+      "action": "Retouch the image in Photoshop, focusing on symmetry, rounding out the hair shape, and enhancing texture in the hair highlights.",
+      "code": null,
+      "tool": "Adobe Photoshop"
+    }
+  ],
+  "key_takeaways": [
+    "Using two optical spots allows independent control over the light intensity and pattern sharpness on the subject versus the background.",
+    "Defocusing the optical spot lens creates a softer, more natural dappled light effect compared to a razor-sharp projection.",
+    "Hard light sources like optical spots often require a fill light to preserve shadow detail.",
+    "Symmetry in posing and hair shape is often more visually pleasing in beauty photography.",
+    "Color grading for warmth can significantly elevate the perception of luxury in an image."
+  ],
+  "video_id": "l9_E8RMOlu8",
+  "url": "https://www.youtube.com/watch?v=l9_E8RMOlu8"
+}

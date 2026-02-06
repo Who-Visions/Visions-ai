@@ -1,0 +1,48 @@
+{
+    "title": "FEAR POWER CONTROL - Staying Relevant in the Age of AI Software Engineers",
+    "summary": "A strategic guide for software engineers to evolve into 'Agentic Engineers' by leveraging AI tools like Devin and Cursor. The video argues that engineers must maximize their Asset-to-Liability ratio and treat the fear of AI replacement as a signal to upskill in prompting and system design, rather than a threat to their livelihood.",
+    "steps": [
+        {
+            "time": "00:32",
+            "action": "Analyze your Asset-to-Liability (A:L) ratio",
+            "tool": "Mental Model",
+            "reasoning": "To understand your true economic position within a company; you are an asset that generates value but also a liability that consumes resources."
+        },
+        {
+            "time": "02:01",
+            "action": "Map the cycle of value creation",
+            "tool": "Business Logic",
+            "reasoning": "Recognizing that engineers exist to build products that satisfy users and generate profits allows you to align your work with business survival."
+        },
+        {
+            "time": "07:05",
+            "action": "Adopt AI-powered coding tools immediately",
+            "tool": "Devin, Aider, Cursor",
+            "reasoning": "Engineers who wield these tools become high-leverage assets ('The New Kings') with a superior A:L ratio, while those who don't risk obsolescence."
+        },
+        {
+            "time": "10:14",
+            "action": "Shift focus from rote coding to prompting and system design",
+            "tool": "Prompt Engineering",
+            "reasoning": "Future technical interviews and daily work will prioritize the ability to instruct systems and design architectures over writing low-level algorithms from scratch."
+        },
+        {
+            "time": "10:39",
+            "action": "Move up the abstraction layer",
+            "tool": "Product Management / UX Thinking",
+            "reasoning": "Thinking like a Product Manager allows you to talk to the computer faster via prompts and deliver value more efficiently than traditional coding."
+        },
+        {
+            "time": "14:57",
+            "action": "Convert fear into actionable learning steps",
+            "tool": "Continuous Learning",
+            "reasoning": "Fear is a signal to evolve. Inaction is the real threat, whereas actively mastering new AI tools secures your position as a valuable asset."
+        }
+    ],
+    "key_takeaways": [
+        "Every engineer is both an asset and a liability; the goal is to maximize the A:L ratio using modern tools.",
+        "The 'Agentic Engineer' who uses AI tools like Devin and Cursor is the new 'King of Knowledge Work'.",
+        "Future engineering interviews will test your ability to prompt systems and wire components rather than write bubble sort.",
+        "Fear of AI is a signal to evolve your toolset, not to panic."
+    ]
+}

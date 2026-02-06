@@ -1,0 +1,54 @@
+{
+    "title": "Notion API Authentication and Page Retrieval Workflow",
+    "summary": "A concise workflow for setting up Notion API authentication using Python. The process involves installing the official SDK, generating an integration token, authorizing the integration on a specific Notion page, and executing a script to retrieve page metadata.",
+    "steps": [
+        {
+            "time": "00:37",
+            "action": "Initialize project workspace and create main.py",
+            "tool": "VS Code",
+            "reasoning": "Establishes the coding environment and entry point for the script."
+        },
+        {
+            "time": "01:01",
+            "action": "Install the official Notion API client library",
+            "tool": "Terminal (pip)",
+            "reasoning": "Dependencies are required to interface with the Notion API programmatically."
+        },
+        {
+            "time": "01:21",
+            "action": "Instantiate the Notion Client object",
+            "tool": "Python (notion-client)",
+            "reasoning": "Initializes the API wrapper with the necessary authentication structure."
+        },
+        {
+            "time": "02:18",
+            "action": "Retrieve Internal Integration Token",
+            "tool": "Notion Developer Portal",
+            "reasoning": "Acquires the secret credential needed to authenticate API requests."
+        },
+        {
+            "time": "02:52",
+            "action": "Authorize integration on the target Notion page",
+            "tool": "Notion UI",
+            "reasoning": "Notion uses a granular permission model; integrations must be explicitly added to pages to access them."
+        },
+        {
+            "time": "03:30",
+            "action": "Extract and configure the Page ID",
+            "tool": "VS Code",
+            "reasoning": "Identifies the specific resource (page) the API needs to target."
+        },
+        {
+            "time": "04:44",
+            "action": "Execute script to retrieve and print page metadata",
+            "tool": "Python",
+            "reasoning": "Verifies successful authentication and data retrieval capabilities."
+        }
+    ],
+    "key_takeaways": [
+        "Authentication requires an Internal Integration Token from the Notion Developer Portal.",
+        "Authorization is granular; the integration must be added to specific pages via the 'Add connections' menu.",
+        "The official `notion-client` library simplifies the HTTP request handling.",
+        "The Page ID is a specific UUID found at the end of the Notion page URL."
+    ]
+}

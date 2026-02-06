@@ -1,0 +1,66 @@
+{
+  "title": "Professional Beauty Retouching Workflow with Evoto",
+  "summary": "Professional photographer Lindsay Adler demonstrates a high-end beauty retouching workflow using Evoto AI. The tutorial covers skin smoothing, digital dodge and burn, unifying skin tones, correcting facial symmetry, fixing eye catchlights, and advanced hair retouching, while maintaining a natural texture.",
+  "steps": [
+    {
+      "time": "00:45",
+      "action": "Analyze the image to identify specific distractions (stray hairs, missing catchlight, texture issues) rather than applying global filters blindly.",
+      "tool": "Visual Analysis"
+    },
+    {
+      "time": "01:25",
+      "action": "Use the 'Remove Freckles and Acne' slider to clean skin texture. Use 'Manual Tuning' to mask out the effect on specific features like beauty marks or moles to keep them natural.",
+      "tool": "Evoto: Blemish Removal / Manual Tuning"
+    },
+    {
+      "time": "03:14",
+      "action": "Apply 'Even Skin Tone' (Dodge & Burn) to smooth transitions and 'Face Sculpting' (Global Dodge & Burn) to contour the face, adding dimension to highlights and shadows.",
+      "tool": "Evoto: Skin Retouching"
+    },
+    {
+      "time": "05:25",
+      "action": "Use 'AI Unify Body Complexion' to match the color of the body (chest/hands) to the face automatically.",
+      "tool": "Evoto: Skin Tone"
+    },
+    {
+      "time": "07:37",
+      "action": "Apply 'Symmetrize' to even out facial features (eyebrows, lips) for a polished beauty campaign look.",
+      "tool": "Evoto: Facial Reshaping"
+    },
+    {
+      "time": "08:36",
+      "action": "Add missing catchlights using 'Indoor Catchlights'. Unlink the eyes to adjust the brightness and position of the added catchlight independently to match the existing one.",
+      "tool": "Evoto: Eyes / Catchlights"
+    },
+    {
+      "time": "10:46",
+      "action": "Use 'Stray Hair Removal' to clean up the hair edges. If artifacts appear on the background, back off the slider slightly or fix in post.",
+      "tool": "Evoto: Hair Retouching"
+    },
+    {
+      "time": "13:04",
+      "action": "Apply 'Smooth Hair' to blend texture and 'Hair Shine Enhancement' to add dimension, replacing manual dodging and burning on hair.",
+      "tool": "Evoto: Hair Retouching"
+    },
+    {
+      "time": "14:32",
+      "action": "Export to Photoshop to manually fix specific edge artifacts or use Generative Fill if the AI hair removal created uneven background halos.",
+      "tool": "Adobe Photoshop"
+    },
+    {
+      "time": "15:46",
+      "action": "Alternatively, stay in Evoto and use 'Background Adjustments' (Clean Background, Remove Color Banding) and 'Unify Lighting' to fix uneven background tones caused by hair generation.",
+      "tool": "Evoto: Background Adjustments"
+    }
+  ],
+  "key_takeaways": [
+    "Analyze the image first and only fix what is distracting to avoid an 'over-retouched' look.",
+    "Use Manual Tuning (masking) within Evoto to preserve permanent features like moles while smoothing skin.",
+    "Digital Dodge & Burn and Sculpting tools save significant time compared to manual frequency separation.",
+    "Unifying skin tone between the face and body is critical for professional beauty portraits.",
+    "Facial symmetry is often desired for beauty campaigns; the Symmetrize tool automates this.",
+    "Hair retouching tools are powerful but can affect the background; use Background Adjustment tools to correct lighting inconsistencies."
+  ],
+  "video_id": "xMbAT6d561Q",
+  "url": "https://www.youtube.com/watch?v=xMbAT6d561Q"
+}

@@ -1,0 +1,55 @@
+{
+    "title": "The Orchestrator Agent: Multi-Agent Orchestration Pattern",
+    "summary": "A strategic workflow for scaling engineering impact by utilizing a central Orchestrator Agent to manage, monitor, and command fleets of specialized agents. This approach shifts the engineer from manual prompting ('in-loop') to managing systems ('out-loop') via the Single Interface Pattern, emphasizing observability and disposable, focused agent contexts.",
+    "steps": [
+        {
+            "time": "02:20",
+            "action": "Initialize the Orchestrator Interface",
+            "tool": "Command K / Prompt Input Interface",
+            "reasoning": "Establishes the 'Single Interface Pattern,' allowing the engineer to manage a fleet of agents from one entry point rather than juggling multiple chat windows."
+        },
+        {
+            "time": "02:36",
+            "action": "Dispatch Agent Creation Commands",
+            "tool": "Orchestrator Agent (create_agent tool)",
+            "reasoning": "Scales compute by splitting a large task into domain-specific sub-agents (Backend QA, Frontend QA, Full-stack QA) rather than overloading a single context."
+        },
+        {
+            "time": "03:57",
+            "action": "Monitor Agent Execution via Observability",
+            "tool": "Live Log Stream / Context & Cost Tracker",
+            "reasoning": "Essential for multi-agent systems; allows the engineer to track token usage, costs, and real-time logic ('thinking') of multiple agents simultaneously."
+        },
+        {
+            "time": "06:50",
+            "action": "Review Produced Assets and Diffs",
+            "tool": "Diff Viewer / Markdown Preview",
+            "reasoning": "Validates the 'consumed' vs. 'produced' assets. The engineer briefly steps 'in-loop' to verify quality before the system continues."
+        },
+        {
+            "time": "10:54",
+            "action": "Broadcast Refinement Commands",
+            "tool": "Orchestrator Agent (command_agent tool)",
+            "reasoning": "Demonstrates the power of the Orchestrator to modify the behavior of the entire fleet with a single prompt, injecting new instructions into active agent contexts."
+        },
+        {
+            "time": "12:48",
+            "action": "Terminate and Delete Agents",
+            "tool": "Orchestrator Agent (delete_agent tool)",
+            "reasoning": "Enforces 'Tactical Agentic Coding' (TAC). Agents are treated as temporary, focused resources that should be deleted after task completion to prevent context bloating."
+        },
+        {
+            "time": "14:48",
+            "action": "Execute Complex Multi-Agent Chain",
+            "tool": "Slash Command (orch_scout_and_build)",
+            "reasoning": "Deploys a 'team' (Scout + Builder) where the Orchestrator manages the hand-off of information (plans/logs) between agents without human intervention."
+        }
+    ],
+    "key_takeaways": [
+        "The Single Interface Pattern decouples the engineer from individual agent management, enabling 'Agents at Scale'.",
+        "Observability (logs, cost, context usage) is the constraint that must be solved to run multi-agent systems effectively.",
+        "Agents should be 'Focused' (specialized tasks) and 'Deletable' (temporary resources), not long-running generalists.",
+        "The Orchestrator Agent acts as a CRUD layer for other agents, handling the plumbing of creation, dispatching, and deletion.",
+        "Move from 'In-Loop' (manual prompting) to 'Out-Loop' (system management) to compound engineering leverage."
+    ]
+}

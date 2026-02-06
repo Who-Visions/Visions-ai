@@ -1,0 +1,61 @@
+{
+    "title": "Mastering Claude 3.7 Sonnet & Claude Code: Agentic Workflows",
+    "summary": "A technical deep dive into Anthropic's Claude 3.7 Sonnet release, focusing on its hybrid reasoning capabilities and the new Claude Code CLI agent. The workflow demonstrates how to leverage extended thinking budgets, integrate Model Context Protocol (MCP) servers, and build custom agents that can execute bash commands, edit files, and generate massive outputs.",
+    "steps": [
+        {
+            "time": "02:10",
+            "action": "Initialize extended thinking script with specific token budget",
+            "tool": "uv, anthropic python client",
+            "reasoning": "Establishes the baseline for using the 'thinking' parameter in API calls, allowing the model to reason before outputting."
+        },
+        {
+            "time": "03:50",
+            "action": "Execute math problem with streaming and extended thinking",
+            "tool": "prompt_with_extended_thinking_and_streaming.py",
+            "reasoning": "Demonstrates how 'time to think' enables the model to perform step-by-step calculations and self-correction for complex logic."
+        },
+        {
+            "time": "05:00",
+            "action": "Launch Claude Code CLI and connect MCP servers",
+            "tool": "Claude Code CLI, MCP (Model Context Protocol)",
+            "reasoning": "Sets up the agentic environment where the AI can interface with local tools and external data sources."
+        },
+        {
+            "time": "05:20",
+            "action": "Execute system commands via Agent",
+            "tool": "Claude Code, Bash tool",
+            "reasoning": "Validates the agent's ability to interact with the OS layer (e.g., listing files) to gather context."
+        },
+        {
+            "time": "05:40",
+            "action": "Modify code files using Agentic tools",
+            "tool": "Claude Code, Read/Update tools",
+            "reasoning": "Shows the core agentic loop: reading file content, planning the change, and executing the update autonomously."
+        },
+        {
+            "time": "06:40",
+            "action": "Fetch external web data and synthesize into documentation",
+            "tool": "Claude Code, fetch MCP tool, Write tool",
+            "reasoning": "Illustrates composing multiple tools (network access + file I/O) to complete a multi-step research and documentation task."
+        },
+        {
+            "time": "08:30",
+            "action": "Generate high-volume content with Extended Output",
+            "tool": "prompt_with_extended_output...py",
+            "reasoning": "Leverages the 128k output token limit combined with reasoning to produce high-density, comprehensive analysis."
+        },
+        {
+            "time": "09:20",
+            "action": "Deploy custom Single File Agent for file operations",
+            "tool": "agent_bash_and_editor_with_extended_thinking.py",
+            "reasoning": "Demonstrates building a custom, lightweight agent that mimics Claude Code's capabilities (file creation, editing) using the raw API."
+        }
+    ],
+    "key_takeaways": [
+        "Claude 3.7 Sonnet is a hybrid model combining standard generation with 'thinking' capabilities, allowing users to trade compute time for higher intelligence.",
+        "Claude Code is a CLI-based agent that uses the Model Context Protocol (MCP) to connect to external tools like 'fetch' or local environments.",
+        "Extended Thinking budgets (up to 64k tokens) significantly improve performance on math, logic, and coding tasks by allowing the model to plan and self-correct.",
+        "The new Extended Output capability supports up to 128k output tokens, enabling the generation of massive documents or codebases in a single pass.",
+        "Agentic workflows are shifting from simple prompts to orchestrating tools (Bash, File Edit, MCP) for autonomous problem solving."
+    ]
+}

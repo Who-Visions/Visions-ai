@@ -1,0 +1,49 @@
+{
+  "title": "Photo Deconstruction: Creating a Monochromatic Red Fashion Image",
+  "summary": "Lindsay Adler breaks down a fashion photoshoot centered around the color red. She explains how to build a set that adds depth, demonstrates a lighting setup mixing hard and soft light, and details the post-processing workflow required to achieve rich, luxurious colors and a monochromatic look.",
+  "steps": [
+    {
+      "time": "01:19",
+      "action": "Construct a corner set using two textured red backdrops to create depth and converging lines.",
+      "tool": "Gravity Backdrops"
+    },
+    {
+      "time": "02:25",
+      "action": "Position the main light to create a focused pocket of high-contrast light on the subject's face and torso.",
+      "tool": "Westcott Optical Spot"
+    },
+    {
+      "time": "02:48",
+      "action": "Add a fill light to lift the shadows and soften the overall contrast of the scene.",
+      "tool": "Large Umbrella with Diffusion"
+    },
+    {
+      "time": "03:05",
+      "action": "Select a versatile zoom lens to capture full-length, 3/4, and close-up shots without changing lenses.",
+      "tool": "Canon R5 + 24-105mm Lens"
+    },
+    {
+      "time": "06:21",
+      "action": "Apply global adjustments in raw processing, specifically adding contrast to make the red tones appear richer.",
+      "tool": "Capture One"
+    },
+    {
+      "time": "06:52",
+      "action": "Use the Color Editor to unify the reds and desaturate/lighten the orange tones to correct skin color in a red environment.",
+      "tool": "Capture One Color Editor"
+    },
+    {
+      "time": "08:10",
+      "action": "Perform final retouching, including extending the background, mirroring texture for symmetry, and dodging and burning.",
+      "tool": "Adobe Photoshop"
+    }
+  ],
+  "key_takeaways": [
+    "Building a physical corner with backdrops prevents the image from looking flat and adds dimension.",
+    "Rich, deep red colors often require adding contrast and darkening the image in post-processing; bright reds can look washed out or orange.",
+    "To achieve a monochromatic look, it is crucial to separate skin tones from the environment by desaturating and lightening the oranges.",
+    "Using a zoom lens (like a 24-105mm) provides flexibility to change composition quickly during a fashion shoot."
+  ],
+  "video_id": "W6F2foGDpvE",
+  "url": "https://www.youtube.com/watch?v=W6F2foGDpvE"
+}

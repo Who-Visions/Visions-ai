@@ -1,0 +1,72 @@
+{
+    "title": "Accelerated Development with Cursor Copilot++: Building a Vue Flow Graph Editor",
+    "summary": "This workflow demonstrates the agentic capabilities of Cursor's Copilot++ by building an interactive node graph application. It showcases the transition from manual coding to high-level prompting, utilizing features like multi-line auto-completion, context-aware inline edits, and RAG (Retrieval-Augmented Generation) for library-specific documentation to rapidly prototype and refine complex UI and logic.",
+    "steps": [
+        {
+            "time": "00:12",
+            "action": "Prompt AI to align node positions and remove comments",
+            "tool": "Cursor (Inline Edit)",
+            "reasoning": "Demonstrates the ability to perform multi-line refactoring and logic updates via natural language prompts."
+        },
+        {
+            "time": "00:24",
+            "action": "Generate UI buttons for adding/removing nodes",
+            "tool": "Cursor (Inline Edit)",
+            "reasoning": "Rapidly scaffolds UI elements and event handlers without manual HTML coding."
+        },
+        {
+            "time": "01:18",
+            "action": "Auto-complete `addNode` and `removeRandomNode` function logic",
+            "tool": "Copilot++",
+            "reasoning": "Showcases predictive coding where the AI infers the entire function body based on the function name and file context."
+        },
+        {
+            "time": "02:49",
+            "action": "Iteratively refine CSS to position buttons at the bottom center",
+            "tool": "Cursor (Inline Edit)",
+            "reasoning": "Illustrates the iterative nature of agentic coding, where the user refines the output through successive prompts."
+        },
+        {
+            "time": "04:21",
+            "action": "Refactor logic to use dynamic `nodes` from `useVueFlow` hook",
+            "tool": "Vue Flow / Cursor",
+            "reasoning": "Ensures the application uses the correct reactive state from the library rather than static refs."
+        },
+        {
+            "time": "05:38",
+            "action": "Implement `fitView` watcher and correct AI's deletion of `onPaneReady`",
+            "tool": "Cursor (Chat/Edit)",
+            "reasoning": "Highlights the 'human-in-the-loop' requirement where the developer must validate and correct the agent's logic flow."
+        },
+        {
+            "time": "06:47",
+            "action": "Batch rename nodes and edges using multi-line prediction",
+            "tool": "Copilot++",
+            "reasoning": "Demonstrates context-aware editing where the AI predicts changes across multiple lines simultaneously based on user patterns."
+        },
+        {
+            "time": "07:50",
+            "action": "Index external Vue Flow documentation via `@docs`",
+            "tool": "Cursor (@docs)",
+            "reasoning": "Utilizes RAG (Retrieval-Augmented Generation) to give the agent knowledge about specific third-party library syntax."
+        },
+        {
+            "time": "09:31",
+            "action": "Apply 'step' type and color to edges based on indexed docs",
+            "tool": "Cursor (Chat)",
+            "reasoning": "The agent applies the newly acquired knowledge from the documentation to implement specific styling requirements."
+        },
+        {
+            "time": "11:27",
+            "action": "Implement `createRandomEdge` logic and fix edge directionality",
+            "tool": "Copilot++",
+            "reasoning": "Generates complex logic involving random selection and object property mapping, with the user guiding the specific implementation details."
+        }
+    ],
+    "key_takeaways": [
+        "Copilot++ enables 'tab-driven development' by predicting entire logic blocks and context-aware changes, reducing manual typing.",
+        "Effective agentic workflows require iterative prompting and active human oversight to catch logic errors (e.g., accidental code deletion).",
+        "Indexing external documentation (@docs) is crucial for enabling the AI to correctly implement syntax for specific third-party libraries.",
+        "The developer's role shifts from writing syntax to defining high-level logic, UX requirements, and reviewing AI-generated implementation."
+    ]
+}

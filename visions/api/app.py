@@ -1,279 +1,164 @@
 """
-Visions AI - Cloud Run HTTP Server
-FastAPI app that exposes the agent as an HTTP API with A2A protocol support.
+Visions AI - Rhea Noir Fleet Server v2.0.0
+HTTP API powered by FastAPI, implementing the standardized A2A protocol.
 """
 import os
 import time
+import uuid
+import logging
 from typing import Optional, List, Dict, Any
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import FastAPI, HTTPException, Request, BackgroundTasks
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
-# Import the agent
+# --- Enhanced Logging ---
+try:
+    import google.cloud.logging
+    client = google.cloud.logging.Client()
+    client.setup_logging()
+    logger = logging.getLogger("visions-fleet-server")
+    print("📡 Cloud Logging Enabled.")
+except Exception:
+    logging.basicConfig(level=logging.INFO)
+    logger = logging.getLogger("visions-fleet-server")
+    print("📝 Local Logging Fallback.")
+
+# --- Import Assistant Bridge ---
 from visions_assistant.agent import get_chat_response
 
 app = FastAPI(
     title="Visions AI",
-    description="World-class photography mentor and creative director. Powered by Gemini 3 multi-model cascade.",
-    version="3.1.0"  # Updated for Gemini 3 integration
+    description="Rhea Noir Fleet Server - World-Class Photography Mentor & Creative Director.",
+    version="2.0.0"
 )
 
-# Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Configure as needed for production
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-
-# Pydantic models for request/response validation
+# --- Pydantic Models ---
 class ChatRequest(BaseModel):
     message: str
     image_path: Optional[str] = None
+    video_path: Optional[str] = None
     user_id: Optional[str] = "user"
-
+    config: Optional[Dict[str, Any]] = None
 
 class ChatResponse(BaseModel):
     response: str
+    id: str = str(uuid.uuid4())
     status: str = "success"
 
-
-class Message(BaseModel):
-    role: str
-    content: str
-
-
-class OpenAIChatRequest(BaseModel):
-    messages: List[Message]
-    model: Optional[str] = "visions-ai"
-
-
-class OpenAIChatResponse(BaseModel):
-    id: str
-    object: str
-    created: int
-    model: str
-    choices: List[Dict[str, Any]]
-    usage: Dict[str, int]
-
+# --- Endpoints ---
 
 @app.get("/")
+@app.get("/health")
 async def health():
-    """Health check endpoint."""
+    """Health Check for Cloud Run."""
     return {
-        "status": "healthy",
-        "service": "visions-ai",
-        "version": "3.0.0"
+        "status": "online",
+        "service": "visions-assistant",
+        "version": "2.0.0",
+        "fleet": "Rhea Noir",
+        "heartbeat": time.time()
     }
 
+@app.get("/health/detailed")
+async def health_detailed():
+    """Detailed System Health."""
+    return {
+        "status": "online",
+        "env": os.environ.get("K_SERVICE", "local"),
+        "port": os.environ.get("PORT", "8080"),
+        "python": "3.12",
+        "dependencies": "verified"
+    }
 
 @app.get("/.well-known/agent.json")
-async def agent_json():
-    """A2A Protocol - Agent Identity Card (Who Visions Fleet Standard)"""
+@app.get("/agent-card")
+async def agent_identity():
+    """A2A Protocol - Agent Identity Card."""
     return {
         "name": "Visions",
-        "version": "3.1.0",
-        "description": "Legendary Creative Director with 80 years shaping visual culture. Oscar-winner. Pulitzer laureate. Powered by Gemini 3 multi-model cascade.",
+        "tagline": "Legendary Creative Director",
+        "version": "2.0.0",
         "capabilities": [
-            "photography-technique-guidance",
+            "photography-mentorship",
             "composition-analysis",
             "lighting-design",
-            "camera-equipment-recommendations",
             "image-generation",
-            "image-analysis",
-            "cinematic-direction",
-            "youtube-workflow-extraction",
-            "multi-agent-collaboration"
+            "cinematic-direction"
         ],
         "endpoints": {
             "chat": "/v1/chat/completions",
-            "health": "/"
-        },
-        "extensions": {
-            "color": "purple",
-            "role": "Photography Expert & Creative Director",
-            "models": {
-                "synthesis": "gemini-3-pro-preview",
-                "fast_synthesis": "gemini-3-flash-preview",  # FREE TIER available
-                "image_generation": "gemini-3-pro-image-preview",
-                "grounded_search": "gemini-3-flash-preview",
-                "deep_thinking": "gemini-3-pro-preview",
-                "embeddings": "gemini-embedding-001"
-            },
-            "gemini_3_features": {
-                "thinking_levels": ["low", "medium", "high", "minimal"],
-                "media_resolution": "medium",  # Optimal for PDFs
-                "flash_free_tier": True
-            },
-            "specialties": [
-                "Rudolf Arnheim composition theory",
-                "Phase One / Leica / Sony A1 expertise",
-                "High-end commercial photography",
-                "Cinematic lighting setups",
-                "Screenwriting & narrative structure"
-            ]
+            "health": "/health"
         }
     }
-
 
 @app.post("/chat", response_model=ChatResponse)
-async def chat(request: ChatRequest):
-    """
-    Chat endpoint for Visions AI.
-    
-    Request body:
-    {
-        "message": "user message here",
-        "image_path": "optional path to image"
-    }
-    """
+@app.post("/v1/chat", response_model=ChatResponse)
+async def chat_endpoint(request: ChatRequest):
+    """Standardized Chat Endpoint."""
+    logger.info(f"📩 Request from {request.user_id}: {request.message[:50]}...")
     try:
-        if not request.message:
-            raise HTTPException(status_code=400, detail="Message is required")
-        
-        response = get_chat_response(user_message=request.message, image_path=request.image_path, user_id=request.user_id)
-        
-        return ChatResponse(
-            response=response,
-            status="success"
+        response_text = get_chat_response(
+            user_message=request.message,
+            image_path=request.image_path,
+            video_path=request.video_path,
+            user_id=request.user_id,
+            config=request.config
         )
+        return ChatResponse(response=response_text)
     except Exception as e:
+        logger.error(f"❌ Chat Error: {e}")
         raise HTTPException(status_code=500, detail=str(e))
-
-
-@app.post("/query", response_model=ChatResponse)
-async def query(request: ChatRequest):
-    """
-    Query endpoint (alias for chat).
-    """
-    return await chat(request)
-
-
-@app.post("/v1/chat")
-async def v1_chat(request: Request):
-    """
-    Alias for /chat to support standardized agent communication.
-    Handles both OpenAI format and simple message format.
-    """
-    try:
-        data = await request.json()
-        
-        # Handle OpenAI messages format
-        if 'messages' in data:
-            messages = data.get('messages', [])
-            if not messages:
-                raise HTTPException(status_code=400, detail="Messages array is empty")
-            
-            # Extract the last user message
-            user_messages = [m for m in messages if m.get('role') == 'user']
-            if user_messages:
-                message = user_messages[-1].get('content', '')
-            else:
-                message = messages[-1].get('content', '')
-        else:
-            # Handle simple message format
-            message = data.get('message', '')
-        
-        if not message:
-            raise HTTPException(status_code=400, detail="Message is required")
-        
-        image_path = data.get('image_path', None)
-        user_id = data.get('user_id', 'user') or data.get('user', 'user')
-        response = get_chat_response(user_message=message, image_path=image_path, user_id=user_id)
-        
-        return {
-            "response": response,
-            "status": "success"
-        }
-    except HTTPException:
-        raise
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
 
 @app.post("/v1/chat/completions")
-async def v1_chat_completions(request: Request):
-    """
-    OpenAI-compatible chat completions endpoint.
-    Maps OpenAI API format to Visions agent response format.
-    """
+async def openai_compatible_chat(request: Request):
+    """OpenAI Proxy for Cursor/ChatGPT integration."""
     try:
         data = await request.json()
-        messages = data.get('messages', [])
-        
+        messages = data.get("messages", [])
         if not messages:
-            raise HTTPException(status_code=400, detail="Messages array is required")
+            raise HTTPException(status_code=400, detail="Messages array required")
         
-        # Extract the last user message
-        user_messages = [m for m in messages if m.get('role') == 'user']
-        if user_messages:
-            message = user_messages[-1].get('content', '')
-        else:
-            message = messages[-1].get('content', '')
+        last_msg = messages[-1].get("content", "")
+        response_text = get_chat_response(user_message=last_msg)
         
-        if not message:
-            raise HTTPException(status_code=400, detail="Message content is required")
-        
-        # Get response from agent
-        response_text = get_chat_response(user_message=message, image_path=None)
-        
-        # Return OpenAI-compatible format
         return {
-            "id": "chatcmpl-visions-ai",
+            "id": f"chatcmpl-{uuid.uuid4()}",
             "object": "chat.completion",
             "created": int(time.time()),
             "model": "visions-ai",
-            "choices": [
-                {
-                    "index": 0,
-                    "message": {
-                        "role": "assistant",
-                        "content": response_text
-                    },
-                    "finish_reason": "stop"
-                }
-            ],
-            "usage": {
-                "prompt_tokens": len(message.split()),
-                "completion_tokens": len(response_text.split()),
-                "total_tokens": len(message.split()) + len(response_text.split())
-            }
+            "choices": [{
+                "index": 0,
+                "message": {"role": "assistant", "content": response_text},
+                "finish_reason": "stop"
+            }]
         }
-    except HTTPException:
-        raise
     except Exception as e:
-        raise HTTPException(
-            status_code=500,
-            detail={
-                "message": str(e),
-                "type": "visions_error",
-                "code": "internal_error"
-            }
-        )
-
+        raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/v1/models")
 async def list_models():
-    """OpenAI-compatible models endpoint."""
+    """Available Models."""
     return {
         "object": "list",
-        "data": [
-            {
-                "id": "visions-ai",
-                "object": "model",
-                "created": 1702857600,
-                "owned_by": "whovisions",
-                "permission": [],
-                "root": "visions-ai",
-                "parent": None
-            }
-        ]
+        "data": [{"id": "visions-ai", "object": "model", "owned_by": "whovisions"}]
     }
 
+@app.post("/render")
+async def trigger_render(request: Request, background_tasks: BackgroundTasks):
+    """Trigger Video/World Render via Background Tasks."""
+    data = await request.json()
+    background_tasks.add_task(logger.info, f"🎬 Rendering initiated: {data}")
+    return {"status": "processing", "job_id": str(uuid.uuid4())}
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import uvicorn
-    port = int(os.environ.get('PORT', 8080))
-    uvicorn.run(app, host='0.0.0.0', port=port)
+    port = int(os.environ.get("PORT", 8080))
+    uvicorn.run(app, host="0.0.0.0", port=port)

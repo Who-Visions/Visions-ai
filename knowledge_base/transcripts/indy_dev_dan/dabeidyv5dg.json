@@ -1,0 +1,66 @@
+{
+    "title": "OPTIMAL Codebase Architecture for AI Coding and AI Agents",
+    "summary": "A strategic guide on structuring codebases to maximize the efficiency of AI coding tools and AI agents. The core thesis is that 'Managing Context is Managing Results.' The workflow analyzes four architectural patterns—Atomic Composable, Layered, Vertical Slice, and Pipeline—evaluating them based on modularity, token efficiency, and context priming capabilities for LLMs.",
+    "steps": [
+        {
+            "time": "00:01:00",
+            "action": "Define the 'Big Three' framework (Context, Model, Prompt)",
+            "tool": "Conceptual Framework",
+            "reasoning": "Establishes that codebase architecture is primarily a mechanism for managing Context, which directly influences AI output quality."
+        },
+        {
+            "time": "00:12:00",
+            "action": "Evaluate Atomic Composable Architecture",
+            "tool": "Code Structure Pattern",
+            "reasoning": "Determines if the project benefits from highly modular, reusable components (Atoms -> Molecules -> Organisms) that are easy for AI to test in isolation."
+        },
+        {
+            "time": "00:15:00",
+            "action": "Verify modularity and testing structure",
+            "tool": "exa, pytest",
+            "reasoning": "Ensures the atomic structure allows for fast, isolated testing, which is crucial for AI agents to verify their own code generation."
+        },
+        {
+            "time": "00:18:00",
+            "action": "Evaluate Layered Architecture",
+            "tool": "Code Structure Pattern",
+            "reasoning": "Assesses if standard separation (API/Models/Services) is sufficient, noting the drawback that AI tools often need to 'import everything' across layers, consuming context."
+        },
+        {
+            "time": "00:23:00",
+            "action": "Evaluate Vertical Slice Architecture",
+            "tool": "Code Structure Pattern",
+            "reasoning": "Checks if organizing by feature (rather than technical layer) allows for better context isolation, minimizing the tokens an AI needs to read."
+        },
+        {
+            "time": "00:26:00",
+            "action": "Execute Context Priming for Vertical Slices",
+            "tool": "Aider, Cursor",
+            "reasoning": "Demonstrates that Vertical Slices allow AI tools to ingest only the relevant feature context (e.g., `READ features/tasks/*`), significantly improving token efficiency."
+        },
+        {
+            "time": "00:29:00",
+            "action": "Evaluate Pipeline Architecture",
+            "tool": "Code Structure Pattern",
+            "reasoning": "Determines if the project requires sequential data transformation, which LLMs handle well due to clear type flow, though it lacks interactivity."
+        },
+        {
+            "time": "00:35:00",
+            "action": "Select Architecture for Building AI Agents",
+            "tool": "Strategic Decision",
+            "reasoning": "Chooses Atomic for shared capabilities, Vertical Slice for evolving independent agents, or Single File Agents for maximum adaptability and minimal overhead."
+        },
+        {
+            "time": "00:43:00",
+            "action": "Optimize for AI Readability",
+            "tool": "Refactoring",
+            "reasoning": "Prioritizes structure that helps AI navigate code efficiently (saving tokens/money) over pure human aesthetic preferences."
+        }
+    ],
+    "key_takeaways": [
+        "Manage your Context to Manage your Results; codebase structure dictates context quality.",
+        "Vertical Slice Architecture offers the best context priming efficiency for AI tools by isolating features into single directories.",
+        "Atomic Composable Architecture is ideal for building shared tools/primitives that multiple agents can combine.",
+        "AI Readability >= Human Readability: Well-structured code reduces token usage and cost for agentic loops."
+    ]
+}

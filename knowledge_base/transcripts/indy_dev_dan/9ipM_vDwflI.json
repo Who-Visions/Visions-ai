@@ -1,0 +1,60 @@
+{
+    "title": "Infinite Agentic Loop with Claude Code",
+    "summary": "This workflow demonstrates how to 'break' Claude Code by establishing an infinite agentic loop. By utilizing a master orchestration prompt (`infinite.md`) and a detailed specification file, the user triggers Claude Code to spawn parallel sub-agents. These agents continuously generate unique, themed UI components while automatically managing context windows, iteration strategies, and file uniqueness. The technique leverages a 'prompt-in-prompt' architecture to scale compute indefinitely, exploring multiple solution paths for complex problems without manual intervention.",
+    "steps": [
+        {
+            "time": "01:30",
+            "action": "Define the Specification File",
+            "tool": "Markdown (specs/invent_new_ui_v3.md)",
+            "reasoning": "Establishes the 'Plan' or PRD. Defines the core challenge, output requirements (file naming, structure), and creative design dimensions to guide the agents."
+        },
+        {
+            "time": "03:20",
+            "action": "Create the Orchestration Prompt",
+            "tool": "Markdown (.claude/commands/infinite.md)",
+            "reasoning": "Acts as the 'Master Agent' logic. It defines variables ($ARGUMENTS), phases of execution (Analysis, Reconnaissance, Strategy), and the logic for spawning sub-agents."
+        },
+        {
+            "time": "02:10",
+            "action": "Initialize Environment and Model",
+            "tool": "Claude Code CLI",
+            "reasoning": "Setting the model to `/model opus` ensures the highest reasoning capability for the master orchestrator to plan complex iterations."
+        },
+        {
+            "time": "02:58",
+            "action": "Execute the Infinite Command",
+            "tool": "Claude Code CLI",
+            "reasoning": "Running `/project:infinite specs/invent_new_ui_v3.md src_infinite infinite` passes the spec, output location, and 'infinite' count to the orchestrator, triggering the workflow."
+        },
+        {
+            "time": "04:20",
+            "action": "Automated Parallel Agent Coordination",
+            "tool": "Claude Code (Automated)",
+            "reasoning": "The master agent calculates the strategy and deploys sub-agents in waves (e.g., batches of 5) to maximize efficiency without hitting rate limits immediately."
+        },
+        {
+            "time": "05:25",
+            "action": "Agent Task Assignment",
+            "tool": "Claude Code (Sub-agents)",
+            "reasoning": "Each sub-agent receives a specific context snapshot, iteration number, and uniqueness directive to ensure no two generated files are identical."
+        },
+        {
+            "time": "05:50",
+            "action": "Infinite Execution Cycle & Context Management",
+            "tool": "Claude Code (Logic Loop)",
+            "reasoning": "The system enters a `WHILE` loop that monitors context capacity. It decides whether to launch a new wave or conclude based on remaining token limits, enabling 'infinite' runtime."
+        },
+        {
+            "time": "07:30",
+            "action": "Verify Generated Outputs",
+            "tool": "Web Browser (Chrome)",
+            "reasoning": "Manual verification of the generated HTML files (e.g., ui_hybrid_1.html) confirms that the agents are producing functional, unique, and high-quality code as requested."
+        }
+    ],
+    "key_takeaways": [
+        "The 'Prompt-in-Prompt' architecture allows a single CLI command to orchestrate complex, multi-agent workflows.",
+        "Scaling compute via infinite loops allows for the exploration of vast solution spaces (generating many versions of a solution).",
+        "Effective agentic coding relies heavily on the quality of the 'Plan' (Specification file); great planning equals great prompting.",
+        "Parallel agent coordination requires explicit logic for context management and uniqueness to prevent duplication and token exhaustion."
+    ]
+}

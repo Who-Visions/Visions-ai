@@ -1,0 +1,66 @@
+{
+    "title": "Building Agentic Tools and Prompt Libraries with Marimo",
+    "summary": "A strategic workflow for using Marimo, a reactive Python notebook, to rapidly prototype generative AI applications. The process transitions from basic reactive UI setup to creating complex agentic workflows, including multi-model testing environments and dynamic prompt libraries. It emphasizes the shift from static code to interactive 'app-like' interfaces that facilitate rapid iteration on LLM prompts and logic.",
+    "steps": [
+        {
+            "time": "01:22",
+            "action": "Initialize Marimo and establish reactive variables",
+            "tool": "Marimo (Python)",
+            "reasoning": "Sets the foundation for an agentic interface where changing inputs (sliders, text) immediately triggers downstream logic without manual re-execution."
+        },
+        {
+            "time": "02:25",
+            "action": "Launch notebook in edit mode and toggle 'User Mode'",
+            "tool": "Terminal / Marimo UI",
+            "reasoning": "Demonstrates the ability to switch between an engineering view (code) and a product view (UI), essential for testing agent usability."
+        },
+        {
+            "time": "03:54",
+            "action": "Implement interactive data ingestion (File Upload)",
+            "tool": "mo.ui.file_upload / Pandas",
+            "reasoning": "Allows the agent to dynamically accept external context (CSVs, docs) for processing, a critical step for RAG or data analysis workflows."
+        },
+        {
+            "time": "06:31",
+            "action": "Construct an 'Ad-hoc Prompting' interface",
+            "tool": "mo.ui.text_area / LLM APIs",
+            "reasoning": "Creates a rapid testing ground for prompt engineering, allowing the user to manually iterate on instructions before automating them."
+        },
+        {
+            "time": "08:31",
+            "action": "Execute 'Run on All Models' batch processing",
+            "tool": "Python Dictionary / LLM APIs",
+            "reasoning": "Enables comparative analysis of different LLMs (e.g., GPT-4o vs. Claude vs. Gemini) to determine the best model for a specific agentic task."
+        },
+        {
+            "time": "14:29",
+            "action": "Deploy a structured 'Prompt Library'",
+            "tool": "XML / Python File I/O",
+            "reasoning": "Moves prompts out of code and into managed assets (XML), allowing for version control and organized retrieval of system instructions."
+        },
+        {
+            "time": "16:35",
+            "action": "Inject dynamic context into prompt templates",
+            "tool": "Jinja2-style templating / Marimo UI",
+            "reasoning": "Demonstrates variable injection (e.g., {{content}}), allowing the agent to process specific user-provided data against a static prompt structure."
+        },
+        {
+            "time": "18:24",
+            "action": "Inspect underlying Python code for Git compatibility",
+            "tool": "VS Code / Python",
+            "reasoning": "Verifies that the notebook is stored as pure Python (.py), ensuring the agentic workflow is version-controllable and collaborative, unlike JSON-based notebooks."
+        },
+        {
+            "time": "21:09",
+            "action": "Modify the tool using an AI Coding Assistant",
+            "tool": "Aider / CLI",
+            "reasoning": "Illustrates a meta-workflow where AI agents (Aider) are used to write the code for the AI tooling itself, accelerating development speed."
+        }
+    ],
+    "key_takeaways": [
+        "Reactivity is critical for AI prototyping: Marimo's state management ensures that changing a prompt or model parameter instantly reflects in the output, speeding up the feedback loop.",
+        "Dual-Mode Development: The ability to toggle between 'Code' and 'App' views allows engineers to build internal tools that non-technical stakeholders can immediately test.",
+        "Prompts as Assets: Storing prompts in external files (XML) and loading them dynamically treats prompt engineering as a disciplined software asset rather than hard-coded strings.",
+        "Pure Python Architecture: Unlike Jupyter, Marimo files are standard Python scripts, making them compatible with standard software engineering practices like Git versioning and AI coding assistants."
+    ]
+}

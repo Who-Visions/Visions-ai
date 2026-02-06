@@ -1,0 +1,50 @@
+{
+  "title": "Drobo 5D Unboxing & Speed Test with Peter Hurley",
+  "summary": "Photographer Peter Hurley unboxes the new Drobo 5D, highlights its features like Thunderbolt connectivity and 5-bay capacity, and performs a real-world speed test transferring 47GB of data.",
+  "steps": [
+    {
+      "time": "00:09",
+      "action": "Introduction to the importance of reliable storage for photography files.",
+      "code": null,
+      "tool": "Drobo Pro"
+    },
+    {
+      "time": "00:49",
+      "action": "Unboxing the new Drobo 5D unit.",
+      "code": null,
+      "tool": "Drobo 5D"
+    },
+    {
+      "time": "02:05",
+      "action": "Preparing to install 4TB hard drives into the 5 available slots.",
+      "code": null,
+      "tool": "Hard Drives"
+    },
+    {
+      "time": "03:17",
+      "action": "Reviewing the drive status and capacity using the Drobo Dashboard software.",
+      "code": null,
+      "tool": "Drobo Dashboard"
+    },
+    {
+      "time": "04:00",
+      "action": "Initiating a file transfer of 47GB to test Thunderbolt speeds.",
+      "code": null,
+      "tool": "MacBook Pro"
+    },
+    {
+      "time": "04:10",
+      "action": "Observing the transfer speed, noting it takes only about 5 minutes for 47GB.",
+      "code": null,
+      "tool": "Finder"
+    }
+  ],
+  "key_takeaways": [
+    "The Drobo 5D features Thunderbolt technology for high-speed data transfer.",
+    "It has 5 drive bays, allowing for significant storage capacity (e.g., 20TB with 4TB drives).",
+    "Real-world transfer speeds are impressive, moving ~47GB in approximately 5 minutes.",
+    "The unit is more compact than the previous Drobo Pro model."
+  ],
+  "video_id": "uiPmivGPXV0",
+  "url": "https://www.youtube.com/watch?v=uiPmivGPXV0"
+}

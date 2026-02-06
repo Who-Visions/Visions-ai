@@ -1,0 +1,54 @@
+{
+    "title": "Autonomous Decision-Making and Structured Output with AutoGen and Guidance",
+    "summary": "This tutorial demonstrates how to elevate a basic Text-to-SQL application into a robust agentic system. It focuses on two critical engineering patterns: autonomous decision-making using a 'Gate Team' to filter invalid queries, and generating deterministic structured outputs (JSON) using the Guidance library. The workflow integrates AutoGen for orchestration and Guidance for controlling LLM responses, bridging the gap between non-deterministic AI and reliable software engineering.",
+    "steps": [
+        {
+            "time": "02:30",
+            "action": "Establish Baseline Functionality",
+            "tool": "Poetry, Python, PostgresAgentInstruments",
+            "reasoning": "Runs a basic Text-to-SQL command to verify the core application works before adding complex agentic layers."
+        },
+        {
+            "time": "06:16",
+            "action": "Implement the Gate Orchestrator",
+            "tool": "AutoGen, Python (Match Statement)",
+            "reasoning": "Introduces a 'Defensive Scrum Master' agent to act as a filter, preventing 'junk' prompts from wasting resources on downstream engineering agents."
+        },
+        {
+            "time": "08:33",
+            "action": "Define Structured Decision Logic",
+            "tool": "Guidance (Handlebars syntax)",
+            "reasoning": "Uses a Guidance prompt with a `select` statement to force the LLM to return a specific integer rank (1-5) rather than free text, enabling programmatic flow control."
+        },
+        {
+            "time": "11:27",
+            "action": "Validate Flow Control",
+            "tool": "Terminal/CLI",
+            "reasoning": "Tests the system with invalid prompts (e.g., 'wheres my dog') to prove the Gate Team correctly rejects low-confidence queries based on the defined logic."
+        },
+        {
+            "time": "12:45",
+            "action": "Build the Data Insights Team",
+            "tool": "AutoGen (Round Robin Conversation)",
+            "reasoning": "Adds a new agent team designed to generate novel business insights, utilizing a Round Robin flow to allow agents to converse in loops."
+        },
+        {
+            "time": "20:14",
+            "action": "Enforce JSON Output for Insights",
+            "tool": "Guidance (`geneach` loop)",
+            "reasoning": "Implement a Guidance prompt that forces the agent to generate insights in a strict JSON format, making the output parseable and usable by other software components."
+        },
+        {
+            "time": "22:31",
+            "action": "Execute Full Agentic Workflow",
+            "tool": "VS Code, DBeaver",
+            "reasoning": "Runs the complete pipeline: Gate Check -> SQL Generation -> Structured Insights Generation, demonstrating the integration of autonomous decisions and structured data."
+        }
+    ],
+    "key_takeaways": [
+        "Agentic systems require concrete decision points (like 'Gate Teams') to handle production-level ambiguity.",
+        "Guidance provides the 'sweet spot' between LLM creativity and deterministic program execution by enforcing structured outputs.",
+        "Using `match` statements on agent outputs allows for traditional software flow control based on AI decisions.",
+        "Round Robin conversation patterns are effective for creative/generative tasks (insights), while Sequential patterns suit linear tasks (SQL generation)."
+    ]
+}

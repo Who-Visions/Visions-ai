@@ -1,0 +1,58 @@
+{
+  "title": "Creative Studio Lighting with Mylar Sheets",
+  "summary": "Photographer Lindsay Adler demonstrates how to use crumpled Mylar sheets to create a water-like reflection effect in studio photography. She breaks down a simple one-light setup using hard light and an advanced three-light setup incorporating colored gels and a star filter.",
+  "steps": [
+    {
+      "time": "00:40",
+      "action": "Prepare the Mylar sheet by crumpling it up rather than laying it flat. This creates multiple surfaces for the light to reflect off, mimicking the texture of water.",
+      "code": null,
+      "tool": "Mylar Roll"
+    },
+    {
+      "time": "02:07",
+      "action": "Set up the one-light configuration. Place the subject on the Mylar and use a hard light source (Fresnel) pointed at the Mylar in front of the subject, rather than directly at them, to bounce light and create texture.",
+      "code": null,
+      "tool": "Profoto D2 + Fresnel"
+    },
+    {
+      "time": "03:44",
+      "action": "Post-process the single-light image. Clean up background creases, desaturate the image for an elegant look, and use curves to brighten the face.",
+      "code": null,
+      "tool": "Adobe Photoshop"
+    },
+    {
+      "time": "04:57",
+      "action": "Transition to a three-light setup. Keep the main Fresnel light, but add gels to fill in shadows and background.",
+      "code": null,
+      "tool": "Gels (Blue & Magenta)"
+    },
+    {
+      "time": "06:12",
+      "action": "Attach a star filter to the camera lens. Combined with the hard light and a sparkly dress, this creates specular highlights for a fantasy look.",
+      "code": null,
+      "tool": "Star Filter"
+    },
+    {
+      "time": "07:15",
+      "action": "Position the secondary lights. Place a medium umbrella with a blue gel in the front right to fill shadows, and a large umbrella with a magenta gel behind the subject for rim light and background color.",
+      "code": null,
+      "tool": "Profoto D2 + Umbrellas"
+    },
+    {
+      "time": "08:26",
+      "action": "Post-process the three-light image. Change the white balance to Tungsten to cool the image significantly, then desaturate to control the intensity of the blue for a mysterious 'underwater' vibe.",
+      "code": null,
+      "tool": "Adobe Photoshop / Camera Raw"
+    }
+  ],
+  "key_takeaways": [
+    "Smooth Mylar acts like a mirror; crumpled Mylar creates texture that mimics water.",
+    "Hard light sources (like Fresnels) are essential for creating crisp reflections on textured surfaces.",
+    "Point the key light at the reflective surface in front of the subject to bounce light onto them.",
+    "Gels are most effective when used to fill shadow areas.",
+    "Star filters require hard light and specular highlights (like sequins) to work effectively.",
+    "Drastic white balance changes (e.g., switching to Tungsten) can be used creatively to alter the mood of a scene."
+  ],
+  "video_id": "IV0A0oxOgfo",
+  "url": "https://www.youtube.com/watch?v=IV0A0oxOgfo"
+}

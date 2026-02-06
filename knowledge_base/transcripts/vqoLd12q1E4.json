@@ -1,0 +1,63 @@
+{
+  "title": "Mastering the Hurley Triangle Lighting Setup with Profoto Strobes",
+  "summary": "Peter Hurley demonstrates how to recreate his signature 'Hurley Triangle' lighting configuration using Profoto strobes and softboxes. He explains the specific gear used, the importance of feathering lights, and builds the lighting setup step-by-step to achieve a shadowless beauty headshot.",
+  "steps": [
+    {
+      "time": "00:24",
+      "action": "Set up the Profoto strip softboxes. Note the ease of assembly with the snap-in speedring.",
+      "code": null,
+      "tool": "Profoto Strip Softboxes"
+    },
+    {
+      "time": "01:35",
+      "action": "Arrange the lights in a triangle configuration: two 1x4 strip boxes on the sides and one 1x3 strip box on the bottom.",
+      "code": null,
+      "tool": "Light Stands on Wheels"
+    },
+    {
+      "time": "02:16",
+      "action": "Position the subject inside the triangle. Ensure they are close to the lights for softness but behind the point where the lights converge.",
+      "code": null,
+      "tool": "Camera"
+    },
+    {
+      "time": "03:01",
+      "action": "Turn modeling lights to full power to constrict the subject's pupils, allowing more eye color to show.",
+      "code": null,
+      "tool": "Profoto Strobes"
+    },
+    {
+      "time": "04:33",
+      "action": "Take a test shot with only one side light to demonstrate the directional shadow.",
+      "code": null,
+      "tool": "Camera"
+    },
+    {
+      "time": "05:30",
+      "action": "Add the second side light. Use the 'feathering' technique by pointing the light in front of the subject's shoulder rather than directly at them to wrap the light ('cocooning').",
+      "code": null,
+      "tool": "Profoto Strobe"
+    },
+    {
+      "time": "08:08",
+      "action": "Add the bottom light (the 'money light'). This fills in shadows under the chin and nose, creating the signature shadowless look.",
+      "code": null,
+      "tool": "Profoto Strobe"
+    },
+    {
+      "time": "09:50",
+      "action": "Set camera exposure settings. Peter uses 1/200 sec, f/4.0, and ISO 100.",
+      "code": "Shutter: 1/200, Aperture: f/4.0, ISO: 100",
+      "tool": "Camera Settings"
+    }
+  ],
+  "key_takeaways": [
+    "The Hurley Triangle consists of three lights: two side lights and one bottom light.",
+    "Feathering the side lights (pointing them past the subject) creates a soft wrap of light around the face.",
+    "The bottom light is crucial for eliminating shadows and is considered the 'money light'.",
+    "Subject placement is key; they must be close to the source for soft light but not in front of the light convergence.",
+    "Using modeling lights at full power helps constrict pupils for better eye color in the final shot."
+  ],
+  "video_id": "vqoLd12q1E4",
+  "url": "https://www.youtube.com/watch?v=vqoLd12q1E4"
+}

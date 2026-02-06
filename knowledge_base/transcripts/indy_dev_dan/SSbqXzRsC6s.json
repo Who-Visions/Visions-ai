@@ -1,0 +1,48 @@
+{
+    "title": "Optimizing Agentic Workflows with the Weak-Base-Strong Model Stack",
+    "summary": "A strategic workflow for orchestrating multi-agent systems by leveraging a tiered model stack (Haiku, Sonnet, Opus). This approach optimizes for performance, speed, and cost while mitigating API rate limits. The process involves running parallel sub-agents with distinct compute levels to perform comprehensive research, analyzing execution metrics to avoid model overkill, and refining agent configurations to ensure the right level of intelligence is applied to each specific task.",
+    "steps": [
+        {
+            "time": "00:00:15",
+            "action": "Initialize the Agent Model Stack",
+            "tool": "Claude Code (Haiku, Sonnet, Opus)",
+            "reasoning": "Establishes a tiered architecture (Weak, Base, Strong) to assign appropriate compute resources to different sub-agents based on task complexity."
+        },
+        {
+            "time": "00:00:42",
+            "action": "Execute Primary Orchestration Command",
+            "tool": "Bash / Primary Agent",
+            "reasoning": "Triggers the `crypto_research` workflow which spawns 12 sub-agents in parallel, creating a structured output directory for results."
+        },
+        {
+            "time": "00:00:43",
+            "action": "Run Parallel Sub-Agent Tasks",
+            "tool": "Sub-Agents (Web Search)",
+            "reasoning": "Agents concurrently perform web searches and analysis (e.g., Market Cap, Technical Analysis, Macro Correlation) using their assigned model tiers."
+        },
+        {
+            "time": "00:02:10",
+            "action": "Analyze Execution Metrics",
+            "tool": "Terminal Logs",
+            "reasoning": "Reviewing token usage and execution time (e.g., Haiku ~7.7k tokens vs Opus ~17.3k tokens) helps identify model overkill or underperformance."
+        },
+        {
+            "time": "00:05:35",
+            "action": "Configure Custom Agent Definitions",
+            "tool": "Cursor IDE / Markdown",
+            "reasoning": "Editing `.md` files (e.g., `crypto_research.md`) to hardcode model selection and define specific prompts ensures reproducible agent behaviors."
+        },
+        {
+            "time": "00:08:10",
+            "action": "Compare Qualitative Outputs",
+            "tool": "Markdown Viewer",
+            "reasoning": "Validating that higher-tier models (Opus) adhere to strict formatting and depth requirements where lower-tier models (Haiku) may fail."
+        }
+    ],
+    "key_takeaways": [
+        "Implement a 'Weak-Base-Strong' model stack to balance cost and intelligence, reserving high-compute models (Opus) for complex reasoning and using lighter models (Haiku) for simple tasks.",
+        "Utilize parallel sub-agent orchestration to maximize throughput, but monitor rate limits as hidden costs accumulate quickly.",
+        "Define custom agents via structured Markdown files to enforce specific model usage and output formats, preventing 'model drift'.",
+        "Prioritize performance over speed for critical analysis; 'Thinking' models (Sonnet Think/Opus Think) significantly outperform base models for complex logic."
+    ]
+}

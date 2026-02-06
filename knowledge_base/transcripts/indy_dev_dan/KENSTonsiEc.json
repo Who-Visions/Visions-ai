@@ -1,0 +1,53 @@
+{
+    "title": "5 NOTION IN 5: WRITE",
+    "summary": "This workflow demonstrates how to programmatically write content to Notion pages using the Notion API and Python. It progresses from understanding the 'Append block children' endpoint to creating a flexible function that can dynamically insert various block types like paragraphs, headings, callouts, and to-do lists.",
+    "steps": [
+        {
+            "time": "00:10",
+            "action": "Initialize Notion Client",
+            "tool": "Python (notion_client)",
+            "reasoning": "Establishes the authenticated connection using the API token and target page ID defined in the previous setup."
+        },
+        {
+            "time": "00:30",
+            "action": "Analyze API Documentation",
+            "tool": "Notion API Docs",
+            "reasoning": "Identifies the `Append block children` endpoint and the required JSON schema for block objects to ensure correct API usage."
+        },
+        {
+            "time": "01:10",
+            "action": "Define Write Function",
+            "tool": "Python",
+            "reasoning": "Encapsulates the API call logic into a reusable function `write_text` to modularize the workflow."
+        },
+        {
+            "time": "01:50",
+            "action": "Construct Block Object Schema",
+            "tool": "Python",
+            "reasoning": "Builds the specific nested structure required by Notion (object -> type -> rich_text) to successfully render a paragraph."
+        },
+        {
+            "time": "02:50",
+            "action": "Execute and Verify Write",
+            "tool": "Terminal / Notion UI",
+            "reasoning": "Runs the script to confirm that the text 'Hello World!' is successfully appended to the live Notion page."
+        },
+        {
+            "time": "03:40",
+            "action": "Refactor for Dynamic Typing",
+            "tool": "Python",
+            "reasoning": "Abstracts the block `type` into a parameter, enabling the agent to generate different UI elements (Headings, Callouts, To-Dos) dynamically without code duplication."
+        },
+        {
+            "time": "04:30",
+            "action": "Test Dynamic Block Types",
+            "tool": "Python / Notion UI",
+            "reasoning": "Validates the flexibility of the refactored function by creating 'callout' and 'to_do' blocks."
+        }
+    ],
+    "key_takeaways": [
+        "Notion pages function as parent blocks, allowing content to be appended via the `blocks.children.append` endpoint.",
+        "Block definitions require a specific nested structure: `type` -> `[type_object]` -> `rich_text`.",
+        "Abstracting the block `type` into a function parameter enables dynamic generation of rich content (Callouts, To-Dos, Headings) using a single logic flow."
+    ]
+}

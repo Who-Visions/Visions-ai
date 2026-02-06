@@ -1,0 +1,50 @@
+{
+  "title": "Fine Art Nude Photography: Marilyn Monroe Inspired",
+  "summary": "Lindsay Adler deconstructs a fine art nude photoshoot inspired by Marilyn Monroe's red velvet images. She explains a three-light setup combining hard and soft light to mimic vintage styles, details the simple set construction using affordable materials, shares specific camera settings to optimize for optical modifiers, and walks through the post-processing workflow to achieve the final pin-up look.",
+  "steps": [
+    {
+      "time": "01:30",
+      "action": "Set up the main light on the left to create hard, crisp light similar to vintage Fresnels.",
+      "tool": "Profoto D2 with Westcott Optical Spot"
+    },
+    {
+      "time": "02:37",
+      "action": "Add a fill light on the right to soften shadows and smooth skin texture.",
+      "tool": "Medium Umbrella with Diffusion"
+    },
+    {
+      "time": "03:35",
+      "action": "Place a background light with a grid to create a highlight and separation behind the subject.",
+      "tool": "20 Degree Grid"
+    },
+    {
+      "time": "03:57",
+      "action": "Construct the set using red velvet curtains hung on C-stands and draped over a chaise.",
+      "tool": "Red Velvet Curtains"
+    },
+    {
+      "time": "04:45",
+      "action": "Configure camera settings. Aperture is set to f/5.6 for a softer background, and ISO 400 is used to reduce strobe power requirements for the optical spot.",
+      "code": "f/5.6, ISO 400",
+      "tool": "Canon R5 + RF 24-70mm f/2.8"
+    },
+    {
+      "time": "07:14",
+      "action": "Color grade the image by darkening the red channel to make pale skin pop and slightly desaturating the overall image.",
+      "tool": "Photoshop / Capture One"
+    },
+    {
+      "time": "07:34",
+      "action": "Retouch the image by compositing a cleaner background plate, enhancing the background glow, and removing distractions.",
+      "tool": "Photoshop"
+    }
+  ],
+  "key_takeaways": [
+    "Combining a hard main light with a soft fill light creates a vintage look that remains flattering to skin texture.",
+    "Optical spots are excellent for mimicking the hard, focused light of vintage Fresnel hot lights.",
+    "When using light modifiers that restrict light output (like optical spots), increasing ISO and opening the aperture helps prevent strobes from overheating.",
+    "Targeted color adjustments, such as darkening specific color channels (reds), can significantly enhance subject separation and skin tone contrast."
+  ],
+  "video_id": "fb6TUAF6CvY",
+  "url": "https://www.youtube.com/watch?v=fb6TUAF6CvY"
+}

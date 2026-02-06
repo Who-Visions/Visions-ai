@@ -1,0 +1,50 @@
+{
+  "title": "Fine Art Nude Photo Deconstruction: Mother Earth Concept",
+  "summary": "Photographer Lindsay Adler deconstructs a fine art nude photoshoot inspired by Mother Earth, detailing the process from concept and styling to lighting setup and post-processing techniques.",
+  "steps": [
+    {
+      "time": "00:42",
+      "action": "Develop the concept focusing on texture and earthy tones. Apply Bentonite Clay to the subject's body (allow 1-1.5 hours to dry) and select textured props like dried leaves.",
+      "code": null,
+      "tool": "Bentonite Clay, Props"
+    },
+    {
+      "time": "02:24",
+      "action": "Set up the main light using a Profoto D2 with a large umbrella and diffusion, placed to the right to rake across the texture.",
+      "code": null,
+      "tool": "Profoto D2, Large Umbrella"
+    },
+    {
+      "time": "03:30",
+      "action": "Set up a second light (fill) by bouncing a strobe into a white V-Flat or wall to create a wall of soft light and lift shadows.",
+      "code": null,
+      "tool": "Profoto D2, White V-Flat"
+    },
+    {
+      "time": "04:24",
+      "action": "Configure camera settings: Canon R5 with RF 24-70mm lens at f/2.8, 1/200 sec, ISO 200.",
+      "code": null,
+      "tool": "Canon R5, RF 24-70mm"
+    },
+    {
+      "time": "05:53",
+      "action": "Process the RAW file in Capture One: Desaturate oranges and greens for a monochromatic look, increase Clarity to near 100%, and boost Contrast.",
+      "code": null,
+      "tool": "Capture One"
+    },
+    {
+      "time": "06:26",
+      "action": "Retouch in Photoshop: Clean up distractions (stems), and perform contouring by painting highlights and shadows to add dimension to the body.",
+      "code": null,
+      "tool": "Adobe Photoshop"
+    }
+  ],
+  "key_takeaways": [
+    "Side lighting emphasizes texture on the subject and background.",
+    "Bouncing light into a V-Flat creates a large, soft fill source.",
+    "Bentonite clay is an effective tool for creating cracked, earthy skin texture.",
+    "Post-processing for this style involves heavy desaturation and clarity adjustments to enhance the monochromatic, textured look."
+  ],
+  "video_id": "iuCsJeWi47I",
+  "url": "https://www.youtube.com/watch?v=iuCsJeWi47I"
+}

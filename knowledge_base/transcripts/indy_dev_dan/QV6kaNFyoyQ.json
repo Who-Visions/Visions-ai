@@ -1,0 +1,54 @@
+{
+    "title": "7 Advanced Prompt Chains for Building Agentic AI Software",
+    "summary": "This tutorial details seven strategic prompt engineering patterns (chains) that combine Large Language Models (LLMs) with code to create robust 'agentic' workflows. These patterns range from context accumulation and parallel execution to error handling and cost optimization, providing a blueprint for building sophisticated AI applications.",
+    "steps": [
+        {
+            "time": "00:33",
+            "action": "Implement the Snowball Prompt Chain",
+            "tool": "Claude 3 (Haiku, Sonnet, Opus)",
+            "reasoning": "Iteratively builds context by passing the output of previous prompts into the next, transforming a simple seed into comprehensive content."
+        },
+        {
+            "time": "03:05",
+            "action": "Deploy the Worker Pattern",
+            "tool": "Python / GPT-Researcher",
+            "reasoning": "Delegates sub-tasks to parallel 'worker' prompts orchestrated by a 'planner' prompt, significantly speeding up complex tasks like research or code generation."
+        },
+        {
+            "time": "07:17",
+            "action": "Set up the Fallback Prompt Chain",
+            "tool": "Python / Multi-Model API",
+            "reasoning": "Optimizes cost and latency by attempting tasks with cheaper/faster models first and only reverting to expensive/slower models if the initial attempt fails."
+        },
+        {
+            "time": "12:39",
+            "action": "Create a Decision Maker Chain",
+            "tool": "Python / JSON",
+            "reasoning": "Empowers the agent to determine the control flow by analyzing input (e.g., sentiment) and selecting the appropriate function or action to execute."
+        },
+        {
+            "time": "15:03",
+            "action": "Utilize the Plan and Execute Pattern",
+            "tool": "Markdown / Mermaid Diagrams",
+            "reasoning": "Separates the 'thinking' phase from the 'doing' phase, ensuring complex tasks have a solid architectural plan before generating the final output."
+        },
+        {
+            "time": "16:41",
+            "action": "Integrate Human In The Loop",
+            "tool": "Python Input Loop",
+            "reasoning": "Allows for iterative refinement of content by pausing the workflow to accept and incorporate specific user feedback."
+        },
+        {
+            "time": "19:25",
+            "action": "Build a Self-Correcting Workflow",
+            "tool": "Bash / Python Error Handling",
+            "reasoning": "Enhances reliability by catching execution errors (like failed bash commands) and automatically re-prompting the LLM to fix the issue."
+        }
+    ],
+    "key_takeaways": [
+        "Treat LLMs as modular functions with strict inputs and JSON outputs to integrate them reliably into code.",
+        "Orchestration of multiple prompts (chaining) creates significantly more value and reliability than single-shot prompting.",
+        "Cost and speed can be optimized architecturally using Fallback patterns rather than relying solely on one model.",
+        "Separating planning from execution improves the quality of complex outputs."
+    ]
+}

@@ -1,0 +1,59 @@
+{
+    "title": "Building a Persistent Agent Network with Nuxt 3 and Vercel KV",
+    "summary": "This tutorial outlines the creation of an interactive Agent Network visualization. It demonstrates a full-stack workflow using Nuxt 3 for the application framework, Cytoscape.js for rendering complex graph relationships between agents, and Vercel KV for persisting the network state. The process moves from scaffolding the environment to defining strict TypeScript data models, implementing reactive graph logic, and finally establishing server-side storage for agent memory.",
+    "steps": [
+        {
+            "time": "00:40",
+            "action": "Initialize Nuxt 3 Project",
+            "tool": "Nuxt CLI",
+            "reasoning": "Establishes the modern web framework foundation required to host the agent interface and server routes."
+        },
+        {
+            "time": "01:40",
+            "action": "Install Core Dependencies",
+            "tool": "Yarn",
+            "reasoning": "Adds @cytoscape/cytoscape for graph visualization and @vercel/kv for the persistence layer."
+        },
+        {
+            "time": "03:34",
+            "action": "Define Agent Data Models",
+            "tool": "TypeScript",
+            "reasoning": "Creates strict interfaces (SimpleAgent, AgentNetwork) to ensure data consistency across the frontend and backend."
+        },
+        {
+            "time": "06:06",
+            "action": "Initialize Graph Visualization",
+            "tool": "Cytoscape.js / Vue 3",
+            "reasoning": "Binds the imperative graph rendering engine to the declarative Vue component using refs and lifecycle hooks."
+        },
+        {
+            "time": "12:05",
+            "action": "Implement Reactive Graph Updates",
+            "tool": "Vue Watchers",
+            "reasoning": "Ensures the visual representation of the network automatically updates whenever the underlying agent data changes."
+        },
+        {
+            "time": "15:53",
+            "action": "Implement Agent Interaction Logic",
+            "tool": "JavaScript",
+            "reasoning": "Defines the simulation rules, such as randomizing connections and assigning statuses, to mimic dynamic agent behavior."
+        },
+        {
+            "time": "20:00",
+            "action": "Create Persistence Layer (Save)",
+            "tool": "Vercel KV / Nuxt Server",
+            "reasoning": "Builds a server-side API route to serialize and store the agent network state in a remote key-value store."
+        },
+        {
+            "time": "21:10",
+            "action": "Create Retrieval Layer (Load)",
+            "tool": "Vercel KV / Nuxt Server",
+            "reasoning": "Enables the application to fetch and reconstruct the agent network from the database, providing long-term memory."
+        }
+    ],
+    "key_takeaways": [
+        "Integrating imperative libraries like Cytoscape into Vue requires careful management of DOM references and lifecycle hooks (onMounted/onUnmounted).",
+        "Vercel KV provides a low-friction, serverless solution for adding persistence to Nuxt applications without managing a full database server.",
+        "Strict TypeScript typing for Agent entities is essential for maintaining synchronization between the visual graph and the stored data."
+    ]
+}

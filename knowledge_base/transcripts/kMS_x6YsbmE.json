@@ -1,0 +1,55 @@
+{
+  "title": "On Location: Photographing Architect Cesar Pelli",
+  "summary": "Photographer Peter Hurley travels to New Haven, Connecticut, to photograph renowned architect Cesar Pelli. The video details the gear used, the lighting strategy for balancing the subject with a background of architectural models, and the actual photoshoot process.",
+  "steps": [
+    {
+      "time": "00:04",
+      "action": "Review the equipment list while traveling, mentioning Kinos, Profoto, AlienBees, and Phottix Softlighters.",
+      "code": null,
+      "tool": "Various Lighting Gear"
+    },
+    {
+      "time": "00:26",
+      "action": "Arrive at the location in New Haven and unload the gear.",
+      "code": null,
+      "tool": "Transport"
+    },
+    {
+      "time": "00:46",
+      "action": "Analyze the scene to mix lights, ensuring the subject's face is balanced with the background wall art and models.",
+      "code": null,
+      "tool": "Light Metering/Visual Check"
+    },
+    {
+      "time": "00:58",
+      "action": "Place a 2-foot Kino Flo light in the background to shine through the architectural models.",
+      "code": null,
+      "tool": "Kino Flo"
+    },
+    {
+      "time": "01:08",
+      "action": "Set up a second Kino Flo in the front to illuminate the foreground models.",
+      "code": null,
+      "tool": "Kino Flo"
+    },
+    {
+      "time": "01:12",
+      "action": "Position the main light source to illuminate the subject.",
+      "code": null,
+      "tool": "Main Light"
+    },
+    {
+      "time": "01:23",
+      "action": "Shoot the portrait while directing the subject on head tilts and posture.",
+      "code": null,
+      "tool": "Camera"
+    }
+  ],
+  "key_takeaways": [
+    "Balance artificial light with the environment to ensure background details remain visible.",
+    "Use backlighting behind translucent or complex objects to add depth to the scene.",
+    "Active direction of the subject's pose is essential for a successful portrait."
+  ],
+  "video_id": "kMS_x6YsbmE",
+  "url": "https://www.youtube.com/watch?v=kMS_x6YsbmE"
+}

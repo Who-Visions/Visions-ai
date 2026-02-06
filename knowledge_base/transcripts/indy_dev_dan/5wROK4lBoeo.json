@@ -1,0 +1,60 @@
+{
+    "title": "Talk To Your Database: Agentic SQL Analytics Workflow",
+    "summary": "This workflow demonstrates the capabilities of 'Talk To Your Database,' an agentic AI tool that converts natural language into complex SQL queries. It covers the end-to-end process from connecting to a PostgreSQL database, executing multi-agent query generation, verifying results with external tools, and managing security through automated data expiration and stop-word filtering.",
+    "steps": [
+        {
+            "time": "02:12",
+            "action": "Connect to PostgreSQL Database",
+            "tool": "Talk To Your Database (Web UI)",
+            "reasoning": "Establishes the environment for AI agents to access schema metadata (tables, columns) required for context-aware query generation."
+        },
+        {
+            "time": "02:45",
+            "action": "Execute Basic Natural Language Query",
+            "tool": "Talk To Your Database Input Field",
+            "reasoning": "Tests the agent's ability to map simple intent ('select all authed users') to specific table structures without explicit SQL syntax."
+        },
+        {
+            "time": "03:40",
+            "action": "Verify Agent Output",
+            "tool": "TablePlus",
+            "reasoning": "Applies the 'trust but verify' principle; validating AI-generated SQL against a traditional client ensures accuracy before relying on the agentic workflow."
+        },
+        {
+            "time": "04:06",
+            "action": "Iterative Query Refinement",
+            "tool": "Talk To Your Database / SQL Agents",
+            "reasoning": "Demonstrates the agent's ability to maintain state and refine previous outputs (e.g., adding joins or formatting column names) based on follow-up prompts."
+        },
+        {
+            "time": "06:40",
+            "action": "Inject Explicit Context",
+            "tool": "Prompt Engineering",
+            "reasoning": "Explicitly naming tables in the prompt ('user_notifications') guides the multi-agent system to the correct schema, reducing hallucination and ambiguity."
+        },
+        {
+            "time": "10:27",
+            "action": "Generate Complex SQL Logic",
+            "tool": "GPT-4 via Talk To Your Database",
+            "reasoning": "Leverages the agent to generate complex logic (CTEs, Window Functions) from minimal input (4 words), demonstrating a 14x efficiency gain over manual coding."
+        },
+        {
+            "time": "14:05",
+            "action": "Trigger Security Guardrails",
+            "tool": "Talk To Your Database Security Layer",
+            "reasoning": "Tests the system's 'Stop Words' mechanism, ensuring the agent rejects destructive commands (like INSERT/DELETE) to maintain data integrity in a read-only context."
+        },
+        {
+            "time": "15:36",
+            "action": "Validate Data Expiration Policy",
+            "tool": "Talk To Your Database Settings",
+            "reasoning": "Ensures data privacy by confirming that the agentic system automatically purges query results and credentials after a set retention period."
+        }
+    ],
+    "key_takeaways": [
+        "Agentic SQL generation can provide a 10x-14x speed multiplier compared to manual query writing.",
+        "Explicitly providing table names in natural language prompts significantly improves agent accuracy.",
+        "Security guardrails (Stop Words, Auto-Expiration) are critical when giving AI agents access to database infrastructure.",
+        "Verification using traditional tools is essential to build trust in new agentic workflows."
+    ]
+}

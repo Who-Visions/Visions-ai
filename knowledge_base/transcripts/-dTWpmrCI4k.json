@@ -1,0 +1,56 @@
+{
+  "title": "Photo Deconstruction: Iconic Image with 2 Strobes & 2 Gels",
+  "summary": "Lindsay Adler breaks down a creative studio lighting setup to create a high-impact, colorful portrait using only two lights. The tutorial covers the specific gear used, the placement of flags to control light spill, and the post-processing steps required to correct contrast and fine-tune the color grade.",
+  "steps": [
+    {
+      "time": "01:10",
+      "action": "Set up the background light using a softbox with a red gel to create a large colored light source.",
+      "code": null,
+      "tool": "Profoto D2, 3x4ft Softbox, Red Gel"
+    },
+    {
+      "time": "01:45",
+      "action": "Place a black flag directly behind the subject's head, in front of the softbox, to block the center light and create a rim light effect around the profile.",
+      "code": null,
+      "tool": "24x36 Black Flag (Matthews)"
+    },
+    {
+      "time": "02:30",
+      "action": "Set up the main light as a bare bulb with mixed blue and teal gels to illuminate the face with a complementary color.",
+      "code": null,
+      "tool": "Profoto D2, Blue & Teal Gels"
+    },
+    {
+      "time": "02:48",
+      "action": "Configure camera settings for the shot.",
+      "code": "f/5.6, ISO 400, 1/200 sec",
+      "tool": "Canon R5, RF 24-105mm Lens"
+    },
+    {
+      "time": "03:23",
+      "action": "In post-processing, increase contrast and clarity to counteract the 'washed out' look caused by lens flare from shooting into the light.",
+      "code": null,
+      "tool": "Camera Raw / Capture One"
+    },
+    {
+      "time": "03:50",
+      "action": "Adjust color balance to shift greens towards blue/cyan for a more pleasing color palette.",
+      "code": null,
+      "tool": "Capture One Color Balance"
+    },
+    {
+      "time": "04:05",
+      "action": "Retouch the image by cleaning up stray hairs and extending the frame for better composition.",
+      "code": null,
+      "tool": "Photoshop"
+    }
+  ],
+  "key_takeaways": [
+    "Complex-looking rim lighting can be achieved with a single softbox blocked by a flag.",
+    "Shooting directly into a light source often reduces contrast, requiring recovery in post-production.",
+    "Mixing gels (like blue and teal) can create unique color signatures.",
+    "Simple gear (2 lights) can yield high-production value results with creative problem solving."
+  ],
+  "video_id": "-dTWpmrCI4k",
+  "url": "https://www.youtube.com/watch?v=-dTWpmrCI4k"
+}

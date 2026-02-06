@@ -1,0 +1,56 @@
+{
+  "title": "Disco Inspired Beauty Shoot Deconstruction",
+  "summary": "Lindsay Adler breaks down the creative process behind a 70s disco-inspired beauty photoshoot. She details the mixed lighting setup using strobes and continuous LEDs, camera settings to control depth of field, the use of lens filters for special effects, and post-processing techniques to achieve a vintage film look.",
+  "steps": [
+    {
+      "time": "01:19",
+      "action": "Set up the background using inexpensive fringe curtains to catch light and create a disco atmosphere.",
+      "code": null,
+      "tool": "Fringe Curtains"
+    },
+    {
+      "time": "02:15",
+      "action": "Set up the main light using a strobe with a 10-degree grid to focus light on the face and freeze motion.",
+      "code": null,
+      "tool": "Profoto D2 Strobe, 10-degree Grid"
+    },
+    {
+      "time": "02:42",
+      "action": "Add continuous LED tubes in pink and orange to create rim lighting and color the background sparkles.",
+      "code": null,
+      "tool": "Nanlite Pavotubes"
+    },
+    {
+      "time": "03:34",
+      "action": "Add a strobe with a pink gel to the front right to lift shadows and blend the subject with the background colors.",
+      "code": null,
+      "tool": "Strobe, Pink Gel"
+    },
+    {
+      "time": "03:52",
+      "action": "Select a telephoto lens and shoot at a wide aperture (f/2.8) to blur the background fringe into soft bokeh.",
+      "code": "1/160 sec, f/2.8, ISO 400",
+      "tool": "Canon R5, RF 70-200mm"
+    },
+    {
+      "time": "04:50",
+      "action": "Attach a star filter to the lens to create starburst effects on the sequins of the dress.",
+      "code": null,
+      "tool": "Tiffen 4-point Star Filter"
+    },
+    {
+      "time": "05:53",
+      "action": "Color grade the image by adding yellow-orange to highlights and magenta to shadows for a vintage aesthetic.",
+      "code": null,
+      "tool": "Capture One"
+    }
+  ],
+  "key_takeaways": [
+    "Mixing strobes and continuous lights allows for precise color control and visual previewing.",
+    "Using a long focal length and wide aperture helps turn distracting backgrounds into pleasing texture/bokeh.",
+    "In-camera effects like star filters can enhance a theme more naturally than post-production.",
+    "Color grading (split toning) is crucial for establishing a specific time period or mood."
+  ],
+  "video_id": "h7WOqUWGdrg",
+  "url": "https://www.youtube.com/watch?v=h7WOqUWGdrg"
+}

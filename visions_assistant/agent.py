@@ -1,185 +1,67 @@
-import vertexai
-from vertexai.preview import reasoning_engines
-import base64
+# Visions Assistant - Local Bridge v2.0.0
+# Pure bridge to the Core Rhea Noir Engine
+
 import os
-import json
-import time
-import re
+import base64
+import logging
+from typing import Optional, Dict, Any
 
-# Configuration
-PROJECT_ID = "endless-duality-480201-t3"
-LOCATION = "us-central1"
-# NEW DEPLOYMENT RESOURCE (Deploy #10 - Fixed Lazy Loading)
-REASONING_ENGINE_RESOURCE = "projects/620633534056/locations/us-central1/reasoningEngines/5378250132150026240"
+# Configure relative imports for the project structure
+from visions.core.agent import VisionsAgent
 
-_remote_agent = None
-_local_agent = None
-_initialized = False
+logger = logging.getLogger("visions-bridge")
 
-def _initialize_backend():
-    global _remote_agent, _initialized
-    if _initialized:
-        return
+# Global singleton for the engine
+_engine = None
 
-    print("Initializing Vertex AI Backend...")
-    try:
-        vertexai.init(project=PROJECT_ID, location=LOCATION)
-        print(f"Connecting to Reasoning Engine: {REASONING_ENGINE_RESOURCE}...")
-        _remote_agent = reasoning_engines.ReasoningEngine(REASONING_ENGINE_RESOURCE)
-    except Exception as e:
-        print(f"Failed to connect to Reasoning Engine: {e}")
-        _remote_agent = None
-    _initialized = True
+def get_engine():
+    global _engine
+    if _engine is None:
+        try:
+            logger.info("⚡ Initializing Rhea Noir Core Engine...")
+            _engine = VisionsAgent()
+        except Exception as e:
+            logger.error(f"❌ Failed to initialize Core Engine: {e}")
+            raise e
+    return _engine
 
 def get_chat_response(user_message: str, image_path: str = None, video_path: str = None, user_id: str = "default_user", config: dict = None):
     """
-    Proxies the chat request to the Vertex AI Reasoning Engine or Direct Gemini 3.
-    Supports optional image or video input, persistent memory, and generation config.
+    Standardized entry for the Fleet Server.
+    Maps file paths to base64 and proxies to the core engine.
     """
-    # Lazy init
-    if not _initialized:
-        _initialize_backend()
-
-    # --- VIDEO HANDLING (Via VisionTools) ---
-    # Defensive check: unintended positional arg shift can put 'user' into video_path
-    if video_path and video_path not in ["user", "default_user"] and not video_path.startswith("user"):
-        try:
-            from tools.vision_tools import VisionTools
-            
-            # Initialize VisionTools (wraps Gemini 3 Pro)
-            # Gemini 3 requires global location as per .gemini context
-            tools = VisionTools(project_id=PROJECT_ID, location="global")
-            
-            # Use specific thinking level in prompt if provided, or pass via config if VisionTools supported it.
-            # For now, we append it to the prompt to keep it simple, or just rely on the method.
-            prompt = user_message
-            if config and "thinking_level" in config:
-                print(f"🧠 Thinking Level request: {config['thinking_level']} (Handled by Model default)")
-            
-            return tools.analyze_video(video_path, prompt)
-
-        except Exception as video_e:
-             print(f"Error processing video via VisionTools: {video_e}")
-             return f"Error analyzing video: {video_e}"
-
-    # --- IMAGE HANDLING ---
-    image_base64 = None
-    if image_path:
-        if not os.path.exists(image_path):
-            return f"Error: Image file not found at {image_path}"
-        try:
-            with open(image_path, "rb") as image_file:
-                image_base64 = base64.b64encode(image_file.read()).decode('utf-8')
-        except Exception as e:
-            return f"Error reading image: {e}"
-
-    # Try Local Agent First (Development Mode)
-    global _local_agent
+    engine = get_engine()
     
-    if _local_agent is None:
+    # 1. Handle Visual Inputs
+    image_base64 = None
+    if image_path and os.path.exists(image_path):
         try:
-            from visions.core.agent import VisionsAgent
-            print("⚡ Using Local VisionsAgent (Dev Mode)")
-            _local_agent = VisionsAgent()
-        except Exception as init_e:
-            print(f"⚠️ Failed to init Local Agent: {init_e}")
-            _local_agent = None
+            with open(image_path, "rb") as f:
+                image_base64 = base64.b64encode(f.read()).decode('utf-8')
+        except Exception as e:
+            logger.error(f"Error reading image: {e}")
 
-    if _local_agent:
-        try:
-            # Pass config if local agent supports it, otherwise ignore
-            response_str = _local_agent.query(question=user_message, image_base64=image_base64)
-        except Exception as local_e:
-            print(f"⚠️ Local Agent skipped: {local_e}. Falling back to Remote.")
-            response_str = None
-    else:
-        response_str = None
+    # 2. Handle Video Inputs (Special Case)
+    if video_path and os.path.exists(video_path):
+        # Current engine handles video via VisionTools internally if prompted,
+        # but for now we prioritize pure question/image flow.
+        user_message += f"\n[Video analysis requested for: {video_path}]"
 
-    if response_str is None:
-        # Fallback to Remote Reasoning Engine
-        pass # Flow continues below...
-    else:
-         # Skip remote if local succeeded
-         pass 
+    # 3. Handle Image Generation Commands
+    # If the message looks like a generation prompt, we use the imager
+    gen_triggers = ["generate a", "create an image of", "draw a", "make a photo of"]
+    if any(trigger in user_message.lower() for trigger in gen_triggers) and "image" in user_message.lower():
+         logger.info("🎨 Image generation triggered via flow.")
+         return engine.generate_image(user_message)
 
-    if response_str is None:
-
-        
-        # Fallback to Remote Reasoning Engine
-        if not _remote_agent:
-             return f"System Error: Unable to connect to AI service. Local Error: {local_e}"
-             
-        try:
-            # Call the 'query_with_memory' method defined in the remote agent
-            print(f"🧠 Querying Reasoning Engine with memory for user: {user_id}")
-            
-            # Note: Remote agent signature might not support 'config' yet unless redeployed.
-            # We pass standard args.
-            if image_base64:
-                response_str = _remote_agent.query_with_memory(question=user_message, user_id=user_id, image_base64=image_base64)
-            else:
-                response_str = _remote_agent.query_with_memory(question=user_message, user_id=user_id)
-        except Exception as remote_e:
-             print(f"Error querying Reasoning Engine: {remote_e}")
-             # Fallback to standard query
-             try:
-                 print("⚠️ 'query_with_memory' failed, falling back to legacy 'query'...")
-                 if image_base64:
-                     response_str = _remote_agent.query(question=user_message, image_base64=image_base64)
-                 else:
-                     response_str = _remote_agent.query(question=user_message)
-             except Exception as fallback_e:
-                 return f"System Error: Unable to connect to AI service. Remote Error: {remote_e}. Fallback Error: {fallback_e}"
-
+    # 4. Proxy Query
     try:
-        text_output = response_str
-        images = []
-
-        # Try parsing as JSON
-        try:
-            data = json.loads(response_str)
-            text_output = data.get("text", "")
-            images = data.get("images", [])
-        except json.JSONDecodeError:
-            pass # Treat as raw string
-
-        # Create output dir
-        if not os.path.exists("generated_images"):
-            os.makedirs("generated_images")
-
-        # 1. Handle JSON-based images
-        for i, img in enumerate(images):
-            timestamp = int(time.time())
-            ext = "png"
-            if "jpeg" in img.get("mime_type", ""): ext = "jpg"
-            filename = f"generated_images/img_{timestamp}_{i}.{ext}"
-            try:
-                img_bytes = base64.b64decode(img["data"])
-                with open(filename, "wb") as f:
-                    f.write(img_bytes)
-                text_output += f"\n\n> [🖼️ **Image Generated:** `{filename}`]"
-            except Exception as e:
-                text_output += f"\n\n[Error saving JSON image: {e}]"
-
-        # 2. Handle Text-Embedded images (Fallback)
-        match = re.search(r"IMAGE_GENERATED:(\S+)", text_output)
-        if match:
-            data_str = match.group(1)
-            if data_str.startswith("http"):
-                text_output += "\n\n[⚠️ **Warning:** The model hallucinated an image URL.]"
-            else:
-                try:
-                    timestamp = int(time.time())
-                    filename = f"generated_images/img_{timestamp}_tool.png"
-                    img_bytes = base64.b64decode(data_str)
-                    with open(filename, "wb") as f:
-                        f.write(img_bytes)
-                    text_output = text_output.replace(match.group(0), f"\n> [🖼️ **Image Generated:** `{filename}`]")
-                except Exception as e:
-                    text_output += f"\n\n[❌ Error saving embedded image: {e}]"
-
-        return text_output
-
+        return engine.query(
+            question=user_message,
+            image_base64=image_base64,
+            user_id=user_id,
+            config=config
+        )
     except Exception as e:
-        print(f"Error querying Reasoning Engine: {e}")
-        return "I'm sorry, I encountered an error while processing your request."
+        logger.error(f"Engine Query Failure: {e}")
+        return f"I encountered an error while processing your request: {e}"

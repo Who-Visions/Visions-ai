@@ -1,0 +1,49 @@
+{
+    "title": "Building an Autonomous Agentic Workflow for Live Data Updates",
+    "summary": "This tutorial demonstrates how to evolve from simple prompt chains to a fully autonomous 'Agentic Workflow'. The presenter builds a system that automatically triggers, scrapes web data (LLM pricing), processes it using an LLM, detects changes, updates a live dataset, and sends push notifications to a mobile device without human intervention.",
+    "steps": [
+        {
+            "time": "00:03:29",
+            "action": "Trigger: Schedule the workflow loop",
+            "tool": "Python `schedule` library",
+            "reasoning": "Establishes the heartbeat of the agent, allowing it to run autonomously at set intervals (e.g., every minute) without manual initiation."
+        },
+        {
+            "time": "00:01:28",
+            "action": "Retrieve: Scrape external pricing pages",
+            "tool": "Python / Web Scraping",
+            "reasoning": "The agent gathers fresh context from the real world (OpenAI, Anthropic, Google sites) to inform its decisions."
+        },
+        {
+            "time": "00:01:55",
+            "action": "Agentics: Process raw data with LLMs",
+            "tool": "Claude 3.5 Sonnet / `MinimalChainable`",
+            "reasoning": "Uses SOTA LLMs to parse unstructured web data into structured JSON, acting as the cognitive engine of the workflow."
+        },
+        {
+            "time": "00:06:44",
+            "action": "Act: Detect state changes and update data",
+            "tool": "Python (`detect_model_changes`)",
+            "reasoning": "The agent evaluates if the new information differs from the old state. If significant, it autonomously updates the production dataset (`model-pricing.json`)."
+        },
+        {
+            "time": "00:08:58",
+            "action": "Act: Commit and Push Code",
+            "tool": "Git (`git commit`, `git push`)",
+            "reasoning": "Demonstrates the agent's ability to modify the codebase or content repository directly, treating infrastructure as something it can manipulate."
+        },
+        {
+            "time": "00:02:08",
+            "action": "Notify: Alert the user of changes",
+            "tool": "ntfy.sh (Pub-Sub Service)",
+            "reasoning": "Keeps the human owner informed of the agent's autonomous actions and results, ensuring transparency in background processes."
+        }
+    ],
+    "key_takeaways": [
+        "The 'TRAALN' Framework: Trigger, Retrieve, Agentics, Act, Learn, Notify is the blueprint for autonomous workflows.",
+        "LLMs should be treated as functions (String In, String Out) to integrate seamlessly into code logic.",
+        "Start with SOTA models (like Claude 3.5 Sonnet) for reliability, then optimize for cost later.",
+        "Effective logging and push notifications are critical for debugging and trusting background agents.",
+        "The goal of agentic workflows is to write software that performs valuable work (like updating data) while the human sleeps."
+    ]
+}

@@ -1,0 +1,48 @@
+{
+    "title": "Mastering LLM Use Cases: A Framework for Agentic Design",
+    "summary": "A comprehensive guide to the LLM Use Case Framework, categorizing Generative AI interactions into six distinct types (Expansion, Compression, Conversion, Seeker, Action, Reasoning) to streamline prompt engineering and structure effective agentic workflows using models like Gemini 2.0 Flash, Llama 3.3, and Phi-4.",
+    "steps": [
+        {
+            "time": "05:29",
+            "action": "Execute Expansion Prompts (Blog Intro)",
+            "tool": "Gemini 2.0 Flash, Llama 3.3, Phi-4",
+            "reasoning": "Demonstrates generating large outputs from small inputs, essential for content creation agents."
+        },
+        {
+            "time": "07:03",
+            "action": "Execute Compression Prompts (Summarization)",
+            "tool": "Gemini 2.0 Flash, Llama 3.3, Phi-4",
+            "reasoning": "Distills large contexts into concise data, crucial for agents processing heavy documentation or memory management."
+        },
+        {
+            "time": "08:20",
+            "action": "Execute Conversion Prompts (Text to SQL)",
+            "tool": "Gemini 2.0 Flash, Llama 3.3, Phi-4",
+            "reasoning": "Transforms formats, enabling agents to translate natural language into executable code or structured data schemas."
+        },
+        {
+            "time": "09:27",
+            "action": "Execute Seeker Prompts (Information Extraction)",
+            "tool": "Gemini 2.0 Flash, Llama 3.3, Phi-4",
+            "reasoning": "Retrieves specific information from unstructured data, fundamental for RAG and search-based agents."
+        },
+        {
+            "time": "11:20",
+            "action": "Execute Action Prompts (Git Commands)",
+            "tool": "Gemini 2.0 Flash, Llama 3.3, Phi-4",
+            "reasoning": "Generates executable commands, allowing agents to interact with external systems, APIs, and environments."
+        },
+        {
+            "time": "12:41",
+            "action": "Execute Reasoning Prompts (Architecture Analysis)",
+            "tool": "Gemini 2.0 Flash, Llama 3.3, Phi-4",
+            "reasoning": "Performs complex analysis and decision-making, serving as the 'brain' for autonomous agents to evaluate options."
+        }
+    ],
+    "key_takeaways": [
+        "Classifying GenAI problems into categories (Expand, Compress, Convert, Seek, Act, Reason) simplifies prompt engineering.",
+        "Chaining prompt categories guides the structural design of complex AI Agents (e.g., Seek -> Reason -> Act).",
+        "Different categories require distinct tooling, success metrics, and evaluation patterns.",
+        "Using a mental framework accelerates decision-making and implementation when adopting new AI models."
+    ]
+}

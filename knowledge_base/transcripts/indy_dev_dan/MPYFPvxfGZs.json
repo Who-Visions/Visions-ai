@@ -1,0 +1,73 @@
+{
+    "title": "Agentic Coding with Aider: Building a Vue.js App via CLI",
+    "summary": "This workflow demonstrates the capabilities of Aider, a command-line AI coding assistant, to build and modify a Vue.js application. By leveraging GPT-4 directly in the terminal, the process illustrates how to manage file context, issue natural language instructions for code generation, and utilize automated Git integration to develop software without manual coding.",
+    "steps": [
+        {
+            "time": "00:34",
+            "action": "Install Aider and export OpenAI API key",
+            "tool": "Terminal / pip",
+            "reasoning": "Initializes the agentic environment and provides necessary authentication for the LLM."
+        },
+        {
+            "time": "00:51",
+            "action": "Initialize Aider and create a Git repository",
+            "tool": "Aider CLI",
+            "reasoning": "Sets up the workspace where the agent can track changes and manage version control automatically."
+        },
+        {
+            "time": "00:51",
+            "action": "Add target file (src/App.vue) to agent context",
+            "tool": "Aider Command (/add)",
+            "reasoning": "Agents require explicit context to know which files to read and modify."
+        },
+        {
+            "time": "01:27",
+            "action": "Instruct agent to replace boilerplate with 'Hello World'",
+            "tool": "Natural Language Prompt",
+            "reasoning": "Validates the agent's ability to understand file structure and perform destructive edits."
+        },
+        {
+            "time": "02:23",
+            "action": "Request CSS styling and animation logic",
+            "tool": "Natural Language Prompt",
+            "reasoning": "Demonstrates iterative development where the agent implements specific design requirements."
+        },
+        {
+            "time": "03:48",
+            "action": "Refine animation for smooth looping based on observation",
+            "tool": "Natural Language Prompt",
+            "reasoning": "A feedback loop where the human evaluates the agent's output and provides correction."
+        },
+        {
+            "time": "04:34",
+            "action": "Add style.css to context and clear chat history",
+            "tool": "Aider Command (/tokens, /clear)",
+            "reasoning": "Optimizes the agent's context window and reduces token costs by removing obsolete conversation history."
+        },
+        {
+            "time": "05:21",
+            "action": "Instruct agent to reset global CSS margins",
+            "tool": "Natural Language Prompt",
+            "reasoning": "Directs the agent to solve a specific cross-file dependency issue (border visibility)."
+        },
+        {
+            "time": "06:50",
+            "action": "Generate new component structure (TriSwitch.vue)",
+            "tool": "Natural Language Prompt",
+            "reasoning": "Expands the agent's scope from modifying existing code to architecting new files."
+        },
+        {
+            "time": "09:35",
+            "action": "Refine component UI to match visual requirements",
+            "tool": "Natural Language Prompt",
+            "reasoning": "Final polish step ensuring the agent's logical implementation matches visual expectations."
+        }
+    ],
+    "key_takeaways": [
+        "Zero-Context Switching: Aider integrates directly into the terminal, keeping the developer in the flow.",
+        "Context Management: Explicitly adding files allows the agent to understand the codebase without overloading the context window.",
+        "Automated Git Ops: The agent handles commits automatically, creating a granular history of AI-generated changes.",
+        "Iterative Prompting: Success relies on a cycle of instruction, observation, and refinement rather than a single perfect prompt.",
+        "Token Economy: Active management of chat history is required to keep the agent efficient and cost-effective."
+    ]
+}

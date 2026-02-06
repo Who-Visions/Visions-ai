@@ -1,0 +1,60 @@
+{
+    "title": "Building Specialized Agents with Claude Code SDK",
+    "summary": "A technical workflow demonstrating the transition from generic out-of-the-box AI agents to specialized custom agents. The tutorial utilizes the Claude Code SDK to manipulate 'The Core Four' (Context, Tools, Model, Prompt), progressing from simple system prompt overrides to complex, multi-agent software development lifecycle orchestration.",
+    "steps": [
+        {
+            "time": "01:40",
+            "action": "Initialize the 'Pong Agent' to demonstrate total behavior control via System Prompt.",
+            "tool": "Claude Code SDK / Python",
+            "reasoning": "Establishes that the System Prompt is the primary driver of agent behavior, capable of completely overriding default model instructions."
+        },
+        {
+            "time": "03:25",
+            "action": "Configure `ClaudeCodeOptions` with a custom markdown system prompt and execute via the `query` function.",
+            "tool": "Python / VS Code",
+            "reasoning": "Demonstrates the programmatic injection of custom context into the agent's 'mind' to define its specific persona."
+        },
+        {
+            "time": "05:10",
+            "action": "Create the 'Echo Agent' to introduce custom tooling capabilities via Model Context Protocol (MCP).",
+            "tool": "MCP (Model Context Protocol)",
+            "reasoning": "Moves the agent beyond simple text generation to functional execution using specific, user-defined logic."
+        },
+        {
+            "time": "06:25",
+            "action": "Define the custom tool logic using the `@tool` decorator and strictly typed parameters.",
+            "tool": "Python Decorators",
+            "reasoning": "Teaches the agent exactly how to use the tool through function descriptions and parameter constraints."
+        },
+        {
+            "time": "07:30",
+            "action": "Instantiate an in-memory MCP server and downgrade the model to 'Claude Haiku'.",
+            "tool": "create_sdk_mcp_server",
+            "reasoning": "Optimizes engineering costs and speed for simple tasks while registering the custom tool with the agent environment."
+        },
+        {
+            "time": "08:25",
+            "action": "Implement `ClaudeSDKClient` to handle continuous conversation loops and follow-up prompts.",
+            "tool": "ClaudeSDKClient",
+            "reasoning": "Enables the agent to maintain context over multiple turns rather than performing single-shot queries, essential for complex interactions."
+        },
+        {
+            "time": "12:00",
+            "action": "Deploy the 'Micro SDLC Agent' to orchestrate a multi-agent workflow via a Kanban UI.",
+            "tool": "Multi-Agent Architecture / WebSockets",
+            "reasoning": "Demonstrates scaling agentic engineering by delegating specialized tasks to distinct sub-agents (Planner, Builder, Reviewer)."
+        },
+        {
+            "time": "12:40",
+            "action": "Execute the 'Planner,' 'Builder,' and 'Reviewer' agents sequentially to resolve a user ticket.",
+            "tool": "Claude Code Default Tools (Glob, Read, Edit)",
+            "reasoning": "Shows how custom agents can combine specialized workflows with powerful default tools (like file editing) to solve real engineering problems."
+        }
+    ],
+    "key_takeaways": [
+        "Control 'The Core Four' (Context, Tools, Model, Prompt) to build effective custom agents.",
+        "System Prompts effectively create new products by overwriting default agent behaviors.",
+        "Custom tools via MCP allow agents to execute specific logic outside their training data.",
+        "Multi-agent systems require specialized delegation (Plan -> Build -> Review) to solve complex engineering problems."
+    ]
+}

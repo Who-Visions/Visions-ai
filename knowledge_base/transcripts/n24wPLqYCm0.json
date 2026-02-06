@@ -1,0 +1,70 @@
+{
+  "title": "Mixing Strobes and Continuous Light in Studio Photography",
+  "summary": "Professional photographer Lindsay Adler explains the principles and workflow for combining strobe lighting with continuous lighting in a studio setting. She covers the practical reasons for mixing light sources, such as freezing motion or utilizing RGB colors, and demonstrates a step-by-step setup starting with the weakest light source to achieve a balanced exposure.",
+  "steps": [
+    {
+      "time": "02:43",
+      "action": "Identify the weakest light source (typically the continuous light) and set it to 100% power to establish the baseline exposure.",
+      "tool": "Continuous Light"
+    },
+    {
+      "time": "03:13",
+      "action": "Set the shutter speed. Do not exceed the camera's sync speed (usually 1/200s or 1/250s) when introducing a strobe.",
+      "tool": "Camera"
+    },
+    {
+      "time": "04:00",
+      "action": "Enable 'Exposure Simulation' on mirrorless cameras to preview the continuous light exposure in real-time.",
+      "tool": "Camera Settings"
+    },
+    {
+      "time": "04:35",
+      "action": "Position the first continuous light (Nanlite PavoTube) and dial in camera settings (e.g., f/4, ISO 800, 1/200s) based on its output.",
+      "tool": "Nanlite PavoTube II 30C"
+    },
+    {
+      "time": "05:59",
+      "action": "Add additional continuous lights for rim lighting and background color, stacking tubes if necessary for more power.",
+      "tool": "Nanlite PavoTube II 30C"
+    },
+    {
+      "time": "06:20",
+      "action": "Eliminate all ambient room light (overheads, windows) so only the studio lights affect the exposure.",
+      "tool": "Studio Environment"
+    },
+    {
+      "time": "06:45",
+      "action": "Add specific color accents using focused continuous lights (e.g., pink wash on background).",
+      "tool": "Nanlite Forza 60C"
+    },
+    {
+      "time": "08:41",
+      "action": "Introduce the strobe light (Profoto Pro-D3) to freeze the subject or act as the key light.",
+      "tool": "Profoto Pro-D3"
+    },
+    {
+      "time": "08:53",
+      "action": "Balance the strobe power by turning it down significantly to match the weaker continuous lights.",
+      "tool": "Strobe Settings"
+    },
+    {
+      "time": "09:29",
+      "action": "If the strobe is still too bright at minimum power, use an ND (Neutral Density) gel to reduce its intensity.",
+      "tool": "ND Gel"
+    },
+    {
+      "time": "10:14",
+      "action": "Turn down or turn off the strobe's modeling light to prevent it from causing unwanted motion blur or ghosting in the image.",
+      "tool": "Modeling Light"
+    }
+  ],
+  "key_takeaways": [
+    "Always build your exposure around the weakest light source first (usually the continuous light).",
+    "Shutter speed affects continuous light exposure but generally does not affect strobe exposure (below sync speed).",
+    "Strobes are essential for freezing motion when shooting at standard sync speeds (e.g., 1/200s) because continuous lights won't freeze fast movement.",
+    "Use ND gels to cut strobe power if the unit cannot be dimmed low enough to balance with continuous lights.",
+    "Ensure ambient light is completely controlled/removed to prevent interference."
+  ],
+  "video_id": "n24wPLqYCm0",
+  "url": "https://www.youtube.com/watch?v=n24wPLqYCm0"
+}

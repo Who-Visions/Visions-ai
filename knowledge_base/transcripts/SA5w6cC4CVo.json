@@ -1,0 +1,59 @@
+{
+  "title": "Mastering Background Adjustments in Evoto with Lindsay Adler",
+  "summary": "Professional photographer Lindsay Adler demonstrates how to use Evoto's AI-powered background adjustment tools to save time in post-processing. She walks through four specific studio scenarios to show how to remove distractions, extend backgrounds, clean up footprints, and unify lighting tones.",
+  "steps": [
+    {
+      "time": "00:50",
+      "action": "Navigate to the Background Adjustments panel on the right-hand side.",
+      "tool": "Evoto Panel"
+    },
+    {
+      "time": "01:12",
+      "action": "Enable 'Distractions Removal' to automatically remove studio equipment and extend the background frame.",
+      "tool": "Distractions Removal"
+    },
+    {
+      "time": "01:33",
+      "action": "Enable 'Clean Backdrop' and select 'Solid Backdrop' to smooth out footprints and dirt on the floor.",
+      "tool": "Clean Backdrop"
+    },
+    {
+      "time": "03:25",
+      "action": "Turn on 'Unified Lighting' to even out the background tones and remove shadows or grey areas.",
+      "tool": "Unified Lighting"
+    },
+    {
+      "time": "03:50",
+      "action": "Adjust the 'Luminance' slider within Unified Lighting to create a pure white background.",
+      "tool": "Unified Lighting"
+    },
+    {
+      "time": "04:55",
+      "action": "Pro Tip: If the background looks too smooth or fake, add a small amount of noise or grain to introduce texture.",
+      "tool": "Texture/Grain"
+    },
+    {
+      "time": "05:40",
+      "action": "Adjust the 'Amount' slider in Unified Lighting. Lowering it can prevent subjects from looking 'cut out' and maintains natural shadows.",
+      "tool": "Unified Lighting"
+    },
+    {
+      "time": "06:18",
+      "action": "Enable 'Color Banding Removal' to fix gradient banding issues on grey or solid colored backgrounds.",
+      "tool": "Color Banding Removal"
+    },
+    {
+      "time": "07:35",
+      "action": "Apply 'Distractions Removal' on complex images where subjects overlap the edge of the background; the AI intelligently masks the subject.",
+      "tool": "Distractions Removal"
+    }
+  ],
+  "key_takeaways": [
+    "Distractions Removal can automatically extend the frame and remove background clutter even when subjects overlap the edges.",
+    "Clean Backdrop effectively removes footprints without creating a smudged or blurry look.",
+    "Unified Lighting corrects uneven background exposure, but the 'Amount' slider should be adjusted to maintain realism and natural shadows.",
+    "Color Banding Removal is essential for smoothing out gradients on solid backgrounds, especially when darkening images."
+  ],
+  "video_id": "SA5w6cC4CVo",
+  "url": "https://www.youtube.com/watch?v=SA5w6cC4CVo"
+}

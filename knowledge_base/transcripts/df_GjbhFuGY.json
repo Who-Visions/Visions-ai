@@ -1,0 +1,70 @@
+{
+  "title": "Vibrant Fashion Photography: Color Theory, Lighting & Workflow",
+  "summary": "Fashion photographer Lindsay Adler demonstrates a complete workflow for a high-contrast, colorful fashion shoot. The tutorial covers selecting a color harmony, calibrating equipment, building a multi-light setup with gels and continuous lighting, using shutter drag techniques, and final color grading.",
+  "steps": [
+    {
+      "time": "01:53",
+      "action": "Select a color harmony based on the wardrobe using an interactive color wheel.",
+      "tool": "Adobe Color (color.adobe.com)"
+    },
+    {
+      "time": "03:38",
+      "action": "Calibrate monitors to ensure color accuracy across different displays.",
+      "tool": "Calibrite Display Pro HL"
+    },
+    {
+      "time": "04:03",
+      "action": "Photograph a color chart to set white balance and verify exposure detail in whites and blacks.",
+      "tool": "ColorChecker Passport Photo 2"
+    },
+    {
+      "time": "05:18",
+      "action": "Set up the key light (neutral white) to carve out facial features.",
+      "tool": "Magnum Reflector with Grid"
+    },
+    {
+      "time": "06:00",
+      "action": "Add a second light with a magenta gel to create an analogous color scheme on the background.",
+      "tool": "Strip Softbox with Grid + Magenta Gel"
+    },
+    {
+      "time": "06:40",
+      "action": "Add a hair light with a yellow/orange gel to create the split complementary contrast.",
+      "tool": "Strip Softbox with Grid + Yellow Gel"
+    },
+    {
+      "time": "07:53",
+      "action": "Introduce a continuous blue light source for creative effects.",
+      "tool": "Nanlite Pavotube"
+    },
+    {
+      "time": "08:40",
+      "action": "Use the 'Dragging the Shutter' technique (1/10th sec) to register the continuous light and create motion blur.",
+      "tool": "Camera Shutter Settings"
+    },
+    {
+      "time": "09:40",
+      "action": "Turn off modeling lights on strobes to prevent unwanted ambient light contamination during the long exposure.",
+      "tool": "Strobe Settings"
+    },
+    {
+      "time": "10:33",
+      "action": "Perform color grading (contrast, exposure, saturation) on the tethered capture.",
+      "tool": "Capture One"
+    },
+    {
+      "time": "11:45",
+      "action": "Add atmospheric effects to create bloom and texture.",
+      "tool": "Black Pro Mist Filter & Atmosphere Aerosol"
+    }
+  ],
+  "key_takeaways": [
+    "Start with a deliberate color harmony (e.g., split complementary) to guide lighting and styling choices.",
+    "Color management tools like calibrators and color checkers are essential for accurate results.",
+    "To mix strobes with continuous light, slow down the shutter speed (drag the shutter) to let the continuous light register.",
+    "Build lighting setups one light at a time to understand the contribution of each source.",
+    "Atmospheric tools like haze and diffusion filters add depth and 'bloom' to highlights."
+  ],
+  "video_id": "df_GjbhFuGY",
+  "url": "https://www.youtube.com/watch?v=df_GjbhFuGY"
+}

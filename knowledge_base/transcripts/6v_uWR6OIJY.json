@@ -1,0 +1,54 @@
+{
+  "title": "Valentine's Day Beauty Shoot Tutorial",
+  "summary": "Lindsay Adler demonstrates a creative workflow for a Valentine's Day themed beauty photoshoot, detailing set design with reflections, a three-light setup using optical spots and bounce flash, in-camera effects with filters, and color grading techniques in Capture One.",
+  "steps": [
+    {
+      "time": "01:31",
+      "action": "Set up the background using a coral-colored seamless paper to match the theme.",
+      "tool": "Savage Universal Coral Background"
+    },
+    {
+      "time": "01:42",
+      "action": "Place a rose gold mirrored plexiglass sheet on a posing table to create reflections and anchor the subject.",
+      "tool": "Rose Gold Mirrored Plexiglass"
+    },
+    {
+      "time": "02:14",
+      "action": "Set up the main light using a strobe with an optical spot modifier to create a tight slice of light on the subject's face.",
+      "tool": "Westcott Optical Spot, Profoto D2"
+    },
+    {
+      "time": "03:07",
+      "action": "Set up a second strobe as a background light using an optical spot with a heart-shaped gobo to project a pattern behind the subject.",
+      "tool": "Westcott Optical Spot, Heart Gobo"
+    },
+    {
+      "time": "04:28",
+      "action": "Add a third strobe with no modifier, pointed at the wall and ceiling behind the camera, to create omnidirectional bounce fill light and lift shadows.",
+      "tool": "Profoto D2"
+    },
+    {
+      "time": "06:08",
+      "action": "Attach a star filter to the camera lens to create starburst effects on the specular highlights and reflections.",
+      "tool": "North Star Filter"
+    },
+    {
+      "time": "06:52",
+      "action": "Apply color grading in Capture One: warm up white balance, adjust tint to magenta, desaturate slightly, add contrast, and use color wheels to shift highlights (cyan/green) and shadows (magenta).",
+      "tool": "Capture One"
+    },
+    {
+      "time": "10:01",
+      "action": "Hold a reflective wand from an expansion pack in front of the lens to create foreground reflections and visual interest.",
+      "tool": "Lensbaby Omni Reflection Expansion Pack"
+    }
+  ],
+  "key_takeaways": [
+    "Use optical spots to create precise shapes and slices of light for dramatic effect.",
+    "Bounce a bare strobe off the back wall/ceiling to create a soft, omnidirectional fill that lifts shadows without adding directional distractions.",
+    "Incorporate physical props like mirrored plexiglass and lens filters to add layers of visual interest and reflections in-camera.",
+    "Use color grading (specifically split toning highlights and shadows) to reinforce the mood and theme of the shoot."
+  ],
+  "video_id": "6v_uWR6OIJY",
+  "url": "https://www.youtube.com/watch?v=6v_uWR6OIJY"
+}

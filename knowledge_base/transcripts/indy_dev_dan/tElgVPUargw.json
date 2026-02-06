@@ -1,0 +1,90 @@
+{
+    "title": "Multi-Agent Generative UI Workflow",
+    "summary": "A comprehensive guide to building a Generative UI Chat application using a multi-agent engineering approach. The workflow utilizes Aider and Cursor, employing a 'Plan, Collect, Prompt' strategy where distinct agents handle client, server, documentation, and database tasks to ensure separation of concerns and high coding accuracy.",
+    "steps": [
+        {
+            "time": "0:56",
+            "action": "Define Workflow Strategy",
+            "tool": "Conceptual Framework",
+            "reasoning": "Establishes the 'Plan, Collect, Prompt' methodology to structure the engineering process."
+        },
+        {
+            "time": "1:58",
+            "action": "Plan Project & Define Team",
+            "tool": "Planning",
+            "reasoning": "Breaks down the project into high-level goals and assigns specific roles (Client, Server, Docs, Bash) to distinct AI agents."
+        },
+        {
+            "time": "2:47",
+            "action": "Initialize Agent Team",
+            "tool": "Aider (Client/Server), Bash Scripts",
+            "reasoning": "Instantiates separate Aider instances for client and server to enable parallel execution and specialized focus."
+        },
+        {
+            "time": "3:57",
+            "action": "Configure Context Boundaries",
+            "tool": "Aider (read-only command)",
+            "reasoning": "Sets read-only permissions on cross-functional files to reduce context noise and prevent agents from hallucinating changes outside their domain."
+        },
+        {
+            "time": "4:12",
+            "action": "Collect and Refine Documentation",
+            "tool": "Aloel / Anthropic",
+            "reasoning": "Scrapes raw documentation and uses an AI editor to summarize it into concise markdown, providing high-quality fuel for the coding agents."
+        },
+        {
+            "time": "4:58",
+            "action": "Feed Context to Agents",
+            "tool": "Aider (read-only command)",
+            "reasoning": "Injects the refined documentation into the agents' context windows to ensure accurate implementation of specific libraries (Anthropic Tool Use, Vue)."
+        },
+        {
+            "time": "10:58",
+            "action": "Implement Server Tool Logic",
+            "tool": "Aider (Server Agent)",
+            "reasoning": "Uses Architect mode (Draft then Edit) to create the backend endpoint and define the schema for generative UI tools."
+        },
+        {
+            "time": "13:32",
+            "action": "Connect Client to Tool Endpoint",
+            "tool": "Aider (Client Agent)",
+            "reasoning": "Updates the frontend to consume the new backend tool capabilities, verifying the contract between client and server agents."
+        },
+        {
+            "time": "14:55",
+            "action": "Enhance State Management",
+            "tool": "Aider (Client Agent)",
+            "reasoning": "Refactors the data structure to support complex UI component states, preparing for dynamic rendering."
+        },
+        {
+            "time": "17:44",
+            "action": "Generate Dynamic UI Components",
+            "tool": "Aider (Client Agent)",
+            "reasoning": "Batch creates multiple Vue components and implements dynamic rendering logic via prompt chaining."
+        },
+        {
+            "time": "20:58",
+            "action": "Initialize Database",
+            "tool": "Bash Agent",
+            "reasoning": "Delegates system-level tasks (creating SQLite DB) to a specialized Bash agent to keep coding agents focused on application logic."
+        },
+        {
+            "time": "21:28",
+            "action": "Implement Persistence Layer",
+            "tool": "Aider (Server Agent)",
+            "reasoning": "Adds backend logic to save and load chat state, completing the server-side requirements."
+        },
+        {
+            "time": "22:52",
+            "action": "Integrate Persistence on Client",
+            "tool": "Aider (Client Agent)",
+            "reasoning": "Finalizes the application by connecting frontend lifecycle events to the backend storage endpoints."
+        }
+    ],
+    "key_takeaways": [
+        "The 'Plan, Collect, Prompt' framework significantly structures complex AI coding tasks.",
+        "Separating concerns via distinct agents (Client vs. Server) prevents context pollution and reduces errors.",
+        "Aider's Architect mode (Draft -> Edit) improves code generation accuracy by separating planning from implementation.",
+        "The 'Collect' phase—curating clean, specific documentation—is critical for successfully integrating external libraries."
+    ]
+}

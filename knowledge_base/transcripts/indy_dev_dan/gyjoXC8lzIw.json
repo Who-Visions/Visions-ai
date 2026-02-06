@@ -1,0 +1,48 @@
+{
+    "title": "Agentic Drop Zones: Automating File-Based Workflows",
+    "summary": "This tutorial introduces 'Agentic Drop Zones' (ADZ), a framework that shifts Generative AI interaction from chat boxes to file system events. By running a single Python script (`adz`), users can drag and drop files into configured directories to trigger specialized agentic workflows—such as image generation, financial analysis, and data expansion—powered by agents like Claude Code and Gemini. The system relies on a `drops.yaml` configuration file and reusable Markdown prompts to orchestrate end-to-end automation.",
+    "steps": [
+        {
+            "time": "00:18",
+            "action": "Initialize the Agentic Drop Zone system by running the `adz` command.",
+            "tool": "Terminal / Python Script",
+            "reasoning": "Starts the file system watcher to monitor specific directories for incoming files, establishing the event-driven architecture."
+        },
+        {
+            "time": "00:33",
+            "action": "Trigger specialized workflows by dragging files (e.g., `cats.txt`) into designated drop zones.",
+            "tool": "OS File System (Finder)",
+            "reasoning": "Demonstrates the core user interface shift: initiating complex AI tasks via simple file manipulation rather than chat prompts."
+        },
+        {
+            "time": "06:34",
+            "action": "Examine the `sfs_agentic_drop_zone.py` Single File Script.",
+            "tool": "VS Code / Python",
+            "reasoning": "Highlights the portability and simplicity of the implementation, using Astral UV to manage dependencies within a single file."
+        },
+        {
+            "time": "06:58",
+            "action": "Configure workflow logic using the `drops.yaml` file.",
+            "tool": "YAML Configuration",
+            "reasoning": "Allows users to define new 'zones,' map them to specific agents (Claude/Gemini), and assign prompt templates without altering the codebase."
+        },
+        {
+            "time": "07:28",
+            "action": "Create reusable agent instructions using Markdown prompt templates (e.g., `echo.md`).",
+            "tool": "Markdown / Prompt Engineering",
+            "reasoning": "Uses variables like `[[DROPPED_FILE_PATH]]` to make prompts dynamic and reusable across different files and agents."
+        },
+        {
+            "time": "18:17",
+            "action": "Implement programmatic agent control using the Claude Code SDK.",
+            "tool": "Python SDK (Anthropic)",
+            "reasoning": "Shows how to wrap agent capabilities into code functions (`prompt_claude_code`), enabling more robust error handling and integration than raw CLI calls."
+        }
+    ],
+    "key_takeaways": [
+        "Move beyond chat interfaces: File-based triggers allow for 'fire-and-forget' automation of repetitive tasks.",
+        "Configuration over Code: The `drops.yaml` file enables rapid prototyping of new agent behaviors without deep programming.",
+        "Agent Agnosticism: The architecture supports swapping underlying models (Claude vs. Gemini) by changing a config line.",
+        "Single File Simplicity: Packaging complex agentic logic into a Single File Script (SFS) lowers the barrier to entry and deployment."
+    ]
+}

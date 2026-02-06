@@ -1,0 +1,59 @@
+{
+  "title": "How to Calibrate a BenQ Monitor for Photography",
+  "summary": "Peter Hurley and Maurice Jager demonstrate the step-by-step process of hardware calibrating a BenQ SW271 monitor using Palette Master Element software. They explain the optimal settings for photographers, the difference between digital and print calibration targets, and how to save profiles directly to the monitor.",
+  "steps": [
+    {
+      "time": "01:35",
+      "action": "Open Palette Master Element software and click 'Check Sensor' to detect your calibration device.",
+      "tool": "Palette Master Element"
+    },
+    {
+      "time": "02:08",
+      "action": "Select 'Basic' mode for a streamlined calibration process suitable for most photographers.",
+      "tool": "Palette Master Element"
+    },
+    {
+      "time": "02:38",
+      "action": "Choose 'Photographer' as the default setting. Select D65 as the White Point for digital work (use D50 for print).",
+      "tool": "Palette Master Element"
+    },
+    {
+      "time": "03:40",
+      "action": "Set Luminance. Use 160 cd/m\u00b2 for bright environments or 120-140 cd/m\u00b2 for darker studios.",
+      "tool": "Palette Master Element"
+    },
+    {
+      "time": "04:31",
+      "action": "Select the calibration preset slot (e.g., Calibration 1) to save the profile to the monitor hardware.",
+      "tool": "Palette Master Element"
+    },
+    {
+      "time": "05:20",
+      "action": "Select Profile Version 4 and Matrix type, then click 'Start Measurement'.",
+      "tool": "Palette Master Element"
+    },
+    {
+      "time": "05:50",
+      "action": "Follow the on-screen guide to place the colorimeter on the screen. Tilt the monitor back slightly to help gravity hold the device flat.",
+      "tool": "X-Rite i1Display Pro"
+    },
+    {
+      "time": "07:09",
+      "action": "Review the calibration report and Delta E values. Close the application to save the settings to the monitor.",
+      "tool": "Palette Master Element"
+    },
+    {
+      "time": "08:35",
+      "action": "Optionally repeat the process for a second profile (e.g., D50 for print) on 'Calibration 2' slot to switch between them using the Hotkey Puck.",
+      "tool": "Hotkey Puck"
+    }
+  ],
+  "key_takeaways": [
+    "Hardware calibration saves the color profile to the monitor itself, ensuring consistency even if you change computers.",
+    "Use D65 white point for digital/web work and D50 for print/paper simulation.",
+    "Adjust luminance based on your ambient working environment (120 for dark rooms, 160 for daylight).",
+    "BenQ monitors allow storing multiple hardware calibration profiles (e.g., one for web, one for print) that can be toggled instantly."
+  ],
+  "video_id": "84Z5yMLCtJM",
+  "url": "https://www.youtube.com/watch?v=84Z5yMLCtJM"
+}

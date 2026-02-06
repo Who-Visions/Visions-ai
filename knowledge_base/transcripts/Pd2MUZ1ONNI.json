@@ -1,0 +1,45 @@
+{
+  "title": "Dramatic Clamshell Lighting Photo Deconstruction",
+  "summary": "Lindsay Adler demonstrates a dramatic variation of the traditional clamshell lighting setup. By using hard, gridded lights instead of soft modifiers, she creates a sculpted, high-contrast portrait. The tutorial covers the three-light setup, the use of ND gels to manage strobe power, and post-processing techniques including Generative Fill.",
+  "steps": [
+    {
+      "time": "01:35",
+      "action": "Position the main light above and centered on the subject to create a concentrated, hard light.",
+      "tool": "Profoto D2 with 5 Degree Grid"
+    },
+    {
+      "time": "02:06",
+      "action": "Place the fill light below the subject's face to lift shadows while maintaining directionality.",
+      "tool": "Profoto D2 with 1x4ft Strip Softbox + Grid"
+    },
+    {
+      "time": "02:53",
+      "action": "Set up a background light on a floor stand behind the subject to create separation and a gradient.",
+      "tool": "Profoto D1 Bare Strobe"
+    },
+    {
+      "time": "03:49",
+      "action": "Apply a Neutral Density (ND) gel to the background strobe to reduce its power below the minimum setting.",
+      "tool": "ND Gel"
+    },
+    {
+      "time": "06:27",
+      "action": "Adjust white balance in post-processing to warm up the image and add a magenta tint.",
+      "tool": "RAW Editor"
+    },
+    {
+      "time": "06:58",
+      "action": "Use Generative Fill to clean up stray hairs and refine the hair edge.",
+      "tool": "Adobe Photoshop Generative Fill"
+    }
+  ],
+  "key_takeaways": [
+    "Clamshell lighting can be used for dramatic, sculpted results using hard light modifiers like grids.",
+    "A 5-degree grid creates an extremely narrow and concentrated beam of light.",
+    "ND gels are crucial for lowering the output of powerful strobes when shooting at wide apertures or low ISOs.",
+    "Hard light can be flattering and doesn't always require extensive skin retouching.",
+    "Generative Fill is highly effective for cleaning up messy hair edges in post-production."
+  ],
+  "video_id": "Pd2MUZ1ONNI",
+  "url": "https://www.youtube.com/watch?v=Pd2MUZ1ONNI"
+}

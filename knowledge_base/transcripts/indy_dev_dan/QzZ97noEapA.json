@@ -1,0 +1,49 @@
+{
+    "title": "Agentic Coding: Orchestrating AIDER via Claude Code and MCP",
+    "summary": "This workflow demonstrates a hybrid agentic pattern where Claude Code acts as the high-level orchestrator and reviewer, while delegating specific coding tasks to AIDER via the Model Context Protocol (MCP). By configuring AIDER to use cost-effective or high-intelligence models (like Gemini 2.5 Pro or Quasar Alpha), the user optimizes for both cost and control, establishing a 'Looping Editor-Reviewer' workflow where Claude plans and validates, and AIDER executes.",
+    "steps": [
+        {
+            "time": "04:23",
+            "action": "Initialize Claude Code with AIDER MCP integration",
+            "tool": "Claude Code / Terminal",
+            "reasoning": "Establishes the agentic environment where Claude Code can access AIDER as a tool via MCP."
+        },
+        {
+            "time": "04:27",
+            "action": "Execute context priming prompt",
+            "tool": "Claude Code",
+            "reasoning": "Provides the orchestrator with necessary project context and file structure understanding before delegating tasks."
+        },
+        {
+            "time": "05:30",
+            "action": "Configure MCP server settings to define the worker model",
+            "tool": "mcp.json / Gemini 2.5 Pro",
+            "reasoning": "Sets the specific model (Gemini 2.5 Pro) that AIDER will use for coding, separating the 'planner' (Claude) from the 'coder' (Gemini) to save costs."
+        },
+        {
+            "time": "06:29",
+            "action": "Delegate coding task via natural language command",
+            "tool": "aider ai code",
+            "reasoning": "Claude Code constructs the prompt and context, then instructs AIDER to modify 'utils.py', demonstrating the orchestrator pattern."
+        },
+        {
+            "time": "09:28",
+            "action": "Chain search and update commands with a specific model",
+            "tool": "Claude Code / Quasar Alpha",
+            "reasoning": "Executes a complex workflow: finding specific code patterns ('.info') and instructing AIDER to refactor them using a specified model (Quasar Alpha)."
+        },
+        {
+            "time": "11:20",
+            "action": "Review and validate generated diffs",
+            "tool": "Claude Code",
+            "reasoning": "Completes the 'Editor-Reviewer' loop where the orchestrator validates the worker's output before final acceptance."
+        }
+    ],
+    "key_takeaways": [
+        "The 'Editor-Reviewer' workflow allows Claude Code to act as an architect while AIDER handles the raw coding.",
+        "Using MCP allows for delegating expensive token generation to cheaper, high-performance models like Gemini 2.5 Pro.",
+        "Agentic coding is about combining tools (AND logic) rather than selecting a single tool (OR logic).",
+        "Claude Code validates AIDER's work, ensuring quality control remains with the more intelligent orchestrator.",
+        "The Compute Advantage Equation relies on increasing autonomy and compute scaling to reduce human time and effort."
+    ]
+}

@@ -1,0 +1,45 @@
+{
+  "title": "How to Create Sunlight in Studio with One Strobe",
+  "summary": "Photographer Lindsay Adler demonstrates how to emulate the look of hard natural sunlight in a studio environment using a single bare bulb strobe. The tutorial covers set design, lighting positioning, camera settings, and post-processing techniques to achieve a high-key, sun-bathed aesthetic.",
+  "steps": [
+    {
+      "time": "00:53",
+      "action": "Construct the set using a V-Flat placed directly behind the subject. Have the subject pose inside the V-Flat to create the illusion of a corner or location rather than a flat background.",
+      "tool": "V-Flat World V-Flat"
+    },
+    {
+      "time": "02:21",
+      "action": "Choose a strobe light with no modifier (bare bulb) to create a hard light source, which mimics the characteristics of direct sunlight.",
+      "tool": "Profoto D2"
+    },
+    {
+      "time": "02:47",
+      "action": "Position the light source far away from the subject and raise it to a high angle. Increasing the distance makes the light source relatively smaller, resulting in harder shadows.",
+      "tool": "Light Stand"
+    },
+    {
+      "time": "03:45",
+      "action": "Set camera exposure settings to ensure a sharp image with deep depth of field.",
+      "code": "Shutter: 1/200, Aperture: f/8.0, ISO: 200",
+      "tool": "Canon R5 + RF 24-105mm"
+    },
+    {
+      "time": "05:47",
+      "action": "Color grade the image to simulate the warmth of the sun. Warm up the white balance, increase contrast, pop the whites, and add yellow to the highlights.",
+      "tool": "Capture One"
+    },
+    {
+      "time": "06:10",
+      "action": "Retouch the image to clean up the set. Remove V-Flat seams, extend the white background, and remove wrinkles from clothing.",
+      "tool": "Adobe Photoshop"
+    }
+  ],
+  "key_takeaways": [
+    "Sunlight is a hard light source; avoid softboxes and use bare bulbs or hard reflectors to emulate it.",
+    "The further a light source is from the subject, the smaller it becomes relative to the subject, creating harder light.",
+    "Posing a subject inside a V-Flat creates dimension and mimics a location corner better than a flat wall.",
+    "Post-processing color temperature is crucial to selling the 'sunlight' effect; adding warmth and yellow tones transforms a cold studio shot into a sunny scene."
+  ],
+  "video_id": "irHm9pi4IOk",
+  "url": "https://www.youtube.com/watch?v=irHm9pi4IOk"
+}

@@ -1,0 +1,78 @@
+{
+    "title": "Meta-Prompting Workflow: Automating Prompt Engineering with OpenAI O1 & O1 Pro",
+    "summary": "This workflow demonstrates 'Meta-Prompting,' a technique where a master XML-based prompt is used to generate highly structured, task-specific prompts for various use cases (Data Analysis, Debugging, Content Creation). The process compares the execution speed and quality between OpenAI's O1 and O1 Pro models, utilizing external CLI tools for data preparation.",
+    "steps": [
+        {
+            "time": "01:15",
+            "action": "Define the Meta-Prompt Structure",
+            "tool": "VS Code",
+            "reasoning": "Establishes the 'Agent' logic using XML tags (<purpose>, <instructions>, <input-format>) to program the LLM to act as an expert prompt engineer."
+        },
+        {
+            "time": "01:55",
+            "action": "Define Task 1 Input (Hacker News Analysis)",
+            "tool": "VS Code",
+            "reasoning": "Creates the specific constraints (variables, output format, mermaid graphs) for the meta-prompt to process."
+        },
+        {
+            "time": "02:30",
+            "action": "Generate Structured Prompt 1",
+            "tool": "ChatGPT O1",
+            "reasoning": "Uses the Meta-Prompt to automatically generate a complex, optimized XML prompt for the specific task, ensuring consistency and adherence to constraints."
+        },
+        {
+            "time": "03:55",
+            "action": "Define Task 2 Input (Bug Analysis)",
+            "tool": "VS Code",
+            "reasoning": "Sets up a technical task requiring specific severity rankings (1-5) and structured output examples for the agent to emulate."
+        },
+        {
+            "time": "04:30",
+            "action": "Generate Structured Prompt 2",
+            "tool": "ChatGPT O1",
+            "reasoning": "Demonstrates the meta-prompt's ability to create few-shot examples within the generated prompt to guide downstream model behavior."
+        },
+        {
+            "time": "06:08",
+            "action": "Define Task 3 Input (HTML Blog Generation)",
+            "tool": "VS Code",
+            "reasoning": "Configures a multi-modal task requiring specific HTML/CSS formatting, tone adjustments, and image asset integration."
+        },
+        {
+            "time": "11:37",
+            "action": "Fetch and Filter External Data",
+            "tool": "Terminal / jq / Algolia API",
+            "reasoning": "Pre-processes raw data (reducing 200k tokens to 100k) to fit within the model's context window, a critical step for data-heavy agentic workflows."
+        },
+        {
+            "time": "12:30",
+            "action": "Execute Task 1 (Data Analysis)",
+            "tool": "ChatGPT O1 vs O1 Pro",
+            "reasoning": "Feeds the pre-processed data into the generated prompt to compare model reasoning capabilities and latency (O1 was significantly faster)."
+        },
+        {
+            "time": "18:52",
+            "action": "Execute Task 3 (Content Generation)",
+            "tool": "ChatGPT O1 vs O1 Pro",
+            "reasoning": "Validates the generated prompt's ability to enforce strict output formats (HTML/CSS) and integrate specific assets."
+        },
+        {
+            "time": "27:07",
+            "action": "Gather Code Context",
+            "tool": "Terminal (aloel gather-files)",
+            "reasoning": "Automates the aggregation of distributed code files into a single context block for the AI to analyze."
+        },
+        {
+            "time": "27:30",
+            "action": "Execute Task 2 (Code Review)",
+            "tool": "ChatGPT O1 vs O1 Pro",
+            "reasoning": "Tests the models' ability to identify critical bugs and provide fixes based on the strict severity schema defined by the meta-prompt."
+        }
+    ],
+    "key_takeaways": [
+        "Meta-prompting unlocks asymmetric productivity by allowing a single master prompt to generate infinite specialized, high-quality prompts.",
+        "XML structure is the optimal format for complex prompt engineering, allowing for clear separation of instructions, examples, and data.",
+        "OpenAI O1 is significantly faster (often seconds vs minutes) than O1 Pro for both prompt generation and execution, though O1 Pro offers marginally better detail.",
+        "Effective agentic workflows require external tools (like jq or custom scripts) to manage context window limitations when dealing with large datasets."
+    ]
+}

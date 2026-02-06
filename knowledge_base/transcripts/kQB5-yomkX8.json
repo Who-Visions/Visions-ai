@@ -1,0 +1,63 @@
+{
+  "title": "Avant-Garde Beauty Photography: Shutter Drag & Color Grading Deconstruction",
+  "summary": "Lindsay Adler deconstructs an avant-garde beauty photoshoot featuring pearl makeup. She details a three-light setup using optical spots and bounced fill, demonstrates a creative shutter drag technique involving lens zooming to create starburst effects, and explains her post-processing workflow to achieve a cool, analogous color grade.",
+  "steps": [
+    {
+      "time": "00:00",
+      "action": "Introduction to the concept of 'Creative Play Days' and the pearl makeup inspiration.",
+      "code": null,
+      "tool": null
+    },
+    {
+      "time": "02:35",
+      "action": "Set up the Main Light: A strobe with an optical spot, kit lens, and dappled gobo to create irregular, textured light.",
+      "code": null,
+      "tool": "Profoto D2, Westcott Optical Spot, Dappled Gobo"
+    },
+    {
+      "time": "03:35",
+      "action": "Set up the Fill Light: A bare strobe bounced into the back corner of the room to lift shadows softly without directionality.",
+      "code": null,
+      "tool": "Profoto D2 (Bare Strobe)"
+    },
+    {
+      "time": "04:14",
+      "action": "Set up the Background Light: A strobe with a 20-degree grid pointed low at a blue mist background to create a gradient.",
+      "code": null,
+      "tool": "Profoto D2, 20 Degree Grid, Savage Universal Blue Mist Background"
+    },
+    {
+      "time": "05:43",
+      "action": "Camera Settings & Gear: Shooting with a Canon R5 and RF 24-105mm lens at 1/20 sec, f/4, ISO 800.",
+      "code": null,
+      "tool": "Canon R5, Canon RF 24-105mm f/2.8"
+    },
+    {
+      "time": "06:04",
+      "action": "Execute Shutter Drag Technique: Use a slow shutter speed (1/20s) and zoom the lens slightly during exposure to create starburst/blur effects on the pearl highlights.",
+      "code": null,
+      "tool": "Zoom Lens"
+    },
+    {
+      "time": "07:56",
+      "action": "Color Grading (Raw Processing): Create an analogous color scheme by shifting highlights to Cyan/Green and shadows to Blue.",
+      "code": null,
+      "tool": "Raw Processor (e.g., Capture One/Lightroom)"
+    },
+    {
+      "time": "08:31",
+      "action": "Retouching: Smooth skin texture, clean up pearl edges, and dodge/burn eyes for emphasis.",
+      "code": null,
+      "tool": "Adobe Photoshop"
+    }
+  ],
+  "key_takeaways": [
+    "Use 'Creative Play Days' to experiment with new techniques without client constraints.",
+    "Optical spots with dappled gobos add complexity and texture to lighting compared to flat softboxes.",
+    "Bouncing a bare strobe is an effective way to create soft, non-directional fill light.",
+    "Shutter drag combined with a zoom lens can turn static highlights into dynamic starbursts.",
+    "Analogous color grading (matching lighting and background tones) creates a cohesive and moody final image."
+  ],
+  "video_id": "kQB5-yomkX8",
+  "url": "https://www.youtube.com/watch?v=kQB5-yomkX8"
+}

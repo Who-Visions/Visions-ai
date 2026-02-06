@@ -1,0 +1,66 @@
+{
+    "title": "The Fisherman's Prompt: Rapid Technical Learning Workflow",
+    "summary": "This workflow demonstrates a structured method for using Large Language Models (LLMs) as personalized technical tutors. By utilizing a specific template called 'The Fisherman's Prompt', the user configures the AI to deliver a tailored mini-course on Pytest, adapting the depth and pace through iterative feedback and specific clarification requests.",
+    "steps": [
+        {
+            "time": "00:30",
+            "action": "Configure 'The Fisherman's Prompt' template",
+            "tool": "Text Editor",
+            "reasoning": "Defines the agent's persona, user level, specific topic (Pytest), and strict instructional rules to ensure structured output."
+        },
+        {
+            "time": "01:55",
+            "action": "Initialize the learning session",
+            "tool": "ChatGPT (GPT-4)",
+            "reasoning": "Starts the custom curriculum with fundamental concepts and executable code examples based on the defined constraints."
+        },
+        {
+            "time": "03:13",
+            "action": "Request deep dive on specific concepts (Fixtures)",
+            "tool": "ChatGPT",
+            "reasoning": "Leverages the agent's interactive nature to clarify complex topics (setup/teardown, scopes) before moving forward."
+        },
+        {
+            "time": "04:10",
+            "action": "Clarify syntax and underlying patterns",
+            "tool": "ChatGPT",
+            "reasoning": "Ensures comprehension of language features (Python decorators) used by the library, not just the library itself."
+        },
+        {
+            "time": "05:04",
+            "action": "Advance to optimization tools",
+            "tool": "pytest-xdist / pytest-testmon",
+            "reasoning": "Progresses the curriculum to intermediate skills like parallel execution and caching for efficiency."
+        },
+        {
+            "time": "05:37",
+            "action": "Explore advanced testing techniques",
+            "tool": "pytest-mock / pytest marks",
+            "reasoning": "Covers professional-grade scenarios including mocking external services and classifying tests."
+        },
+        {
+            "time": "06:10",
+            "action": "Master complex syntax (Parametrization)",
+            "tool": "ChatGPT",
+            "reasoning": "Focuses the agent on a specific, high-utility feature to understand stacking decorators and dynamic inputs."
+        },
+        {
+            "time": "07:50",
+            "action": "Generate future learning roadmap",
+            "tool": "ChatGPT",
+            "reasoning": "Asks the agent to identify knowledge gaps and suggest adjacent technologies (TDD, CI/CD) for continued growth."
+        },
+        {
+            "time": "08:05",
+            "action": "Pivot to CI/CD implementation",
+            "tool": "GitHub Actions",
+            "reasoning": "Demonstrates the workflow's versatility by seamlessly transitioning to a related DevOps topic within the same session."
+        }
+    ],
+    "key_takeaways": [
+        "The 'Fisherman's Prompt' transforms generic LLM interactions into a structured, chapter-based educational course.",
+        "Defining rules (e.g., 'one chapter at a time', 'ask for feedback') prevents information overload and ensures pacing.",
+        "Interactive querying allows the user to control the depth of learning, pausing to deconstruct complex syntax or concepts.",
+        "The workflow supports dynamic curriculum expansion, linking code libraries (Pytest) to broader engineering practices (CI/CD)."
+    ]
+}

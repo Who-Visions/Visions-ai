@@ -1,0 +1,48 @@
+{
+    "title": "Fusion Chain and Evaluator Patterns in Agentic Workflows",
+    "summary": "This workflow details the evolution from linear 'Prompt Chaining' to 'Fusion Chaining' (also known as Beam or Competition Chains). The core strategy involves running parallel inference across multiple state-of-the-art models (OpenAI, Anthropic, Google) for the same task. A programmatic 'Evaluator' then scores and merges these outputs to select the optimal result. The concept is demonstrated via 'Zero Noise,' an application that uses this workflow to autonomously learn and verify HTML selectors for web scraping.",
+    "steps": [
+        {
+            "time": "11:04",
+            "action": "Define the Base Prompt Chain",
+            "tool": "Python (Custom Class)",
+            "reasoning": "Establishes the fundamental unit of agentic work where the output of Prompt A becomes the input of Prompt B, allowing for sequential reasoning."
+        },
+        {
+            "time": "11:57",
+            "action": "Implement Fusion Chain Architecture",
+            "tool": "Python (FusionChain Class)",
+            "reasoning": "Expands the base chain to accept N models instead of one. This enables 'vertical' scaling by running the same prompt context against multiple distinct LLMs simultaneously."
+        },
+        {
+            "time": "15:40",
+            "action": "Initialize Workflow Context",
+            "tool": "Streamlit / Python",
+            "reasoning": "Prepares the 'Zero Noise' Learn Workflow by injecting raw scraped HTML, URL, and date into the `chain_context` to serve as the ground truth for the agents."
+        },
+        {
+            "time": "15:55",
+            "action": "Execute Parallel Inference",
+            "tool": "FusionChain.run_parallel (Sonnet 3.5, GPT-4o, Gemini 1.5)",
+            "reasoning": "Runs the parsing prompts across three different providers. This diversity prevents reliance on a single model's bias and increases the probability of finding a correct solution."
+        },
+        {
+            "time": "16:23",
+            "action": "Run the Evaluator Function",
+            "tool": "Python (Custom Evaluator Logic)",
+            "reasoning": "The critical step that defines 'success.' It programmatically scores the parallel outputs (e.g., penalizing invalid headers) to rank the model responses objectively."
+        },
+        {
+            "time": "17:26",
+            "action": "Select and Verify Top Response",
+            "tool": "JSON / Browser DevTools",
+            "reasoning": "The highest-scored HTML selector is extracted from the Fusion results. This selector is then verified against the DOM to ensure it accurately fetches the desired content."
+        }
+    ],
+    "key_takeaways": [
+        "The 'Evaluator' is the most critical pattern for autonomous agents, as it allows the system to judge its own outputs and self-improve without human intervention.",
+        "Fusion Chaining (Multi-Chain) outperforms single-model chains by leveraging the 'wisdom of the crowd' across different model architectures (OpenAI vs. Anthropic vs. Google).",
+        "Staying 'close to the metal' (avoiding heavy abstraction libraries like LangChain initially) is recommended to fully understand and optimize the flow of data and prompts.",
+        "Agentic workflows are not just linear sequences; they are graph-like structures that can loop, branch, and compete to maximize accuracy."
+    ]
+}

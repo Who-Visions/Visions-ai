@@ -1,0 +1,55 @@
+{
+    "title": "Agentic Coding Workflow with Claude Code and MCP",
+    "summary": "A technical workflow demonstrating 'Asymmetric Engineering' using Anthropic's Claude Code CLI. The process covers setting up the environment, context priming the AI with codebase documentation, deploying Single File Agents (SFA) via 'uv', implementing token-efficient tool use, and extending capabilities through the Model Context Protocol (MCP).",
+    "steps": [
+        {
+            "time": "00:53",
+            "action": "Install Claude Code CLI tool globally",
+            "tool": "npm, Claude Code",
+            "reasoning": "Establishes the primary agentic interface capable of file editing, bug fixing, and test execution."
+        },
+        {
+            "time": "01:10",
+            "action": "Initialize environment and perform Context Priming",
+            "tool": "Cursor IDE, Claude Code",
+            "reasoning": "Feeds the agent specific documentation (README, AI docs) and file structure (git ls-files) to ground its reasoning in the specific codebase."
+        },
+        {
+            "time": "05:25",
+            "action": "Execute a Single File Agent (SFA) for content summarization",
+            "tool": "uv, Python, SFA Script",
+            "reasoning": "Demonstrates the use of self-contained, portable agents to perform complex multi-step file operations autonomously."
+        },
+        {
+            "time": "06:45",
+            "action": "Modify agent code to support Token-Efficient Tool Use (Beta)",
+            "tool": "Claude Code (Editor Tool)",
+            "reasoning": "Updates the agent's architecture to utilize Anthropic's beta features, reducing latency and cost by optimizing tool definition tokens."
+        },
+        {
+            "time": "07:36",
+            "action": "Benchmark agent performance (Standard vs. Efficient) on Flask API creation",
+            "tool": "uv, Python, Flask",
+            "reasoning": "Empirically validates the efficiency gains (approx. 12% output token reduction) and execution speed of the optimized agent workflow."
+        },
+        {
+            "time": "11:35",
+            "action": "Configure 'Thinking Mode' parameters",
+            "tool": "Python (Argparse), Claude 3.7",
+            "reasoning": "Allocates a specific token budget for the model's internal reasoning process ('thinking') to improve planning before tool execution."
+        },
+        {
+            "time": "13:25",
+            "action": "Extend agent capabilities by adding MCP servers via JSON",
+            "tool": "Claude Code CLI, MCP (Model Context Protocol)",
+            "reasoning": "Modularly expands the agent's toolset (e.g., adding 'fetch' for web scraping) using a standardized protocol without altering core agent code."
+        }
+    ],
+    "key_takeaways": [
+        "Context Priming is essential for high-accuracy agentic coding.",
+        "Single File Agents (SFA) combined with 'uv' provide a portable, reproducible agent architecture.",
+        "Token-efficient tool use significantly reduces output tokens and latency for complex agent loops.",
+        "The Model Context Protocol (MCP) allows for modular extension of agent capabilities (Collectors and Executors).",
+        "Thinking Mode budgets allow developers to trade inference cost for higher-quality planning in autonomous tasks."
+    ]
+}

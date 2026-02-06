@@ -1,0 +1,54 @@
+{
+    "title": "Mastering AI Coding Prompts: Mirror, Variable, and Function",
+    "summary": "This workflow demonstrates a strategic approach to AI-assisted software engineering using the Cursor IDE. It focuses on three specific prompt keywords—Mirror, Variable, and Function—to efficiently guide AI generation. By leveraging existing code patterns, descriptive variable naming, and function prototyping with bulleted constraints, developers can accelerate implementation while maintaining high code quality.",
+    "steps": [
+        {
+            "time": "00:34",
+            "action": "Execute 'MIRROR' prompt for UI logic",
+            "tool": "Cursor (Inline Completion)",
+            "reasoning": "Instructs the AI to replicate an existing logic block ('nav_bar_community') and adapt it for a new feature ('nav_bar_upgrade'), saving time on boilerplate code."
+        },
+        {
+            "time": "01:49",
+            "action": "Execute 'MIRROR' prompt for data transformation",
+            "tool": "Cursor (Inline Completion)",
+            "reasoning": "Uses the 'mirror' keyword to map a new computed property ('columnNames') based on the structure of an existing one ('tableNames'), allowing the AI to infer the relationship between tables and columns."
+        },
+        {
+            "time": "02:50",
+            "action": "Define logic via 'VARIABLE' naming",
+            "tool": "Cursor (Inline Completion)",
+            "reasoning": "By typing a descriptive variable name (`const flatColumnNames`), the user forces the AI to infer the specific logic required (using `flatMap`) without explicitly writing the algorithm."
+        },
+        {
+            "time": "03:20",
+            "action": "Refine logic via 'VARIABLE' naming for uniqueness",
+            "tool": "Cursor (Inline Completion)",
+            "reasoning": "Specifying `flatUniqueColumnNames` prompts the AI to automatically add logic for removing duplicates (creating a Set), demonstrating how precise naming dictates implementation details."
+        },
+        {
+            "time": "06:45",
+            "action": "Prototype logic via 'FUNCTION' signature",
+            "tool": "Cursor (Inline Completion)",
+            "reasoning": "Writing a function signature with types (`getTablesMatchingString(strToMatch: string): str[]`) allows the AI to generate the body based on the implied intent of the function name and parameters."
+        },
+        {
+            "time": "08:08",
+            "action": "Iteratively refine function logic",
+            "tool": "Cursor (Inline Completion)",
+            "reasoning": "Correcting the AI's initial assumption (filtering direction) using natural language prompts ensures the generated code matches specific business logic requirements."
+        },
+        {
+            "time": "10:54",
+            "action": "Generate complex algorithms with 'FUNCTION' and bullet points",
+            "tool": "Cursor (Claude-3 Opus)",
+            "reasoning": "Combining a function signature with specific bulleted constraints (case insensitivity, Levenshtein distance) enables the generation of complex, multi-step algorithms and helper functions in a single pass."
+        }
+    ],
+    "key_takeaways": [
+        "**MIRROR Keyword**: Use this to duplicate existing patterns or logic structures, replacing only specific context terms, to avoid rewriting boilerplate.",
+        "**VARIABLE Keyword**: Leverage verbose, descriptive variable names to implicitly instruct the AI on the desired data transformation logic (e.g., flattening, deduping).",
+        "**FUNCTION Keyword**: Define the function signature (inputs, outputs, types) and use bullet points for complex constraints to generate robust implementations without writing the body code.",
+        "**Model Selection**: For complex algorithmic tasks (like fuzzy matching with Levenshtein distance), switching to higher-reasoning models like Claude-3 Opus yields better results than standard models."
+    ]
+}

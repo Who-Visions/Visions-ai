@@ -1,0 +1,72 @@
+{
+    "title": "AI Assistant Engineering: Scrap, Store, Clean, Code, Execute",
+    "summary": "This tutorial demonstrates the creation and usage of a voice-controlled personal AI engineering assistant. The workflow showcases how to use the OpenAI Realtime API to orchestrate an agent that can scrape documentation, refine data using reasoning models, manage an 'active memory' context, generate runnable code, and execute it within the IDE, effectively allowing the engineer to run tasks in parallel.",
+    "steps": [
+        {
+            "time": "00:00:28",
+            "action": "Initialize Assistant",
+            "tool": "uv run main / Realtime API",
+            "reasoning": "Establishes a speech-to-speech connection with the AI agent to begin the hands-free workflow."
+        },
+        {
+            "time": "00:00:43",
+            "action": "Ingest Documentation",
+            "tool": "Scrap URL from Clipboard to File",
+            "reasoning": "Captures external knowledge (OpenAI Structured Outputs guide) into a local markdown file for processing."
+        },
+        {
+            "time": "01:10:00",
+            "action": "Refine Content",
+            "tool": "Update File with Reasoning Model",
+            "reasoning": "Uses a reasoning model to strip unnecessary formatting and focus the content specifically on code examples and use cases."
+        },
+        {
+            "time": "01:52:00",
+            "action": "Load Context",
+            "tool": "Read File into Memory",
+            "reasoning": "Loads the processed file into the agent's 'Active Memory' (JSON), enabling it to reference this specific data for future tasks."
+        },
+        {
+            "time": "02:07:00",
+            "action": "Generate Code",
+            "tool": "Create a New File (Reasoning Model)",
+            "reasoning": "Synthesizes a new Python script with runnable examples based on the documentation currently held in active memory."
+        },
+        {
+            "time": "02:55:00",
+            "action": "Execute Code",
+            "tool": "Execute Python Code with UV",
+            "reasoning": "Validates the generated code by running it directly in the environment and returning the output to the user."
+        },
+        {
+            "time": "04:13:00",
+            "action": "Interactive Research",
+            "tool": "Discuss File",
+            "reasoning": "Allows the user to verbally query the agent about the contents of a scraped file (OpenAI Swarm) to understand concepts without reading manually."
+        },
+        {
+            "time": "06:21:00",
+            "action": "State Management",
+            "tool": "Delete File / Reset Memory",
+            "reasoning": "Clears the workspace and the agent's active memory to prevent context pollution before starting a new task."
+        },
+        {
+            "time": "07:24:00",
+            "action": "Data Structuring",
+            "tool": "Update File with SOTA",
+            "reasoning": "Transforms raw scraped pricing data into a simplified, structured list using a state-of-the-art model."
+        },
+        {
+            "time": "09:00:00",
+            "action": "Format Conversion",
+            "tool": "Update CSV File",
+            "reasoning": "Converts text-based data into a programmatic CSV format with specific styling (snake_case) for database usage."
+        }
+    ],
+    "key_takeaways": [
+        "Active Memory Pattern: Loading specific content into a 'RAM' (active_memory.json) allows the AI to reference context across multiple distinct tool calls.",
+        "Parallelism: AI assistants allow engineers to run execution-heavy tasks (scraping, coding, testing) in parallel with their own thought processes.",
+        "Reasoning Models vs. SOTA: The workflow distinguishes between using reasoning models for logic/coding and standard SOTA models for general formatting.",
+        "Speech-to-Code: The Realtime API enables a hands-free workflow where natural language commands trigger complex file system and execution operations."
+    ]
+}

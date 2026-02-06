@@ -1,0 +1,66 @@
+{
+    "title": "Building a Serverless Vue.js Composable Generator with Google Cloud and OpenAI",
+    "summary": "This workflow details the creation of a developer productivity tool that generates Vue.js composable functions using a Python-based Google Cloud Function and the OpenAI API. The process moves from local environment setup and dependency management to implementing the LLM logic with prompt engineering, testing locally using the Functions Framework, deploying to production, and finally creating a Bash alias for seamless CLI usage.",
+    "steps": [
+        {
+            "time": "00:39",
+            "action": "Initialize project structure and environment configuration",
+            "tool": "VS Code / .env",
+            "reasoning": "Establishes the file structure and secures API keys and secrets early in the development lifecycle."
+        },
+        {
+            "time": "01:41",
+            "action": "Define and install Python dependencies",
+            "tool": "requirements.txt / pip",
+            "reasoning": "Sets up the necessary libraries (`functions-framework`, `openai`) required for the serverless runtime and AI integration."
+        },
+        {
+            "time": "02:47",
+            "action": "Develop the HTTP entry point function",
+            "tool": "Python / functions-framework",
+            "reasoning": "Creates the core handler `generate_vue_composable` that Google Cloud Functions will execute upon HTTP requests."
+        },
+        {
+            "time": "03:11",
+            "action": "Create local development and testing scripts",
+            "tool": "Bash (dev.sh, dev_curl.sh)",
+            "reasoning": "Enables rapid iteration by simulating the cloud environment locally using `functions-framework` on port 3000."
+        },
+        {
+            "time": "05:07",
+            "action": "Implement request parsing and security authentication",
+            "tool": "Python (main.py)",
+            "reasoning": "Ensures the function correctly parses JSON payloads and validates the secret key to prevent unauthorized access."
+        },
+        {
+            "time": "07:39",
+            "action": "Implement LLM generation logic with prompt engineering",
+            "tool": "OpenAI API / llm.py",
+            "reasoning": "Defines the agent's intelligence, using few-shot prompting (providing a code example) to ensure the LLM outputs valid Vue.js syntax."
+        },
+        {
+            "time": "10:39",
+            "action": "Execute local integration tests",
+            "tool": "curl",
+            "reasoning": "Verifies that the Python handler successfully communicates with the OpenAI API and returns the expected code format before deployment."
+        },
+        {
+            "time": "12:38",
+            "action": "Deploy the function to Google Cloud",
+            "tool": "gcloud CLI / deploy.sh",
+            "reasoning": "Publishes the local code to a scalable, serverless production environment using specific runtime and trigger configurations."
+        },
+        {
+            "time": "15:36",
+            "action": "Create a Bash function alias for CLI usage",
+            "tool": "Bash (func.sh)",
+            "reasoning": "Abstracts the complex `curl` command into a simple terminal command (`vcf` or `usecomposable`), making the agent easy to use in a daily workflow."
+        }
+    ],
+    "key_takeaways": [
+        "Using `functions-framework` allows for accurate local simulation of serverless environments, speeding up the feedback loop.",
+        "Few-shot prompting (providing a `PROMPT_EXAMPLE`) is critical for guiding LLMs to produce specific coding patterns like Vue composables.",
+        "Wrapping API endpoints in Bash aliases transforms a remote serverless function into a native-feeling CLI tool.",
+        "Separating configuration (YAML files) from logic ensures secure and flexible deployments across different environments."
+    ]
+}

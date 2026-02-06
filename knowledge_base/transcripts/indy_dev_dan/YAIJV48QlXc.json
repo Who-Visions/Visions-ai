@@ -1,0 +1,60 @@
+{
+    "title": "Building Lean, Compute-Gobbling Single File AI Agents",
+    "summary": "This workflow demonstrates a strategy for building lightweight 'Single File Agents' (SFA) that maximize compute usage without over-investing in complex frameworks. The tutorial utilizes Astral's 'uv' for inline dependency management and OpenAI's o3-mini for reasoning. It details a closed-loop agent architecture that explores, tests, and executes SQL queries on local databases (DuckDB). Finally, it showcases how to leverage AI coding tools (Aider) to rapidly refactor and duplicate this agent architecture for a different domain (SQLite), effectively scaling agent capabilities through AI-assisted software engineering.",
+    "steps": [
+        {
+            "time": "01:37",
+            "action": "Initialize Single File Agent environment",
+            "tool": "Astral UV",
+            "reasoning": "Uses 'uv' to run scripts with inline dependency metadata, allowing the entire agent and its environment to exist in a single file for portability and speed."
+        },
+        {
+            "time": "02:22",
+            "action": "Execute Agent with Natural Language Prompt",
+            "tool": "Python / OpenAI o3-mini",
+            "reasoning": "The agent accepts a high-level goal ('list all tables') and enters a reasoning loop to determine necessary tool calls."
+        },
+        {
+            "time": "03:33",
+            "action": "Agent Discovery Loop (Schema Inspection)",
+            "tool": "ListTablesArgs / DescribeTableArgs",
+            "reasoning": "Before acting, the agent autonomously calls tools to inspect the database schema, ensuring it understands the data structure (context) before querying."
+        },
+        {
+            "time": "08:38",
+            "action": "Pre-Verification Step",
+            "tool": "RunTestSQLQuery",
+            "reasoning": "Implements a 'Verifiable Domain' strategy where the agent executes a test query to validate logic before committing to the final action (`RunFinalSQLQuery`)."
+        },
+        {
+            "time": "15:03",
+            "action": "Prepare for Agent Duplication",
+            "tool": "Shell (cp)",
+            "reasoning": "Copies the successful DuckDB agent architecture to a new file to prepare for refactoring into an SQLite agent, leveraging existing patterns."
+        },
+        {
+            "time": "15:43",
+            "action": "AI Refactoring (First Shot)",
+            "tool": "Aider / OpenAI o3-mini",
+            "reasoning": "Uses an AI coding assistant to architecturally refactor the code from DuckDB to SQLite, replacing libraries and logic automatically."
+        },
+        {
+            "time": "16:18",
+            "action": "AI Reflection (Double Check)",
+            "tool": "Aider",
+            "reasoning": "Forces the AI coding tool to review its own changes ('reflection shot') to catch missed implementations or errors before finalizing the code."
+        },
+        {
+            "time": "19:56",
+            "action": "Validate Ported Agent",
+            "tool": "Python / SQLite",
+            "reasoning": "Runs the newly generated SQLite agent to confirm the architecture was successfully cloned and adapted to the new domain."
+        }
+    ],
+    "key_takeaways": [
+        "Single File Agents (SFA) utilizing 'uv' allow for rapid iteration and deployment by bundling dependencies with logic.",
+        "Implementing a 'RunTestSQLQuery' tool creates a closed feedback loop, allowing the agent to self-correct before final execution.",
+        "Agents are effectively 'elongated prompt chains' that trade compute time (loops) for higher accuracy and reasoning capabilities.",
+        "AI Coding tools (like Aider) enable 'Agent Duplication,' allowing engineers to instantly port successful agent structures to new technologies or domains."
+    ]
+}

@@ -1,0 +1,60 @@
+{
+    "title": "Gemini Pro vs GPT-3.5/4: Agentic LLM Evaluation Workflow",
+    "summary": "A technical workflow demonstrating how to benchmark and evaluate Google's Gemini Pro against OpenAI's GPT models using the Promptfoo testing framework. The process covers setting up a code-based evaluation environment, defining agentic assertions (Regex/JSON), and analyzing results to optimize for speed, cost, and instruction following in production applications.",
+    "steps": [
+        {
+            "time": "00:44",
+            "action": "Initialize the evaluation environment",
+            "tool": "VS Code / GitHub",
+            "reasoning": "Establishes the codebase (llm-eval) containing the testing framework and documentation for comparing model metrics like tokens per second and pricing."
+        },
+        {
+            "time": "07:51",
+            "action": "Configure environment variables",
+            "tool": "Terminal",
+            "reasoning": "Sets up authentication (OPENAI_API_KEY, VERTEX_API_KEY) required for the agent to communicate with the specific model providers being tested."
+        },
+        {
+            "time": "08:03",
+            "action": "Define model providers in configuration",
+            "tool": "Promptfoo (YAML)",
+            "reasoning": "Updates `promptfooconfig.yaml` to include the specific models to be battled-tested: `openai:gpt-4`, `openai:gpt-3.5-turbo`, and `vertex:gemini-pro`."
+        },
+        {
+            "time": "08:48",
+            "action": "Construct the Agent Prompt and Assertions",
+            "tool": "VS Code (prompt.txt / test.yaml)",
+            "reasoning": "Creates the specific prompt logic (validating Natural Language Queries) and defines deterministic success criteria (assertions) to automatically grade model responses."
+        },
+        {
+            "time": "07:58",
+            "action": "Execute the evaluation command",
+            "tool": "Promptfoo CLI",
+            "reasoning": "Runs `promptfoo eval` to trigger the agentic workflow, sending prompts to all providers simultaneously to gather raw performance data."
+        },
+        {
+            "time": "08:13",
+            "action": "Analyze minimal test results",
+            "tool": "Promptfoo UI (Browser)",
+            "reasoning": "Visualizes the output to identify immediate failures (Gemini Pro failing a specific case) and latency discrepancies (GPT-4 taking 10 seconds)."
+        },
+        {
+            "time": "11:34",
+            "action": "Scale to production-grade testing",
+            "tool": "VS Code",
+            "reasoning": "Moves to a complex test suite (`is_nlq_agent_prompt`) utilizing `defaultTest` configurations to enforce JSON structure and Regex matching across a larger dataset."
+        },
+        {
+            "time": "14:41",
+            "action": "Compare latency and accuracy metrics",
+            "tool": "Promptfoo UI",
+            "reasoning": "Final analysis reveals Gemini Pro is roughly 2x faster (500ms vs 900ms) than GPT-3.5 for this specific task, while GPT-4 failed specific regex assertions."
+        }
+    ],
+    "key_takeaways": [
+        "Gemini Pro demonstrates superior speed (approx. 2x faster than GPT-3.5 Turbo) in specific agentic tasks.",
+        "Automated prompt testing (Promptfoo) is critical for validating model upgrades and preventing regressions in production.",
+        "Instruction following is often a more critical metric than raw intelligence for specific agentic workflows like query validation.",
+        "GPT-4, while powerful, can be prohibitively slow (10x latency) and occasionally fail strict regex assertions compared to lighter models."
+    ]
+}

@@ -1,0 +1,59 @@
+{
+    "title": "CODING DIFFBRO Part iii: RELEASE DAY",
+    "summary": "This workflow demonstrates the final development phase of 'Diffbro', a CLI tool for AI-powered code reviews. The developer utilizes AIDER (an AI coding assistant) to iteratively implement new features including custom prompts, summarization modes, and branch comparisons. The session highlights a human-in-the-loop agentic workflow where the developer prompts the AI to write code, identifies bugs (type errors and git syntax issues), and guides the AI to fix them before publishing the final package to PyPI.",
+    "steps": [
+        {
+            "time": "0:51",
+            "action": "Run initial baseline test of the CLI tool alias `db`",
+            "tool": "Terminal/Diffbro",
+            "reasoning": "Verifies the current state of the application and ensures the environment is correctly configured before introducing new changes."
+        },
+        {
+            "time": "1:05",
+            "action": "Instruct AIDER to add a `--prompt` argument to `main.py` and update `bro.py` to handle custom prompt injection",
+            "tool": "AIDER",
+            "reasoning": "Delegates the implementation of argument parsing and function signature updates to the AI agent to speed up feature development."
+        },
+        {
+            "time": "2:05",
+            "action": "Debug TypeError (bytes vs string) and instruct AIDER to decode `git_diff` before concatenation",
+            "tool": "AIDER/Python",
+            "reasoning": "Corrects a runtime error introduced by the AI's initial implementation, demonstrating the need for human oversight on data types."
+        },
+        {
+            "time": "2:35",
+            "action": "Prompt AIDER to implement a `--summarize` flag and create a `SUMMARY_BRO_PROMPT` constant",
+            "tool": "AIDER",
+            "reasoning": "Expands tool functionality to generate high-level commit messages or PR descriptions by injecting a specialized system prompt."
+        },
+        {
+            "time": "3:40",
+            "action": "Update `git.py` and `main.py` via AIDER to add a `--peer-review` argument for branch comparison",
+            "tool": "AIDER/Git",
+            "reasoning": "Enhances the tool's utility by allowing users to diff against specific branches (e.g., main) rather than just local changes."
+        },
+        {
+            "time": "4:50",
+            "action": "Correct the logic for the `--only` argument in `git.py` to remove incorrect glob wildcards",
+            "tool": "AIDER",
+            "reasoning": "Fixes a logic error where the AI generated invalid Git command syntax, ensuring file filtering works as intended."
+        },
+        {
+            "time": "5:25",
+            "action": "Fix shell syntax errors in the `--ignore` argument implementation regarding git pathspec exclusions",
+            "tool": "AIDER",
+            "reasoning": "Refines complex command-line string construction that the AI initially mishandled, ensuring the tool can properly exclude files."
+        },
+        {
+            "time": "5:50",
+            "action": "Execute the publish script to upload version 1.0.0 to PyPI",
+            "tool": "Poetry/Python",
+            "reasoning": "Finalizes the workflow by deploying the polished and debugged tool for public distribution."
+        }
+    ],
+    "key_takeaways": [
+        "AIDER significantly accelerates development by handling boilerplate code changes across multiple files simultaneously.",
+        "AI agents may introduce subtle bugs (like TypeErrors or incorrect Git syntax) requiring an iterative 'run-debug-prompt' feedback loop.",
+        "Structuring prompts to explicitly define file targets (e.g., `/add main.py`) helps the AI agent focus its context for better accuracy."
+    ]
+}

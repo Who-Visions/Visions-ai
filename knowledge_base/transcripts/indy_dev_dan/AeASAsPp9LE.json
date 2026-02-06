@@ -1,0 +1,60 @@
+{
+    "title": "Accelerating Python Testing with Aider AI Agent",
+    "summary": "A workflow demonstrating how to use the Aider AI coding assistant to generate, debug, and refine unit tests for a Python Notion integration. The process highlights the agentic loop of generating code, analyzing execution errors, managing context window limits, and iteratively improving test coverage through parametrization and complex mocking.",
+    "steps": [
+        {
+            "time": "02:27",
+            "action": "Initialize Aider with GPT-4 and export API keys",
+            "tool": "Aider CLI",
+            "reasoning": "Establishes the AI agent environment with the most capable model for code generation."
+        },
+        {
+            "time": "02:34",
+            "action": "Add source code and empty test files to the chat context",
+            "tool": "Aider (/add)",
+            "reasoning": "Provides the agent with the specific file context required to understand the codebase structure and dependencies."
+        },
+        {
+            "time": "02:43",
+            "action": "Prompt Aider to generate tests using pytest and mocking",
+            "tool": "Natural Language Prompt",
+            "reasoning": "Sets the initial objective for the agent, specifying the testing framework and the strategy (mocking external dependencies)."
+        },
+        {
+            "time": "03:47",
+            "action": "Feed pytest failure output back to Aider for analysis",
+            "tool": "Aider (/run pytest)",
+            "reasoning": "Utilizes the agent's self-correction loop by providing runtime feedback, allowing it to diagnose and fix import/mocking errors autonomously."
+        },
+        {
+            "time": "04:49",
+            "action": "Refine strategy: Instruct Aider to use real disk I/O instead of mocking for file operations",
+            "tool": "Natural Language Prompt",
+            "reasoning": "Human-in-the-loop intervention to correct a brittle testing strategy (mocking built-ins) that the agent could not resolve alone."
+        },
+        {
+            "time": "05:26",
+            "action": "Clear chat history to resolve token limit exhaustion",
+            "tool": "Aider (/clear)",
+            "reasoning": "Manages the agent's context window constraints, freeing up token space to continue the workflow without losing file context."
+        },
+        {
+            "time": "06:36",
+            "action": "Request test parametrization to increase coverage",
+            "tool": "Natural Language Prompt",
+            "reasoning": "Directs the agent to optimize the code by reducing redundancy and testing multiple input scenarios automatically."
+        },
+        {
+            "time": "09:11",
+            "action": "Instruct Aider to mock complex return objects for deep logic testing",
+            "tool": "Natural Language Prompt",
+            "reasoning": "Pushes the agent beyond simple execution tests to validate specific data parsing logic by simulating detailed API responses."
+        }
+    ],
+    "key_takeaways": [
+        "Aider can autonomously fix code errors when provided with terminal output logs.",
+        "Managing the context window (token usage) is critical for sustained agentic workflows; clearing history helps.",
+        "Human guidance is essential for high-level architectural decisions, such as when to mock vs. when to use real I/O.",
+        "Iterative prompting allows for evolving simple tests into robust, parametrized test suites with complex mocks."
+    ]
+}

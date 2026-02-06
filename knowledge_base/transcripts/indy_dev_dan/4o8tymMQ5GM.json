@@ -1,0 +1,54 @@
+{
+    "title": "Mastering AutoGen: Building Custom Orchestrators for Multi-Agent Control",
+    "summary": "This tutorial addresses the consistency issues found in AutoGen's default GroupChat by introducing a custom 'Orchestrator' class. The speaker demonstrates how to manually control agent conversation flows, implementing 'Sequential' and 'Broadcast' patterns to build a robust pipeline that performs database engineering followed by multi-format data visualization.",
+    "steps": [
+        {
+            "time": "01:37",
+            "action": "Execute baseline Postgres Agent using standard AutoGen GroupChat",
+            "tool": "Poetry / AutoGen",
+            "reasoning": "Demonstrates the initial capability of the agent to query databases but highlights the lack of fine-grained control over the conversation flow."
+        },
+        {
+            "time": "04:56",
+            "action": "Develop custom 'Orchestrator' class to replace GroupChatManager",
+            "tool": "Python",
+            "reasoning": "Establishes a framework to manually direct message passing between agents, overcoming the non-deterministic nature of the default manager."
+        },
+        {
+            "time": "06:11",
+            "action": "Implement 'sequential_conversation' method in Orchestrator",
+            "tool": "Python",
+            "reasoning": "Enforces a linear dependency chain (Admin -> Engineer -> Analyst -> PM), ensuring tasks like SQL generation and verification happen in the correct order."
+        },
+        {
+            "time": "08:50",
+            "action": "Define 'function_chat' logic to handle tool execution explicitly",
+            "tool": "Python",
+            "reasoning": "Ensures that when an agent invokes a tool (e.g., run_sql), the system pauses to execute it and injects the result back into the flow for the next agent."
+        },
+        {
+            "time": "12:09",
+            "action": "Implement 'broadcast_conversation' method for parallel task distribution",
+            "tool": "Python",
+            "reasoning": "Allows a single source of data to be sent to multiple agents simultaneously, useful for generating multiple output formats (Text, JSON, YAML) from one dataset."
+        },
+        {
+            "time": "12:36",
+            "action": "Configure specialized Data Viz agents with exclusive file-writing tools",
+            "tool": "AutoGen",
+            "reasoning": "Isolates functionality by giving specific agents unique tools, reducing hallucination and ensuring each agent performs only its designated reporting format."
+        },
+        {
+            "time": "15:10",
+            "action": "Chain Data Engineering and Data Viz orchestrators into a single pipeline",
+            "tool": "Python",
+            "reasoning": "Demonstrates the power of modular agentic workflows by feeding the real-time SQL query results from the first team directly into the reporting workflow of the second team."
+        }
+    ],
+    "key_takeaways": [
+        "Default AutoGen GroupChat managers can lack the deterministic control needed for complex, multi-step engineering tasks.",
+        "Custom Orchestrators allow developers to define specific architectural patterns like Sequential (linear) and Broadcast (one-to-many) flows.",
+        "Separating agents into specialized teams (e.g., Engineering vs. Visualization) with exclusive tools increases reliability and reduces errors.",
+        "Manually handling 'function_chat' ensures that tool outputs are correctly propagated to the next agent in the chain."
+    ]
+}

@@ -1,0 +1,66 @@
+{
+    "title": "Benchmarking Llama 3.2 and SLMs with a Multi-Model Ranker",
+    "summary": "This workflow demonstrates a practical approach to evaluating Small Language Models (SLMs) like Llama 3.2, Phi 3.5, and Qwen 2.5 against larger cloud models. Using a custom Marimo notebook and Ollama, the process involves side-by-side comparisons across various domains—coding, SQL generation, summarization, and context handling—to determine the readiness of local models for specific engineering workflows.",
+    "steps": [
+        {
+            "time": "00:01:25",
+            "action": "Select models for comparison",
+            "tool": "Marimo Notebook / Ollama",
+            "reasoning": "Defines the competitive landscape by choosing a mix of local SLMs (Llama 3.2, Qwen 2.5, Phi 3.5) and cloud LLMs (GPT-4o, Claude 3.5 Sonnet) to establish a baseline."
+        },
+        {
+            "time": "00:01:46",
+            "action": "Configure inference parameters",
+            "tool": "Marimo Notebook",
+            "reasoning": "Setting temperature to 0 ensures deterministic, reproducible outputs, which is critical for fair technical benchmarking and instruction following."
+        },
+        {
+            "time": "00:01:49",
+            "action": "Execute baseline prompts (Ping/Hello)",
+            "tool": "Ollama",
+            "reasoning": "Tests basic responsiveness and the ability to follow simple formatting instructions without hallucinating unnecessary conversational filler."
+        },
+        {
+            "time": "00:03:33",
+            "action": "Evaluate and rank initial responses",
+            "tool": "Human Evaluation",
+            "reasoning": "Applies human-in-the-loop verification to score models based on conciseness and accuracy, establishing an initial leaderboard."
+        },
+        {
+            "time": "00:04:48",
+            "action": "Run code generation benchmarks",
+            "tool": "Ollama",
+            "reasoning": "Tests the models' ability to generate runnable code in multiple languages (Python, Rust, SQL, etc.) and adhere to strict formatting constraints."
+        },
+        {
+            "time": "00:10:30",
+            "action": "Test conversational logic",
+            "tool": "Ollama",
+            "reasoning": "Evaluates the 'agentic' capability of the models to recognize when to ask follow-up questions rather than just providing a generic response."
+        },
+        {
+            "time": "00:11:59",
+            "action": "Execute Natural Language to SQL tasks",
+            "tool": "Ollama",
+            "reasoning": "Assesses domain-specific accuracy, checking for common errors like incorrect date formatting or missing SQL conditions."
+        },
+        {
+            "time": "00:18:47",
+            "action": "Stress test context window limits",
+            "tool": "Ollama",
+            "reasoning": "Determines stability and performance under heavy load (5k+ tokens), revealing hardware limitations or model instability (e.g., Phi 3.5 crashing)."
+        },
+        {
+            "time": "00:21:13",
+            "action": "Finalize rankings and analysis",
+            "tool": "Marimo Notebook",
+            "reasoning": "Synthesizes the scores to identify which local models offer the best balance of performance vs. resource usage for the user's specific hardware."
+        }
+    ],
+    "key_takeaways": [
+        "Side-by-side comparison on specific use cases is far superior to generic benchmarks for determining model utility.",
+        "Qwen 2.5 (7B) emerged as a surprisingly strong performer, rivaling larger cloud models in many tests.",
+        "Llama 3.2 1B is highly efficient for its size but tends to be verbose compared to more concise models.",
+        "Local SLMs offer significant benefits in privacy and cost but may suffer from instability or context limitations compared to cloud APIs."
+    ]
+}

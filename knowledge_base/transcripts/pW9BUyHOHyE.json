@@ -1,0 +1,56 @@
+{
+  "title": "10,000 Headshots: A Nationwide Initiative for the Unemployed",
+  "summary": "A documentary-style compilation of news coverage detailing a massive philanthropic event where 200 photographers across all 50 states mobilized to provide 10,000 free professional headshots to unemployed Americans in a single day to aid their job search during the pandemic.",
+  "steps": [
+    {
+      "time": "00:00",
+      "action": "Introduction to the economic context with news anchors discussing high unemployment rates due to the pandemic.",
+      "code": null,
+      "tool": "News Coverage"
+    },
+    {
+      "time": "00:28",
+      "action": "Overview of the project logistics: One day, 200 photographers, 50 states, and a goal of 10,000 headshots.",
+      "code": null,
+      "tool": "Headshot Booker"
+    },
+    {
+      "time": "00:50",
+      "action": "Photographers are shown setting up professional studios in public spaces to capture high-quality images.",
+      "code": null,
+      "tool": "Professional Photography Gear"
+    },
+    {
+      "time": "01:05",
+      "action": "Demonstration of the instant delivery workflow using specific software to send photos directly to participants' phones.",
+      "code": null,
+      "tool": "SpotMyPhotos"
+    },
+    {
+      "time": "01:11",
+      "action": "Explanation of the strategic value of a headshot as a 'digital handshake' for online professional networking.",
+      "code": null,
+      "tool": "LinkedIn"
+    },
+    {
+      "time": "01:27",
+      "action": "Discussion of the venue partnerships that provided safe, socially distanced locations for the shoots.",
+      "code": null,
+      "tool": "Brookfield Properties"
+    },
+    {
+      "time": "01:54",
+      "action": "Display of the corporate partners and sponsors who supported the equipment and logistics.",
+      "code": null,
+      "tool": "Sponsors (Canon, B&H, Tether Tools)"
+    }
+  ],
+  "key_takeaways": [
+    "The project successfully coordinated 200 photographers in 80 locations to serve 10,000 people in one day.",
+    "Instant photo delivery technology was utilized to streamline the workflow and maintain safety.",
+    "The initiative emphasized the importance of a professional digital presence for job seekers.",
+    "Collaboration between service providers, property owners, and equipment manufacturers made the scale of the event possible."
+  ],
+  "video_id": "pW9BUyHOHyE",
+  "url": "https://www.youtube.com/watch?v=pW9BUyHOHyE"
+}

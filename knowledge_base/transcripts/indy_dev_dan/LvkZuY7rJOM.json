@@ -1,0 +1,66 @@
+{
+    "title": "Voice to Claude Code: Building an Agentic Coding Assistant",
+    "summary": "A technical demonstration of a voice-controlled agentic workflow using Claude Code, RealtimeSTT, and OpenAI TTS. The tutorial showcases an iterative development process where the AI generates polyglot starter code, refactors its own source code, creates detailed technical specifications from documentation, and implements a functional web search tool using UV scripts.",
+    "steps": [
+        {
+            "time": "00:04",
+            "action": "Initialize Voice Assistant",
+            "tool": "Python CLI / voice_to_claude_code.py",
+            "reasoning": "Establishes the agentic environment with a specific session ID (--id cc) to enable persistent context and memory across the workflow."
+        },
+        {
+            "time": "00:14",
+            "action": "Generate Polyglot Starter Code",
+            "tool": "Claude Code",
+            "reasoning": "Tests the agent's ability to create file structures and syntactically correct code across six different programming languages simultaneously."
+        },
+        {
+            "time": "00:38",
+            "action": "Iterative Code Refinement",
+            "tool": "Claude Code",
+            "reasoning": "Demonstrates the agent's capability to modify existing files to add complex logic (HTTP requests) and documentation based on natural language instructions."
+        },
+        {
+            "time": "01:54",
+            "action": "Self-Correction / Refactoring",
+            "tool": "Claude Code",
+            "reasoning": "The agent is used to modify its own source code (voice_to_claude_code.py) to fix technical debt by replacing hardcoded lists with defined constants."
+        },
+        {
+            "time": "04:17",
+            "action": "Context-Aware Planning",
+            "tool": "Claude Code (File Reading)",
+            "reasoning": "Utilizes the agent to read local documentation (ai_docs) and synthesize a technical specification (spec) before writing code, ensuring alignment with library requirements."
+        },
+        {
+            "time": "05:36",
+            "action": "Spec Refinement",
+            "tool": "Claude Code",
+            "reasoning": "Reinforces the 'Planning is Prompting' methodology by asking the agent to inject concrete code examples into the spec to guide the subsequent implementation phase."
+        },
+        {
+            "time": "08:17",
+            "action": "Implementation from Spec",
+            "tool": "Claude Code",
+            "reasoning": "Executes the actual coding task by instructing the agent to read the finalized spec and generate a self-contained UV script (anthropic_search.py)."
+        },
+        {
+            "time": "09:48",
+            "action": "Human-in-the-Loop Debugging",
+            "tool": "Terminal / Manual Edit",
+            "reasoning": "Highlights the necessity of human oversight to fix execution permissions and minor logic errors (adding the main block) that the agent missed."
+        },
+        {
+            "time": "11:45",
+            "action": "Documentation Maintenance",
+            "tool": "Claude Code",
+            "reasoning": "Automates the administrative task of merging generated documentation into the main README, maintaining repository hygiene without manual copy-pasting."
+        }
+    ],
+    "key_takeaways": [
+        "Planning is Prompting: Generating detailed specs with concrete examples before coding leads to higher quality implementation.",
+        "Compute === Success: Leveraging agentic compute power allows for scaling engineering output and handling tedious tasks.",
+        "Context Reusability: Using persistent session IDs allows the agent to retain context effectively, acting as a long-term partner.",
+        "Infinitely Programmable: Claude Code can be embedded within scripts to create custom, voice-controlled, or automated workflows."
+    ]
+}

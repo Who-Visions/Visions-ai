@@ -1,0 +1,59 @@
+{
+    "title": "MOST USED BIGGEST TIME SAVING VSCode Snippets",
+    "summary": "This workflow demonstrates how to accelerate Vue.js development by utilizing custom VS Code snippets. It covers the end-to-end process of scaffolding a Vite project, generating component boilerplate, creating reactive composables with lifecycle hooks, and consuming them efficiently to minimize repetitive coding tasks.",
+    "steps": [
+        {
+            "time": "00:10",
+            "action": "Initialize a new Vue.js project named 'snips' using Vite and install dependencies.",
+            "tool": "Terminal / Yarn / Vite",
+            "reasoning": "Establishes the necessary development environment to demonstrate Vue-specific workflow optimizations."
+        },
+        {
+            "time": "00:39",
+            "action": "Use snippet 'vuebn' to generate the full boilerplate structure (template, script, style) for App.vue.",
+            "tool": "VS Code Snippets",
+            "reasoning": "Instantly creates component architecture and automatically populates class names based on the filename, eliminating manual boilerplate typing."
+        },
+        {
+            "time": "01:23",
+            "action": "Create a new file 'src/composables/useIsMobile.ts' and use snippet 'hkk' to scaffold the composable function.",
+            "tool": "VS Code Snippets",
+            "reasoning": "Rapidly sets up the standard structure for a Vue Composable function without manually typing export syntax."
+        },
+        {
+            "time": "01:47",
+            "action": "Implement reactive state using snippet 'reff' for 'isMobile' and snippet 'compp' for the computed property 'isDesktop'.",
+            "tool": "VS Code Snippets / Vue Reactivity",
+            "reasoning": "Accelerates the definition of reactive variables and derived state while triggering automatic imports from the Vue library."
+        },
+        {
+            "time": "02:17",
+            "action": "Inject the 'onMounted' lifecycle hook using snippet 'onmm' and add window resize event logic.",
+            "tool": "VS Code Snippets / Vue Lifecycle",
+            "reasoning": "Quickly inserts lifecycle methods to handle side effects (event listeners) immediately upon component mounting."
+        },
+        {
+            "time": "02:50",
+            "action": "Navigate to App.vue and use snippet 'usee' to import and destructure the 'useIsMobile' composable.",
+            "tool": "VS Code Snippets",
+            "reasoning": "Streamlines the integration of external logic into components by automating the import and destructuring syntax."
+        },
+        {
+            "time": "03:02",
+            "action": "Implement conditional rendering in the template based on the composable's state and verify responsiveness in the browser.",
+            "tool": "VS Code / Browser",
+            "reasoning": "Validates the functional integration of the snippet-generated code in a live runtime environment."
+        },
+        {
+            "time": "03:46",
+            "action": "Add the 'onUnmounted' hook using snippet 'onunm' to remove the event listener in the composable.",
+            "tool": "VS Code Snippets",
+            "reasoning": "Ensures best practices for memory management by quickly adding cleanup logic to prevent memory leaks."
+        }
+    ],
+    "key_takeaways": [
+        "Using short-hand snippets (e.g., 'vuebn', 'hkk', 'reff') significantly reduces development time by automating boilerplate code.",
+        "Advanced snippets can leverage context, such as using the current filename to auto-populate CSS class names.",
+        "Snippets facilitate better coding standards by ensuring consistent structures for Composables, Refs, and Lifecycle hooks across the project."
+    ]
+}

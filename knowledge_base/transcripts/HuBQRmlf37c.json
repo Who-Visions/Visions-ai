@@ -1,0 +1,50 @@
+{
+  "title": "Photo Deconstruction: Complementary Gels & 4-Light Setup",
+  "summary": "Photographer Lindsay Adler deconstructs a high-contrast studio portrait, demonstrating how to use color theory with complementary blue and orange gels across a four-light setup to create a graphic, popping image.",
+  "steps": [
+    {
+      "time": "01:22",
+      "action": "Set up the main light on the left to hit the set and subject front.",
+      "code": null,
+      "tool": "Profoto D2 + 20\u00b0 Grid + Blue Gel"
+    },
+    {
+      "time": "01:38",
+      "action": "Add a rim light on the right side using a strip softbox to match the blue tone from the opposite direction.",
+      "code": null,
+      "tool": "Profoto D2 + 1x4ft Strip Softbox + Blue Gel"
+    },
+    {
+      "time": "02:02",
+      "action": "Place a light on a floor stand behind the subject, pointed at the white background to create a warm sunset gradient.",
+      "code": null,
+      "tool": "Profoto D2 + Orange Gel"
+    },
+    {
+      "time": "02:48",
+      "action": "Add a fourth light with a tight grid to hit the subject's face with warm light, unifying her with the background.",
+      "code": null,
+      "tool": "Profoto D2 + 10\u00b0 Grid + Orange Gel"
+    },
+    {
+      "time": "03:03",
+      "action": "Configure camera settings for the shot.",
+      "code": "1/200 sec, f/8, ISO 400",
+      "tool": "Canon R5 + RF 24-70mm f/2.8"
+    },
+    {
+      "time": "04:08",
+      "action": "Apply post-processing: lift shadows to recover detail in blue areas, increase exposure slightly, add clarity for sparkle, and crop to square.",
+      "code": null,
+      "tool": "RAW Editor"
+    }
+  ],
+  "key_takeaways": [
+    "Use complementary colors (like blue and orange) to create visual contrast and impact.",
+    "Cool colors tend to recede while warm colors pop, adding depth to the image.",
+    "When using colored gels on white walls, high intensity can shift colors (e.g., orange appearing yellow).",
+    "Post-processing is often needed to balance exposure between bright gelled backgrounds and darker gelled subjects."
+  ],
+  "video_id": "HuBQRmlf37c",
+  "url": "https://www.youtube.com/watch?v=HuBQRmlf37c"
+}

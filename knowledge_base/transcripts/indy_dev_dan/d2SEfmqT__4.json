@@ -1,0 +1,48 @@
+{
+    "title": "AI Disruption Principles & GPT-Notion Automation Workflow",
+    "summary": "A strategic guide on navigating the AI revolution using the 'John vs. Sarah' analogy, accompanied by a technical breakdown of building a GPT-powered Notion auto-tweeting agent. The workflow demonstrates integrating Python, Notion, and OpenAI to automate social media content creation with human oversight.",
+    "steps": [
+        {
+            "time": "01:47",
+            "action": "Develop API Handlers",
+            "tool": "VSCode, Python",
+            "reasoning": "Create core functions (parse_turbo_response, tweet_get_params) to interface with OpenAI and Twitter APIs."
+        },
+        {
+            "time": "01:50",
+            "action": "Structure Data Source",
+            "tool": "Notion",
+            "reasoning": "Establish a structured database to act as the agent's state manager, tracking tweets, hashtags, and delivery status."
+        },
+        {
+            "time": "01:53",
+            "action": "Human-in-the-Loop Curation",
+            "tool": "Notion UI",
+            "reasoning": "Review AI-generated content manually to approve or reject posts before final execution, ensuring quality control."
+        },
+        {
+            "time": "02:01",
+            "action": "Integrate & Deploy",
+            "tool": "Vercel, Twitter API",
+            "reasoning": "Host the application logic and establish connectivity with the external publishing platform."
+        },
+        {
+            "time": "02:05",
+            "action": "Execute Main Logic",
+            "tool": "Python (main.py)",
+            "reasoning": "Run the orchestration script that reads the approved state from Notion and triggers the tweet publication."
+        },
+        {
+            "time": "02:24",
+            "action": "Apply Principle: Run In, Not Out",
+            "tool": "ChatGPT, Llama, GPT-4",
+            "reasoning": "Strategic step to adopt new AI models immediately to gain a competitive advantage rather than resisting change."
+        }
+    ],
+    "key_takeaways": [
+        "Principle 1: 'Run In, Not Out' - Embrace disruptive technologies immediately to avoid obsolescence.",
+        "Principle 2: 'More With Less' - Use AI as a lever to achieve 10x output (e.g., 30 mins work for 2 hours output).",
+        "Principle 3: 'Bet on Always' - Focus on fundamental human needs (speed, connection, lower cost) when building AI products.",
+        "Avoid building simple UI wrappers around ChatGPT; focus on deep integration that provides significant leverage."
+    ]
+}

@@ -1,3 +1,18 @@
-rich
-psutil
-requests
+# Rhea Noir - Fleet Server Dependencies
+# Gemini 3 Multi-Model Cascade
+fastapi==0.115.0
+uvicorn[standard]==0.30.6
+gunicorn==23.0.0
+google-genai==0.3.0
+google-cloud-aiplatform>=1.70.0
+google-cloud-logging>=3.11.0
+google-cloud-storage>=2.18.0
+pydantic>=2.9.0
+python-multipart>=0.0.12
+langchain-community>=0.3.0
+langchain-google-vertexai>=2.0.0
+faiss-cpu>=1.8.0
+Pillow>=10.4.0
+rich>=13.8.0
+psutil>=6.0.0
+requests>=2.32.0

@@ -1,0 +1,54 @@
+{
+    "title": "Visualizing LLM Benchmarks with Promptfoo and 'Last LLM Standing'",
+    "summary": "This workflow demonstrates a method for evaluating Large Language Models (LLMs) by moving beyond static benchmark tables to deterministic, visual testing. It utilizes the Promptfoo framework to run rigorous test suites on custom prompts and visualizes the results using a custom tool called 'Last LLM Standing Wins.' The process highlights how to compare models like GPT-4, Claude 3, and Groq Mistral based on real-world metrics such as speed, cost, and accuracy to ensure production reliability.",
+    "steps": [
+        {
+            "time": "00:30",
+            "action": "Initialize the 'Last LLM Standing Wins' visualization tool to create an intuitive battle arena for LLM comparison.",
+            "tool": "Last LLM Standing Wins",
+            "reasoning": "Provides a visual interface to interpret complex benchmark data, making it easier to 'feel' the performance differences between models."
+        },
+        {
+            "time": "04:06",
+            "action": "Configure the test environment in `promptfooconfig.yaml`, defining specific LLM providers (e.g., OpenAI, Groq) and test parameters.",
+            "tool": "VS Code / Promptfoo",
+            "reasoning": "Establishes the foundational configuration for the agentic workflow, determining which models will be evaluated against each other."
+        },
+        {
+            "time": "04:23",
+            "action": "Create prompt templates (e.g., `nlq_to_sql/prompt.txt`) and define test cases with strict assertions (e.g., `type: icontains-all`) in YAML files.",
+            "tool": "VS Code / Promptfoo",
+            "reasoning": "Ensures the evaluation is deterministic by defining exactly what constitutes a 'success' or 'failure' for the agent's output."
+        },
+        {
+            "time": "05:41",
+            "action": "Execute the evaluation suite via the Command Line Interface to generate a structured JSON output file.",
+            "tool": "Terminal / Promptfoo",
+            "reasoning": "Runs the actual processing, gathering raw data on latency, cost, and correctness for every defined test case."
+        },
+        {
+            "time": "06:38",
+            "action": "Import the generated JSON output into the 'Last LLM Standing Wins' web app to visualize the execution flow and results.",
+            "tool": "Last LLM Standing Wins",
+            "reasoning": "Transforms raw data into an actionable visual format, allowing for immediate comparison of model behavior under load."
+        },
+        {
+            "time": "07:10",
+            "action": "Analyze the visual results to categorize models by attributes such as 'Fastest LLM Alive', 'Frugal LLM', and 'Bullseye' (accuracy).",
+            "tool": "Last LLM Standing Wins",
+            "reasoning": "Enables the selection of the 'right tool for the job' by balancing trade-offs between speed, cost, and precision."
+        },
+        {
+            "time": "13:38",
+            "action": "Deploy the validated prompts and selected LLMs into a production application (e.g., 'Talk To Your Database').",
+            "tool": "Talk To Your Database",
+            "reasoning": "Completes the workflow by applying the rigorously tested agentic components to a real-world product to ensure high reliability."
+        }
+    ],
+    "key_takeaways": [
+        "Static benchmarks are often biased or abstract; visual, deterministic testing on your own prompts provides actionable intuition.",
+        "Prompts should be treated as the 'fundamental unit of programming' and require rigorous testing frameworks like Promptfoo.",
+        "Deterministic assertions (checking for specific keywords or formats) are essential for validating LLM reliability in production.",
+        "Speed and cost are critical factors alongside accuracy when architecting real-time agentic systems."
+    ]
+}

@@ -1,0 +1,48 @@
+{
+    "title": "Top 5 Agent Interaction Patterns for Scaling Engineering Impact",
+    "summary": "A strategic guide to maximizing AI agent potential by understanding five core interaction patterns. The workflow progresses from simple Human-in-the-Loop interactions to complex Full Application architectures, offering a decision framework to balance complexity with scalability.",
+    "steps": [
+        {
+            "time": "03:54",
+            "action": "Execute Iterative HIL (Human in the Loop)",
+            "tool": "Gemini CLI / Claude Code, Replicate MCP",
+            "reasoning": "Establishes baseline accuracy and control through direct human oversight; ideal for debugging and initial problem exploration but lacks scalability."
+        },
+        {
+            "time": "05:01",
+            "action": "Implement Reusable Prompts",
+            "tool": "Version-controlled .md/.toml files, Claude Code",
+            "reasoning": "The 80/20 pattern for efficiency; standardizes workflows by codifying repetitive tasks into version-controlled commands, removing manual friction."
+        },
+        {
+            "time": "06:44",
+            "action": "Deploy Sub-Agent Delegation",
+            "tool": "Claude Code, Specialized Sub-Agents",
+            "reasoning": "Enables parallel execution and domain specialization (e.g., separate creation and editing agents) for complex, multi-faceted tasks."
+        },
+        {
+            "time": "11:59",
+            "action": "Build Wrapper MCP Server",
+            "tool": "Custom MCP Server, External APIs",
+            "reasoning": "Centralizes routing logic and tool access, creating a single, encapsulated integration point that allows multiple agents to interact with unique assets or services."
+        },
+        {
+            "time": "16:20",
+            "action": "Develop Full Application Stack",
+            "tool": "CLI, UI, API, Orchestrator",
+            "reasoning": "Provides maximum control, extensibility, and customizability for long-term product visions where off-the-shelf agent interactions are insufficient."
+        },
+        {
+            "time": "17:50",
+            "action": "Apply Pattern Decision Framework",
+            "tool": "Strategic Logic",
+            "reasoning": "Ensures complexity is earned; dictates starting with ad-hoc prompts and only scaling to higher patterns when specific friction points (repetition, need for parallelization) arise."
+        }
+    ],
+    "key_takeaways": [
+        "Complexity should be earned, not assumed; start with ad-hoc prompts and scale only when friction arises.",
+        "Reusable Prompts (Pattern 2) represent the 80/20 high-leverage point for most engineering workflows.",
+        "Use Sub-Agents specifically when tasks require parallelization and distinct domain expertise.",
+        "MCP Wrappers are essential for encapsulating logic and exposing unique assets to multiple agent types."
+    ]
+}

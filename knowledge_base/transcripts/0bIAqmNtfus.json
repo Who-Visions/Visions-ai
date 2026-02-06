@@ -1,0 +1,49 @@
+{
+  "title": "Advanced Headshot Retouching Workflow with Evoto",
+  "summary": "Photographer Peter Hurley demonstrates an efficient AI-powered retouching workflow using Evoto. The tutorial covers removing tattoos, eliminating glass glare, cleaning up background distractions, and syncing edits across multiple images to speed up post-production.",
+  "steps": [
+    {
+      "time": "00:29",
+      "action": "Navigate to 'Body Refinement' and enable the 'Tattoos (Beta)' toggle to automatically remove tattoos from the subject's skin.",
+      "code": null,
+      "tool": "Evoto (Body Refinement)"
+    },
+    {
+      "time": "01:07",
+      "action": "Adjust 'Body Skin' settings under 'Skin Retouching'. Avoid setting 'Frequency Separation' too high to maintain a natural look.",
+      "code": null,
+      "tool": "Evoto (Skin Retouching)"
+    },
+    {
+      "time": "01:48",
+      "action": "Go to 'Background Adjustments' and enable 'Distraction Removal' to automatically remove unwanted studio lights or objects from the background.",
+      "code": null,
+      "tool": "Evoto (Background Adjustments)"
+    },
+    {
+      "time": "02:14",
+      "action": "Select multiple images and click 'Sync' to apply the retouching settings from the current image to the rest of the selection.",
+      "code": null,
+      "tool": "Evoto (Sync)"
+    },
+    {
+      "time": "02:55",
+      "action": "Fine-tune the 'Remove Glass Glare' slider under 'Eyes' to reduce reflections on glasses without making the eyes look unnatural.",
+      "code": null,
+      "tool": "Evoto (Eyes)"
+    },
+    {
+      "time": "03:53",
+      "action": "Review synced images individually. If the AI incorrectly identifies clothing patterns as tattoos, manually disable the 'Tattoos' setting for that specific image.",
+      "code": null,
+      "tool": "Evoto (Manual Adjustment)"
+    }
+  ],
+  "key_takeaways": [
+    "AI tools can drastically reduce retouching time for complex tasks like tattoo and glare removal.",
+    "Syncing settings across a batch is efficient, but individual review is necessary to correct AI misinterpretations (e.g., confusing shirt patterns for tattoos).",
+    "Subtlety is key; adjusting sliders to less than 100% often yields more realistic results."
+  ],
+  "video_id": "0bIAqmNtfus",
+  "url": "https://www.youtube.com/watch?v=0bIAqmNtfus"
+}

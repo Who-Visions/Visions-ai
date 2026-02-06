@@ -1,0 +1,48 @@
+{
+    "title": "Benchmarking On-Device Efficient Language Models (ELMs)",
+    "summary": "A strategic guide to evaluating Efficient Language Models (ELMs) like Llama3, Phi-3, and Gemma for on-device agentic workflows. The video introduces the \"ITV Benchmark\" (Is This Viable) using promptfoo and Ollama to determine if local models meet specific standards for accuracy, speed, and memory, effectively reducing inference costs to zero.",
+    "steps": [
+        {
+            "time": "03:59",
+            "action": "Define personal ELM standards",
+            "tool": "Metrics (Accuracy, TPS, RAM)",
+            "reasoning": "Establishes the specific 'viability' thresholds (e.g., 80% accuracy, 20 t/s) required for an agent to function effectively on-device."
+        },
+        {
+            "time": "07:07",
+            "action": "Initialize the ITV Benchmark environment",
+            "tool": "Bun, VS Code",
+            "reasoning": "Sets up the fast JavaScript runtime and project structure necessary to orchestrate the testing framework."
+        },
+        {
+            "time": "07:23",
+            "action": "Serve local models and install dependencies",
+            "tool": "Ollama, Bun",
+            "reasoning": "Makes models like Llama3, Phi-3, and Gemma available via local API endpoints for the testing suite to access."
+        },
+        {
+            "time": "08:25",
+            "action": "Configure test suite, prompts, and providers",
+            "tool": "promptfoo (YAML config)",
+            "reasoning": "Defines the specific agentic logic (prompts) and success criteria (assertions) to objectively measure model performance."
+        },
+        {
+            "time": "10:59",
+            "action": "Execute the benchmark evaluation",
+            "tool": "Terminal (bun run elm)",
+            "reasoning": "Runs the defined test cases against both local ELMs and a cloud control model (GPT-3.5) to gather comparative data."
+        },
+        {
+            "time": "11:50",
+            "action": "Analyze comparative results",
+            "tool": "promptfoo Web Viewer",
+            "reasoning": "Visualizes pass/fail rates to determine if a specific local model is 'good enough' to replace a cloud model for the specific use case."
+        }
+    ],
+    "key_takeaways": [
+        "ELMs (Efficient Language Models) drive the cost of building agentic tools toward zero by enabling on-device processing.",
+        "The 'ITV Benchmark' (Is This Viable) is a critical methodology for validating if a local model can replace a cloud model for specific tasks.",
+        "Llama3 (8B) is currently a top performer for local use, showing 75% passing rates in the demo, approaching the viability of GPT-3.5.",
+        "Promptfoo combined with Ollama provides the necessary infrastructure to treat prompts as the fundamental unit of programming with rigorous testing."
+    ]
+}

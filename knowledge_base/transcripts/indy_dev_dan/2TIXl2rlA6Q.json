@@ -1,0 +1,43 @@
+{
+    "title": "Programmable Agentic Coding: Scaling Engineering with Claude Code",
+    "summary": "This tutorial explores the transition from AI Coding to Agentic Coding using Claude Code. It demonstrates how to leverage Claude Code's programmable CLI and Model Context Protocol (MCP) servers to build autonomous workflows. By embedding Claude Code into Bash and Python scripts, the workflow illustrates scaling compute to automate complex engineering tasks, from simple file creation to full application scaffolding and Notion-driven task execution.",
+    "steps": [
+        {
+            "time": "01:41",
+            "action": "Execute basic Claude Code CLI command with specific prompt and allowed tools",
+            "tool": "Claude Code CLI",
+            "reasoning": "Establishes the fundamental capability of Claude Code to be invoked programmatically with controlled permissions (`--allowedTools`) and inputs (`-p`)."
+        },
+        {
+            "time": "10:50",
+            "action": "Run shell script `claude_code_is_programmable_1.sh` to generate `hello.js`",
+            "tool": "Bash, Claude Code",
+            "reasoning": "Demonstrates the simplest form of programmable agentic coding by wrapping the CLI in a shell script to automate file creation."
+        },
+        {
+            "time": "12:00",
+            "action": "Run Python script `claude_code_is_programmable_2.py` to build, stage, and commit a TypeScript Todo App",
+            "tool": "Python, Claude Code, Git",
+            "reasoning": "Shows how to embed the agent into a higher-level language to orchestrate complex, multi-step engineering workflows (coding + version control) autonomously."
+        },
+        {
+            "time": "15:54",
+            "action": "Run Python script `claude_code_is_programmable_3.py` to integrate Notion via MCP",
+            "tool": "Python, Claude Code, MCP (Notion)",
+            "reasoning": "Illustrates the 'Tool Belt' concept where the agent connects to external knowledge bases (Notion) to plan and execute tasks locally based on remote instructions."
+        },
+        {
+            "time": "17:30",
+            "action": "Execute Notion-driven task list where Claude Code creates files and updates Notion status",
+            "tool": "Claude Code, Notion API",
+            "reasoning": "Validates the full agentic loop: reading external context, performing local engineering work (file creation), and reporting status back to the external system."
+        }
+    ],
+    "key_takeaways": [
+        "Agentic Coding differs from AI Coding by allowing access to arbitrary tools (Bash, MCP) rather than just code generation.",
+        "Claude Code is 'infinitely programmable' and can be embedded inside scripts (Bash, Python) to scale engineering compute.",
+        "Scaling compute usage is directly correlated with scaling engineering impact and success.",
+        "Model Context Protocol (MCP) servers allow agents to extend their capabilities to any external tool or API (e.g., Notion).",
+        "Great planning is great prompting; structuring tasks in external systems like Notion can drive autonomous agent execution."
+    ]
+}

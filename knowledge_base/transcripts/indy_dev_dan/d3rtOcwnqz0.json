@@ -1,0 +1,49 @@
+{
+    "title": "5 Big Bets for Agentic Engineering in 2026",
+    "summary": "IndyDevDan presents a strategic roadmap for software engineers to transition into 'Agentic Engineering'. The video outlines five critical bets to stay ahead of the curve, moving beyond basic AI coding to building autonomous systems that run 24/7. The philosophy centers on deprecating old manual skills to focus on teaching agents, maximizing compute usage, and utilizing custom interfaces to achieve exponential productivity.",
+    "steps": [
+        {
+            "time": "01:08",
+            "action": "Bet #1: Build Custom Agents",
+            "tool": "Claude Code, Codex CLI",
+            "reasoning": "Custom agents handle domain-specific, complex engineering tasks, allowing engineers to capture the 80/20 of software engineering and achieve top 1% output."
+        },
+        {
+            "time": "02:59",
+            "action": "Bet #2: Deprecate Old Skills",
+            "tool": "Mindset Shift",
+            "reasoning": "Engineers must actively stop performing manual coding tasks to create mental space and energy for teaching agents, avoiding the trap of maintaining obsolete habits."
+        },
+        {
+            "time": "05:21",
+            "action": "Bet #3: Limit Break AGC Constraints",
+            "tool": "Agentic Development Workflows (ADWs)",
+            "reasoning": "Overcoming the primary bottlenecks of agentic coding—planning and reviewing—unlocks the true scale of productivity and allows for 1-2 orders of magnitude improvement."
+        },
+        {
+            "time": "07:15",
+            "action": "Bet #4: Adopt Multi-Agent UIs & Interaction Interfaces",
+            "tool": "Voice Interfaces, Specialized UIs",
+            "reasoning": "Chat interfaces are inefficient for high-volume compute; voice and specialized UIs allow engineers to wield more compute faster and manage multi-agent systems effectively."
+        },
+        {
+            "time": "09:35",
+            "action": "Bet #5: Implement Compute Maxxing",
+            "tool": "Qwen Series, ChatGPT Pulse",
+            "reasoning": "Utilizing agents that run 24/7 creates 'living software' that solves problems autonomously, providing exponential leverage beyond human working hours."
+        },
+        {
+            "time": "14:37",
+            "action": "Transition to Agentic Engineering",
+            "tool": "Tactical Agentic Coding (TAC) Framework",
+            "reasoning": "Moving from 'AI Coding' to 'Agentic Engineering' involves building systems that build systems, ensuring the engineer remains the irreplaceable architect of the workflow."
+        }
+    ],
+    "key_takeaways": [
+        "The future of engineering is 'Agentic First', focusing on teaching agents rather than writing code manually.",
+        "Compute Maxxing involves running 'living software' that works 24/7 to solve problems while the engineer sleeps.",
+        "Engineers must actively deprecate old skills to avoid atrophy in areas that no longer provide leverage.",
+        "The ultimate goal of Agentic Engineering is to build systems that build systems.",
+        "Custom agents and specialized UIs are necessary to break through the constraints of standard chat-based AI coding."
+    ]
+}
