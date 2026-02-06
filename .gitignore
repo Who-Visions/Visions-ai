@@ -25,7 +25,7 @@ Thumbs.db
 vector_store/
 generated_images/
 outputs/
-memory/
+/memory/
 *.png
 *.jpg
 *.jpeg
