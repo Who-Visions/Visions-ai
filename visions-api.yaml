@@ -1,0 +1,15 @@
+swagger: "2.0"
+info:
+  title: Visions-AI API
+  description: Tier-based AI API for Visions SaaS (Free, Basic, Pro, Business, Enterprise)
+  version: "1.0.0"
+host: "visions-api.endpoints.endless-duality-480201-t3.cloud.goog"
+paths:
+  "/v1/generate":
+    post:
+      operationId: generate
+      x-google-backend:
+        address: "https://visions-assistant-service-620633534056.us-central1.run.app"
+      responses:
+        200:
+          description: Success
