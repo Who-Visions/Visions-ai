@@ -5,12 +5,11 @@ Load this with: from dotenv import load_dotenv; load_dotenv()
 import os
 from pathlib import Path
 
-# Load .env file if it exists
+# Load .env file
 try:
-    from dotenv import load_dotenv
-    env_path = Path(__file__).parent / '.env'
-    if env_path.exists():
-        load_dotenv(env_path)
+    from dotenv import load_dotenv, find_dotenv
+    # find_dotenv() will search upwards from current file to find the project root .env
+    load_dotenv(find_dotenv())
 except ImportError:
     print("⚠️  python-dotenv not installed. Install with: pip install python-dotenv")
 
@@ -27,7 +26,7 @@ class Config:
     VERTEX_GLOBAL_LOCATION = os.getenv("VERTEX_GLOBAL_LOCATION", "global")
     
     # Reasoning Engine
-    REASONING_ENGINE_ID = os.getenv("REASONING_ENGINE_ID", "542433066447011840")
+    REASONING_ENGINE_ID = os.getenv("REASONING_ENGINE_ID", "1288754071590666240")
     REASONING_ENGINE_RESOURCE = (
         f"projects/620633534056/locations/{VERTEX_LOCATION}/"
         f"reasoningEngines/{REASONING_ENGINE_ID}"
@@ -63,8 +62,8 @@ class Config:
     MODEL_TRANSCRIPTION = "gemini-2.5-flash"
 
     # 3. VIDEO GENERATION (Veo 3.1)
-    MODEL_VEO = "veo-3.1-generate-preview"
-    MODEL_VEO_FAST = "veo-3.1-fast-generate-preview"
+    MODEL_VEO = "veo-3.1-generate-001"
+    MODEL_VEO_FAST = "veo-3.1-fast-generate-001"
 
     # 4. MUSIC GENERATION (Lyria RealTime) - Experimental
     MODEL_LYRIA_REALTIME = "models/lyria-realtime-exp"
@@ -96,7 +95,8 @@ class Config:
     
     # ALIASES
     GROUNDING_MODEL = MODEL_FLASH  
-    EMBEDDING_MODEL = "gemini-embedding-001" 
+    EMBEDDING_MODEL = "text-embedding-004" 
+    EMBEDDING_DIMENSIONS = 768 
     
     # GENERATION CONFIG
     # Gemini 3 Thinking Levels
@@ -129,6 +129,13 @@ class Config:
     GCS_BUCKET = f"{VERTEX_PROJECT_ID}-reasoning-artifacts"
     GCS_MEMORY_BUCKET = f"{VERTEX_PROJECT_ID}-visions-memory"
     VECTOR_STORE_PREFIX = "vector_store"
+
+    # BigQuery (Long-Term Analytical Memory)
+    BIGQUERY_DATASET = "visions_memory"
+    BIGQUERY_TABLE = "interaction_logs"
+    
+    # Local SQL (Short-Term fast access)
+    LOCAL_MEMORY_DB = "visions_short_term.db"
     
     # Gemini Live API (Native Audio)
     # Docs: "Gemini 2.5 Flash with Gemini Live API native audio" -> gemini-live-2.5-flash-native-audio

@@ -32,11 +32,13 @@ class CloudMemoryManager:
         self.bq_table = Config.BIGQUERY_TABLE
         
         # Local SQL Setup
-        self.local_db = Config.LOCAL_MEMORY_DB
+        import tempfile
+        self.temp_dir = Path(tempfile.gettempdir())
+        self.local_db = str(self.temp_dir / Config.LOCAL_MEMORY_DB)
         self._init_local_sql()
         
         # 4. Markdown Journaling
-        self.log_file = Path("docs/logs/CURRENT_SESSION.md")
+        self.log_file = self.temp_dir / "visions_logs" / "CURRENT_SESSION.md"
         self.log_file.parent.mkdir(parents=True, exist_ok=True)
 
     def _init_local_sql(self):

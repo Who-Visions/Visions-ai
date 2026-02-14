@@ -23,13 +23,21 @@ class VideoService:
     Manages video generation tasks using Veo 3.1 models.
     """
     
-    def __init__(self, api_key: Optional[str] = None):
+    def __init__(self, api_key: Optional[str] = None, project: Optional[str] = None, location: Optional[str] = None):
         if not genai:
             raise ImportError("The 'google.genai' package is required for VideoService.")
         
         self.api_key = api_key or os.getenv("GOOGLE_API_KEY")
-        # Initialize client
-        self.client = genai.Client(http_options={'api_version': 'v1beta'}) 
+        self.project = project or os.getenv("VERTEX_PROJECT_ID")
+        self.location = location or os.getenv("VERTEX_LOCATION", "us-central1")
+
+        # Determine mode
+        if self.project and self.location:
+             logger.info(f"🎬 VideoService: Initializing in Vertex AI mode ({self.project}/{self.location})")
+             self.client = genai.Client(vertexai=True, project=self.project, location=self.location, http_options={'api_version': 'v1beta'})
+        else:
+             logger.info("🎬 VideoService: Initializing in API Key mode")
+             self.client = genai.Client(api_key=self.api_key, http_options={'api_version': 'v1beta'})
 
     def generate_video(self, 
                        prompt: str, 
