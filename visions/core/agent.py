@@ -1,4 +1,4 @@
-# Visions AI - Core Agent v2.2.0
+# Visions AI - Core Agent v3.0.0 (God Mode)
 # Rhea Noir Standard - Heuristic Cascade, Locational Routing & Bucket Synchronization
 
 import warnings
@@ -24,12 +24,15 @@ from google.cloud import storage
 from .config import Config
 from .skills import SkillRegistry
 from visions.modules.genai.genai_embeddings import GenAIEmbeddings
-from visions.modules.memory.memory_cloud import CloudMemoryManager
+from visions.modules.mem_store.memory_cloud import CloudMemoryManager
 from tools.vision_tools import VisionTools
 from tools.youtube_tools import YouTubeTools
 from tools.cinema_tools import CinemaTools
 from tools.agent_connect import AgentConnector
 from tools.browser_tool import BrowserTool
+from tools.audio_tools import AudioGenerator
+from tools.video_tools import VeoDirector
+from .prompts import GOD_MODE
 
 logger = logging.getLogger("visions-core")
 
@@ -114,14 +117,15 @@ class ImageGenerator:
 
 class VisionsAgent:
     """
-    Visions AI Agent - Rhea Noir Engine v2.2.0.
-    Heuristic Routing, Multi-Bucket Sync, and Deep Thinking.
+    Visions AI Agent - Rhea Noir Engine v3.0.0 (God Mode).
+    Heuristic Routing, Multi-Bucket Sync, Deep Thinking, and Advanced Safety.
     """
     
     MODEL_LOCATIONS = {
         Config.MODEL_PRO: "global",
         Config.MODEL_FLASH: "global",
         Config.MODEL_IMAGE: "global",
+        "gemini-3-pro-image-preview": "global",
         Config.MODEL_IMAGEN_FALLBACK: "us-central1"
     }
 
@@ -145,12 +149,25 @@ class VisionsAgent:
         self.cinema_tools = CinemaTools()
         self.agent_connector = AgentConnector()
         self.browser_tool = BrowserTool()
+        self.audio_generator = AudioGenerator()
+        self.video_director = VeoDirector()
 
     def _get_client(self, model: str = None) -> genai.Client:
         loc = self.MODEL_LOCATIONS.get(model, "global")
         if loc not in self._clients:
             self._clients[loc] = genai.Client(vertexai=True, project=self.project, location=loc)
         return self._clients[loc]
+
+    def count_tokens(self, content: Any, model: str = Config.MODEL_FLASH) -> int:
+        """Count tokens for usage optimization."""
+        try:
+            client = self._get_client(model)
+            # Ensure proper content formatting for SDK
+            response = client.models.count_tokens(model=model, contents=content)
+            return response.total_tokens
+        except Exception as e:
+            logger.error(f"Token count failed: {e}")
+            return 0
 
     def _triage_query(self, question: str) -> dict:
         """Route query by complexity/risk."""
@@ -160,28 +177,50 @@ class VisionsAgent:
             response = client.models.generate_content(
                 model=Config.MODEL_FLASH,
                 contents=prompt,
-                config=types.GenerateContentConfig(response_mime_type="application/json")
+                config=types.GenerateContentConfig(
+                    response_mime_type="application/json",
+                    temperature=0.0 # Deterministic routing
+                )
             )
             return json.loads(response.text)
         except Exception:
             return {"is_high_risk": False, "complexity": 5, "needs_search": True}
 
     def query(self, question: str, image_base64: str = None, user_id: str = "user", config: dict = None) -> str:
-        """Standard Rhea Noir Cascade."""
+        """Standard Rhea Noir Cascade with God Mode Enhancements."""
         routing = self._triage_query(question)
         complexity = int(routing.get("complexity", 5))
         is_high_risk = routing.get("is_high_risk", False)
         
-        # Routing Logic
-        if is_high_risk or complexity >= 8:
+        # 6-Level Reasoning Heuristic Ladder
+        logger.info(f"🤔 Smart Router Analysis - Complexity: {complexity}, Risk: {is_high_risk}")
+
+        if is_high_risk or complexity >= 9:
             target_model = Config.MODEL_PRO
             thinking_level = Config.THINKING_LEVEL_HIGH
-        elif complexity >= 4:
+            routing_tier = "Tier 6: Pro / High (God Mode)"
+        elif complexity >= 7:
             target_model = Config.MODEL_PRO
+            thinking_level = Config.THINKING_LEVEL_LOW
+            routing_tier = "Tier 5: Pro / Low"
+        elif complexity >= 6:
+            target_model = Config.MODEL_FLASH
+            thinking_level = Config.THINKING_LEVEL_HIGH
+            routing_tier = "Tier 4: Flash / High"
+        elif complexity >= 4:
+            target_model = Config.MODEL_FLASH
             thinking_level = Config.THINKING_LEVEL_MEDIUM
-        else:
+            routing_tier = "Tier 3: Flash / Medium"
+        elif complexity >= 2:
             target_model = Config.MODEL_FLASH
             thinking_level = Config.THINKING_LEVEL_LOW
+            routing_tier = "Tier 2: Flash / Low"
+        else:
+            target_model = Config.MODEL_FLASH
+            thinking_level = Config.THINKING_LEVEL_MINIMAL
+            routing_tier = "Tier 1: Flash / Minimal"
+            
+        logger.info(f"➡️ Routing Decision: {routing_tier}")
         
         # Parallel Intel
         context = ""
@@ -206,18 +245,31 @@ class VisionsAgent:
         if image_base64:
             contents.append(types.Part.from_bytes(data=base64.b64decode(image_base64), mime_type="image/png"))
 
+        # Pre-flight Token Check
+        token_count = self.count_tokens(contents, model=target_model)
+        logger.info(f"🪙 Estimated Tokens: {token_count}")
+
         # Execute Synthesis
         client = self._get_client(target_model)
+        
+        # Robust Safety Settings (Allowing Creative Freedom)
+        # Block only explicit high probability harm to allow artistic expression
+        safety_settings = [
+            types.SafetySetting(category=types.HarmCategory.HARM_CATEGORY_HATE_SPEECH, threshold=types.HarmBlockThreshold.BLOCK_ONLY_HIGH),
+            types.SafetySetting(category=types.HarmCategory.HARM_CATEGORY_HARASSMENT, threshold=types.HarmBlockThreshold.BLOCK_ONLY_HIGH),
+            types.SafetySetting(category=types.HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT, threshold=types.HarmBlockThreshold.BLOCK_ONLY_HIGH),
+            types.SafetySetting(category=types.HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT, threshold=types.HarmBlockThreshold.BLOCK_ONLY_HIGH),
+        ]
+
         try:
             response = client.models.generate_content(
                 model=target_model,
                 contents=contents,
                 config=types.GenerateContentConfig(
-                    system_instruction=(
-                        "You are Visions AI, iconic creative director. Your words carry the weight of decades in photography. "
-                        "Mentor the user with artistic rigor. Master of Arnheim, lighting, and cinematic soul."
-                    ),
-                    thinking_config=types.ThinkingConfig(thinking_level=thinking_level)
+                    system_instruction=GOD_MODE,
+                    thinking_config=types.ThinkingConfig(thinking_level=thinking_level),
+                    safety_settings=safety_settings,
+                    temperature=1.0 # Default recommended for reasoning models
                 )
             )
             final_response = response.text
@@ -234,3 +286,17 @@ class VisionsAgent:
 
     def generate_image(self, prompt: str) -> str:
         return self.imager.generate_image(prompt)
+
+    def generate_speech(self, text: str, voice_name: str = "Kore") -> str:
+        """Generate text-to-speech audio."""
+        result = self.audio_generator.generate_speech(text, voice_name)
+        if result:
+            return f"AUDIO_GENERATED:{result}"
+        return "Error: Speech generation failed."
+
+    def generate_video(self, prompt: str) -> str:
+        """Generate video from text using Veo."""
+        result = self.video_director.generate_video(prompt)
+        if result:
+            return f"VIDEO_GENERATED:{result}"
+        return "Error: Video generation failed."
