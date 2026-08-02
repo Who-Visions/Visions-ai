@@ -132,7 +132,7 @@ class GeospatialRecovery:
             return {"error": "Vertex AI SDK not available", "source": "vision_consensus"}
 
         try:
-            model = GenerativeModel("gemini-3.1-pro")
+            model = GenerativeModel("gemini-3.1-pro-preview")
             
             with open(img_path, "rb") as f:
                 img_data = f.read()

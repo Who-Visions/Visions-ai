@@ -49,3 +49,4 @@ client_secret*.json
 # Ingestor logs
 knowledge_base/ingestor_errors.log
 knowledge_base/processed_pdfs.json
+.venv/
