@@ -134,15 +134,15 @@ Always save important learnings and preferences to /memories/ for future session
         )
         
         model = ChatVertexAI(
-            model_name="gemini-3-pro-image-preview",  # Your production model
+            model_name="gemini-3-pro-image",  # Your production model
             project=Config.VERTEX_PROJECT_ID,
             location="global",  # Global endpoint with dynamic routing
             temperature=0.7
         )
         print(f"✅ Vertex AI initialized: {Config.VERTEX_PROJECT_ID}")
-        print(f"✅ Gemini model: gemini-3-pro-image-preview (global endpoint)")
+        print(f"✅ Gemini model: gemini-3-pro-image (global endpoint)")
     else:
-        model = "gemini-3-pro-image-preview"  # String for config dict
+        model = "gemini-3-pro-image"  # String for config dict
     
     # Agent configuration
     config = {

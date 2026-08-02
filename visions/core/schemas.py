@@ -147,7 +147,7 @@ def create_image_request(prompt: str, aspect_ratio: str = "1:1") -> ImageGenerat
     )
 
 def create_generation_result(success: bool, filepath: str = None, 
-                            source: str = "ai_studio", model: str = "gemini-3-pro-image-preview",
+                            source: str = "ai_studio", model: str = "gemini-3-pro-image",
                             generation_time: float = None, error: str = None) -> ImageGenerationResult:
     """Helper to create structured generation result"""
     return ImageGenerationResult(
@@ -203,7 +203,7 @@ if __name__ == "__main__":
         ai_studio_available=True,
         ai_studio_quota_remaining=245,
         memory_system_online=True,
-        active_model="gemini-3-pro-image-preview",
+        active_model="gemini-3-pro-image",
         active_endpoint="ai_studio",
         session_id="2025-12-05T04:20:00",
         uptime_seconds=1234.5

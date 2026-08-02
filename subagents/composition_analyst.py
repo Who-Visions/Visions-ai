@@ -173,7 +173,7 @@ Focus on understanding **why** composition works, not just rules.""",
         # - arnheim_principle_lookup
     ],
     
-    "model": "gemini-3-pro-image-preview"  # Vision model for analysis
+    "model": "gemini-3-pro-image"  # Vision model for analysis
 }
 
 

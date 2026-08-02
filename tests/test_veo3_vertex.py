@@ -11,7 +11,7 @@ print("🎬 VEO 3.1 - VERTEX AI COMPATIBLE")
 print("="*80)
 
 # Configuration
-PROJECT_ID = "endless-duality-480201-t3"
+PROJECT_ID = "mineral-subject-487519-v6"
 LOCATION = "us-central1"
 
 print("\n🔑 Creating client...")

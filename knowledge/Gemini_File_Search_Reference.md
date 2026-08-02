@@ -20,7 +20,7 @@ Managed RAG service. Upload files -> Auto-chunk & Embed -> Query via `file_searc
 
 ```python
 response = client.models.generate_content(
-    model="gemini-3-pro-preview",
+    model="gemini-3.1-pro-preview",
     contents="Summarize the doc",
     config=types.GenerateContentConfig(
         tools=[types.Tool(

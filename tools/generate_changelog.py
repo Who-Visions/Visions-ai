@@ -48,7 +48,7 @@ class ChangelogGenerator:
         Config.validate()
         self.api_key = Config.GOOGLE_AI_STUDIO_API_KEY
         self.client = StructuredGeminiClient(api_key=self.api_key)
-        self.model = "gemini-2.0-flash-exp" # Fast, multimodal model
+        self.model = "gemini-3.6-flash" # Fast, multimodal model
         
         self.changelog_path = PROJECT_ROOT / "CHANGELOG.md"
         self.assets_dir = PROJECT_ROOT / "assets" / "changelog"

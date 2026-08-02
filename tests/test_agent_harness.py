@@ -54,7 +54,7 @@ class TestCameraAdvisor:
         assert "model" in camera_advisor
         
         assert camera_advisor["name"] == "camera-advisor"
-        assert camera_advisor["model"] == "gemini-2.5-flash"
+        assert camera_advisor["model"] == "gemini-3.6-flash"
     
     def test_description_includes_use_cases(self):
         """Description should include when to use."""

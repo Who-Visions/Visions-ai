@@ -32,7 +32,7 @@ from websockets.exceptions import ConnectionClosed
 DEBUG = os.getenv("VISIONS_DEBUG", "false").lower() == "true"
 HTTP_PORT = int(os.getenv("VISIONS_LIVE_HTTP_PORT", "8000"))
 WS_PORT = int(os.getenv("VISIONS_LIVE_WS_PORT", "8080"))
-PROJECT_ID = os.getenv("VERTEX_PROJECT_ID", "endless-duality-480201-t3")
+PROJECT_ID = os.getenv("VERTEX_PROJECT_ID", "mineral-subject-487519-v6")
 REGION = os.getenv("VERTEX_LOCATION", "us-central1")
 
 # Gemini Live API Model

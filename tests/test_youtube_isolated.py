@@ -7,7 +7,7 @@ from tools.youtube_tools import YouTubeTools
 def test_tool():
     print("Testing YouTubeTools isolated...")
     # Initialize
-    yt = YouTubeTools(project_id="endless-duality-480201-t3", location="us-central1")
+    yt = YouTubeTools(project_id="mineral-subject-487519-v6", location="us-central1")
     
     # Test Video
     url = "https://www.youtube.com/watch?v=ku-N-eS1lgM"

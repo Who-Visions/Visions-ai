@@ -51,7 +51,7 @@ To use all credits evenly before expiry:
 | **Gemini 3 Pro Image (1K)** | $0.134/image | 250 | `gemini-3-pro-image-1k` |
 | **Gemini 3 Pro Image (2K)** | $0.134/image | 250 | `gemini-3-pro-image-2k` |
 | **Gemini 3 Pro Image (4K)** | $0.24/image | 250 | `gemini-3-pro-image-4k` |
-| **Gemini 2.5 Flash Image** | $0.039/image | 2,000 | `gemini-2.5-flash-image` |
+| **Gemini 2.5 Flash Image** | $0.039/image | 2,000 | `gemini-3.1-flash-image` |
 | **Imagen 4 Fast** | $0.02/image | 70 | `imagen-4-fast` |
 | **Imagen 4 Standard** | $0.04/image | 70 | `imagen-4-standard` |
 | **Imagen 4 Ultra** | $0.06/image | 30 | `imagen-4-ultra` |
@@ -126,7 +126,7 @@ print(f"📊 {status}")
 | `gemini-3-pro-image-1k` | G3 Pro Image 1K | $0.134 | 250 |
 | `gemini-3-pro-image-2k` | G3 Pro Image 2K | $0.134 | 250 |
 | `gemini-3-pro-image-4k` | G3 Pro Image 4K | $0.24 | 250 |
-| `gemini-2.5-flash-image` | Flash Image | $0.039 | 2,000 |
+| `gemini-3.1-flash-image` | Flash Image | $0.039 | 2,000 |
 | `imagen-4-fast` | Imagen 4 Fast | $0.02 | 70 |
 | `imagen-4-standard` | Imagen 4 Standard | $0.04 | 70 |
 | `imagen-4-ultra` | Imagen 4 Ultra | $0.06 | 30 |
@@ -177,17 +177,17 @@ Based on $9.41/day budget AND rate limits:
 
 | Model | RPM | TPM | RPD |
 |-------|-----|-----|-----|
-| gemini-3-pro | 25 | 1M | 250 |
+| gemini-3.1-pro-preview | 25 | 1M | 250 |
 | gemini-3-pro-image | 20 | 100K | 250 |
-| gemini-2.5-pro | 15 | 1M | 300 |
-| gemini-2.5-flash | 1,000 | 1M | 10K |
-| gemini-2.5-flash-lite | 4,000 | 4M | ∞ |
+| gemini-3.1-pro-preview | 15 | 1M | 300 |
+| gemini-3.6-flash | 1,000 | 1M | 10K |
+| gemini-3.1-flash-lite | 4,000 | 4M | ∞ |
 
 ### Image Models
 
 | Model | RPM | RPD |
 |-------|-----|-----|
-| gemini-2.5-flash-image | 500 | 2,000 |
+| gemini-3.1-flash-image | 500 | 2,000 |
 | imagen-4-fast | 10 | 70 |
 | imagen-4-standard | 10 | 70 |
 | imagen-4-ultra | 5 | 30 |
@@ -226,7 +226,7 @@ python cost_tracker.py --pricing
 python cost_tracker.py --estimate 500 --type cascade
 
 # Log token usage
-python cost_tracker.py --log gemini-3-pro 1000 500
+python cost_tracker.py --log gemini-3.1-pro-preview 1000 500
 ```
 
 ---
@@ -255,7 +255,7 @@ Inspired by [FreeCodeCamp's expense tracker](https://www.freecodecamp.org/news/b
 ### Categories
 | Category | Emoji | Models |
 |----------|-------|--------|
-| Text Generation | 💬 | gemini-3-pro, gemini-2.5-* |
+| Text Generation | 💬 | gemini-3.1-pro-preview, gemini-2.5-* |
 | Image Generation | 🎨 | gemini-*-image, imagen-* |
 | Video Generation | 🎬 | veo-* |
 | Embedding | 🔗 | text-embedding |
@@ -274,7 +274,7 @@ python expense_tracker.py --charts
 python expense_tracker.py --charts 14  # Last 14 days
 
 # Add expense manually
-python expense_tracker.py --add gemini-3-pro 0.05 "test query"
+python expense_tracker.py --add gemini-3.1-pro-preview 0.05 "test query"
 
 # Export to CSV
 python expense_tracker.py --export expenses.csv

@@ -4,12 +4,12 @@
 
 ## Models
 
-- **High-Fidelity**: `gemini-3-pro-image-preview` (aka **Nano Banana Pro**)
+- **High-Fidelity**: `gemini-3-pro-image` (aka **Nano Banana Pro**)
   - Supports "Thinking" (Logic/Composition refinement).
   - Up to 14 reference images (mixing styles/characters).
   - 1K, 2K, 4K resolution.
   - Grounding with Google Search.
-- **Fast**: `gemini-2.5-flash-image` (aka **Nano Banana**)
+- **Fast**: `gemini-3.1-flash-image` (aka **Nano Banana**)
   - standard text-to-image, faster inference.
 
 ## Capabilities
@@ -18,7 +18,7 @@
 
 ```python
 response = client.models.generate_content(
-    model="gemini-3-pro-image-preview",
+    model="gemini-3-pro-image",
     contents="A photorealistic close-up...",
     config=types.GenerateContentConfig(
         response_modalities=["TEXT", "IMAGE"],
@@ -41,7 +41,7 @@ contents = [
 ### 3. Multi-Turn Editing (Chat)
 
 Use `client.chats.create` to iterate.
-**Critical**: `gemini-3-pro-image-preview` emits `thought_signature` in responses.
+**Critical**: `gemini-3-pro-image` emits `thought_signature` in responses.
 
 - If using SDK `chat` object: **Handled automatically**.
 - If manually managing history: Must pass `thought_signature` back in next turn.

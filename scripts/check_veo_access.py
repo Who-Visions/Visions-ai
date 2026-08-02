@@ -3,7 +3,7 @@ Quick diagnostic for Veo 3.1 availability
 """
 from google import genai
 
-PROJECT_ID = "endless-duality-480201-t3"
+PROJECT_ID = "mineral-subject-487519-v6"
 LOCATION = "us-central1"
 
 print("🔍 Checking Veo 3.1 availability...")

@@ -13,7 +13,7 @@ try:
     
     # Initialize Gemini model
     model = ChatGoogleGenerativeAI(
-        model="gemini-3-pro-image-preview",
+        model="gemini-3-pro-image",
         google_api_key=os.environ.get("GOOGLE_API_KEY")
     )
     

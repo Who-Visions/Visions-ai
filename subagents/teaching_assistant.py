@@ -214,7 +214,7 @@ If `/memories/learning_progress.json` doesn't exist or is unclear:
         # - generate_quiz
     ],
     
-    "model": "gemini-2.5-flash"  # Fast for structured content
+    "model": "gemini-3.6-flash"  # Fast for structured content
 }
 
 

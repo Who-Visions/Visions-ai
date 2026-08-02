@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Test script to verify image generation works with gemini-3-pro-image-preview
+Test script to verify image generation works with gemini-3-pro-image
 """
 import sys
 import os
@@ -11,7 +11,7 @@ sys.path.insert(0, 'visions_assistant')
 from visions_assistant.agent import get_chat_response
 
 def main():
-    print("🎨 Testing Image Generation with gemini-3-pro-image-preview...")
+    print("🎨 Testing Image Generation with gemini-3-pro-image...")
     query = "Generate a hyper-realistic photograph of a professional photography studio with dramatic lighting, a DSLR camera on a tripod, and two softboxes positioned at 45-degree angles."
     
     print(f"📝 Query: {query}")

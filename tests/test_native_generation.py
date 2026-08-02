@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Direct test of gemini-3-pro-image-preview's native image generation capability
+Direct test of gemini-3-pro-image's native image generation capability
 """
 from google import genai
 from google.genai import types
@@ -8,13 +8,13 @@ import vertexai
 import base64
 import os
 
-PROJECT_ID = "endless-duality-480201-t3"
+PROJECT_ID = "mineral-subject-487519-v6"
 
 # Initialize
 vertexai.init(project=PROJECT_ID, location="us-central1")
 client = genai.Client(vertexai=True, project=PROJECT_ID, location="global")
 
-print("🎨 Testing Native Image Generation with gemini-3-pro-image-preview\n")
+print("🎨 Testing Native Image Generation with gemini-3-pro-image\n")
 
 prompt = "Generate a professional photograph of a modern photography studio with dramatic lighting"
 
@@ -23,7 +23,7 @@ print("\n🔄 Generating...")
 
 try:
     response = client.models.generate_content(
-        model="gemini-3-pro-image-preview",
+        model="gemini-3-pro-image",
         contents=[prompt],
         config=types.GenerateContentConfig(
             temperature=1.0,

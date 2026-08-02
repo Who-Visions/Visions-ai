@@ -23,7 +23,7 @@ print("\n🔄 Generating...")
 
 try:
     response = client.models.generate_content(
-        model="gemini-3-pro-image-preview",
+        model="gemini-3-pro-image",
         contents=[prompt],
         config=types.GenerateContentConfig(
             temperature=1.0,

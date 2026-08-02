@@ -29,7 +29,7 @@ class VisionTools:
     - Multimodal reasoning
     """
     
-    def __init__(self, project_id: str = "endless-duality-480201-t3", location: str = "global"):
+    def __init__(self, project_id: str = "mineral-subject-487519-v6", location: str = "global"):
         self.project_id = project_id
         self.location = location  # Always global for Gemini 3 Pro
         
@@ -37,7 +37,7 @@ class VisionTools:
         # This avoids pickling issues when deploying to Vertex AI
         self._client = None
         
-        self.model = "gemini-3-pro-image-preview"  # THE flagship model
+        self.model = "gemini-3-pro-image"  # THE flagship model
         # No print statements in __init__ - they cause issues during pickle
     
     @property
@@ -654,10 +654,10 @@ class VisionTools:
              )
              
              # Generate with Gemini 3 Pro (Video capable)
-             # Explicitly using gemini-3-pro-preview for video as per original implementation
+             # Explicitly using gemini-3.1-pro-preview for video as per original implementation
              print("📤 Sending video payload to Gemini 3 Pro...")
              response = self.client.models.generate_content(
-                 model="gemini-3-pro-preview", 
+                 model="gemini-3.1-pro-preview", 
                  contents=[prompt, video_part],
                  config=types.GenerateContentConfig(
                      temperature=1.0
@@ -686,7 +686,7 @@ class VisionTools:
 
 # ==================== Standalone Functions ====================
 
-def quick_vqa(image_path: str, question: str, project_id: str = "endless-duality-480201-t3") -> str:
+def quick_vqa(image_path: str, question: str, project_id: str = "mineral-subject-487519-v6") -> str:
     """
     Quick VQA without instantiating class.
     
@@ -697,7 +697,7 @@ def quick_vqa(image_path: str, question: str, project_id: str = "endless-duality
     return tools.visual_question_answer(image_path, question)
 
 
-def quick_generate(prompt: str, output_path: str = None, project_id: str = "endless-duality-480201-t3") -> str:
+def quick_generate(prompt: str, output_path: str = None, project_id: str = "mineral-subject-487519-v6") -> str:
     """
     Quick image generation with Gemini 3 Pro.
     

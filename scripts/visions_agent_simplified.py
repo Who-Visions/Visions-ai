@@ -1,6 +1,6 @@
 """
 Visions AI Agent - Simplified with Direct Gemini Integration
-Uses your approved Gemini models: gemini-3-pro-image-preview, gemini-2.5-flash-image
+Uses your approved Gemini models: gemini-3-pro-image, gemini-3.1-flash-image
 """
 
 import os
@@ -25,14 +25,14 @@ class VisionsAgentSimplified:
     def __init__(self):
         # Initialize main model (vision + generation)
         self.main_model = ChatGoogleGenerativeAI(
-            model="gemini-3-pro-image-preview",
+            model="gemini-3-pro-image",
             google_api_key=os.environ.get("GOOGLE_API_KEY"),
             temperature=0.7
         )
         
         # Initialize sub-agent model (fast)
         self.subagent_model = ChatGoogleGenerativeAI(
-            model="gemini-2.5-flash-image",
+            model="gemini-3.1-flash-image",
             google_api_key=os.environ.get("GOOGLE_API_KEY"),
             temperature=0.7
         )
@@ -53,8 +53,8 @@ class VisionsAgentSimplified:
         self.conversations = {}  # thread_id -> messages
         
         print("✅ Visions AI Agent Initialized (Simplified)")
-        print(f"   Main Model: gemini-3-pro-image-preview")
-        print(f"   Sub-agent Model: gemini-2.5-flash-image")
+        print(f"   Main Model: gemini-3-pro-image")
+        print(f"   Sub-agent Model: gemini-3.1-flash-image")
         print(f"   Tools: {len(self.tools)}")
         print(f"   Sub-agents: {len(self.subagents)}")
     

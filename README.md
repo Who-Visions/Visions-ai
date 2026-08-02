@@ -98,11 +98,11 @@ Visions uses an **intelligent multi-model architecture** that routes queries to 
 
 | Model | Location | Purpose |
 |-------|----------|---------|
-| `gemini-3-pro-preview` | 🌍 Global | Final synthesis & response |
-| `gemini-2.5-flash-lite` | 📍 us-central1 | Query triage & quick instinct |
-| `gemini-2.5-flash` | 📍 us-central1 | Grounded search (real-time data) |
-| `gemini-2.5-pro` | 📍 us-central1 | Deep thinking & analysis |
-| `gemini-3-pro-image-preview` | 🌍 Global | Native image generation |
+| `gemini-3.1-pro-preview` | 🌍 Global | Final synthesis & response |
+| `gemini-3.1-flash-lite` | 📍 us-central1 | Query triage & quick instinct |
+| `gemini-3.6-flash` | 📍 us-central1 | Grounded search (real-time data) |
+| `gemini-3.1-pro-preview` | 📍 us-central1 | Deep thinking & analysis |
+| `gemini-3-pro-image` | 🌍 Global | Native image generation |
 
 ---
 

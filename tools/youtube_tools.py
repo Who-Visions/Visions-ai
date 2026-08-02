@@ -18,7 +18,7 @@ class YouTubeTools:
         self.project_id = project_id
         self.location = location
         self._client = None
-        self._global_client = None  # For gemini-3-pro-preview (global only)
+        self._global_client = None  # For gemini-3.1-pro-preview (global only)
 
     @property
     def client(self):
@@ -95,7 +95,7 @@ class YouTubeTools:
             
         try:
             # User requested 2.5 Pro for fallback
-            model_id = "gemini-2.5-pro"
+            model_id = "gemini-3.1-pro-preview"
             print(f"   Analyzing video: {video_url} with {model_id}...")
             
             video_part = types.Part.from_uri(
@@ -140,7 +140,7 @@ class YouTubeTools:
             return "Error: Invalid YouTube URL provided."
             
         try:
-            model_id = "gemini-3-pro-preview"
+            model_id = "gemini-3.1-pro-preview"
             print(f"   🧠 Deep analysis with {model_id} (Thinking: HIGH)...")
             
             video_part = types.Part.from_uri(

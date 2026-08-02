@@ -40,7 +40,7 @@ from google.genai import types
 
 client = genai.Client(vertexai=True, project="YOUR_PROJECT_ID", location="global")
 
-MODEL_ID = "gemini-3-pro-preview"
+MODEL_ID = "gemini-3.1-pro-preview"
 
 # Thinking Level can be set to LOW (speed) or HIGH (reasoning)
 response = client.models.generate_content(

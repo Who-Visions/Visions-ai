@@ -1,8 +1,8 @@
 # Vertex AI Quota Management Guide
 
 ## 🎯 Current Status
-- **Project**: `endless-duality-480201-t3`
-- **Model**: `gemini-3-pro-image-preview` (Global endpoint)
+- **Project**: `mineral-subject-487519-v6`
+- **Model**: `gemini-3-pro-image` (Global endpoint)
 - **Latest Issue**: 429 RESOURCE_EXHAUSTED on image generation (Dec 5, 2025)
 - **Solution**: Dual-mode system with AI Studio fallback ✅
 
@@ -11,7 +11,7 @@
 ## 📊 Quota Limits (Confirmed)
 
 ### Google AI Studio API (Fallback) ✅
-**Confirmed limits for `gemini-3-pro-image-preview`:**
+**Confirmed limits for `gemini-3-pro-image`:**
 
 | Metric | Limit | Current Usage | Status |
 |--------|-------|---------------|--------|
@@ -22,7 +22,7 @@
 **Dashboard**: [AI Studio Rate Limits](https://aistudio.google.com/app/apikey)
 
 ### Vertex AI (Primary)
-Search for these quota names in the [GCP Quotas Console](https://console.cloud.google.com/iam-admin/quotas?project=endless-duality-480201-t3):
+Search for these quota names in the [GCP Quotas Console](https://console.cloud.google.com/iam-admin/quotas?project=mineral-subject-487519-v6):
 
 | Quota Name | Service | Recommended Alert Threshold |
 |------------|---------|----------------------------|
@@ -42,7 +42,7 @@ Search for these quota names in the [GCP Quotas Console](https://console.cloud.g
 
 ## 🔍 How to Find Image Generation Quotas
 
-1. **Navigate to**: [Quotas Console](https://console.cloud.google.com/iam-admin/quotas?project=endless-duality-480201-t3)
+1. **Navigate to**: [Quotas Console](https://console.cloud.google.com/iam-admin/quotas?project=mineral-subject-487519-v6)
 2. **In the Filter box**, search for:
    - `Generative AI`
    - `Gemini`
@@ -50,7 +50,7 @@ Search for these quota names in the [GCP Quotas Console](https://console.cloud.g
    - `Image generation`
 3. **Look for quotas with "Dimensions"**:
    - `location: global` (our current setup)
-   - `model: gemini-3-pro-image-preview`
+   - `model: gemini-3-pro-image`
 
 ---
 
@@ -95,9 +95,9 @@ Token Quotas:
 3. **Justification template**:
 
 ```
-Project: endless-duality-480201-t3
+Project: mineral-subject-487519-v6
 Service: Vertex AI Generative AI
-Model: gemini-3-pro-image-preview
+Model: gemini-3-pro-image
 Location: global
 
 Reason for request:
@@ -150,14 +150,14 @@ def generate_with_retry(client, model, contents, config):
 
 ### 4. **Fallback Models**
 Priority chain:
-1. `gemini-3-pro-image-preview` (primary)
-2. `gemini-2.5-flash-image` (fallback #1)
+1. `gemini-3-pro-image` (primary)
+2. `gemini-3.1-flash-image` (fallback #1)
 3. `imagen-3.0-generate-001` (fallback #2 via tools)
 
 ### 5. **Caching**
 - Cache generated images by prompt hash
 - Reuse previously generated images for similar prompts
-- Store in GCS bucket: `gs://endless-duality-480201-t3-reasoning-artifacts/generated_images/`
+- Store in GCS bucket: `gs://mineral-subject-487519-v6-reasoning-artifacts/generated_images/`
 
 ---
 
@@ -180,7 +180,7 @@ jsonPayload.error.code=429
 
 ## 🔗 Useful Links
 
-- [Vertex AI Quotas Console](https://console.cloud.google.com/iam-admin/quotas?project=endless-duality-480201-t3)
+- [Vertex AI Quotas Console](https://console.cloud.google.com/iam-admin/quotas?project=mineral-subject-487519-v6)
 - [Vertex AI Quotas Documentation](https://cloud.google.com/vertex-ai/generative-ai/docs/quotas)
 - [Error Code 429 Guide](https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429)
 - [Global Endpoint Documentation](https://cloud.google.com/vertex-ai/generative-ai/docs/learn/locations#global-endpoint)

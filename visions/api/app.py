@@ -95,11 +95,11 @@ async def agent_json():
             "color": "purple",
             "role": "Photography Expert & Creative Director",
             "models": {
-                "synthesis": "gemini-3-pro-preview",
+                "synthesis": "gemini-3.1-pro-preview",
                 "fast_synthesis": "gemini-3-flash-preview",  # FREE TIER available
-                "image_generation": "gemini-3-pro-image-preview",
+                "image_generation": "gemini-3-pro-image",
                 "grounded_search": "gemini-3-flash-preview",
-                "deep_thinking": "gemini-3-pro-preview",
+                "deep_thinking": "gemini-3.1-pro-preview",
                 "embeddings": "gemini-embedding-001"
             },
             "gemini_3_features": {

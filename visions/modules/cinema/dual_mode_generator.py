@@ -17,7 +17,7 @@ class DualModeImageGenerator:
     Includes 60-second rate limiting to prevent 429 errors
     """
     def __init__(self, 
-                 project_id: str = "endless-duality-480201-t3",
+                 project_id: str = "mineral-subject-487519-v6",
                  ai_studio_key: str = None,
                  rate_limit_seconds: int = 60):
         self.project_id = project_id
@@ -167,8 +167,8 @@ def main():
     print("DUAL-MODE IMAGE GENERATOR TEST")
     print("="*80)
     
-    # Initialize with API key
-    api_key = "AIzaSyBRSb1uD8hWirVzSRSpQA_zPXffbCGR_7c"
+    # Initialize with API key from environment
+    api_key = os.getenv("GOOGLE_AI_STUDIO_API_KEY")
     generator = DualModeImageGenerator(ai_studio_key=api_key)
     
     # Test prompt

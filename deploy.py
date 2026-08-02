@@ -6,7 +6,7 @@ import os
 import glob
 
 # Configuration
-PROJECT_ID = "endless-duality-480201-t3"
+PROJECT_ID = "mineral-subject-487519-v6"
 LOCATION = "us-central1"
 STAGING_BUCKET_URI = f"gs://{PROJECT_ID}-reasoning-artifacts"
 STAGING_BUCKET_NAME = f"{PROJECT_ID}-reasoning-artifacts"

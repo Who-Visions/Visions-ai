@@ -40,9 +40,9 @@ Returns the agent's identity card with capabilities and endpoints.
     "color": "purple",
     "role": "Photography Expert & Creative Director",
     "models": {
-      "synthesis": "gemini-3-pro-preview",
+      "synthesis": "gemini-3.1-pro-preview",
       "fast_synthesis": "gemini-3-flash-preview",
-      "image_generation": "gemini-3-pro-image-preview"
+      "image_generation": "gemini-3-pro-image"
     },
     "gemini_3_features": {
       "thinking_levels": ["low", "medium", "high"],

@@ -18,7 +18,7 @@ Allows model to read and analyze content from specific URLs (Search Grounding fi
 tools = [{"url_context": {}}]
 contents = ["Compare https://site1.com and https://site2.com"]
 response = client.models.generate_content(
-    model="gemini-2.5-flash",
+    model="gemini-3.6-flash",
     contents=contents,
     config=types.GenerateContentConfig(tools=tools)
 )

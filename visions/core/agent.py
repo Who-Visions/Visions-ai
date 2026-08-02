@@ -366,11 +366,11 @@ class VisionsAgent:
     # Model location routing - some models need global, others regional
     MODEL_LOCATIONS = {
         # Gemini 3 models - GLOBAL ONLY (required)
-        "gemini-3-pro-preview": "global",
+        "gemini-3.1-pro-preview": "global",
         "gemini-3-flash-preview": "global",  # Gemini 3 Flash (FREE TIER available!)
     }
     
-    def __init__(self, project: str = "endless-duality-480201-t3", location: str = "us-central1"):
+    def __init__(self, project: str = "mineral-subject-487519-v6", location: str = "us-central1"):
         self.project = project
         self.location = location  # Default regional location
         self._clients = {}  # Cache clients by location
@@ -463,7 +463,6 @@ class VisionsAgent:
         Uses Flash-Lite to intelligently route the query to appropriate models.
         Returns dict with flags for which models to invoke.
         """
-        try:
         try:
             # Native JSON Mode using TypedDict (Cookbook Pattern 12)
             from typing import TypedDict
@@ -1199,10 +1198,10 @@ Based on the above intelligence, provide your authoritative expert response."""
                         # Remove marker from text
                         raw_text = raw_text.replace(match.group(0), "").strip()
                 
-                # Separate thinking from response
-                user_response, thinking = separate_thinking_and_response(raw_text)
-                result["text"] = user_response
-                result["thinking"] = thinking
+            # Separate thinking from response
+            user_response, thinking = separate_thinking_and_response(raw_text)
+            result["text"] = user_response
+            result["thinking"] = thinking
             
             return json.dumps(result)
 

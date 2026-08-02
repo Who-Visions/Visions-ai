@@ -25,7 +25,7 @@ This skill leverages specific **Gemini Research** features to provide higher-fid
 ### For Paper Analysis
 
 1. **Ingest**: Read the full content of the file.
-2. **Analyze**: Use the configured Pro model (currently `gemini-3-pro-preview`) with `thinking_level="HIGH"`.
+2. **Analyze**: Use the configured Pro model (currently `gemini-3.1-pro-preview`) with `thinking_level="HIGH"`.
 3. **Output**: structured report with:
     * **Core Thesis**: What is the paper claiming?
     * **Methodology Evaluation**: Is it sound?

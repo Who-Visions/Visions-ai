@@ -168,7 +168,7 @@ class VoiceIO:
             api_key = os.getenv("GOOGLE_API_KEY")
             if api_key:
                 genai.configure(api_key=api_key)
-                model = genai.GenerativeModel("gemini-2.0-flash")
+                model = genai.GenerativeModel("gemini-3.6-flash")
                 
                 # Upload and transcribe
                 with open(audio_path, "rb") as f:

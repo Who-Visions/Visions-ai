@@ -52,10 +52,13 @@ DAILY_LIMITS = {
     },
     
     # Gemini 2.5 Flash Image
-    "gemini-2.5-flash-image": {
+    "gemini-3.1-flash-image": {
         "rpd": 2000,
-        "cost": 0.039,
-        "name": "Gemini 2.5 Flash Image",
+        # $60/MTok; a 1K image is 1120 tokens = $0.067. The version bump moved
+        # the id from gemini-2.5-flash-image and left that model's $0.039 rate
+        # behind, undercounting every image by 42%.
+        "cost": 0.067,
+        "name": "Gemini 3.1 Flash Image (Nano Banana 2)",
         "emoji": "⚡"
     },
     

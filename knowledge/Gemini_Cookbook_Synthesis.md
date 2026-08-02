@@ -105,7 +105,7 @@
 
 ### 2D Spatial Understanding
 
-- **Models**: `gemini-3-flash-preview` (fast), `gemini-2.5-pro` (better).
+- **Models**: `gemini-3-flash-preview` (fast), `gemini-3.1-pro-preview` (better).
 - **Standard Output**: JSON array with `box_2d` and `label`.
 - **Coordinates**: Normalized `[0-1000]`. **Order: `[ymin, xmin, ymax, xmax]`** (Note Y first).
 - **System Instruction**:

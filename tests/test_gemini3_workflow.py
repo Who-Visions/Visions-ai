@@ -6,7 +6,7 @@ from tools.youtube_tools import YouTubeTools
 def test_gemini3_extraction():
     print("🧠 Testing Gemini 3 Pro Workflow Extraction...")
     
-    yt = YouTubeTools(project_id="endless-duality-480201-t3", location="us-central1")
+    yt = YouTubeTools(project_id="mineral-subject-487519-v6", location="us-central1")
     
     # The "Nano Banana" video the user initially requested
     video_url = "https://www.youtube.com/watch?v=YOUR_VIDEO_ID"  # Replace with actual

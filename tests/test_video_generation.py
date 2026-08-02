@@ -7,7 +7,7 @@ import vertexai
 from vertexai.preview.vision_models import VideoGenerationModel
 
 # Configuration
-PROJECT_ID = "endless-duality-480201-t3"
+PROJECT_ID = "mineral-subject-487519-v6"
 LOCATION = "us-central1"
 
 # Initialize Vertex AI

@@ -51,7 +51,7 @@ BUILD_INDEX_SCRIPT = r"C:\Users\super\Watchtower\HQ_WhoArt\Visions-ai\build_inde
 POLL_INTERVAL_SECONDS = 600  # 10 minutes
 
 # Gemini Configuration - Strictly Gemini 3!
-PROJECT_ID = "endless-duality-480201-t3"
+PROJECT_ID = "mineral-subject-487519-v6"
 LOCATION = "us-central1" # Changed to us-central1 for Gemini 3
 MODEL_ID = "gemini-3-flash-preview"
 

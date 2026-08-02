@@ -9,31 +9,31 @@
 ## 🏆 The Full Team
 
 ### 1. Camera Advisor ✅ 
-**Model**: `gemini-2.5-flash`  
+**Model**: `gemini-3.6-flash`  
 **Specialty**: Camera & lens recommendations, specs, comparisons  
 **Triggers**: "recommend camera", "compare", "which lens"  
   **System Prompt**: 2000+ chars with DXOMark scoring, 3-option format
 
 ### 2. Lighting Specialist ✅
-**Model**: `gemini-2.5-flash`  
+**Model**: `gemini-3.6-flash`  
 **Specialty**: Lighting setups, ratios, modifiers, color temp  
 **Triggers**: "how to light", "lighting ratio", "recommend modifiers"  
 **System Prompt**: 2267 chars with ratio calculations, modifier reference
 
 ### 3. Composition Analyst ✅
-**Model**: `gemini-3-pro-image-preview` (vision)  
+**Model**: `gemini-3-pro-image` (vision)  
 **Specialty**: Arnheim principles, image critique, visual analysis  
 **Triggers**: "analyze composition", "improve balance", "Arnheim"  
 **System Prompt**: 3000+ chars with full Arnheim framework
 
 ### 4. Teaching Assistant ✅
-**Model**: `gemini-2.5-flash`  
+**Model**: `gemini-3.6-flash`  
 **Specialty**: Curriculum navigation, quiz generation, progress tracking  
 **Triggers**: "what's next", "quiz me", "track progress"  
 **System Prompt**: 3000+ chars with 5-level curriculum structure
 
 ### 5. Research Specialist ✅
-**Model**: `gemini-2.5-flash`  
+**Model**: `gemini-3.6-flash`  
 **Specialty**: Deep research, multi-source synthesis, trends  
 **Triggers**: "research", "trends in", "how does [photographer]"  
 **System Prompt**: 3000+ chars with source prioritization framework
@@ -81,7 +81,7 @@ Deep Agents: ✅ Active
 
 ```
 Dr. Visions (Main Agent)
-├── gemini-3-pro-image-preview @ Vertex AI global
+├── gemini-3-pro-image @ Vertex AI global
 ├── System Prompt: Memory-first educator
 ├── Delegation: Auto-routes to specialists
 │
@@ -121,8 +121,8 @@ python visions_agent_harness.py
 
 **Results**:
 ```
-✅ Vertex AI initialized: endless-duality-480201-t3
-✅ Gemini model: gemini-3-pro-image-preview (global endpoint)
+✅ Vertex AI initialized: mineral-subject-487519-v6
+✅ Gemini model: gemini-3-pro-image (global endpoint)
 ✅ Agent created successfully!
 ✅ Agent ready for queries!
 

@@ -7,10 +7,10 @@ import time
 import re
 
 # Configuration
-PROJECT_ID = "endless-duality-480201-t3"
+PROJECT_ID = "mineral-subject-487519-v6"
 LOCATION = "us-central1"
 # NEW DEPLOYMENT RESOURCE (Deploy #10 - Fixed Lazy Loading)
-REASONING_ENGINE_RESOURCE = "projects/620633534056/locations/us-central1/reasoningEngines/5378250132150026240"
+REASONING_ENGINE_RESOURCE = "projects/885670388176/locations/us-central1/reasoningEngines/5378250132150026240"
 
 _remote_agent = None
 _local_agent = None

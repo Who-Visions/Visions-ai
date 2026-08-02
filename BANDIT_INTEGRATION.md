@@ -7,7 +7,7 @@ To bring **Bandit** online and responsive within the Visions Fleet, ensure the d
 Bandit MUST use Gemini 3 Preview models. Avoid legacy 1.5/2.0 models.
 
 * **Flash**: `gemini-3-flash-preview` (Speed/Tools)
-* **Pro**: `gemini-3-pro-preview` (Reasoning/Vision)
+* **Pro**: `gemini-3.1-pro-preview` (Reasoning/Vision)
 
 ## 2. API Endpoints
 
@@ -24,7 +24,7 @@ The `Visions-ai` connector expects specific endpoints. If paths differ, the conn
 
 ## 3. IAM Permissions
 
-Ensure the Bandit Cloud Run service account has the following role in project `metal-cable-478318-g8`:
+Ensure the Bandit Cloud Run service account has the following role in project `mineral-subject-487519-v6`:
 
 * **Vertex AI User** (`roles/aiplatform.user`)
 

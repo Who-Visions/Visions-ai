@@ -115,7 +115,7 @@ PRICING = {
     },
     
     # ===================== GEMINI 2.0 =====================
-    "gemini-2.0-flash": {  # Legacy
+    "gemini-3.6-flash": {  # Legacy
         "input_text": 0.10,
         "input_audio": 0.70,
         "output": 0.40,
@@ -123,7 +123,7 @@ PRICING = {
         "location": "us-central1",
     },
     
-    "gemini-2.0-flash-lite": { # Legacy
+    "gemini-3.1-flash-lite": { # Legacy
         "input": 0.075,
         "output": 0.30,
         "location": "us-central1",
@@ -281,18 +281,18 @@ BURN_LIMITS = {
 
 RATE_LIMITS = {
     # Gemini 3
-    "gemini-3-pro": {"rpm": 25, "tpm": 1_000_000, "rpd": 250},
+    "gemini-3.1-pro-preview": {"rpm": 25, "tpm": 1_000_000, "rpd": 250},
     "gemini-3-pro-image": {"rpm": 20, "tpm": 100_000, "rpd": 250},
     
     # Gemini 2.5
-    "gemini-2.5-pro": {"rpm": 15, "tpm": 1_000_000, "rpd": 300},
-    "gemini-2.5-flash": {"rpm": 1000, "tpm": 1_000_000, "rpd": 10_000},
-    "gemini-2.5-flash-lite": {"rpm": 4000, "tpm": 4_000_000, "rpd": "unlimited"},
-    "gemini-2.5-flash-image": {"rpm": 500, "tpm": 500_000, "rpd": 2000},
+    "gemini-3.1-pro-preview": {"rpm": 15, "tpm": 1_000_000, "rpd": 300},
+    "gemini-3.6-flash": {"rpm": 1000, "tpm": 1_000_000, "rpd": 10_000},
+    "gemini-3.1-flash-lite": {"rpm": 4000, "tpm": 4_000_000, "rpd": "unlimited"},
+    "gemini-3.1-flash-image": {"rpm": 500, "tpm": 500_000, "rpd": 2000},
     
     # Gemini 2.0
-    "gemini-2.0-flash": {"rpm": 2000, "tpm": 4_000_000, "rpd": "unlimited"},
-    "gemini-2.0-flash-lite": {"rpm": 4000, "tpm": 4_000_000, "rpd": "unlimited"},
+    "gemini-3.6-flash": {"rpm": 2000, "tpm": 4_000_000, "rpd": "unlimited"},
+    "gemini-3.1-flash-lite": {"rpm": 4000, "tpm": 4_000_000, "rpd": "unlimited"},
     
     # Imagen 4
     "imagen-4-fast": {"rpm": 10, "rpd": 70},
@@ -667,7 +667,7 @@ def show_pricing():
     table.add_column("Output", justify="right", style="red")
     table.add_column("Location")
     
-    text_models = ["gemini-3-pro-preview", "gemini-3-flash-preview"]
+    text_models = ["gemini-3.1-pro-preview", "gemini-3-flash-preview"]
     for model in text_models:
         p = PRICING[model]
         input_price = p.get('input', p.get('input_text', 0))
@@ -688,7 +688,7 @@ def show_pricing():
     table.add_column("Output", justify="right", style="red")
     table.add_column("Est. Per Image", justify="right", style="magenta")
     
-    table.add_row("gemini-3-pro-image-preview", "$2.00/1M", "$120.00/1M", "~$0.12")
+    table.add_row("gemini-3-pro-image", "$2.00/1M", "$120.00/1M", "~$0.12")
     table.add_row("gemini-3-flash-preview", "$0.50/1M", "$3.00/1M", "-")
     
     console.print(table)

@@ -38,14 +38,14 @@ Successfully integrated LangChain Deep Agents with your existing Vertex AI infra
 ```python
 # Vertex AI Initialization
 vertexai.init(
-    project="endless-duality-480201-t3",  # Your project
+    project="mineral-subject-487519-v6",  # Your project
     location="global"  # Gemini-3 requires global endpoint
 )
 
 # Model Setup
 model = ChatVertexAI(
-    model_name="gemini-3-pro-image-preview",
-    project="endless-duality-480201-t3",
+    model_name="gemini-3-pro-image",
+    project="mineral-subject-487519-v6",
     location="global",
     temperature=0.7
 )
@@ -71,8 +71,8 @@ python visions_agent_harness.py
 
 **Output**:
 ```
-✅ Vertex AI initialized: endless-duality-480201-t3
-✅ Gemini model: gemini-3-pro-image-preview (global endpoint)
+✅ Vertex AI initialized: mineral-subject-487519-v6
+✅ Gemini model: gemini-3-pro-image (global endpoint)
 ✅ Agent created successfully!
 ✅ Agent ready for queries!
 
@@ -99,14 +99,14 @@ Response: [Generated camera recommendations including Canon R10, Sony A7 IV, Can
 
 ```
 Visions AI Agent (Deep Agents)
-├── Main Model: gemini-3-pro-image-preview @ global
+├── Main Model: gemini-3-pro-image @ global
 ├── Backend: 4-zone CompositeBackend
 │   ├── /workspace/ → StateBackend (ephemeral)
 │   ├── /knowledge/ → GuardedBackend (read-only)
 │   ├── /memories/ → StoreBackend (persistent)
 │   └── /generated/ → FilesystemBackend (outputs)
 ├── Sub-Agents: 1
-│   └── camera-advisor (gemini-2.5-flash recommended)
+│   └── camera-advisor (gemini-3.6-flash recommended)
 ├── Tools: 3
 │   ├── search_camera_database
 │   ├── calculate_field_of_view

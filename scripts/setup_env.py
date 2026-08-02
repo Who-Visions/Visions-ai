@@ -6,7 +6,7 @@ content = """# Google AI Studio API Key (for fallback when Vertex AI quotas exha
 GOOGLE_AI_STUDIO_API_KEY=
 
 # Vertex AI Configuration
-VERTEX_PROJECT_ID=endless-duality-480201-t3
+VERTEX_PROJECT_ID=mineral-subject-487519-v6
 VERTEX_LOCATION=us-central1
 VERTEX_GLOBAL_LOCATION=global
 

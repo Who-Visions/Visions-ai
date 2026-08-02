@@ -4,7 +4,7 @@
 
 ## Capabilities
 
-- **Models**: `gemini-2.5-flash-preview-tts` (Fast/Pro).
+- **Models**: `gemini-3.1-flash-live-preview` (Fast/Pro).
 - **Control**: Style, Accent, Pace, Tone via natural language prompts.
 - **Output**: Audio-only (PCM/WAV).
 

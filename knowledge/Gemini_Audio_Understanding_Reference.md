@@ -21,7 +21,7 @@
 
 - **Token Usage**: 32 tokens per second (approx 1,920 tokens/min).
 - **Sampling**: Downsampled to 16 Kbps, mono.
-- **Model**: `gemini-2.5-flash` is the recommended model for audio understanding.
+- **Model**: `gemini-3.6-flash` is the recommended model for audio understanding.
 
 ## Code Example
 
