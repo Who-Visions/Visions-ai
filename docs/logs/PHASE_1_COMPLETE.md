@@ -33,7 +33,7 @@
 
 **Configuration**:
 - Name: `camera-advisor`
-- Model: `gemini-2.5-flash`
+- Model: `gemini-3.6-flash`
 - Output: Structured 3-option format
 - Constraints: Under 500 words, no placeholders
 
@@ -64,7 +64,7 @@ Found 4 matching bodies:
 - ✅ Mock store/checkpointer for development
 
 **Configuration**:
-- Model: `gemini-3-pro-image-preview`
+- Model: `gemini-3-pro-image`
 - Sub-agents: 1 (camera-advisor)
 - Tools: 3 (camera search, FOV calc, compare)
 - Backend: 4-zone composite

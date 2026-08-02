@@ -76,7 +76,7 @@ COUNCIL_AGENTS = {
         "emoji": "🧠"
     },
     "kam": {
-        "url": "https://kam-api-587184277060.us-central1.run.app",
+        "url": "https://kam-api-885670388176.us-central1.run.app",
         "name": "K.A.M",
         "specialty": "Kindness Alignment & Emotional Intelligence",
         "emoji": "💛"

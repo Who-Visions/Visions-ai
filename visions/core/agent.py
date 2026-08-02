@@ -124,7 +124,7 @@ class VisionsAgent:
         Config.MODEL_PRO: "global",
         Config.MODEL_FLASH: "global",
         Config.MODEL_IMAGE: "global",
-        "gemini-3-pro-image-preview": "global",
+        "gemini-3-pro-image": "global",
         Config.MODEL_IMAGEN_FALLBACK: "us-central1"
     }
 
@@ -352,7 +352,7 @@ class VisionsAgent:
 
         # Tool Configuration - Separate Tool objects per capability
         # CRITICAL: code_execution and function_declarations CANNOT share a Tool object.
-        # gemini-3-pro-image-preview does NOT support function calling / code execution;
+        # gemini-3-pro-image does NOT support function calling / code execution;
         # the agentic brain (flash/pro) is the one receiving these tools.
         generation_tools = [
              types.Tool(function_declarations=creative_tools),

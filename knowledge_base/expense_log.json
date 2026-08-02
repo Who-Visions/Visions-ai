@@ -1,7 +1,7 @@
 [
   {
     "timestamp": "2025-12-07T15:51:40.822251",
-    "model": "gemini-3-pro",
+    "model": "gemini-3.1-pro-preview",
     "category": "text_generation",
     "amount": 0.05,
     "note": "test query",

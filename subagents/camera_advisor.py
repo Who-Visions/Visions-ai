@@ -85,7 +85,7 @@ If you don't have current pricing or exact specs:
         # - compare_camera_specs
     ],
     
-    "model": "gemini-2.5-flash"  # Fast structured queries
+    "model": "gemini-3.6-flash"  # Fast structured queries
 }
 
 

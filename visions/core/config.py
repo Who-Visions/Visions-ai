@@ -21,14 +21,14 @@ class Config:
     GOOGLE_AI_STUDIO_API_KEY = os.getenv("GOOGLE_AI_STUDIO_API_KEY", "")
     
     # Vertex AI (Production)
-    VERTEX_PROJECT_ID = os.getenv("VERTEX_PROJECT_ID", "endless-duality-480201-t3")
+    VERTEX_PROJECT_ID = os.getenv("VERTEX_PROJECT_ID", "mineral-subject-487519-v6")
     VERTEX_LOCATION = os.getenv("VERTEX_LOCATION", "us-central1")
     VERTEX_GLOBAL_LOCATION = os.getenv("VERTEX_GLOBAL_LOCATION", "global")
     
     # Reasoning Engine
     REASONING_ENGINE_ID = os.getenv("REASONING_ENGINE_ID", "7709761240314150912")
     REASONING_ENGINE_RESOURCE = (
-        f"projects/620633534056/locations/{VERTEX_LOCATION}/"
+        f"projects/885670388176/locations/{VERTEX_LOCATION}/"
         f"reasoningEngines/{REASONING_ENGINE_ID}"
     )
     
@@ -38,28 +38,28 @@ class Config:
     # 1. CORE AGENTIC BRAINS (Gemini 3) - GLOBAL ENDPOINT SUPPORTED
     # Used for: Reasoning, Planning, Coding, Text Chat, Search Grounding, Batch, Caching
     # Docs confirm: "Gemini 3 Flash/Pro (Preview)" support Global Endpoint.
-    MODEL_PRO = "gemini-3-pro-preview"          
+    MODEL_PRO = "gemini-3.1-pro-preview"          
     MODEL_FLASH = "gemini-3-flash-preview"      
     
     MAX_OUTPUT_TOKENS_FLASH = 8192
 
     # 2. IMAGE GENERATION & EDITING (Gemini 3) - GLOBAL ENDPOINT SUPPORTED
-    MODEL_IMAGE = "gemini-3-pro-image-preview"
+    MODEL_IMAGE = "gemini-3-pro-image"
     PRIMARY_IMAGE_MODEL = MODEL_IMAGE
     
-    # Fallback Image Model (Imagen 4)
-    MODEL_IMAGEN_FALLBACK = "imagen-4.0-generate-001"
+    # Fallback Image Model (Gemini 3.1 Flash Image)
+    MODEL_IMAGEN_FALLBACK = "gemini-3.1-flash-image"
 
     # Fast Image Generation (Gemini 2.5 Flash Image - "Nano Banana")
-    MODEL_IMAGE_FAST = "gemini-2.5-flash-image"
+    MODEL_IMAGE_FAST = "gemini-3.1-flash-image"
 
     # Specialized Vision Tasks (Gemini 2.5 for Segmentation)
     # Gemini 3 is generalist; 2.5 is trained for generic segmentation.
-    MODEL_IMAGE_SEGMENTATION = "gemini-2.5-flash"
+    MODEL_IMAGE_SEGMENTATION = "gemini-3.6-flash"
 
     # Audio Understanding (Gemini 2.5 Flash)
-    MODEL_AUDIO_UNDERSTANDING = "gemini-2.5-flash"
-    MODEL_TRANSCRIPTION = "gemini-2.5-flash"
+    MODEL_AUDIO_UNDERSTANDING = "gemini-3.6-flash"
+    MODEL_TRANSCRIPTION = "gemini-3.6-flash"
 
     # 3. VIDEO GENERATION (Veo 3.1)
     MODEL_VEO = "veo-3.1-generate-001"
@@ -80,11 +80,11 @@ class Config:
     
     # Fallback B: Text-to-Speech (TTS)
     # Native controllable TTS (Single/Multi-speaker)
-    MODEL_TTS = "gemini-2.5-flash-preview-tts"
+    MODEL_TTS = "gemini-3.1-flash-live-preview"
     
     # Fallback C: Google Maps Grounding
     # Status: Gemini 3 does not support Maps Grounding.
-    MODEL_MAPS = "gemini-2.5-flash"
+    MODEL_MAPS = "gemini-3.6-flash"
 
     # Fallback D: Computer Use (Browser Automation)
     # Status: Specialized preview model required

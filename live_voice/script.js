@@ -6,7 +6,7 @@
 // Configuration
 const WS_PORT = 8080;
 const PROXY_URL = `ws://localhost:${WS_PORT}`;
-const PROJECT_ID = 'endless-duality-480201-t3';
+const PROJECT_ID = 'mineral-subject-487519-v6';
 const MODEL = 'gemini-live-2.5-flash-native-audio';
 
 // Visions Persona (synced with server)

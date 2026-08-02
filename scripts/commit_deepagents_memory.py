@@ -93,13 +93,13 @@ async def commit_deepagents_implementation():
                 }
             },
             "main_model": {
-                "name": "gemini-3-pro-image-preview",
+                "name": "gemini-3-pro-image",
                 "endpoint": "Vertex AI global",
-                "project": "endless-duality-480201-t3"
+                "project": "mineral-subject-487519-v6"
             },
             "subagent_models": {
-                "fast_queries": "gemini-2.5-flash",
-                "vision_tasks": "gemini-3-pro-image-preview"
+                "fast_queries": "gemini-3.6-flash",
+                "vision_tasks": "gemini-3-pro-image"
             },
             "storage": {
                 "development": "InMemoryStore + MemorySaver",
@@ -110,31 +110,31 @@ async def commit_deepagents_implementation():
         "subagents": {
             "camera_advisor": {
                 "specialty": "Camera & lens recommendations",
-                "model": "gemini-2.5-flash",
+                "model": "gemini-3.6-flash",
                 "triggers": ["recommend camera", "compare", "which lens"],
                 "features": ["DXOMark scoring", "3-option format", "budget-first"]
             },
             "lighting_specialist": {
                 "specialty": "Lighting setups & ratios",
-                "model": "gemini-2.5-flash",
+                "model": "gemini-3.6-flash",
                 "triggers": ["how to light", "lighting ratio", "modifiers"],
                 "features": ["5 ratio types", "6 modifier types", "ASCII diagrams"]
             },
             "composition_analyst": {
                 "specialty": "Arnheim composition analysis",
-                "model": "gemini-3-pro-image-preview",
+                "model": "gemini-3-pro-image",
                 "triggers": ["analyze composition", "Arnheim", "improve balance"],
                 "features": ["5 principles", "visual weight mapping", "overlay generation"]
             },
             "teaching_assistant": {
                 "specialty": "Curriculum navigation",
-                "model": "gemini-2.5-flash",
+                "model": "gemini-3.6-flash",
                 "triggers": ["what's next", "quiz me", "track progress"],
                 "features": ["5-level curriculum", "adaptive quizzes", "progress tracking"]
             },
             "research_specialist": {
                 "specialty": "Deep research & synthesis",
-                "model": "gemini-2.5-flash",
+                "model": "gemini-3.6-flash",
                 "triggers": ["research", "trends", "how does"],
                 "features": ["Multi-source synthesis", "source prioritization", "evidence-based"]
             }

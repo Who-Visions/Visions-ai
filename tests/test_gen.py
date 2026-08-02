@@ -3,9 +3,9 @@ from google.genai import types
 import os
 import time
 
-PROJECT_ID = "endless-duality-480201-t3"
+PROJECT_ID = "mineral-subject-487519-v6"
 LOCATION = "global"
-MODEL_ID = "gemini-3-pro-image-preview"
+MODEL_ID = "gemini-3-pro-image"
 
 def test_image_generation():
     print(f"🎨 Testing Image Generation with {MODEL_ID} (Global)...")

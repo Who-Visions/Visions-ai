@@ -54,3 +54,4 @@ knowledge_base/processed_pdfs.json
 visions_short_term.d/
 *.env
 *.log
+.venv/

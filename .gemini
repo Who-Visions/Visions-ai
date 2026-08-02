@@ -29,12 +29,12 @@ Executed concurrently via `ThreadPoolExecutor`:
 
 1. **Instinct Vector** (`gemini-3-flash-preview`): Immediate "gut check" response.
 2. **Grounding Vector** (`gemini-2.5-flash` @ `us-central1`): Real-time Google Search retrieval (`google_search_retrieval`).
-3. **Cognitive Vector** (`gemini-3-pro-preview` @ `global`): High-compute reasoning using `thinking_level="high"` (formerly `thinking_budget`).
+3. **Cognitive Vector** (`gemini-3.1-pro-preview` @ `global`): High-compute reasoning using `thinking_level="high"` (formerly `thinking_budget`).
 4. **Mnestic Vector** (`FAISS` + `gemini-embedding-001`): RAG retrieval from `vector_store/` (Static Knowledge: Arnheim, Camera Specs).
 
 ### Phase III: Global Synthesis
 
-* **Model**: `gemini-3-pro-preview` (Global).
+* **Model**: `gemini-3.1-pro-preview` (Global).
 * **Context Window**: Aggregates Phase I & II outputs + Session Memory.
 * **Persona Injection**: "Visions" (80yr Creative Director) applied via `system_instruction`.
 * **Output**: JSON-structured response containing text and base64 encoded media.
@@ -59,11 +59,11 @@ Executed concurrently via `ThreadPoolExecutor`:
 
 | Tool Class | Capability Surface | Model Alignment |
 |:---:|:---|:---|
-| `VisionTools` | Multi-modal analysis (Image/Video) | `gemini-3-pro-image-preview` |
-| `CinemaTools` | Cinematic script generation, Character definition | `gemini-3-pro-preview` |
+| `VisionTools` | Multi-modal analysis (Image/Video) | `gemini-3-pro-image` |
+| `CinemaTools` | Cinematic script generation, Character definition | `gemini-3.1-pro-preview` |
 | `BrowserTool` | Headless Chrome navigation (MCP Client) | N/A (External process) |
 | `AgentConnector` | Inter-agent RPC (Rhea, Dav1d, Yuki) | HTTP/REST |
-| `ImageGenerator` | Native image synthesis | `gemini-3-pro-image-preview` |
+| `ImageGenerator` | Native image synthesis | `gemini-3-pro-image` |
 
 ## 5. OPERATIONAL CONTEXT & ACTIVE DIRECTIVES
 

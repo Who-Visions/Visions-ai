@@ -266,11 +266,11 @@ Add to `agent.py`:
 ```python
 class CostTracker:
     PRICES = {
-        "gemini-3-pro-preview": {"input": 2.00, "output": 12.00},
-        "gemini-3-pro-image-preview": {"input": 2.00, "output": 120.00},
-        "gemini-2.5-pro": {"input": 1.25, "output": 10.00},
-        "gemini-2.5-flash": {"input": 0.30, "output": 2.50},
-        "gemini-2.5-flash-lite": {"input": 0.10, "output": 0.40},
+        "gemini-3.1-pro-preview": {"input": 2.00, "output": 12.00},
+        "gemini-3-pro-image": {"input": 2.00, "output": 120.00},
+        "gemini-3.1-pro-preview": {"input": 1.25, "output": 10.00},
+        "gemini-3.6-flash": {"input": 0.30, "output": 2.50},
+        "gemini-3.1-flash-lite": {"input": 0.10, "output": 0.40},
         "grounding": 0.035,  # per request
     }
     

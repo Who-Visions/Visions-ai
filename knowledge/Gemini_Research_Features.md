@@ -21,7 +21,7 @@ client = genai.Client()
 
 # Generate with Logprobs & Config
 response = client.models.generate_content(
-    model="gemini-2.0-flash", # Or gemini-3-*
+    model="gemini-3.6-flash", # Or gemini-3-*
     contents="Query...",
     config=types.GenerateContentConfig(
         response_logprobs=True,

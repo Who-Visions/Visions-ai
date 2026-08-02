@@ -7,10 +7,10 @@
 ## 🎯 MAJOR ACHIEVEMENTS
 
 ### ✅ 1. IMAGE GENERATION - WORKING PERFECTLY
-- **Model**: `gemini-3-pro-image-preview`
+- **Model**: `gemini-3-pro-image`
 - **Source**: Vertex AI (primary) + AI Studio (fallback)
 - **Authentication**: Fixed! (`contact@whovisions.com`)
-- **Project**: `endless-duality-480201-t3`
+- **Project**: `mineral-subject-487519-v6`
 - **Test Result**: 1.76 MB image generated successfully
 
 ### ✅ 2. VIDEO GENERATION - WORKING!
@@ -101,16 +101,16 @@
 
 ### Solution
 1. ✅ Authenticated to `contact@whovisions.com`
-2. ✅ Set project: `endless-duality-480201-t3`
+2. ✅ Set project: `mineral-subject-487519-v6`
 3. ✅ Application Default Credentials configured
 4. ✅ Quota project set in ADC
 
 ### Commands Used
 ```bash
 gcloud auth login
-gcloud config set project endless-duality-480201-t3
+gcloud config set project mineral-subject-487519-v6
 gcloud auth application-default login
-gcloud auth application-default set-quota-project endless-duality-480201-t3
+gcloud auth application-default set-quota-project mineral-subject-487519-v6
 ```
 
 ---
@@ -231,7 +231,7 @@ python memory_async.py
 ## 📈 QUOTAS & LIMITS
 
 ### Vertex AI (Primary)
-- **Project**: endless-duality-480201-t3
+- **Project**: mineral-subject-487519-v6
 - **Region**: us-central1, global
 - **Status**: Working (quota available)
 

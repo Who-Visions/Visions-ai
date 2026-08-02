@@ -6,7 +6,7 @@ All notable changes to the `Visions-ai` project will be documented in this file.
 
 ### Added
 
-- **Gemini 3 Integration**: Full support for `gemini-3-pro-preview` and `gemini-3-flash-preview` across the agent.
+- **Gemini 3 Integration**: Full support for `gemini-3.1-pro-preview` and `gemini-3-flash-preview` across the agent.
 - **Deep Research Agent**: Integrated specialized agent mechanism via `visions/skills/deep_research/`.
 - **Level 3 Skill Execution**: Added `run_skill_program` to `VisionsAgent` to execute local python scripts as tools.
 - **Cookbook Patterns**:

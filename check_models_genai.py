@@ -14,7 +14,7 @@ try:
     
     # Try text generation first
     print("\nAttempting text generation...")
-    model_id = "gemini-3-pro-image-preview" 
+    model_id = "gemini-3-pro-image" 
     response = client.models.generate_content(
         model=model_id,
         contents="Hello from check script!"

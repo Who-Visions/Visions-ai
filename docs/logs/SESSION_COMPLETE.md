@@ -56,7 +56,7 @@ Your Visions AI now has:
 
 ```
 Dr. Visions (Main Agent)
-├── gemini-3-pro-image-preview @ Vertex AI
+├── gemini-3-pro-image @ Vertex AI
 ├── Deep Agents Harness (LangChain)
 ├── 4-Zone Backend (Composite)
 ├── 5 Sub-Agent Specialists

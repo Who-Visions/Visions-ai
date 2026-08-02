@@ -186,7 +186,7 @@ You're the investigator - others can handle execution.""",
         # - write_file (for saving research notes)
     ],
     
-    "model": "gemini-2.5-flash"  # Fast for synthesis
+    "model": "gemini-3.6-flash"  # Fast for synthesis
 }
 
 

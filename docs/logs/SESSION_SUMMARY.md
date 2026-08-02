@@ -8,7 +8,7 @@
 ## 🎯 Objectives Achieved
 
 ### 1. ✅ Image Generation Testing
-- **Model**: `gemini-3-pro-image-preview` (Global endpoint)
+- **Model**: `gemini-3-pro-image` (Global endpoint)
 - **Status**: Functional, quota-limited on Vertex AI
 - **Solution**: Dual-mode fallback to AI Studio implemented
 
@@ -120,7 +120,7 @@ python memory_async.py    # ✅ Async memory
 - **Status**: Image generation quota exhausted
 - **Recovery**: Typically hourly/daily reset
 - **Action**: Request quota increase or use AI Studio fallback
-- **Console**: [GCP Quotas](https://console.cloud.google.com/iam-admin/quotas?project=endless-duality-480201-t3)
+- **Console**: [GCP Quotas](https://console.cloud.google.com/iam-admin/quotas?project=mineral-subject-487519-v6)
 
 ---
 
@@ -222,16 +222,16 @@ Input: /memory
 - ✅ `.env` file (gitignored)
 - ✅ `config.py` for centralized access
 - ✅ AI Studio key: `AIzaSyBRSb1uD8hWirVzSRSpQA_zPXffbCGR_7c`
-- ✅ Project: `endless-duality-480201-t3`
+- ✅ Project: `mineral-subject-487519-v6`
 
 ### Service Accounts
-- `visions-ai@endless-duality-480201-t3.iam.gserviceaccount.com`
-- `620633534056-compute@developer.gserviceaccount.com` (default)
+- `visions-ai@mineral-subject-487519-v6.iam.gserviceaccount.com`
+- `885670388176-compute@developer.gserviceaccount.com` (default)
 
 ### Reasoning Engine
 - **ID**: `542433066447011840`
 - **Location**: `us-central1`
-- **Model**: `gemini-3-pro-image-preview`
+- **Model**: `gemini-3-pro-image`
 - **Tools**: RAG, Search, Code Exec, Image Gen
 
 ---

@@ -31,7 +31,7 @@ class FlowWatcher:
         api_key = os.getenv("GOOGLE_API_KEY") or os.getenv("GEMINI_API_KEY")
         if api_key:
             genai.configure(api_key=api_key)
-        self.model = genai.GenerativeModel("gemini-2.0-flash")
+        self.model = genai.GenerativeModel("gemini-3.6-flash")
         
         # Load tools
         from tools.voice_tools import VoiceToolExecutor

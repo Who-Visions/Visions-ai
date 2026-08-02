@@ -46,7 +46,7 @@ def test_gemini_3_discovery():
         if not found_gemini_3:
             logger.warning("  ⚠️  No Gemini 3 models explicitly found in list. Attempting direct generation check...")
             # Even if list fails or is empty/filtered, try to use it directly
-            gemini_3_models = ["gemini-3-pro-preview", "gemini-3-flash-preview"]
+            gemini_3_models = ["gemini-3.1-pro-preview", "gemini-3-flash-preview"]
 
         # Test Generation with Thinking Config
         logger.info("\n🧠 Testing Gemini 3 Thinking Capabilities...")

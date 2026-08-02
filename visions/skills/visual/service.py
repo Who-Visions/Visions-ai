@@ -21,7 +21,7 @@ logger = logging.getLogger(__name__)
 
 # Model Constants
 MODEL_NANO_BANANA_FAST = "gemini-2.5-flash-image"
-MODEL_NANO_BANANA_PRO = "gemini-3-pro-image-preview"
+MODEL_NANO_BANANA_PRO = "gemini-3-pro-image"
 MODEL_VEO = "veo-3.1-generate-001"
 MODEL_VEO_FAST = "veo-3.1-fast-generate-001"
 
@@ -36,7 +36,7 @@ class VisionService:
         self.location = location
         self._client = None
         # Default text/analysis model
-        self.analysis_model = "gemini-2.0-flash-exp" 
+        self.analysis_model = "gemini-3.1-flash-lite" 
 
     @property
     def client(self):

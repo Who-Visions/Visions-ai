@@ -182,7 +182,7 @@ class VoiceToolExecutor:
     def _get_retriever(self):
         if self._retriever is None:
             from visions.core.agent import KnowledgeRetriever
-            self._retriever = KnowledgeRetriever(project_id="endless-duality-480201-t3")
+            self._retriever = KnowledgeRetriever(project_id="mineral-subject-487519-v6")
         return self._retriever
     
     def _get_imager(self):

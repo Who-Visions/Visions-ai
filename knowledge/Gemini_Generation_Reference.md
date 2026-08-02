@@ -45,7 +45,7 @@ Combine text, images, audio, and video in `contents`.
 from PIL import Image
 image = Image.open("file.png")
 response = client.models.generate_content(
-    model="gemini-3-pro-image-preview",
+    model="gemini-3-pro-image",
     contents=[image, "Describe this."]
 )
 ```

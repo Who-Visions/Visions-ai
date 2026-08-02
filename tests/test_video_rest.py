@@ -11,8 +11,8 @@ from google.auth import default
 from google.auth.transport.requests import Request
 
 # Configuration
-PROJECT_ID = "endless-duality-480201-t3"
-PROJECT_NUMBER = "620633534056"
+PROJECT_ID = "mineral-subject-487519-v6"
+PROJECT_NUMBER = "885670388176"
 LOCATION = "us-central1"
 
 print("="*80)

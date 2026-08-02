@@ -101,7 +101,7 @@ If you don't have exact specs:
         # - color_temp_calculator
     ],
     
-    "model": "gemini-2.5-flash"  # Fast queries, calculations
+    "model": "gemini-3.6-flash"  # Fast queries, calculations
 }
 
 

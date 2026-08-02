@@ -8,8 +8,8 @@
 
 | Version | Model Name | Use Case |
 | :--- | :--- | :--- |
-| **Nano Banana** | `gemini-2.5-flash-image` | High-volume, low-latency, speed. |
-| **Nano Banana Pro** | `gemini-3-pro-image-preview` | Professional asset production, high fidelity, reasoning. |
+| **Nano Banana** | `gemini-3.1-flash-image` | High-volume, low-latency, speed. |
+| **Nano Banana Pro** | `gemini-3-pro-image` | Professional asset production, high fidelity, reasoning. |
 
 ### Protocol
 
@@ -17,7 +17,7 @@ Use `client.models.generate_content` (NOT `generate_images`).
 
 ```python
 response = client.models.generate_content(
-    model="gemini-3-pro-image-preview",
+    model="gemini-3-pro-image",
     contents="Prompt here",
     config=types.GenerateContentConfig(
         response_modalities=["IMAGE"],

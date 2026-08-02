@@ -202,12 +202,12 @@ def estimate_text_cost(model: str, input_tokens: int, output_tokens: int,
 
 def estimate_image_cost(model: str, resolution: str = "2k", use_batch: bool = False) -> float:
     """Estimate cost for image generation."""
-    if model in ["gemini-3-pro-image-preview", "gemini-3-pro-image"]:
+    if model in ["gemini-3-pro-image", "gemini-3-pro-image"]:
         tier = "batch" if use_batch else "standard"
         if resolution == "4k":
-            return PRICING["gemini-3-pro-image-preview"][tier]["image_output_4k"]
+            return PRICING["gemini-3-pro-image"][tier]["image_output_4k"]
         else:
-            return PRICING["gemini-3-pro-image-preview"][tier]["image_output_1k_2k"]
+            return PRICING["gemini-3-pro-image"][tier]["image_output_1k_2k"]
     
     return 0.0
 

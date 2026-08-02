@@ -18,9 +18,9 @@ class AgentConnector:
         "yuki": "https://yuki-ai-914641083224.us-central1.run.app",
         "bandit": "https://bandit-849984150802.us-central1.run.app",
         "kaedra": "https://kaedra-69017097813.us-central1.run.app",
-        "visions_cloud": "https://visions-assistant-service-620633534056.us-central1.run.app",
+        "visions_cloud": "https://visions-assistant-service-885670388176.us-central1.run.app",
         "unk": "https://unk-agent-574321322006.us-central1.run.app",
-        "kam": "https://kam-api-587184277060.us-central1.run.app",
+        "kam": "https://kam-api-885670388176.us-central1.run.app",
         "iris": "https://iris-agent-618147264860.us-central1.run.app"
     }
     
