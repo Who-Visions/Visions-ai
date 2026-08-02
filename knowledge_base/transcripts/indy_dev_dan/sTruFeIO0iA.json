@@ -1,0 +1,66 @@
+{
+    "title": "Two-Way Prompting: Human-in-the-Loop Agentic Workflows",
+    "summary": "A demonstration of the 'Two-Way Prompt' methodology, which transforms standard one-way agent interactions into collaborative workflows. By treating the human user as a critical node, the AI agent proactively requests missing context (URLs, files, preferences) and iterates based on feedback. This approach utilizes temporary files and system dialogs to facilitate rich, multi-step communication between the engineer and the AI assistant (ADA).",
+    "steps": [
+        {
+            "time": "01:23",
+            "action": "User initiates the workflow via voice command ('Ada, let's create some example code').",
+            "tool": "VS Code / ADA Assistant",
+            "reasoning": "Establishes the initial intent, triggering the specific agentic router."
+        },
+        {
+            "time": "01:26",
+            "action": "Agent detects missing context (no URL on clipboard) and requests user input.",
+            "tool": "ADA Assistant",
+            "reasoning": "Demonstrates 'Two-Way Prompting' where the agent halts execution to pull necessary data from the human rather than hallucinating or failing."
+        },
+        {
+            "time": "02:16",
+            "action": "User pastes the required URL into a system-generated temporary file.",
+            "tool": "VS Code / Temp File",
+            "reasoning": "Uses temporary buffers as a structured interface for passing complex data (URLs/text) back to the agent."
+        },
+        {
+            "time": "02:26",
+            "action": "Agent acknowledges data receipt and requests specific preferences/scope for the code generation.",
+            "tool": "ADA Assistant",
+            "reasoning": "Refines the prompt context to ensure the output matches user expectations before generating code."
+        },
+        {
+            "time": "02:31",
+            "action": "User provides specific instructions ('concise end to end example') in a new temporary file.",
+            "tool": "VS Code / Temp File",
+            "reasoning": "Allows the human to guide the agent's logic, acting as the 'product builder' in the loop."
+        },
+        {
+            "time": "04:59",
+            "action": "User initiates a new workflow for a UI component ('create a new view component').",
+            "tool": "Python (main9.py)",
+            "reasoning": "Switches context to a visual task, testing the agent's ability to handle different data types."
+        },
+        {
+            "time": "05:13",
+            "action": "Agent requests a reference image to base the component on.",
+            "tool": "File Selection Dialog",
+            "reasoning": "Agent proactively pushes a request for multi-modal input (image) to ground the generation in specific visual data."
+        },
+        {
+            "time": "06:38",
+            "action": "User reviews the generated UI and provides specific styling feedback via a temp file.",
+            "tool": "Browser (localhost) / Temp File",
+            "reasoning": "Iterative refinement loop where the human polishes the raw agent output to meet production standards."
+        },
+        {
+            "time": "07:07",
+            "action": "Agent executes changes, updating padding and text colors based on feedback.",
+            "tool": "Vue.js / ADA Assistant",
+            "reasoning": "Finalizes the 'Two-Way' loop, resulting in a completed task derived from collaborative back-and-forth."
+        }
+    ],
+    "key_takeaways": [
+        "Two-Way Prompting transforms agents from passive executors to active collaborators that 'push' questions back to the user.",
+        "The human engineer is an essential guiding force (Human-in-the-Loop) for high-quality agentic results.",
+        "Agentic workflows should be categorized into three tiers: Humans Prompt (Pull), Two-Way Prompt (Pull + Push), and Agents Prompt (Push).",
+        "Using temporary files and system dialogs allows for richer, multi-modal feedback loops compared to simple chat interfaces."
+    ]
+}

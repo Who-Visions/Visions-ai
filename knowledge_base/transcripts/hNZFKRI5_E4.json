@@ -1,0 +1,68 @@
+{
+  "title": "Photo Deconstruction: Illuminating Yellow Fashion Shoot",
+  "summary": "Photographer Lindsay Adler demonstrates a high-contrast fashion lighting setup featuring the Pantone Color of the Year, Illuminating Yellow. She details her three-light setup optimized for dark skin tones, camera settings, and a specific color grading workflow that involves desaturating skin tones to make the yellow wardrobe pop.",
+  "steps": [
+    {
+      "time": "01:35",
+      "action": "Set up the main light using a Profoto XL Deep White Umbrella with diffusion on the right side to create soft, flattering light for the model's skin texture.",
+      "code": null,
+      "tool": "Profoto XL Deep White Umbrella"
+    },
+    {
+      "time": "02:20",
+      "action": "Place a White V-Flat on the left side to bounce fill light into the shadows, preventing the dark skin from falling into pure black.",
+      "code": null,
+      "tool": "White V-Flat"
+    },
+    {
+      "time": "02:45",
+      "action": "Add two rim lights using 1x4ft Strip Softboxes with Straw Yellow gels and grids on either side of the subject to match the dress color and prevent light spill.",
+      "code": null,
+      "tool": "Strip Softboxes + Yellow Gels"
+    },
+    {
+      "time": "03:08",
+      "action": "Use a dark gray background (Savage Universal Storm Gray) to provide contrast and flexibility for potential gelling.",
+      "code": null,
+      "tool": "Savage Universal Storm Gray Background"
+    },
+    {
+      "time": "03:45",
+      "action": "Set camera exposure: 1/200 sec, f/8, ISO 400, using a focal length around 93mm for tight shots.",
+      "code": null,
+      "tool": "Canon EOS R5"
+    },
+    {
+      "time": "05:55",
+      "action": "Color Grading: Selectively desaturate skin tones (reds and oranges) to create a silvery-gray aesthetic.",
+      "code": null,
+      "tool": "Capture One"
+    },
+    {
+      "time": "06:11",
+      "action": "Color Grading: Saturate the yellows and shift the hue slightly towards green to match the specific Pantone color.",
+      "code": null,
+      "tool": "Capture One"
+    },
+    {
+      "time": "06:25",
+      "action": "Adjust contrast and highlights to accentuate cheekbones and increase drama.",
+      "code": null,
+      "tool": "Capture One"
+    },
+    {
+      "time": "07:57",
+      "action": "Workflow Tip: Build the lighting setup by starting with the rim lights first to ensure proper placement before turning on the main light.",
+      "code": null,
+      "tool": "Lighting Strategy"
+    }
+  ],
+  "key_takeaways": [
+    "Soft light sources are often more flattering on darker skin tones to smooth out texture.",
+    "Grids on softboxes are essential for controlling lens flare and light spill when using colored gels.",
+    "A dramatic color grade can be achieved by desaturating skin tones while hyper-saturating the wardrobe color.",
+    "When building a multi-light setup, start with the back/rim lights to clearly see their effect without the main light washing them out."
+  ],
+  "video_id": "hNZFKRI5_E4",
+  "url": "https://www.youtube.com/watch?v=hNZFKRI5_E4&pp=0gcJCTwKAYcqIYzv"
+}

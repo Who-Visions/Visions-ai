@@ -1,0 +1,54 @@
+{
+    "title": "Managing Postgres Multi-Agent Memory & Costs",
+    "summary": "This tutorial addresses the 'token explosion' problem in multi-agent systems when scaling from mock data to production databases. The workflow is optimized by implementing a dynamic memory system using BERT embeddings and keyword matching to filter relevant table schemas. Additionally, the system is refactored to track costs via token counting and to bypass the LLM context window for large datasets by writing SQL results directly to files.",
+    "steps": [
+        {
+            "time": "00:02:08",
+            "action": "Analyze current architecture and identify 'Token Explosion' risks",
+            "tool": "VS Code, TablePlus",
+            "reasoning": "Recognizing that feeding hundreds of table definitions into an LLM context window renders the agent useless due to token limits."
+        },
+        {
+            "time": "00:04:50",
+            "action": "Refactor monolithic code into modular agent configurations",
+            "tool": "Python, Poetry",
+            "reasoning": "Separating agent definitions and configurations allows for cleaner logic insertion regarding memory and cost management."
+        },
+        {
+            "time": "00:08:29",
+            "action": "Implement DatabaseEmbedder using BERT for semantic schema filtering",
+            "tool": "PyTorch, Transformers (BERT), scikit-learn",
+            "reasoning": "Uses vector similarity to identify which database tables are semantically relevant to the user's natural language query."
+        },
+        {
+            "time": "00:12:54",
+            "action": "Augment embeddings with Keyword Matching for hybrid retrieval",
+            "tool": "Python (String Matching)",
+            "reasoning": "Embeddings may miss exact table name references; adding word matching ensures high recall for specific table requests (e.g., 'users')."
+        },
+        {
+            "time": "00:14:59",
+            "action": "Inject filtered table definitions into the Agent's context",
+            "tool": "AutoGen, Python",
+            "reasoning": "Dynamically constructing the system prompt with only relevant schemas prevents context overflow and focuses the agent."
+        },
+        {
+            "time": "00:16:55",
+            "action": "Integrate Token Counting and Cost Estimation",
+            "tool": "Tiktoken, OpenAI API",
+            "reasoning": "Provides necessary observability into the financial impact of running multi-agent workflows."
+        },
+        {
+            "time": "00:20:46",
+            "action": "Refactor SQL execution to write directly to JSON files",
+            "tool": "Python (File I/O)",
+            "reasoning": "Prevents the agent from consuming tokens by reading massive query results; the agent only receives a success signal, significantly reducing costs."
+        }
+    ],
+    "key_takeaways": [
+        "Production databases with many tables require dynamic schema filtering (RAG) to fit within LLM context windows.",
+        "A hybrid approach (Embeddings + Keyword Matching) is superior to embeddings alone for retrieving technical metadata like table names.",
+        "Agents should not ingest raw data results; they should operate on file references to avoid 'token explosion'.",
+        "Cost observability (token tracking) is essential when orchestrating autonomous teams."
+    ]
+}

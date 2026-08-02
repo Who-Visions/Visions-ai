@@ -1,0 +1,40 @@
+{
+  "title": "Beauty Shoot with AI Inspired Makeup",
+  "summary": "Photographer Lindsay Adler demonstrates a creative workflow using AI art as inspiration for a beauty photoshoot. She breaks down a specific four-light studio setup designed to replicate the hard lighting, saturated colors, and unique aesthetics found in AI-generated reference images.",
+  "steps": [
+    {
+      "time": "03:48",
+      "action": "Set up the main light centered on the subject's face to create hard, punchy light that saturates the colors.",
+      "tool": "Profoto D2, Magnum Reflector + Grid"
+    },
+    {
+      "time": "04:39",
+      "action": "Add a second strobe with a tight grid as a fill light centered in front of the subject to lift shadows under the chin without spilling onto the white jacket.",
+      "tool": "Profoto D1, 10 Degree Grid"
+    },
+    {
+      "time": "05:48",
+      "action": "Place a third strobe on a floor stand behind the subject pointing at the background to create a gradient from light grey to black for depth.",
+      "tool": "Profoto D2 (No Modifier)"
+    },
+    {
+      "time": "06:36",
+      "action": "Add a fourth strobe overhead as a hair light, using a purple gel to create a colored highlight that matches the makeup palette instead of a white shine.",
+      "tool": "1x4' Strip Softbox with Grid + Purple Gel"
+    },
+    {
+      "time": "07:46",
+      "action": "Select camera and lens, utilizing wider focal lengths to mimic the slight distortion often seen in AI art.",
+      "tool": "Canon EOS R5, Canon RF 24-105mm F/4L"
+    }
+  ],
+  "key_takeaways": [
+    "AI art can serve as a mood board and inspiration for lighting and styling rather than a replacement for photography.",
+    "Hard lighting modifiers (like a Magnum reflector) help saturate colors in makeup and body paint.",
+    "Using grids on strobes allows for precise control of light spill, essential when filling specific shadow areas without affecting the rest of the image.",
+    "Colored gels on hair lights can integrate the subject's hair into the overall color palette of the shoot.",
+    "Varying focal lengths and shooting distances can help replicate the unique, sometimes distorted perspective characteristic of AI-generated portraits."
+  ],
+  "video_id": "d0SQ-GfpWJo",
+  "url": "https://www.youtube.com/watch?v=d0SQ-GfpWJo"
+}

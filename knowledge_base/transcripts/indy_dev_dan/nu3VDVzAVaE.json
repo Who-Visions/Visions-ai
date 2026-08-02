@@ -1,0 +1,48 @@
+{
+    "title": "Maximizing Agentic Coding Impact with Claude Code Ecosystem Tools",
+    "summary": "A strategic workflow for advanced engineers to optimize their usage of Claude Code. The process involves auditing costs to prove ROI, reverse-engineering agent behavior through detailed tracing to understand system mechanics, and extending agent capabilities with visual perception tools to bridge the gap between code and the operating system.",
+    "steps": [
+        {
+            "time": "00:46",
+            "action": "Run `npx ccusage@latest` with a specific date range.",
+            "tool": "ccusage",
+            "reasoning": "To quantify the ROI of agentic coding by comparing token costs against the value of engineering hours saved (e.g., $200 cost for $714 value)."
+        },
+        {
+            "time": "03:28",
+            "action": "Wrap the Claude Code session with the trace utility using `npx @mariozechner/claude-trace`.",
+            "tool": "claude-trace",
+            "reasoning": "To generate a granular log of the session, enabling deep inspection of how the agent operates under the hood."
+        },
+        {
+            "time": "03:54",
+            "action": "Instruct the agent to use a subagent to document a complex flow.",
+            "tool": "Claude Code",
+            "reasoning": "To trigger and observe the agent's subtask creation and context isolation capabilities."
+        },
+        {
+            "time": "04:55",
+            "action": "Open the generated HTML trace file to inspect System Prompts and Tool Definitions.",
+            "tool": "claude-trace",
+            "reasoning": "To move beyond 'vibe coding' by understanding the exact instructions and tool parameters (like Bash, Glob, Grep) driving the agent."
+        },
+        {
+            "time": "09:08",
+            "action": "Install the screenshot MCP server using `claude mcp add snap-happy`.",
+            "tool": "snap-happy",
+            "reasoning": "To equip the agent with 'vision', allowing it to interact with and analyze the state of the operating system and GUI applications."
+        },
+        {
+            "time": "09:50",
+            "action": "Command the agent to take a screenshot of the browser and extract data.",
+            "tool": "snap-happy",
+            "reasoning": "To demonstrate cross-modal agentic workflows where the agent retrieves context from visual elements not present in the code repository."
+        }
+    ],
+    "key_takeaways": [
+        "Agentic coding is an ROI equation: high token costs are negligible compared to the value of saved engineering time (3.5x ROI observed).",
+        "Mastery distinguishes great engineers from 'vibe coders'; understanding system prompts and raw tool calls is essential for maximizing performance.",
+        "Tools like 'claude-trace' reveal that agents multiply impact by parallelizing tasks across sub-agents with distinct context windows.",
+        "Extending agents with MCP servers (like 'snap-happy') transforms them from text-processors to multimodal assistants capable of seeing and interacting with the OS."
+    ]
+}

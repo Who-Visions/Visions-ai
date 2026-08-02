@@ -1,0 +1,72 @@
+{
+    "title": "Building 'Zero Noise': An Agentic Information Diet Tool with Aider & Sonnet 3.5",
+    "summary": "A technical devlog demonstrating the creation of 'Zero Noise', a tool designed to filter information overload. The workflow utilizes Aider (AI coding assistant) and Claude 3.5 Sonnet to build a Python/Streamlit application. The system scrapes URLs, uses LLM agents to compare content against a 'last_seen_date', and only notifies the user if meaningful updates have occurred, effectively automating information consumption.",
+    "steps": [
+        {
+            "time": "00:23",
+            "action": "Define Configuration Structure",
+            "tool": "JSON",
+            "reasoning": "Establishes the agent's memory and targets by defining `config.json` with `url`, `headers`, and `last_seen_date` to track state."
+        },
+        {
+            "time": "00:55",
+            "action": "Initialize Workflow Scaffolding",
+            "tool": "Python / Streamlit",
+            "reasoning": "Sets up the `Workflow` class and basic UI entry point (`main.py`) to house the agentic logic."
+        },
+        {
+            "time": "02:08",
+            "action": "Context Chaining with Aider",
+            "tool": "Aider CLI",
+            "reasoning": "Loading `config.json` and `main.py` into Aider's context ensures the AI developer understands the data structure and application flow before coding."
+        },
+        {
+            "time": "02:31",
+            "action": "Integrate Streamlit UI",
+            "tool": "Aider / Streamlit",
+            "reasoning": "Creates a visual interface for the user to trigger the agent and view results, utilizing session state to manage workflow progress."
+        },
+        {
+            "time": "04:08",
+            "action": "Implement Data Validation",
+            "tool": "Pydantic",
+            "reasoning": "Defining `InfoProviderConfig` ensures the agent processes configuration data reliably, preventing runtime errors from malformed inputs."
+        },
+        {
+            "time": "07:48",
+            "action": "Develop Agentic Logic",
+            "tool": "Python / LLM Chain",
+            "reasoning": "The `agentics` method is created to loop through providers, separating the retrieval of content from the cognitive analysis."
+        },
+        {
+            "time": "10:20",
+            "action": "Structure Prompts with Markdown",
+            "tool": "Prompt Engineering",
+            "reasoning": "Refactoring prompts into multi-line Markdown (e.g., '## Task 1') improves the LLM's ability to distinguish instructions and generate accurate responses."
+        },
+        {
+            "time": "11:20",
+            "action": "Define Structured Output",
+            "tool": "Pydantic",
+            "reasoning": "Creating `ScrapAnalysisResult` forces the LLM to return parseable JSON (boolean flags, summaries) rather than unstructured text, enabling programmatic logic flow."
+        },
+        {
+            "time": "13:20",
+            "action": "Implement State Updates",
+            "tool": "Python",
+            "reasoning": "The `act` method updates the `last_seen_date` in `config.json` only when changes are detected, ensuring the agent learns what it has already processed."
+        },
+        {
+            "time": "14:20",
+            "action": "Visualize Agent Decisions",
+            "tool": "Streamlit",
+            "reasoning": "Updates the UI with visual cues (⭐ for updates, 😴 for no changes) to provide immediate feedback on the agent's filtering results."
+        }
+    ],
+    "key_takeaways": [
+        "Context Chaining: Providing file context to AI coding tools is essential for precise code generation.",
+        "Prompt Mastery: Using Markdown to structure prompts helps LLMs separate tasks and context effectively.",
+        "Structured Outputs: Using Pydantic models to validate LLM responses converts text generation into reliable software logic.",
+        "Agentic State Management: Tracking `last_seen_date` allows the agent to filter 'noise' and only surface new information."
+    ]
+}

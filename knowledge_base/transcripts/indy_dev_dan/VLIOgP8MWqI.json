@@ -1,0 +1,54 @@
+{
+    "title": "Fine-Tuning GPT-4o for Automated Image Prompt Expansion",
+    "summary": "This workflow demonstrates how to fine-tune OpenAI's GPT-4o to create a 'Vision Grid' application. The process involves training a model to act as an 'expansion prompt' engine, converting short user inputs into highly detailed image generation prompts. These expanded prompts are then fed into Black Forest Labs' Flux models via the Replicate API. The tutorial covers the strategic reasoning for fine-tuning (consistency, token reduction, and specific formatting) and provides a Python-based CLI workflow for managing the OpenAI fine-tuning lifecycle.",
+    "steps": [
+        {
+            "time": "01:32",
+            "action": "Define the Agentic Use Case (Vision Grid)",
+            "tool": "Conceptual Design",
+            "reasoning": "Establishes the goal: creating a 'prompt-to-prompt-to-image' pipeline where an LLM expands sparse user input into rich instructions for an image model."
+        },
+        {
+            "time": "02:20",
+            "action": "Execute Fine-Tuned Prompt Expansion",
+            "tool": "Fine-Tuned GPT-4o",
+            "reasoning": "The agent takes a minimal input (e.g., 'Epic skydiving') and generates a comprehensive, domain-specific prompt based on training data patterns."
+        },
+        {
+            "time": "02:39",
+            "action": "Generate Image from Expanded Prompt",
+            "tool": "Flux.1 (Schnell/Dev/Pro) via Replicate API",
+            "reasoning": "Uses the detailed output from the fine-tuned LLM to drive a high-fidelity image generation model, demonstrating the leverage of chaining models."
+        },
+        {
+            "time": "13:32",
+            "action": "Optimize for Token Usage",
+            "tool": "Cost Analysis",
+            "reasoning": "Replaces a massive 14k-token system prompt with a fine-tuned model, significantly reducing latency and cost per inference while maintaining specific output structures."
+        },
+        {
+            "time": "16:15",
+            "action": "Initialize Fine-Tuning Environment",
+            "tool": "Python, uv, Typer",
+            "reasoning": "Sets up a reusable, command-line driven codebase to manage OpenAI API interactions for file management and job creation."
+        },
+        {
+            "time": "18:04",
+            "action": "Prepare and Upload Training Data",
+            "tool": "JSONL Format",
+            "reasoning": "Structures data into System, User, and Assistant messages to teach the model the specific 'Expansion Prompt' behavior required for the domain."
+        },
+        {
+            "time": "18:40",
+            "action": "Train and Test the Model",
+            "tool": "OpenAI Fine-Tuning API",
+            "reasoning": "Runs the training job and immediately verifies performance by passing a short string to ensure the model hallucinates the correct detailed details."
+        }
+    ],
+    "key_takeaways": [
+        "Fine-tuning acts as an 'Expansion Prompt' mechanism, turning low-fidelity user input into high-fidelity system instructions.",
+        "A primary justification for fine-tuning is massive token reduction (e.g., removing 14k token instructions) compared to few-shot prompting.",
+        "Fine-tuning should be considered a 'last resort' optimization after standard prompt engineering and chaining fail to yield consistent results.",
+        "Combining fine-tuned LLMs with specialized generation models (like Flux) creates powerful, leveraged agentic workflows."
+    ]
+}

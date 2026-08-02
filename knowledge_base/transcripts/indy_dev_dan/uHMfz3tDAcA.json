@@ -1,0 +1,48 @@
+{
+    "title": "Achieving Work-Life Balance as a Solopreneur",
+    "summary": "A strategic analysis of work-life balance for indie hackers, debunking the myth of equal time distribution. The workflow moves from rejecting unrealistic visualizations to adopting a finite-resource mindset, and evaluating three specific prioritization strategies to maximize output without destroying personal relationships.",
+    "steps": [
+        {
+            "time": "01:14",
+            "action": "Reject 'unlimited resource' visualizations (Radar/Bar Charts)",
+            "tool": "Figma",
+            "reasoning": "Recognize that models implying maximum effort in all areas simultaneously are factually impossible due to resource constraints."
+        },
+        {
+            "time": "03:36",
+            "action": "Adopt the 'Pie Chart' visualization for time management",
+            "tool": "Figma",
+            "reasoning": "Establishes the hard constraint that time is finite (24 hours = 100%) and increasing one activity automatically subtracts from another."
+        },
+        {
+            "time": "07:20",
+            "action": "Evaluate Strategy 1: 'All In'",
+            "tool": "Prioritization Framework",
+            "reasoning": "Focuses heavily on one goal for massive results (10x), accepting that other life areas will suffer significantly."
+        },
+        {
+            "time": "09:26",
+            "action": "Evaluate Strategy 2: 'Counter Balance'",
+            "tool": "Prioritization Framework",
+            "reasoning": "Involves shifting focus intentionally between work and life to correct imbalances over time, yielding sustainable results (~5x)."
+        },
+        {
+            "time": "10:20",
+            "action": "Evaluate Strategy 3: 'Don't Overthink It'",
+            "tool": "Prioritization Framework",
+            "reasoning": "Allows life to dictate direction loosely, resulting in lower stress but generally mediocre results (~2x)."
+        },
+        {
+            "time": "11:42",
+            "action": "Implement the 'Accomplish more but do LESS' approach",
+            "tool": "Strategic Planning",
+            "reasoning": "Concentrating energy on fewer objectives increases the probability of successful completion compared to spreading resources thin."
+        }
+    ],
+    "key_takeaways": [
+        "True balance equality is an illusion; in a finite system, prioritizing one thing means deprioritizing another.",
+        "Life functions like a pie chart with a hard 24-hour limit, not a bar chart with unlimited potential.",
+        "The 'Counter Balance' strategy offers a sustainable middle ground between burnout and mediocrity.",
+        "To accomplish significant goals, you must actively choose what to neglect."
+    ]
+}

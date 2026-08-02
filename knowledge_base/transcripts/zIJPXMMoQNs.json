@@ -1,0 +1,56 @@
+{
+  "title": "Photo Deconstruction: Creating Golden Light for Fashion Photography",
+  "summary": "Lindsay Adler breaks down a fashion editorial shoot in Milan, demonstrating how to emulate natural golden sunset light inside a palace using strobes, gels, and modifiers. The tutorial covers the three-light setup, camera settings, and post-processing steps in Capture One to achieve a warm, painterly look.",
+  "steps": [
+    {
+      "time": "02:06",
+      "action": "Set up the first light (Key Light) using an Optical Spot modifier with a Window Gobo and a CTO (Color Temperature Orange) gel to project a warm window pattern across the scene.",
+      "tool": "Optical Spot, Window Gobo, CTO Gel"
+    },
+    {
+      "time": "03:18",
+      "action": "Add a second light (Fill Light) using a shoot-through umbrella with a thin (1/4) CTO gel. Point it into a corner to bounce light and lift the shadows, mimicking natural ambient light bounce.",
+      "tool": "Shoot-through Umbrella, 1/4 CTO Gel"
+    },
+    {
+      "time": "03:54",
+      "action": "Add a third light (Accent Light) using a 5-degree grid and 1/4 CTO gel focused specifically on the model's face to add contrast and draw the viewer's eye.",
+      "tool": "5 Degree Grid, 1/4 CTO Gel"
+    },
+    {
+      "time": "04:28",
+      "action": "Configure camera settings to balance the strobe power and depth of field.",
+      "code": "Camera: Canon R5\nLens: RF 24-105mm\nSettings: 1/200 sec, f/4.0, ISO 400",
+      "tool": "Canon R5"
+    },
+    {
+      "time": "07:00",
+      "action": "Begin post-processing in Capture One. Use a gradient mask to darken the left side of the frame to direct focus.",
+      "tool": "Capture One (Gradient Mask)"
+    },
+    {
+      "time": "07:22",
+      "action": "Perform local adjustments: warm up the chandelier and paint exposure/saturation back onto the green dress to recover color lost by the warm lighting.",
+      "tool": "Capture One (Local Adjustments)"
+    },
+    {
+      "time": "07:38",
+      "action": "Apply global adjustments including Clarity to add detail and a Vignette to center the composition.",
+      "tool": "Capture One"
+    },
+    {
+      "time": "08:16",
+      "action": "Apply final color grading using the Color Balance tool: add warmth to highlights and magenta to shadows for a sunset/painterly aesthetic.",
+      "tool": "Capture One (Color Balance)"
+    }
+  ],
+  "key_takeaways": [
+    "To emulate realistic sunlight, use an Optical Spot with a window gobo combined with CTO gels.",
+    "Shadows in natural light are rarely pitch black; use bounced fill light to lift shadows and increase realism.",
+    "When lighting a whole room, use a grid spot on the subject's face to ensure they remain the focal point.",
+    "Colored gels can wash out specific wardrobe colors; use local adjustments in post-processing to restore original hues.",
+    "Color grading with split toning (warm highlights, magenta/cool shadows) enhances the mood of golden hour shots."
+  ],
+  "video_id": "zIJPXMMoQNs",
+  "url": "https://www.youtube.com/watch?v=zIJPXMMoQNs"
+}

@@ -1,0 +1,71 @@
+{
+    "title": "Timeva V2: Advanced Productivity & Customization Workflow",
+    "summary": "A comprehensive walkthrough of Timeva V2, demonstrating how to configure a highly personalized time management environment. The workflow covers visual customization, distraction-free modes, automated task chaining, and efficiency shortcuts to optimize deep work sessions.",
+    "steps": [
+        {
+            "time": "00:30",
+            "action": "Launch application and access main interface",
+            "tool": "Timeva V2 Desktop App",
+            "reasoning": "Initializes the agentic environment for time management."
+        },
+        {
+            "time": "00:47",
+            "action": "Navigate to settings and apply preset themes",
+            "tool": "Customize Settings",
+            "reasoning": "Demonstrates immediate UI personalization to match user preference."
+        },
+        {
+            "time": "01:45",
+            "action": "Create a custom 'Study Theme' by adjusting specific color values",
+            "tool": "Theme Editor",
+            "reasoning": "Tailors the visual environment to specific cognitive states (e.g., deep work) to reduce friction."
+        },
+        {
+            "time": "02:49",
+            "action": "Modify progress bar shape and select distinct alert sounds",
+            "tool": "Audio/Visual Settings",
+            "reasoning": "Refines sensory feedback mechanisms for task completion and urgency."
+        },
+        {
+            "time": "03:44",
+            "action": "Enable 'Zen mode' to hide numerical timer text",
+            "tool": "Settings (Zen Mode)",
+            "reasoning": "Minimizes visual distractions to maintain focus flow during active sessions."
+        },
+        {
+            "time": "04:23",
+            "action": "Activate 'Micro mode' to resize window to minimal footprint",
+            "tool": "Settings (Micro Mode)",
+            "reasoning": "Allows persistent time tracking while multitasking without screen clutter."
+        },
+        {
+            "time": "05:36",
+            "action": "Setup 'Pomodoro Chaining' to link Study and Break timers automatically",
+            "tool": "Chain Feature",
+            "reasoning": "Automates the workflow sequence, removing the manual friction of switching between task phases."
+        },
+        {
+            "time": "06:46",
+            "action": "Map custom hotkeys to specific timer durations",
+            "tool": "Hotkey Settings",
+            "reasoning": "Maximizes input efficiency, allowing for rapid session setup without mouse interaction."
+        },
+        {
+            "time": "08:02",
+            "action": "Review recorded activities in the Timesheet",
+            "tool": "Timesheet/Analytics",
+            "reasoning": "Provides data-driven feedback on productivity performance for self-correction."
+        },
+        {
+            "time": "10:00",
+            "action": "Enable and utilize 'Activity Autocomplete' for recurring tasks",
+            "tool": "Settings (Autocomplete)",
+            "reasoning": "Reduces cognitive load and data entry effort for frequent activity logging."
+        }
+    ],
+    "key_takeaways": [
+        "Visual and auditory customization helps create distinct mental associations for different work modes.",
+        "Automation features like Chaining and Hotkeys significantly reduce the administrative overhead of time tracking.",
+        "Adaptive UI modes (Zen, Micro) allow the tool to scale based on the user's current focus intensity and screen real estate needs."
+    ]
+}

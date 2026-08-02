@@ -1,0 +1,60 @@
+{
+    "title": "Accelerating Development with AI Agents: Cursor & Aider Workflow",
+    "summary": "A demonstration of an agentic coding workflow using Cursor and Aider to build, refactor, and test a TypeScript CLI application. The process highlights the transition from manual coding to high-level prompting, showcasing how AI tools handle boilerplate, error fixing, multi-file refactoring, and test generation to significantly multiply developer productivity.",
+    "steps": [
+        {
+            "time": "00:12",
+            "action": "Generate initial CLI app structure",
+            "tool": "Cursor (AI IDE)",
+            "reasoning": "Rapidly scaffolding a functional application (70 LOC) from a single 25-word natural language prompt."
+        },
+        {
+            "time": "00:55",
+            "action": "Fix runtime error via prompt",
+            "tool": "Cursor (AI IDE)",
+            "reasoning": "Iterative refinement and debugging through conversational AI prompts to handle edge cases (missing files)."
+        },
+        {
+            "time": "04:39",
+            "action": "Initialize multi-file context",
+            "tool": "Aider",
+            "reasoning": "Preparing the environment for complex refactoring by explicitly adding relevant files to the agent's chat context."
+        },
+        {
+            "time": "05:05",
+            "action": "Refactor code into modular architecture",
+            "tool": "Aider",
+            "reasoning": "Executing multi-file edits to separate concerns (moving logic to `crud.ts`) without manual copy-pasting."
+        },
+        {
+            "time": "07:45",
+            "action": "Implement new feature and generate tests",
+            "tool": "Aider",
+            "reasoning": "Simultaneously adding new logic (`delete_all`), updating the CLI interface, and generating unit tests across multiple files in one prompt."
+        },
+        {
+            "time": "08:19",
+            "action": "Polish UI output",
+            "tool": "Cursor (Copilot++)",
+            "reasoning": "Using predictive AI (Next Action Prediction) to catch and fix minor omissions in the user interface that the larger agent missed."
+        },
+        {
+            "time": "09:03",
+            "action": "Verify integrity with automated tests",
+            "tool": "Bun Test",
+            "reasoning": "Validating that AI-generated features and refactors function correctly via automated testing to ensure reliability."
+        },
+        {
+            "time": "12:06",
+            "action": "Apply mass renaming edits",
+            "tool": "Cursor (Next Action Prediction)",
+            "reasoning": "Leveraging predictive models to automatically propagate naming changes across function definitions and calls throughout the file."
+        }
+    ],
+    "key_takeaways": [
+        "AI coding assistants can provide an estimated 8x productivity multiplier by converting short prompts into hundreds of lines of functional code.",
+        "Effective agentic workflows involve switching tools based on strength: Cursor for rapid iteration/prediction and Aider for complex multi-file refactoring.",
+        "The role of the engineer shifts from writing syntax to defining 'what to do' while the AI handles 'how to do it'.",
+        "Multi-file context and editing capabilities are essential for moving beyond simple snippets to maintaining real-world codebases."
+    ]
+}

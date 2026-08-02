@@ -1,0 +1,72 @@
+{
+  "title": "Automating Serverless Functions with Cron Jobs: Vercel vs. QStash",
+  "summary": "This tutorial demonstrates how to automate a serverless Notion-to-Twitter application by implementing cron jobs. It compares two methods: using Vercel's native Cron Jobs and using Upstash QStash as an external scheduler. The process involves modifying Python Flask code to handle different HTTP methods, configuring `vercel.json`, and debugging deployment issues to achieve fully automated tweeting.",
+  "steps": [
+    {
+      "time": "00:45",
+      "action": "Review existing Flask application structure",
+      "tool": "VS Code",
+      "reasoning": "To understand the current endpoints (`/tweet`) and logic flow before introducing automation components."
+    },
+    {
+      "time": "02:25",
+      "action": "Configure Vercel native cron jobs",
+      "tool": "vercel.json",
+      "reasoning": "To define the schedule (using cron expressions) and the target endpoint (`/api/about` initially) within the project configuration."
+    },
+    {
+      "time": "04:48",
+      "action": "Deploy configuration changes to production",
+      "tool": "Vercel CLI",
+      "reasoning": "Cron job configurations in `vercel.json` only take effect after a production deployment."
+    },
+    {
+      "time": "04:56",
+      "action": "Seed database with test data",
+      "tool": "Notion",
+      "reasoning": "To ensure there are pending tweets available for the function to process when the cron job triggers."
+    },
+    {
+      "time": "06:50",
+      "action": "Update and test Vercel cron path",
+      "tool": "Vercel Dashboard",
+      "reasoning": "To point the cron job to the actual logic endpoint (`/api/tweet`) and verify execution via the dashboard's 'Run' button."
+    },
+    {
+      "time": "08:05",
+      "action": "Attempt QStash scheduling (Method Mismatch)",
+      "tool": "Upstash QStash",
+      "reasoning": "To test an external scheduler; reveals a 405 Method Not Allowed error because QStash sends POST requests while the endpoint only accepted GET."
+    },
+    {
+      "time": "09:15",
+      "action": "Update Flask route to accept POST requests",
+      "tool": "VS Code",
+      "reasoning": "To make the serverless function compatible with QStash's default HTTP method."
+    },
+    {
+      "time": "10:05",
+      "action": "Debug deployment error (Function Naming Collision)",
+      "tool": "Vercel Logs",
+      "reasoning": "To identify why the deployment failed (HTTP 500); caused by defining two Flask functions with the same name (`tweet`)."
+    },
+    {
+      "time": "11:05",
+      "action": "Refactor code to separate GET and POST endpoints",
+      "tool": "VS Code",
+      "reasoning": "To resolve the collision by creating a distinct `/tweet-post` route specifically for the cron job."
+    },
+    {
+      "time": "11:25",
+      "action": "Finalize and verify QStash automation",
+      "tool": "Upstash QStash / Twitter",
+      "reasoning": "To confirm the end-to-end workflow: QStash triggers the function, the function reads Notion, and the tweet is posted to Twitter."
+    }
+  ],
+  "key_takeaways": [
+    "Vercel Cron Jobs are integrated easily via `vercel.json` but have strict frequency limits on the Hobby plan (once per day).",
+    "Upstash QStash offers more flexible scheduling (e.g., per minute) but requires endpoints to handle POST requests.",
+    "When modifying Flask routes for serverless, ensure function names are unique to avoid 'View function mapping overwriting' errors.",
+    "Effective debugging of serverless automation requires checking both the scheduler's delivery logs (QStash) and the application's runtime logs (Vercel)."
+  ]
+}

@@ -1,0 +1,66 @@
+{
+    "title": "Automated AI Content Management System with Notion and Serverless Python",
+    "summary": "This workflow constructs a 'Human-in-the-loop' agentic system where AI generates content drafts into a Notion database. A human reviews these drafts (Approve/Reject), and a serverless Python application automates the maintenance (deleting rejections) and publishing (posting approvals) via scheduled cron jobs, effectively using Notion as a shared state between the AI agent and the human user.",
+    "steps": [
+        {
+            "time": "00:37",
+            "action": "Define Notion Database Schema",
+            "tool": "Notion",
+            "reasoning": "Establishes the 'Shared State' or memory where the AI agent and human will collaborate asynchronously."
+        },
+        {
+            "time": "01:13",
+            "action": "Implement Content Generation Logic",
+            "tool": "Python, OpenAI API, Notion API",
+            "reasoning": "Connects the LLM's creative output to the structured database, populating the workflow with raw material."
+        },
+        {
+            "time": "02:24",
+            "action": "Add 'Status' Property for State Management",
+            "tool": "Notion",
+            "reasoning": "Defines the control flow states (Unreviewed, Approved, Rejected) necessary for human verification logic."
+        },
+        {
+            "time": "03:06",
+            "action": "Create Management Endpoint",
+            "tool": "Python (Flask/Vercel)",
+            "reasoning": "Develops a specific agent capability to perform database maintenance based on human feedback signals."
+        },
+        {
+            "time": "05:45",
+            "action": "Implement 'Rejected' Deletion Logic",
+            "tool": "Python",
+            "reasoning": "Automates the cleanup task, removing manual friction for the human reviewer by acting on the 'Rejected' state."
+        },
+        {
+            "time": "12:29",
+            "action": "Set Default Status to 'Unreviewed'",
+            "tool": "Python",
+            "reasoning": "Ensures all new agent outputs enter a safe initial state requiring human intervention before publishing."
+        },
+        {
+            "time": "16:06",
+            "action": "Filter for 'Approved' Content",
+            "tool": "Python",
+            "reasoning": "Implements the safety guardrail ensuring the agent only publishes content explicitly verified by the human."
+        },
+        {
+            "time": "17:25",
+            "action": "Update State to 'Sent' Post-Publication",
+            "tool": "Notion API",
+            "reasoning": "Updates the shared state to reflect external actions, preventing the agent from performing duplicate work."
+        },
+        {
+            "time": "18:08",
+            "action": "Automate Workflow with Serverless Cron",
+            "tool": "QStash, Vercel",
+            "reasoning": "Transforms the script into an autonomous agent that runs periodically (generating and managing) without manual triggers."
+        }
+    ],
+    "key_takeaways": [
+        "Using Notion as a database allows for effective asynchronous collaboration between AI agents (generators) and humans (approvers).",
+        "Implementing explicit states (Unreviewed, Approved, Rejected, Sent) is crucial for managing the lifecycle of AI-generated content safely.",
+        "Decoupling logic into serverless functions triggered by Cron jobs (QStash) creates a low-cost, always-on agentic workflow.",
+        "The 'Human-in-the-Loop' architecture mitigates AI hallucination risks by enforcing an approval step before external actions (posting) occur."
+    ]
+}

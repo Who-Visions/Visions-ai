@@ -1,0 +1,49 @@
+{
+    "title": "Building Effective Claude Code Sub-Agents with Meta-Agents",
+    "summary": "A technical guide on architecting specialized sub-agents within Claude Code. The workflow demonstrates how to avoid common context-flow mistakes, leverage a 'Meta-Agent' to bootstrap new agents, and implement a Text-to-Speech (TTS) work completion summarizer to enhance multi-agent orchestration.",
+    "steps": [
+        {
+            "time": "02:20",
+            "action": "Define sub-agent configuration structure",
+            "tool": "Claude Code (Agents Directory)",
+            "reasoning": "Establishes the agent's identity via 'name', 'tools', and crucially 'description', which acts as the trigger mechanism for the primary agent."
+        },
+        {
+            "time": "11:45",
+            "action": "Validate tool availability and parameters",
+            "tool": "/all_tools command",
+            "reasoning": "Before building an agent, the engineer must confirm the exact function signatures (e.g., ElevenLabs TTS) available in the MCP server."
+        },
+        {
+            "time": "13:17",
+            "action": "Manually test the tool workflow in the primary context",
+            "tool": "Claude Code CLI",
+            "reasoning": "Verifies that the specific chain of actions (Generate Audio -> Play Audio) functions correctly before abstracting it into an autonomous agent."
+        },
+        {
+            "time": "14:37",
+            "action": "Prompt the Meta-Agent to generate the new sub-agent file",
+            "tool": "Meta-Agent",
+            "reasoning": "Uses an existing agent to build a new agent ('work-completion-summary'), ensuring adherence to documentation and correct formatting automatically."
+        },
+        {
+            "time": "17:00",
+            "action": "Refine the sub-agent description and system prompt",
+            "tool": "Cursor / Text Editor",
+            "reasoning": "Optimizes the 'description' to instruct the Primary Agent on exactly what context to pass, as sub-agents start with zero context (isolated window)."
+        },
+        {
+            "time": "19:22",
+            "action": "Trigger the sub-agent via natural language",
+            "tool": "Claude Code (Primary Agent)",
+            "reasoning": "Tests the orchestration flow: User -> Primary Agent -> Sub-Agent -> Primary Agent -> User, ensuring the sub-agent correctly reports back to the primary agent."
+        }
+    ],
+    "key_takeaways": [
+        "Sub-agents use a System Prompt, not a User Prompt; they define behavior, not immediate actions.",
+        "The flow of information is critical: Sub-agents report to the Primary Agent, not the user. The Primary Agent must be instructed on how to relay this.",
+        "Sub-agents operate in isolated context windows, meaning they have no history of the user's session unless explicitly passed by the Primary Agent.",
+        "The 'description' field in an agent file is the API through which the Primary Agent understands when and how to delegate tasks.",
+        "Use a 'Meta-Agent' to standardize the creation of new agents, ensuring they include best practices like proactive triggers and output formatting."
+    ]
+}

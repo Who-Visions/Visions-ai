@@ -1,0 +1,48 @@
+{
+    "title": "Agentic Engineering in the Era of Gemini 1.5 and Sora",
+    "summary": "This workflow analyzes the paradigm shift caused by Gemini 1.5's 1M token context window and OpenAI's Sora, suggesting that traditional RAG may be obsolete. It transitions into a practical tutorial on 'IndyDevTools', a CLI framework for building autonomous, reusable AI agents to automate developer workflows like YouTube metadata generation.",
+    "steps": [
+        {
+            "time": "02:00",
+            "action": "Evaluate Context Window Capabilities",
+            "tool": "Gemini 1.5 Pro",
+            "reasoning": "Recognize that 1M+ token windows allow processing entire codebases or hours of video, potentially rendering complex RAG pipelines obsolete ('RAG is Dead')."
+        },
+        {
+            "time": "15:30",
+            "action": "Adopt Agentic Engineering Principles",
+            "tool": "Conceptual Framework",
+            "reasoning": "Establish core rules: Treat prompts as fundamental programming units, view tools as functions, and prioritize 'Create/Read' over 'Update/Delete' for agents."
+        },
+        {
+            "time": "17:43",
+            "action": "Install and Configure IndyDevTools",
+            "tool": "pip / idt cli",
+            "reasoning": "Initialize the environment for the opinionated agentic toolbox using 'pip install indydevtools' and 'idt yt config'."
+        },
+        {
+            "time": "17:56",
+            "action": "Execute Single-Agent Task (Title Generation)",
+            "tool": "idt yt titles create",
+            "reasoning": "Demonstrate a discrete agentic function that takes raw input and returns structured, scored creative output (titles.json)."
+        },
+        {
+            "time": "19:24",
+            "action": "Orchestrate Multi-Agent Workflow",
+            "tool": "idt yt gen-meta-auto",
+            "reasoning": "Chain multiple agents (transcription, title, description, tags) to solve a complex problem autonomously."
+        },
+        {
+            "time": "21:35",
+            "action": "Architect Reusable Building Blocks",
+            "tool": "Python / Typer",
+            "reasoning": "Structure code into modular functions (e.g., create_title.py) that can be called in isolation or composed into larger flows."
+        }
+    ],
+    "key_takeaways": [
+        "Gemini 1.5's 1M token context window challenges the necessity of RAG for many use cases.",
+        "Sora represents a massive leap in AI's understanding of physics and world consistency.",
+        "Prompts should be treated as the new fundamental unit of programming.",
+        "Effective agentic engineering requires building small, composable, and reusable functional blocks."
+    ]
+}

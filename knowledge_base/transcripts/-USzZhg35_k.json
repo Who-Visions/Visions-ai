@@ -1,0 +1,59 @@
+{
+  "title": "Creating Dappled Light for Fashion Photography",
+  "summary": "Photographer Lindsay Adler breaks down a fashion shoot utilizing the Westcott Optical Spot to create a dappled lighting effect. The tutorial covers the concept of monochromatic styling, the specific lighting setup involving projection and bounce flash, camera settings, and the post-processing workflow to achieve a moody, editorial look.",
+  "steps": [
+    {
+      "time": "01:17",
+      "action": "Select a hand-painted canvas with heavy texture to prevent the subject from blending into the monochromatic background.",
+      "tool": "Gravity Backdrops Canvas"
+    },
+    {
+      "time": "02:04",
+      "action": "Set up the key light using a strobe equipped with an optical spot modifier on the right side of the frame.",
+      "tool": "Profoto D2, Westcott Optical Spot"
+    },
+    {
+      "time": "02:30",
+      "action": "Swap the kit lens on the optical spot for a wider zoom lens (24-70mm) using an EF mount adapter to light the subject head-to-toe.",
+      "tool": "Canon EF 24-70mm Lens"
+    },
+    {
+      "time": "03:00",
+      "action": "Insert a 'leaves' gobo into the optical spot and soft-focus the lens to create undefined, natural-looking pockets of light.",
+      "tool": "Gobo"
+    },
+    {
+      "time": "04:00",
+      "action": "Set up a second strobe on the left with a zoom reflector, pointing it directly at the ceiling to create a broad, soft, top-down fill light.",
+      "tool": "Profoto D2, Zoom Reflector"
+    },
+    {
+      "time": "05:08",
+      "action": "Configure camera settings to f/4.0 to slightly blur the textured background for separation.",
+      "tool": "Canon R5, RF 24-70mm"
+    },
+    {
+      "time": "06:30",
+      "action": "In post-processing, increase contrast and clarity, darken the exposure, and desaturate the image.",
+      "tool": "Capture One"
+    },
+    {
+      "time": "06:47",
+      "action": "Color grade the image by shifting green hues and adding yellow to the skin tones for an analogous color palette.",
+      "tool": "Capture One"
+    },
+    {
+      "time": "07:30",
+      "action": "Retouch the image by extending the background, smoothing skin texture, and removing clothing wrinkles.",
+      "tool": "Photoshop"
+    }
+  ],
+  "key_takeaways": [
+    "Using a standard camera lens on an optical spot modifier allows for wider light coverage compared to included kit lenses.",
+    "Soft-focusing a gobo pattern creates a more natural, dappled light effect rather than a sharp projection.",
+    "Bouncing a strobe off a high ceiling is an effective way to create a large, soft fill source that mimics natural overhead light.",
+    "Color grading is essential in monochromatic shoots to unify the tones of the subject and background."
+  ],
+  "video_id": "-USzZhg35_k",
+  "url": "https://www.youtube.com/watch?v=-USzZhg35_k"
+}

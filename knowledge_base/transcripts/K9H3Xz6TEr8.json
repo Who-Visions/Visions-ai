@@ -1,0 +1,64 @@
+{
+  "title": "Advanced Beauty Lighting Deconstruction with 6 Lights",
+  "summary": "Lindsay Adler demonstrates a complex creative lighting setup for a beauty portrait, utilizing six strobes, gels, and optical spots to sculpt light and enhance gemstone textures.",
+  "steps": [
+    {
+      "time": "03:28",
+      "action": "Set up the Main Light using an Optical Spot with a 150mm lens to create a precise, dappled pocket of hard light on the face.",
+      "tool": "Profoto D2, Optical Spot, 150mm Lens"
+    },
+    {
+      "time": "04:31",
+      "action": "Add a Fill Light using a bare strobe with a Cyan gel to fill shadows with blue color while maintaining hard specular highlights.",
+      "tool": "Profoto D2, Cyan Gel"
+    },
+    {
+      "time": "05:27",
+      "action": "Set up the Background Light using a bare strobe with a Magenta gel on a Coral background to create a saturated pink gradient.",
+      "tool": "Profoto D2, Magenta Gel, Savage Universal Coral Background"
+    },
+    {
+      "time": "06:31",
+      "action": "Add the first Hair Light using an Optical Spot focused specifically on the hair to create highlights on the gemstones.",
+      "tool": "Profoto D2, Optical Spot"
+    },
+    {
+      "time": "07:04",
+      "action": "Add a Rim Light using a bare strobe with a Cyan gel to create a blue wash on the back left side of the hair.",
+      "tool": "Profoto D2, Cyan Gel"
+    },
+    {
+      "time": "07:47",
+      "action": "Add a second Hair Light using an Optical Spot with a Pink gel for subtle highlights on the right side.",
+      "tool": "Profoto D2, Optical Spot, Pink Gel"
+    },
+    {
+      "time": "08:24",
+      "action": "Configure camera settings: Canon R5 with 70-200mm lens at f/11 for sharpness and depth of field.",
+      "tool": "Canon R5, RF 70-200mm f/2.8"
+    },
+    {
+      "time": "09:21",
+      "action": "Attach a Tiffen North Star filter to the lens to create multi-point starburst reflections on the gemstones.",
+      "tool": "Tiffen North Star Filter"
+    },
+    {
+      "time": "09:55",
+      "action": "Process the RAW file by adding significant contrast and clarity to counteract the haze from the star filter, and adjusting color balance (Cyan to highlights, Magenta to shadows).",
+      "tool": "Capture One / Lightroom"
+    },
+    {
+      "time": "11:19",
+      "action": "Retouch the image by cleaning up skin, filling hair gaps, and painting a pink layer set to 'Color' blend mode to change the hair color.",
+      "tool": "Photoshop"
+    }
+  ],
+  "key_takeaways": [
+    "Use hard light modifiers like optical spots and bare bulbs to create specular highlights on reflective subjects like gemstones.",
+    "Start with a standard lighting configuration (Main, Fill, Background, Rims) and modify individual lights to suit the creative vision.",
+    "Star filters create beautiful in-camera effects but introduce haze that requires adding contrast and clarity in post-processing.",
+    "Optical spots allow for precise control to highlight specific areas without affecting the rest of the image."
+  ],
+  "video_id": "K9H3Xz6TEr8",
+  "url": "https://www.youtube.com/watch?v=K9H3Xz6TEr8"
+}

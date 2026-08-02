@@ -1,0 +1,49 @@
+{
+    "title": "Agentic Benchmarking: Nano-Agents & MCP Architecture",
+    "summary": "A technical workflow demonstrating how to evaluate multiple LLMs (including GPT-5, Claude Opus, and local GPT-OSS models) simultaneously. The process uses a 'Nano-Agent' architecture within a Model Context Protocol (MCP) server to flatten the playing field, allowing for a direct comparison of Performance, Speed, and Cost across different models using standardized toolsets and Higher Order Prompts.",
+    "steps": [
+        {
+            "time": "00:05",
+            "action": "Initiate parallel model evaluation using a Higher Order Prompt (HOP) command.",
+            "tool": "Terminal / Claude Code CLI",
+            "reasoning": "Triggers multiple subagents simultaneously to ensure a fair, side-by-side comparison of different models executing the same task."
+        },
+        {
+            "time": "06:10",
+            "action": "Configure Nano-Agent definitions and project structure.",
+            "tool": "VS Code / Markdown Configs",
+            "reasoning": "Establishes the specific parameters for each model (GPT-5, GPT-OSS, etc.) to ensure they all access the same MCP server tools."
+        },
+        {
+            "time": "07:40",
+            "action": "Execute Lower Order Prompts (LOP) via the Nano-Agent MCP Server.",
+            "tool": "Nano-Agent MCP Server / OpenAI Agent SDK",
+            "reasoning": "Tests the models' ability to use tools (read_file, write_file) autonomously rather than just generating text."
+        },
+        {
+            "time": "15:35",
+            "action": "Aggregate results using an 'Agent as a Judge' pattern.",
+            "tool": "Claude Opus 4.1 (Judge Agent)",
+            "reasoning": "Synthesizes raw outputs into a structured comparison table based on Performance, Speed, and Cost grades."
+        },
+        {
+            "time": "18:50",
+            "action": "Isolate and debug specific agent failures (atomized testing).",
+            "tool": "Terminal / Python Direct Execution",
+            "reasoning": "Allows for verifying if a failure (like Opus 4.1 missing a file creation) is a stochastic error or a capability gap."
+        },
+        {
+            "time": "20:00",
+            "action": "Verify tool logic within the MCP Server implementation.",
+            "tool": "Python (nano_agent_tools.py)",
+            "reasoning": "Ensures the underlying tool definitions (read, write, list) are correctly exposed to the agents via the Model Context Protocol."
+        }
+    ],
+    "key_takeaways": [
+        "Agent Architecture is now more critical than individual model selection.",
+        "The 'Big Three' of Agentic Engineering are Context, Model, and Prompt.",
+        "On-device models (GPT-OSS) are becoming viable for complex agentic tasks, offering zero cost at the expense of speed.",
+        "Using Higher Order Prompts (HOP) and Lower Order Prompts (LOP) allows for modular and reusable testing logic.",
+        "Model Context Protocol (MCP) servers provide the necessary standardization to 'flatten the playing field' for multi-model evaluation."
+    ]
+}

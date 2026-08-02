@@ -1,0 +1,53 @@
+{
+    "title": "5 Notion in 5: Reading from Notion API",
+    "summary": "A concise technical tutorial on retrieving and parsing hierarchical content from Notion pages using Python. The workflow involves setting up API calls to fetch block children, implementing recursive logic to handle nested blocks, and transforming complex API responses into simplified JSON structures.",
+    "steps": [
+        {
+            "time": "00:26",
+            "action": "Implement `write_dict_to_file_as_json` helper function",
+            "tool": "Python (json library)",
+            "reasoning": "Establishes a debugging mechanism to visualize complex API responses by saving them as formatted JSON files."
+        },
+        {
+            "time": "00:45",
+            "action": "Define `read_text` function to fetch block children",
+            "tool": "Notion API Client",
+            "reasoning": "Wraps the `client.blocks.children.list` API call to abstract the data retrieval process for specific page IDs."
+        },
+        {
+            "time": "01:07",
+            "action": "Draft `create_simple_blocks_from_content` for data parsing",
+            "tool": "Python",
+            "reasoning": "Begins the transformation logic to convert raw, verbose Notion API data into a clean, usable dictionary format."
+        },
+        {
+            "time": "02:15",
+            "action": "Consult Notion API Documentation for 'Retrieve block children'",
+            "tool": "Notion API Docs",
+            "reasoning": "Verifies the data structure (specifically `results` array and `rich_text` objects) to ensure accurate parsing logic."
+        },
+        {
+            "time": "02:59",
+            "action": "Implement recursive logic for nested blocks",
+            "tool": "Python",
+            "reasoning": "Handles the hierarchical nature of Notion pages by checking `has_children` and recursively calling the read/parse functions."
+        },
+        {
+            "time": "03:35",
+            "action": "Orchestrate workflow in `main` function",
+            "tool": "Python",
+            "reasoning": "Combines initialization, data fetching, logging raw data, parsing, and logging parsed data into a cohesive execution flow."
+        },
+        {
+            "time": "03:52",
+            "action": "Execute script and validate JSON outputs",
+            "tool": "Terminal / VS Code",
+            "reasoning": "Confirms the code works by comparing the generated `simple_blocks.json` against the actual Notion page structure."
+        }
+    ],
+    "key_takeaways": [
+        "Notion content is structured as a tree of blocks; retrieving it requires handling the `blocks.children.list` endpoint.",
+        "Recursion is necessary to correctly parse nested content (like indented lists) indicated by the `has_children` property.",
+        "Writing raw API responses to local JSON files is an effective strategy for reverse-engineering and understanding complex data schemas."
+    ]
+}

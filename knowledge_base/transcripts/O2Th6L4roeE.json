@@ -1,0 +1,64 @@
+{
+  "title": "Monitor Calibration with X-Rite i1Display Pro",
+  "summary": "Photographer Peter Hurley and Josh from X-Rite demonstrate the step-by-step process of calibrating an iMac monitor using the i1Display Pro and i1Profiler software in Advanced mode to ensure color accuracy for photography.",
+  "steps": [
+    {
+      "time": "02:13",
+      "action": "Launch i1Profiler software, select 'Advanced' User Mode, and click 'Profiling' under Display.",
+      "tool": "i1Profiler"
+    },
+    {
+      "time": "02:36",
+      "action": "Select the display technology type. Choose 'CCFL' for older iMacs or 'White LED'/'Wide Gamut' for newer screens.",
+      "tool": "i1Profiler"
+    },
+    {
+      "time": "03:24",
+      "action": "Set White Point to 'CIE Illuminant D65', the standard for the photo industry.",
+      "tool": "i1Profiler"
+    },
+    {
+      "time": "03:58",
+      "action": "Set Luminance to '120 cd/m\u00b2' for desktops (recommended 90 cd/m\u00b2 for laptops) to avoid over-saturation.",
+      "tool": "i1Profiler"
+    },
+    {
+      "time": "04:31",
+      "action": "Leave Contrast Ratio at 'Native'.",
+      "tool": "i1Profiler"
+    },
+    {
+      "time": "05:27",
+      "action": "Keep default Profile Settings (Gamma 2.2, Standard Tone Response Curve).",
+      "tool": "i1Profiler"
+    },
+    {
+      "time": "06:15",
+      "action": "Select Patch Set size. A larger patch set (e.g., Medium or Large) provides more accuracy but takes longer.",
+      "tool": "i1Profiler"
+    },
+    {
+      "time": "06:30",
+      "action": "Click 'Start Measurement'. Follow prompts to place the i1Display Pro device on the screen to read color patches.",
+      "tool": "i1Display Pro"
+    },
+    {
+      "time": "07:24",
+      "action": "Name the profile (e.g., based on environment) and set a reminder interval (e.g., 4 weeks). Click 'Create and save profile'.",
+      "tool": "i1Profiler"
+    },
+    {
+      "time": "08:20",
+      "action": "Use the 'Before' and 'After' toggle to verify the calibration results.",
+      "tool": "i1Profiler"
+    }
+  ],
+  "key_takeaways": [
+    "Calibrate monitors every 4 weeks to maintain accuracy.",
+    "Use D65 White Point and 120 cd/m\u00b2 Luminance for standard photography editing environments.",
+    "Avoid using continuous ambient light monitoring if lighting conditions change frequently; instead, control the room lighting manually.",
+    "Accurate monitor calibration is essential before editing to ensure prints and web display look correct."
+  ],
+  "video_id": "O2Th6L4roeE",
+  "url": "https://www.youtube.com/watch?v=O2Th6L4roeE"
+}

@@ -1,0 +1,61 @@
+{
+    "title": "Multi-Agent Observability Architecture with Claude Code Hooks",
+    "summary": "A scalable workflow for monitoring multiple Claude Code agents simultaneously. This system uses Claude Code Hooks to intercept agent lifecycle events (like tool use and notifications) and streams them via a one-way data flow to a central Bun server. The server persists events in SQLite and broadcasts them via WebSockets to a real-time Vue.js dashboard, enabling engineers to track, debug, and optimize specialized agentic workflows.",
+    "steps": [
+        {
+            "time": "00:23",
+            "action": "Define the Observability Architecture",
+            "tool": "Claude Code Hooks / Bun / SQLite",
+            "reasoning": "Establishes a minimal client-server architecture where agents push events to a central server, enabling visibility across multiple concurrent agent instances."
+        },
+        {
+            "time": "11:51",
+            "action": "Configure Claude Code Hooks",
+            "tool": ".claude/settings.json",
+            "reasoning": "Maps specific agent lifecycle events (PreToolUse, PostToolUse, Notification, Stop) to custom scripts, creating the integration points for monitoring."
+        },
+        {
+            "time": "12:19",
+            "action": "Implement Hook Scripts with UV",
+            "tool": "Astral UV / Python",
+            "reasoning": "Uses single-file Python scripts managed by UV to handle event logic in isolation, ensuring dependencies are managed without polluting the global environment."
+        },
+        {
+            "time": "12:32",
+            "action": "Create the Event Sender Logic",
+            "tool": "Python (urllib)",
+            "reasoning": "Standardizes how events are formatted (App Name, Session ID, Event Type) and transmits them via HTTP POST to the central server."
+        },
+        {
+            "time": "12:47",
+            "action": "Integrate AI Summarization",
+            "tool": "Claude 3 Haiku",
+            "reasoning": "Uses a small, fast, and cheap model to generate human-readable summaries of raw event payloads before sending, allowing for 'at-a-glance' monitoring."
+        },
+        {
+            "time": "14:28",
+            "action": "Deploy the Event Server",
+            "tool": "Bun / SQLite",
+            "reasoning": "Sets up a high-performance server to receive HTTP posts, persist data for historical analysis, and stream real-time updates via WebSockets."
+        },
+        {
+            "time": "15:16",
+            "action": "Build the Real-Time Dashboard",
+            "tool": "Vue.js / WebSockets",
+            "reasoning": "Visualizes the event stream with filtering and activity pulses, allowing the engineer to observe the 'heartbeat' of the multi-agent system."
+        },
+        {
+            "time": "10:11",
+            "action": "Analyze Agent Transcripts",
+            "tool": "Dashboard UI",
+            "reasoning": "Utilizes the 'Stop' event to capture and review full chat transcripts, enabling deep dives into agent behavior and logic errors."
+        }
+    ],
+    "key_takeaways": [
+        "Observability is the bottleneck when scaling from single-agent to multi-agent systems.",
+        "A one-way data flow (Agent -> Hook -> Server -> Client) reduces complexity and latency.",
+        "Small, fast models (like Haiku) are essential for cost-effective, real-time event summarization.",
+        "Claude Code Hooks provide deterministic control points to steer and monitor agentic lifecycles.",
+        "Persistent logging (SQLite) combined with real-time streaming (WebSockets) offers both historical debugging and live monitoring capabilities."
+    ]
+}

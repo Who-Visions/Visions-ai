@@ -1,0 +1,72 @@
+{
+    "title": "Building a PostgreSQL Data Analytics AI Agent",
+    "summary": "This tutorial demonstrates the construction of an AI agent capable of translating natural language into SQL queries to interact with a PostgreSQL database. The workflow heavily utilizes AI-assisted engineering, employing ChatGPT to generate the database management layer and Aider to implement the orchestration logic. The process highlights the importance of prompt engineering for both code generation and controlling the runtime behavior of the AI agent.",
+    "steps": [
+        {
+            "time": "01:16",
+            "action": "Initialize project with Poetry",
+            "tool": "Poetry",
+            "reasoning": "Sets up a structured Python environment with dependency management, essential for a reproducible agentic workflow."
+        },
+        {
+            "time": "01:48",
+            "action": "Install dependencies (openai, psycopg2-binary, etc.)",
+            "tool": "Poetry",
+            "reasoning": "Equips the agent with the necessary tools for intelligence (LLM) and execution (Database connection)."
+        },
+        {
+            "time": "05:19",
+            "action": "Design `db.py` via Prompt Engineering",
+            "tool": "ChatGPT",
+            "reasoning": "Instead of writing code manually, the developer defines the 'Tool' interface (function prototypes) and delegates the implementation to the AI."
+        },
+        {
+            "time": "08:24",
+            "action": "Generate `PostgresManager` class",
+            "tool": "ChatGPT",
+            "reasoning": "Rapidly creates a robust database interaction layer, automating boilerplate operations like connection handling and schema extraction."
+        },
+        {
+            "time": "10:44",
+            "action": "Implement `llm.py` module",
+            "tool": "Python / OpenAI API",
+            "reasoning": "Creates the cognitive engine of the agent, encapsulating the logic for sending prompts and managing context."
+        },
+        {
+            "time": "12:23",
+            "action": "Generate `main.py` logic using Aider",
+            "tool": "Aider (AI Pair Programmer)",
+            "reasoning": "Uses an autonomous coding agent (Aider) to read the project context and implement the main orchestration logic based on high-level comments."
+        },
+        {
+            "time": "14:20",
+            "action": "Refine Prompt Engineering (Capitalized References)",
+            "tool": "Python",
+            "reasoning": "Structures the runtime prompt to clearly separate instructions, data (table definitions), and user queries, ensuring the LLM understands the task boundaries."
+        },
+        {
+            "time": "17:37",
+            "action": "Debug PostgreSQL version error",
+            "tool": "ChatGPT",
+            "reasoning": "Leverages AI to quickly diagnose and fix low-level driver incompatibilities (missing `oid` column), maintaining development velocity."
+        },
+        {
+            "time": "19:13",
+            "action": "Optimize System Prompt for raw SQL output",
+            "tool": "VS Code",
+            "reasoning": "Crucial alignment step to ensure the agent returns machine-parseable SQL rather than conversational text, enabling automated execution."
+        },
+        {
+            "time": "21:49",
+            "action": "Test with complex natural language query",
+            "tool": "Terminal",
+            "reasoning": "Validates the agent's ability to reason about schema relationships (joins) and translate complex intent into executable SQL."
+        }
+    ],
+    "key_takeaways": [
+        "AI-Assisted Engineering: Tools like Aider and ChatGPT shift the developer's role from writing syntax to defining architecture and reviewing AI-generated logic.",
+        "Context Injection: To generate accurate SQL, the agent must be dynamically fed the current database schema (table definitions) within the prompt context.",
+        "Prompt Structure: Using specific delimiters and capitalized references helps the LLM distinguish between instructions, context data, and user input.",
+        "Output Control: Strict prompt instructions are required to force the LLM to output raw, parseable code (SQL) instead of natural language explanations."
+    ]
+}

@@ -1,0 +1,48 @@
+{
+  "title": "Agentic Workflow: Prompt Management and AI-Generated Documentation",
+  "summary": "This workflow demonstrates a dual-phase agentic engineering process. First, it utilizes IndyDevTools to manage and execute structured prompt templates for consistent code generation. Second, it employs the Aider AI assistant to autonomously generate comprehensive project documentation by analyzing source code and mirroring existing documentation styles, highlighting the importance of context management in AI workflows.",
+  "steps": [
+    {
+      "time": "00:38",
+      "action": "Execute structured prompt for Python code",
+      "tool": "IndyDevTools (CLI)",
+      "reasoning": "Demonstrates the retrieval and execution of a pre-defined prompt alias ('pyq') to generate specific code patterns (decorators) without rewriting the full prompt."
+    },
+    {
+      "time": "00:55",
+      "action": "Configure reusable prompt templates",
+      "tool": "YAML / VS Code",
+      "reasoning": "Establishes a system of aliases, descriptions, and variables in a configuration file, allowing for repeatable and parameterized AI interactions."
+    },
+    {
+      "time": "01:38",
+      "action": "Generate complex Vue.js component",
+      "tool": "IndyDevTools (CLI)",
+      "reasoning": "Uses a sophisticated template with variable injection to generate a complete, multi-section file (template, script, styles), automating boilerplate creation."
+    },
+    {
+      "time": "04:31",
+      "action": "Initialize AI Agent and inject context",
+      "tool": "Aider / Terminal",
+      "reasoning": "Prepares the AI workspace by loading specific source files (`simple_prompt_system.py`) and existing docs (`README.md`) into the context window so the agent understands the codebase."
+    },
+    {
+      "time": "06:07",
+      "action": "Prompt Agent to generate documentation",
+      "tool": "Aider",
+      "reasoning": "Instructs the agent to write documentation by analyzing the code structure and explicitly asking it to 'mirror' the style of a previously documented tool (`idt yt`) for consistency."
+    },
+    {
+      "time": "08:17",
+      "action": "Review and manually refine Agent output",
+      "tool": "VS Code",
+      "reasoning": "Illustrates the 'Human-in-the-loop' workflow; while the AI generated the content successfully, human intervention was required to fix file overwrites and integrate the text correctly."
+    }
+  ],
+  "key_takeaways": [
+    "Context is paramount: AI agents function best when explicitly provided with relevant source code and reference files.",
+    "The Mirroring Strategy: Instructing an AI to mimic the structure of existing files is a highly effective way to maintain project consistency.",
+    "The 80/20 Rule: AI agents can handle the heavy lifting (80%) of documentation generation, allowing engineers to focus on the final refinement (20%).",
+    "Structured Prompting: Moving prompts from chat history into version-controlled configuration files turns ad-hoc queries into reusable engineering tools."
+  ]
+}

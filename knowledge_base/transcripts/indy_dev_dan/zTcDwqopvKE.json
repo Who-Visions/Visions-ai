@@ -1,0 +1,64 @@
+{
+  "title": "Building Agent Experts: Self-Improving AI Workflows",
+  "summary": "This lesson distinguishes between generic agents that forget context and 'Agent Experts' that learn and retain expertise over time. It introduces 'Meta Agentics'—using prompts, agents, and skills to build other agents—and demonstrates how to create specialized experts (e.g., Database, WebSocket) that maintain a persistent 'Mental Model' (expertise file). These experts execute tasks using a 'Plan, Build, Improve' workflow, automatically updating their own knowledge base to stay synchronized with the codebase.",
+  "steps": [
+    {
+      "time": "03:23",
+      "action": "Introduction to Meta Agentics: Meta Prompts, Meta Agents, and Meta Skills used to build the system that builds the system.",
+      "tool": "Concept"
+    },
+    {
+      "time": "04:32",
+      "action": "Use a Meta Prompt to create a new version of a question prompt that includes Mermaid diagrams.",
+      "code": "> meta-prompt.md --new-prompt-name question-w-mermaid-diagrams.md",
+      "tool": "Meta Prompt"
+    },
+    {
+      "time": "04:40",
+      "action": "Use a Meta Agent to create a planner agent that directly reads and executes a plan prompt.",
+      "code": "> meta-agent.md --agent-name planner.md",
+      "tool": "Meta Agent"
+    },
+    {
+      "time": "04:56",
+      "action": "Use a Meta Skill to create a 'start-orchestrator' skill that handles complex startup logic for frontend and backend.",
+      "code": "> meta-skill.md --skill-name start-orchestrator",
+      "tool": "Meta Skill"
+    },
+    {
+      "time": "07:38",
+      "action": "Review the Database Expert structure, specifically the 'Expertise File' which acts as the agent's mental model.",
+      "tool": "VS Code"
+    },
+    {
+      "time": "08:00",
+      "action": "Ask the Database Expert a question about information flow. It reads its expertise file first, then validates against the code.",
+      "code": "> experts>database>question.md \"How does information flow between our database tables...\"",
+      "tool": "Database Expert"
+    },
+    {
+      "time": "11:25",
+      "action": "Run the self-improve command for the Database Expert to sync its mental model with the actual codebase.",
+      "code": "> experts>database>self-improve.md",
+      "tool": "Self-Improve Prompt"
+    },
+    {
+      "time": "14:44",
+      "action": "Introduction to the WebSocket Expert and the 'Plan, Build, Improve' workflow.",
+      "tool": "Concept"
+    },
+    {
+      "time": "15:54",
+      "action": "Execute the WebSocket Expert workflow to add a session-based counter feature. The agent plans, builds the feature using sub-agents, and then self-improves its expertise file.",
+      "code": "> experts>websocket>plan_build_improve.md \"Add a session-based counter to the app nav bar...\"",
+      "tool": "WebSocket Expert"
+    }
+  ],
+  "key_takeaways": [
+    "Generic agents execute and forget; Agent Experts execute and learn by maintaining a persistent context.",
+    "Meta Agentics (prompts building prompts, agents building agents) allow for rapid scaling of agent capabilities.",
+    "An 'Expertise File' serves as an agent's Mental Model—a data structure that evolves over time.",
+    "The codebase is the only source of truth; the Mental Model is a reference used to validate understanding against the code.",
+    "The 'Self-Improve' step is essential for automation, allowing agents to update their own documentation and understanding without human intervention."
+  ]
+}

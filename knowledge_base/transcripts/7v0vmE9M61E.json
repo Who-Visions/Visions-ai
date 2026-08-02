@@ -1,0 +1,69 @@
+{
+  "title": "Mastering Soft Light: Profoto Soft Zoom Reflector 180 Tutorial",
+  "summary": "Peter Hurley demonstrates the setup and workflow for the Profoto Soft Zoom Reflector 180. He covers assembly, the physics of soft lighting (Inverse Square Law), camera settings, tethering workflow, and remote control via the Profoto app.",
+  "steps": [
+    {
+      "time": "00:49",
+      "action": "Unpack the reflector and attach the zoom rod to the light stand.",
+      "code": null,
+      "tool": "Profoto Zoom Rod"
+    },
+    {
+      "time": "01:42",
+      "action": "Expand the reflector by pulling the ring until it clicks into place, then mount it onto the zoom rod.",
+      "code": null,
+      "tool": "Profoto Soft Zoom Reflector 180"
+    },
+    {
+      "time": "02:26",
+      "action": "Mount the strobe head onto the zoom rod fitting.",
+      "code": null,
+      "tool": "Profoto B10X"
+    },
+    {
+      "time": "03:01",
+      "action": "Position the light close to the subject to maximize softness and fall-off based on the Inverse Square Law.",
+      "code": null,
+      "tool": "Lighting Setup"
+    },
+    {
+      "time": "04:03",
+      "action": "Configure camera settings for the shoot.",
+      "code": "f/2, 1/200s, ISO 100",
+      "tool": "Canon EOS R5 + 28-70mm Lens"
+    },
+    {
+      "time": "05:58",
+      "action": "Adjust strobe power remotely when the subject moves further from the light source.",
+      "code": "+0.5 stops (to 5.5)",
+      "tool": "Profoto Connect Pro"
+    },
+    {
+      "time": "06:20",
+      "action": "Set modeling light to full power to constrict the subject's pupils.",
+      "code": null,
+      "tool": "Modeling Light"
+    },
+    {
+      "time": "09:08",
+      "action": "Use the mobile app to control strobe settings via Bluetooth without leaving the shooting position.",
+      "code": null,
+      "tool": "Profoto App"
+    },
+    {
+      "time": "10:01",
+      "action": "Review images via tethering software on a laptop.",
+      "code": null,
+      "tool": "Capture One / MacBook Pro"
+    }
+  ],
+  "key_takeaways": [
+    "The closer the light source is to the subject, the softer the light and the faster the shadow fall-off.",
+    "Using a large light source (180cm) creates a 'wall of light' that wraps around the subject.",
+    "The zoom rod allows for adjusting the focus and spread of the light inside the reflector.",
+    "Remote triggers and apps improve workflow efficiency by allowing setting changes from the camera position.",
+    "Keep modeling lights bright to shrink pupils, which generally looks better in headshots."
+  ],
+  "video_id": "7v0vmE9M61E",
+  "url": "https://www.youtube.com/watch?v=7v0vmE9M61E"
+}

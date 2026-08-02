@@ -1,0 +1,51 @@
+{
+  "title": "3 Tips for Successfully Shooting with Continuous Lights",
+  "summary": "Professional photographer Lindsay Adler shares essential tips for integrating continuous lighting into studio portrait and fashion work. She covers controlling ambient light, adjusting specific camera settings like shutter speed and ISO, and determining the necessary power output for different shooting scenarios.",
+  "steps": [
+    {
+      "time": "01:07",
+      "action": "Eliminate all ambient light sources (windows, overhead lights) to ensure the continuous light is the sole light source, preventing exposure and white balance issues.",
+      "code": null,
+      "tool": "Blackout curtains / Light switches"
+    },
+    {
+      "time": "02:26",
+      "action": "Set shutter speed to at least 1/200s for static portraits to avoid shake, and 1/500s or faster for moving subjects to freeze motion.",
+      "code": null,
+      "tool": "Camera Shutter Speed"
+    },
+    {
+      "time": "03:17",
+      "action": "Enable image stabilization (optical or in-body) to counteract camera shake, which is critical when shooting at the limits of hand-holdable shutter speeds.",
+      "code": null,
+      "tool": "Lens/Camera Stabilization"
+    },
+    {
+      "time": "03:32",
+      "action": "Increase ISO settings (often starting at ISO 800) to compensate for the lower light output of continuous lights compared to strobes.",
+      "code": null,
+      "tool": "ISO Settings"
+    },
+    {
+      "time": "04:12",
+      "action": "Set a custom Kelvin white balance to match the light source temperature and use a grey card or color checker for accurate colors.",
+      "code": null,
+      "tool": "Grey Card / Color Checker"
+    },
+    {
+      "time": "04:30",
+      "action": "Evaluate power output needs based on the subject: use ~200W for headshots/products and ~500W+ for full-body fashion, large modifiers, or groups.",
+      "code": null,
+      "tool": "Continuous Lights (e.g., Nanlite Forza)"
+    }
+  ],
+  "key_takeaways": [
+    "Continuous lighting allows for 'what you see is what you get' exposure and simultaneous video/photo capture.",
+    "Ambient light must be strictly controlled because continuous lights are often less powerful than strobes and can be easily overpowered.",
+    "Shutter speed is critical; use 1/500s+ for motion, while 1/200s is generally safe for static poses.",
+    "Higher ISOs are standard with continuous lighting; don't be afraid to push ISO to 800 or higher.",
+    "Wattage requirements vary by subject size; groups and large modifiers require significantly higher output (500W+) than headshots."
+  ],
+  "video_id": "CeQF03rCc0w",
+  "url": "https://www.youtube.com/watch?v=CeQF03rCc0w"
+}

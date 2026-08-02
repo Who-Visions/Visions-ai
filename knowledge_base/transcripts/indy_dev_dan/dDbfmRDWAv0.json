@@ -1,0 +1,60 @@
+{
+    "title": "Gemini 2.0 Flash vs Claude 3.5 Sonnet: Aider Architect Mode Workflow",
+    "summary": "A comparative analysis of using Gemini 2.0 Flash and Claude 3.5 Sonnet within Aider's 'Architect Mode' to implement new features in a Personal Knowledge Base. The workflow utilizes a structured 'Spec Prompt' to guide the AI agents through drafting and editing code, followed by a rigorous evaluation of speed, cost, and accuracy.",
+    "steps": [
+        {
+            "time": "02:27",
+            "action": "Initialize Aider in Architect Mode",
+            "tool": "Aider CLI",
+            "reasoning": "Sets up a prompt chain where one model (Architect) drafts the solution and a second model (Editor) implements the working code."
+        },
+        {
+            "time": "03:18",
+            "action": "Load Context via Configuration",
+            "tool": "Aider (.aider file)",
+            "reasoning": "Ensures identical file context is loaded for both models to create a fair comparison environment."
+        },
+        {
+            "time": "04:58",
+            "action": "Construct the Spec Prompt",
+            "tool": "Text Editor",
+            "reasoning": "Creates a detailed specification document containing Headline, Objective, Context, and Low-level tasks to guide the agent's planning."
+        },
+        {
+            "time": "07:23",
+            "action": "Execute Spec Prompt on Both Models",
+            "tool": "Aider Chat",
+            "reasoning": "Triggers the agentic loop where the models analyze the spec, draft changes, and apply edits to the codebase."
+        },
+        {
+            "time": "10:33",
+            "action": "Error Recovery Loop (Sonnet)",
+            "tool": "Terminal / Aider",
+            "reasoning": "When the agent introduces a bug, the error log is fed back into the context, allowing the agent to self-correct immediately."
+        },
+        {
+            "time": "11:38",
+            "action": "Error Recovery Loop (Gemini)",
+            "tool": "Terminal / Aider",
+            "reasoning": "Demonstrates that lower-reasoning models may require multiple feedback iterations to resolve implementation errors compared to SOTA models."
+        },
+        {
+            "time": "12:21",
+            "action": "Verify Functional Requirements",
+            "tool": "Python / SQLite",
+            "reasoning": "Validates that the agent successfully implemented complex logic (scraping, embeddings, database insertion) defined in the Spec Prompt."
+        },
+        {
+            "time": "14:36",
+            "action": "Review Documentation Updates",
+            "tool": "Git Diff",
+            "reasoning": "Ensures the agent updated the README and usage docs as requested in the Spec Prompt, maintaining project hygiene."
+        }
+    ],
+    "key_takeaways": [
+        "Architect Mode (Prompt Chaining) effectively splits cognitive load between drafting and editing models.",
+        "Spec Prompts act as a blueprint for agents, allowing for complex, multi-file changes in a single execution.",
+        "Claude 3.5 Sonnet demonstrated higher accuracy and required fewer correction loops than Gemini 2.0 Flash.",
+        "Gemini 2.0 Flash offers a viable zero-cost alternative but may require more human-in-the-loop iteration for complex tasks."
+    ]
+}

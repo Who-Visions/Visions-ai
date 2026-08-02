@@ -1,0 +1,72 @@
+{
+    "title": "Rapid Multi-Framework Front-End Development with Aider and Triple C",
+    "summary": "This workflow demonstrates the 'Triple C' (Comment Copilot Coding) technique to build a Postgres data analytics front-end simultaneously in Vue, Svelte, and React. By embedding natural language instructions as comments directly into source files, the engineer directs the Aider AI agent to generate UI components, state management logic, and API integrations. The process highlights how to act as a high-level architect while an AI agent handles implementation details across familiar and unfamiliar frameworks.",
+    "steps": [
+        {
+            "time": "00:51",
+            "action": "Initialize Development Environments",
+            "tool": "Bun / Vite",
+            "reasoning": "Sets up the foundational runtime for Vue, Svelte, and React applications to enable parallel development."
+        },
+        {
+            "time": "01:30",
+            "action": "Initialize AI Agent and Context",
+            "tool": "Aider",
+            "reasoning": "Loads the specific source files (App.vue, App.svelte, App.tsx) into the AI's context window so it understands where to inject code."
+        },
+        {
+            "time": "02:03",
+            "action": "Apply Triple C (UI Definition)",
+            "tool": "VS Code / Comments",
+            "reasoning": "Defines the agent's task using specific HTML comments (e.g., 'create 2 variables', 'build a dark theme') to constrain the generation output."
+        },
+        {
+            "time": "02:47",
+            "action": "Execute Code Generation",
+            "tool": "Aider",
+            "reasoning": "Triggers the agent to parse the comments and generate the corresponding boilerplate, CSS, and HTML structure automatically."
+        },
+        {
+            "time": "04:20",
+            "action": "Replicate Across Frameworks",
+            "tool": "Aider",
+            "reasoning": "Demonstrates the agent's ability to translate the same natural language intent into framework-specific syntax (Svelte/React) without manual rewriting."
+        },
+        {
+            "time": "07:00",
+            "action": "Launch Backend API",
+            "tool": "Python / Flask",
+            "reasoning": "Provides the live endpoint for the front-end to interact with the Postgres data analytics agent."
+        },
+        {
+            "time": "08:00",
+            "action": "Define Logic via Comments",
+            "tool": "VS Code / Comments",
+            "reasoning": "Instructs the agent to implement specific business logic: handling key events, making fetch POST requests, and parsing JSON responses."
+        },
+        {
+            "time": "09:25",
+            "action": "Manual Correction & Iteration",
+            "tool": "VS Code",
+            "reasoning": "Corrects agent errors (overwriting existing code) by manually restoring context, highlighting the need for human-in-the-loop oversight."
+        },
+        {
+            "time": "13:46",
+            "action": "Debug via Natural Language",
+            "tool": "Aider",
+            "reasoning": "Resolves a framework-specific bug (Svelte reactivity) by describing the symptom to the agent rather than debugging the code manually."
+        },
+        {
+            "time": "16:41",
+            "action": "Implement Persistence",
+            "tool": "Aider",
+            "reasoning": "Adds LocalStorage functionality across all apps by simply adding new comment instructions, proving the extensibility of the Triple C workflow."
+        }
+    ],
+    "key_takeaways": [
+        "The 'Triple C' technique allows engineers to architect functionality via comments while delegating syntax implementation to AI agents.",
+        "Aider enables parallel development in unfamiliar frameworks (e.g., learning Svelte on the fly) by abstracting syntax differences.",
+        "AI Agents require supervision; they may overwrite context or misplace code blocks, necessitating a review-and-refine loop.",
+        "Iterative prompting is effective for debugging specific framework behaviors (like reactivity) without deep prior knowledge."
+    ]
+}

@@ -1,0 +1,49 @@
+{
+  "title": "Elite Context Engineering: The R&D Framework for Claude Code Agents",
+  "summary": "This workflow details the 'Reduce and Delegate' (R&D) framework for optimizing AI agent performance. It progresses from beginner techniques—such as eliminating unused MCP servers and static memory files—to advanced agentic strategies like context priming, sub-agent delegation, and background processing to manage the context window effectively.",
+  "steps": [
+    {
+      "time": "02:14:000",
+      "action": "Delete default .mcp.json and strictly load only necessary MCP servers",
+      "tool": "Claude Code CLI (--mcp-config)",
+      "reasoning": "Unused MCP tools can consume significant context (e.g., 12%) and distract the agent. Explicit loading reduces token waste."
+    },
+    {
+      "time": "05:30:000",
+      "action": "Replace large CLAUDE.md with CLAUDE.concise.md",
+      "tool": "Markdown / File System",
+      "reasoning": "Large, static memory files are always loaded, reducing dynamic context space. A concise file ensures only universal essentials are present."
+    },
+    {
+      "time": "06:40:000",
+      "action": "Implement Context Priming via custom slash commands (e.g., /prime)",
+      "tool": "Custom Slash Commands (.md files)",
+      "reasoning": "Priming allows the user to inject specific, relevant context for a task (bug, feature, chore) rather than relying on a generic global context."
+    },
+    {
+      "time": "10:25:000",
+      "action": "Deploy Sub-Agents for specific tasks (e.g., docs-scraper)",
+      "tool": "Claude Code Sub-Agents",
+      "reasoning": "Sub-agents use system prompts and operate on a forked context. Their token consumption does not pollute the primary agent's context window (Delegation)."
+    },
+    {
+      "time": "15:05:000",
+      "action": "Utilize Context Bundles to save and reload agent execution states",
+      "tool": "JSONL Context Bundles (/load_bundle)",
+      "reasoning": "Context bundles provide a concise, append-only log of agent work, enabling state replay and efficient context management for complex workflows."
+    },
+    {
+      "time": "16:45:000",
+      "action": "Execute full agent instances in the background",
+      "tool": "Claude Code Background Command (/background)",
+      "reasoning": "Delegates entire workflows to a secondary agent instance, freeing the primary interface for parallel work and enabling out-loop agentic coding."
+    }
+  ],
+  "key_takeaways": [
+    "A focused agent is a performant agent; performance degrades as the context window fills due to LLM scaling laws.",
+    "The R&D Framework (Reduce and Delegate) is the core strategy for managing context windows.",
+    "Avoid 'always-on' context bloat like unused MCP servers or massive CLAUDE.md files.",
+    "Use Context Priming to dynamically load only the context needed for the specific task at hand.",
+    "Delegate heavy context tasks to sub-agents or background processes to keep the primary agent lightweight."
+  ]
+}

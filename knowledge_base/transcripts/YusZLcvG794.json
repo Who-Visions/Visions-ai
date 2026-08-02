@@ -1,0 +1,44 @@
+{
+  "title": "Peter Hurley's 3-Light Strobe Headshot Setup",
+  "summary": "Photographer Peter Hurley demonstrates how to replicate his signature flat, window-light look using a three-light strobe setup. He details the specific arrangement of softboxes and strip lights to create a triangular aperture and explains critical positioning techniques to ensure even illumination without unwanted shadows.",
+  "steps": [
+    {
+      "time": "00:05",
+      "action": "Arrange three strobe lights in a triangular formation to mimic a flat, window-light source.",
+      "code": null,
+      "tool": "Profoto D1 Strobes"
+    },
+    {
+      "time": "00:24",
+      "action": "Position the camera to shoot through the smallest possible opening in the center of the light setup.",
+      "code": null,
+      "tool": "Camera"
+    },
+    {
+      "time": "00:50",
+      "action": "Ensure all modifiers and flash heads are from the same manufacturer to maintain color consistency.",
+      "code": null,
+      "tool": "Light Modifiers"
+    },
+    {
+      "time": "01:11",
+      "action": "Use a standard rectangular softbox for the bottom light and strip boxes for the side lights to keep the triangle configuration tight.",
+      "code": null,
+      "tool": "Softbox, Strip Boxes"
+    },
+    {
+      "time": "01:55",
+      "action": "Place the subject behind the point where the lights converge; placing them in front will cause shadowing.",
+      "code": null,
+      "tool": "Lighting Setup"
+    }
+  ],
+  "key_takeaways": [
+    "A triangular strobe setup can effectively mimic the look of continuous window light.",
+    "Using strip boxes on the sides allows the lighting setup to be more condensed than using three standard softboxes.",
+    "Mixing modifiers from different manufacturers can lead to color shifts on the subject.",
+    "The subject must be positioned behind the light convergence point to achieve a truly flat light without side shadows."
+  ],
+  "video_id": "YusZLcvG794",
+  "url": "https://www.youtube.com/watch?v=YusZLcvG794"
+}

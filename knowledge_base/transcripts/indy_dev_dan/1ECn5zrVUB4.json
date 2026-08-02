@@ -1,0 +1,60 @@
+{
+    "title": "Scaling Agentic Workflows with E2B Sandboxes and Orchestration",
+    "summary": "This workflow demonstrates how to scale AI engineering by moving from single-agent prompting to multi-agent orchestration using E2B Sandboxes. It addresses real-world feedback by deploying parallel agent forks to independently experiment, code, and generate Pull Requests, utilizing the 'Best of N' pattern to select optimal solutions.",
+    "steps": [
+        {
+            "time": "01:02",
+            "action": "Initialize Orchestrator and Prompt Engineer agents in separate terminals",
+            "tool": "Cursor (AI Code Editor), Claude Code",
+            "reasoning": "Establishes a dual-agent control plane: one for managing workflow execution (Orchestrator) and one for refining inputs (Prompt Engineer)."
+        },
+        {
+            "time": "01:02",
+            "action": "Prime the Orchestrator Agent with specific context",
+            "tool": "Custom Script (/prime_obox)",
+            "reasoning": "Configures the main agent with the necessary context and command structures to manage downstream sandbox environments effectively."
+        },
+        {
+            "time": "01:35",
+            "action": "Transform raw feedback into structured prompts using the AGP template",
+            "tool": "Prompt Engineer Agent, Agentic Prompt (AGP)",
+            "reasoning": "Converts unstructured user feedback (Reddit comments) into precise, actionable instructions for front-end coding agents."
+        },
+        {
+            "time": "02:05",
+            "action": "Launch parallel agent forks in isolated sandboxes via CLI",
+            "tool": "obox CLI, E2B Platform",
+            "reasoning": "Executes the 'Best of N' pattern by running multiple instances of the agent simultaneously in isolated environments to generate diverse solutions."
+        },
+        {
+            "time": "03:39",
+            "action": "Monitor concurrent sandbox execution and resource usage",
+            "tool": "E2B Dashboard",
+            "reasoning": "Provides observability into the autonomous agents' status, ensuring they have adequate CPU/Memory to complete tasks."
+        },
+        {
+            "time": "09:18",
+            "action": "Verify agent outputs via logs and generated public URLs",
+            "tool": "VSCode, Chrome",
+            "reasoning": "Validates the success of autonomous tasks by inspecting the build logs and the live preview of the code changes."
+        },
+        {
+            "time": "10:12",
+            "action": "Review and select the best Pull Requests",
+            "tool": "GitHub",
+            "reasoning": "Finalizes the workflow by selecting the optimal implementation from the parallel experiments (Best of N) to merge into the main codebase."
+        },
+        {
+            "time": "15:17",
+            "action": "Inspect system prompts and MCP tool configurations",
+            "tool": "VSCode (Codebase)",
+            "reasoning": "Demonstrates the underlying engineering required to define agent permissions, tools, and environment variables within the sandbox."
+        }
+    ],
+    "key_takeaways": [
+        "Agent Sandboxes (E2B) provide secure, isolated microVMs that allow agents to execute code and use tools without risking the host system.",
+        "The 'Agentic Path' evolves from single-agent prompting to Orchestrator-level workflows where one agent manages multiple sub-agents.",
+        "The 'Best of N' pattern mitigates LLM non-determinism by running parallel agents and selecting the superior result.",
+        "Scaling compute scales impact: Sandboxes allow for massive parallelization of engineering tasks, treating agents as disposable, high-agency resources."
+    ]
+}

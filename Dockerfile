@@ -1,35 +1,37 @@
-# Visions AI - Cloud Run Deployment
-# v3.1.0 - Gemini 3 Multi-Model Cascade
+# Use Python 3.12 Slim
 FROM python:3.12-slim
+
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+ENV PORT=8080
 
 # Set working directory
 WORKDIR /app
 
-# Install system dependencies
+# Install system dependencies (for FAISS, MCP, and other libs)
 RUN apt-get update && apt-get install -y \
     build-essential \
+    libopenblas-dev \
+    libomp-dev \
+    libgomp1 \
+    curl \
+    && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    && apt-get install -y nodejs \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy requirements first for caching
+# Copy requirements
 COPY requirements.txt .
 
-# Install Python dependencies
+# Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir uvicorn fastapi
 
-# Install FastAPI, Uvicorn, and Gunicorn for production
-RUN pip install --no-cache-dir fastapi uvicorn[standard] gunicorn
-
-# Copy application code
+# Copy the entire project
 COPY . .
-
-# Set environment variables
-ENV PORT=8080
-ENV PYTHONUNBUFFERED=1
-ENV PYTHONPATH=/app
 
 # Expose port
 EXPOSE 8080
 
-# Run with Gunicorn + UvicornWorker for FastAPI ASGI support
-# Using UvicornWorker for ASGI (FastAPI) compatibility
-CMD ["gunicorn", "--bind", "0.0.0.0:8080", "--workers", "1", "--worker-class", "uvicorn.workers.UvicornWorker", "--timeout", "300", "visions.api.app:app"]
+# Start command
+CMD ["python", "app.py"]

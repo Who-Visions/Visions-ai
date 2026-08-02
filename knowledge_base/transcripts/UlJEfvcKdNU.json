@@ -1,0 +1,39 @@
+{
+  "title": "Photo Deconstruction: Creating a Mysterious Fashion Image with Two Lights",
+  "summary": "Lindsay Adler demonstrates how to create a dramatic fashion editorial image using a two-light setup involving a red gel and a grid. The tutorial covers the on-location lighting strategy, camera settings, and the post-processing workflow in Capture One and Photoshop to enhance the mood and composition.",
+  "steps": [
+    {
+      "time": "01:13",
+      "action": "Place a bare bulb strobe with a red gel outside the room's doors to create a mysterious backlight and atmospheric glow.",
+      "tool": "Profoto D2, Red Gel"
+    },
+    {
+      "time": "02:50",
+      "action": "Position the model in the slice of red light and use a second strobe with a 5-degree grid to selectively light only the model's face, discarding the beauty dish.",
+      "tool": "5 Degree Grid"
+    },
+    {
+      "time": "04:13",
+      "action": "In Capture One, correct perspective issues (keystoning) caused by the wide-angle lens.",
+      "tool": "Capture One"
+    },
+    {
+      "time": "04:56",
+      "action": "Enhance the image in Capture One by adding a circular gradient to lighten the face, increasing clarity, and color grading (adding red to shadows).",
+      "tool": "Capture One"
+    },
+    {
+      "time": "05:27",
+      "action": "In Photoshop, remove distractions like exit signs and light stands, and paint in additional red color to unify the lighting effects.",
+      "tool": "Adobe Photoshop"
+    }
+  ],
+  "key_takeaways": [
+    "Using a colored gel (red) as a backlight creates immediate drama and unites the color palette with the styling.",
+    "A 5-degree grid is effective for precise, isolated lighting on a subject's face in a dark environment.",
+    "Wide-angle lenses often require perspective correction in post-processing.",
+    "Post-processing color grading (e.g., split toning) helps unify the ambient light with the strobe lighting."
+  ],
+  "video_id": "UlJEfvcKdNU",
+  "url": "https://www.youtube.com/watch?v=UlJEfvcKdNU"
+}

@@ -1,0 +1,50 @@
+{
+  "title": "How to Use a Digital Projector for Cinematic Studio Photography",
+  "summary": "Lindsay Adler explains how to transport a subject to a new environment inside a studio using a digital projector. The tutorial covers generating backgrounds with AI, setting up the projector, dialing in camera settings, and using specific lighting and filters to seamlessly blend the subject with the projected image.",
+  "steps": [
+    {
+      "time": "01:32",
+      "action": "Generate a background image using a text-to-image generator based on the shoot's theme.",
+      "tool": "Midjourney"
+    },
+    {
+      "time": "02:13",
+      "action": "Project the image onto a white background for maximum brightness, using a high-output projector.",
+      "tool": "Digital Projector (5500 Lumens)"
+    },
+    {
+      "time": "02:47",
+      "action": "Configure camera settings to expose for the background projection. Settings: ISO 800, f/2.8, 1/80 sec.",
+      "tool": "Canon EOS R5 II"
+    },
+    {
+      "time": "04:13",
+      "action": "Add a key light focused tightly on the subject's face to avoid light spilling onto the projection.",
+      "tool": "Profoto D2 with Westcott Optical Spot"
+    },
+    {
+      "time": "05:21",
+      "action": "Position rim lights with grids and orange gels to match the background's warm tones and separate the subject.",
+      "tool": "1x4 Strip Softboxes with Grids & Orange Gels"
+    },
+    {
+      "time": "06:27",
+      "action": "Adjust White Balance (to ~8500K) and Color Balance (warm highlights, magenta shadows) to unify the subject and background colors.",
+      "tool": "Capture One / Camera Settings"
+    },
+    {
+      "time": "07:25",
+      "action": "Apply a diffusion filter to the lens to bloom highlights and soften the image for a more realistic blend.",
+      "tool": "Black Pro-Mist 1 Filter"
+    }
+  ],
+  "key_takeaways": [
+    "Projecting onto a white background yields the brightest image.",
+    "Shooting at a wide aperture (f/2.8) blurs the background pixels, making the projection look more realistic.",
+    "Use optical spots and grids to control light spill so the projection doesn't get washed out.",
+    "Color gels and white balance adjustments are crucial for blending the subject's lighting with the background environment.",
+    "Diffusion filters help unify the composite by softening contrast and creating a glow."
+  ],
+  "video_id": "YIry7wTrqRE",
+  "url": "https://www.youtube.com/watch?v=YIry7wTrqRE"
+}

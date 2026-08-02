@@ -16,20 +16,33 @@ class GenAIEmbeddings(Embeddings):
         model_name: str = Config.EMBEDDING_MODEL,
         task_type: str = "RETRIEVAL_DOCUMENT",
         output_dimensionality: int = 768,
-        batch_size: int = 5,
-        requests_per_minute: int = 1500 # Default free tier for Flash/Embedding
+        batch_size: int = 1, # Reduced for stability
+        requests_per_minute: int = 1500, # Default free tier for Flash/Embedding
+        project: Optional[str] = None,
+        location: Optional[str] = None
     ):
         self.model_name = model_name
         self.task_type = task_type
         self.output_dimensionality = output_dimensionality
         self.batch_size = batch_size
+        self.requests_per_minute = requests_per_minute
         
+        # Determine Project/Location with fallbacks
+        self.project = project or Config.VERTEX_PROJECT_ID
+        self.location = location or Config.VERTEX_LOCATION
+
+        if not self.project or not self.location:
+             # If still missing, try to get from common environment variables as last resort
+             self.project = self.project or os.getenv("GOOGLE_CLOUD_PROJECT") or os.getenv("PROJECT_ID")
+             self.location = self.location or "us-central1"
+
         # Init GenAI Client (Vertex AI mode)
         self.client = genai.Client(
             vertexai=True, 
-            project=Config.VERTEX_PROJECT_ID,
-            location=Config.VERTEX_LOCATION
+            project=self.project,
+            location=self.location
         )
+
 
     def embed_documents(self, texts: List[str]) -> List[List[float]]:
         """Embed a list of documents with batching and rate limiting."""
@@ -55,9 +68,10 @@ class GenAIEmbeddings(Embeddings):
                 batch_embeddings = [e.values for e in result.embeddings]
                 all_embeddings.extend(batch_embeddings)
                 
-                # Small sleep to be safe with quotas (User: "take a break")
-                if len(texts) > self.batch_size:
-                    time.sleep(2.0)
+                # Rate limiting strategy
+                if len(texts) > self.batch_size and self.requests_per_minute > 0:
+                    delay = 60.0 / self.requests_per_minute
+                    time.sleep(delay)
                     
             except Exception as e:
                 if "429" in str(e) or "RESOURCE_EXHAUSTED" in str(e):
@@ -90,7 +104,9 @@ class GenAIEmbeddings(Embeddings):
         return all_embeddings
 
     def embed_query(self, text: str) -> List[float]:
-        """Embed a single query with RETRIEVAL_QUERY optimization."""
+        """Embed a single query with RETRIEVAL_QUERY optimization.
+           Normalizes embedding for 768 dim as per docs.
+        """
         try:
             # For queries, always use RETRIEVAL_QUERY task type
             config = types.EmbedContentConfig(
@@ -104,7 +120,28 @@ class GenAIEmbeddings(Embeddings):
                 config=config
             )
             
-            return result.embeddings[0].values
+            vals = result.embeddings[0].values
+            
+            # Normalize if dimension is not default (3072)
+            # The docs say: "For other dimensions, including 768... you need to normalize"
+            # Although the values come as list, we'll manually normalize if we can't depend on numpy being present
+            # But let's check for numpy or implement simple norm
+            
+            try:
+                import numpy as np
+                arr = np.array(vals)
+                norm = np.linalg.norm(arr)
+                if norm > 0:
+                    vals = (arr / norm).tolist()
+            except ImportError:
+                # Fallback manual normalization
+                sq_sum = sum(x*x for x in vals)
+                norm = sq_sum ** 0.5
+                if norm > 0:
+                    vals = [x/norm for x in vals]
+
+            return vals
+            
         except Exception as e:
             print(f"❌ Error during query embedding: {e}")
             raise e

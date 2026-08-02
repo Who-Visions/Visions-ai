@@ -1,0 +1,50 @@
+{
+  "title": "Securing Tethered Photography Workflow with Tether Tools",
+  "summary": "Photographer Peter Hurley addresses the common issue of tether cables disconnecting during shoots. He unboxes and demonstrates a suite of Tether Tools products designed to secure the connection and improve the on-set workflow.",
+  "steps": [
+    {
+      "time": "00:38",
+      "action": "Demonstrate the problem: FireWire cable easily falls out of the Hasselblad camera port during movement or vertical shooting.",
+      "code": null,
+      "tool": "Hasselblad Camera"
+    },
+    {
+      "time": "02:05",
+      "action": "Unbox the Tether Tools kit containing cables, clamps, and mounting hardware.",
+      "code": null,
+      "tool": "Tether Tools Kit"
+    },
+    {
+      "time": "03:34",
+      "action": "Identify the JerkStopper, a device specifically designed to prevent cable disconnects.",
+      "code": null,
+      "tool": "JerkStopper"
+    },
+    {
+      "time": "04:11",
+      "action": "Unbox the Tether Table Aero, a platform for holding the laptop on a stand.",
+      "code": null,
+      "tool": "Tether Table Aero"
+    },
+    {
+      "time": "05:58",
+      "action": "Show the assembled setup: Laptop secured on the Tether Table Aero mounted on a tripod.",
+      "code": null,
+      "tool": "Tether Table Aero"
+    },
+    {
+      "time": "06:46",
+      "action": "Demonstrate the JerkStopper installed on the camera, relieving strain on the port and preventing disconnection.",
+      "code": null,
+      "tool": "JerkStopper"
+    }
+  ],
+  "key_takeaways": [
+    "Loose tether cables can disrupt workflow and potentially damage camera ports.",
+    "The JerkStopper is a critical tool for relieving cable strain and ensuring a secure connection.",
+    "A dedicated tether table (like the Tether Table Aero) provides a secure and professional station for the laptop on location.",
+    "Avoid using FireWire cables longer than 15 feet to prevent connection instability."
+  ],
+  "video_id": "YKFeKCnHr7w",
+  "url": "https://www.youtube.com/watch?v=YKFeKCnHr7w"
+}

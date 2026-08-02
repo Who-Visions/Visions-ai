@@ -1,0 +1,72 @@
+{
+    "title": "Building a Multi-Agent Postgres Analytics System with AutoGen",
+    "summary": "This tutorial demonstrates upgrading a single-prompt Postgres AI agent into a robust multi-agent system using Microsoft AutoGen. The workflow involves decomposing the task into specialized roles (Admin, Engineer, Analyst, Product Manager) that collaborate via a Group Chat to generate SQL, execute queries, and validate results, utilizing tools like 'aider' for code scaffolding and specific termination logic to manage the autonomous loop.",
+    "steps": [
+        {
+            "time": "03:53",
+            "action": "Install AutoGen library",
+            "tool": "Poetry / pyautogen",
+            "reasoning": "Establishes the foundational framework required to orchestrate multiple LLM agents."
+        },
+        {
+            "time": "04:25",
+            "action": "Define Agent Architecture",
+            "tool": "Python Comments",
+            "reasoning": "Conceptualizes the agentic workflow by assigning specific personas (Admin, Engineer, Analyst, PM) to handle distinct stages of the pipeline."
+        },
+        {
+            "time": "06:25",
+            "action": "Scaffold Agent Code",
+            "tool": "aider (AI Pair Programmer)",
+            "reasoning": "Accelerates development by using an AI coding assistant to generate boilerplate agent definitions based on documentation examples."
+        },
+        {
+            "time": "08:30",
+            "action": "Register Tools (Function Map)",
+            "tool": "Python / AutoGen Config",
+            "reasoning": "Grants the agents 'Tool Use' capabilities, specifically mapping the `run_sql` function so the Analyst agent can interact with the database."
+        },
+        {
+            "time": "09:28",
+            "action": "Implement Termination Logic",
+            "tool": "Python",
+            "reasoning": "Defines the 'Stop Condition' for the autonomous loop (checking for 'APPROVED'), preventing the agents from conversing indefinitely."
+        },
+        {
+            "time": "10:40",
+            "action": "Instantiate Agents and Group Chat",
+            "tool": "AutoGen SDK",
+            "reasoning": "Operationalizes the roles into interactable entities and places them in a managed environment (`GroupChatManager`) to facilitate message passing."
+        },
+        {
+            "time": "12:26",
+            "action": "Configure Execution Permissions",
+            "tool": "AutoGen Config",
+            "reasoning": "Enforces security by setting `code_execution_config=False` for non-technical agents, ensuring only the Analyst agent can execute SQL/code."
+        },
+        {
+            "time": "13:33",
+            "action": "Debug Configuration",
+            "tool": "Python / Terminal",
+            "reasoning": "Resolves framework-specific constraints (agent naming conventions and model config lists) to ensure successful agent initialization."
+        },
+        {
+            "time": "14:15",
+            "action": "Execute Multi-Agent Workflow",
+            "tool": "Terminal",
+            "reasoning": "Validates the system where agents autonomously plan, write SQL, execute it, and review the output without human intervention."
+        },
+        {
+            "time": "16:51",
+            "action": "Refine Prompt for Context",
+            "tool": "Human Input",
+            "reasoning": "Demonstrates the need for precise human guidance regarding data schema nuances (case sensitivity) even in autonomous multi-agent systems."
+        }
+    ],
+    "key_takeaways": [
+        "Multi-agent systems outperform single prompts by allowing for role specialization (e.g., separating SQL generation from execution and validation).",
+        "Defining a clear 'Termination Message' (e.g., APPROVED) is critical for controlling the autonomous loop in group chats.",
+        "Agentic workflows allow developers to focus on 'Prompt Orchestration' and product-level logic rather than low-level engineering tasks.",
+        "While powerful, multi-agent systems introduce complexity in debugging and higher costs due to increased token usage across multiple agents."
+    ]
+}

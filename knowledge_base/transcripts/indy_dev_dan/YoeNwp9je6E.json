@@ -1,0 +1,48 @@
+{
+    "title": "Local Reasoning & Extraction Workflow with QwQ",
+    "summary": "A strategic workflow designed to utilize Alibaba's QwQ local reasoning model while mitigating its primary flaw of 'entangled output' (mixing internal thoughts with final answers). The process employs a two-step prompt chain: first leveraging QwQ for deep reasoning and content generation, then passing that raw output to a standard base model (Qwen 2.5) to extract and format the final deliverable into clean JSON.",
+    "steps": [
+        {
+            "time": "00:01:24",
+            "action": "Environment Setup",
+            "tool": "Bun, UV, Ollama, LLM CLI",
+            "reasoning": "Establishes the local runtime environment required to execute custom scripts (chain.ts/py) and host local models (Ollama)."
+        },
+        {
+            "time": "00:02:45",
+            "action": "Prompt Engineering for Language Control",
+            "tool": "Ollama (QwQ)",
+            "reasoning": "QwQ has a tendency to default to Chinese; prepending 'ENGLISH: ' to the prompt forces the model to reason and output in the desired language."
+        },
+        {
+            "time": "00:04:36",
+            "action": "Develop Chaining Logic",
+            "tool": "chain.ts (TypeScript)",
+            "reasoning": "Creates the agentic logic where the output of one model is automatically captured and fed as the input variable into the next prompt template."
+        },
+        {
+            "time": "00:09:06",
+            "action": "Define Reasoning Prompt (Step 1)",
+            "tool": "Text Editor (prompt_title_generation_reasoner.txt)",
+            "reasoning": "Constructs the 'System 2' task instructions for QwQ to generate high-quality, reasoned content (e.g., SEO titles) without worrying about formatting constraints yet."
+        },
+        {
+            "time": "00:10:14",
+            "action": "Define Extraction Prompt (Step 2)",
+            "tool": "Text Editor (prompt_title_generation_extraction.txt)",
+            "reasoning": "Constructs the 'System 1' task instructions for the base model (Qwen 2.5) to parse the previous messy output and extract only the final data into a clean JSON format."
+        },
+        {
+            "time": "00:09:22",
+            "action": "Execute Reasoning-Extraction Chain",
+            "tool": "Bun / Terminal",
+            "reasoning": "Runs the full workflow: QwQ generates the raw thought-heavy content, and Qwen 2.5 immediately cleans it, resulting in a usable artifact."
+        }
+    ],
+    "key_takeaways": [
+        "QwQ is a powerful local reasoning model but suffers from 'entangled output,' where Chain of Thought (CoT) is mixed with the final answer.",
+        "The 'Reasoning -> Extraction' pattern solves the CoT issue by using a second model solely for formatting and parsing.",
+        "Prompt chaining allows local devices to emulate the behavior of advanced proprietary models like o1 by separating generation from formatting.",
+        "Adding specific language prefixes (e.g., 'ENGLISH:') is currently necessary to stabilize QwQ's output language."
+    ]
+}

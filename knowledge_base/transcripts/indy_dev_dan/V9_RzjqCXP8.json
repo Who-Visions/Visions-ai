@@ -1,0 +1,66 @@
+{
+    "title": "Agentic Coding with Cursor Composer: Multi-File Refactoring Workflow",
+    "summary": "A comprehensive workflow demonstrating Cursor's 'Composer' feature, transitioning from single-file edits to complex, multi-file architectural refactoring. The tutorial illustrates how to leverage AI agents to generate components, resolve cross-file errors, enforce consistent styling through context, and implement logic using natural language prompts, effectively shifting the developer's role from writing syntax to directing architecture.",
+    "steps": [
+        {
+            "time": "00:52",
+            "action": "Enable 'Composer' and 'Multi-composer' in Cursor Beta Settings",
+            "tool": "Cursor Settings",
+            "reasoning": "Activates the experimental agentic capabilities required for multi-file generation and editing."
+        },
+        {
+            "time": "01:11",
+            "action": "Convert template placeholder to functional HTML/CSS using inline Composer",
+            "tool": "Cursor (Composer) / ChatGPT-4o",
+            "reasoning": "Establishes the baseline capability of the agent to interpret natural language intent into valid code within a single file."
+        },
+        {
+            "time": "01:55",
+            "action": "Generate MDC component by referencing existing 'PromptEditor.vue' context",
+            "tool": "Cursor (Composer) / Context (@)",
+            "reasoning": "Demonstrates 'Contextual Awareness'; the agent uses existing codebase patterns (via the @ symbol) to guide new code generation."
+        },
+        {
+            "time": "03:09",
+            "action": "Refactor inline code into separate files (LiquidInput.vue, LiquidOutput.vue)",
+            "tool": "Cursor (Composer)",
+            "reasoning": "Showcases the core agentic value: automatically creating new files, moving code, and updating references without manual intervention."
+        },
+        {
+            "time": "03:40",
+            "action": "Resolve Vue v-model error by feeding terminal error logs back into Composer",
+            "tool": "Cursor (Composer) / Terminal",
+            "reasoning": "Illustrates the 'Self-Healing' workflow where the agent analyzes runtime errors and context to fix logic across parent/child components."
+        },
+        {
+            "time": "04:29",
+            "action": "Apply consistent styling across multiple files to mirror 'PromptEditor.vue'",
+            "tool": "Cursor (Full-screen Composer)",
+            "reasoning": "Uses multi-file context to enforce design consistency, allowing the agent to act as a UI designer across the stack."
+        },
+        {
+            "time": "10:10",
+            "action": "Implement event logic (Enter key triggers emit) across parent and child components",
+            "tool": "Cursor (Composer)",
+            "reasoning": "Moves from visual styling to functional logic implementation, directing the agent to handle event propagation and state updates."
+        },
+        {
+            "time": "14:10",
+            "action": "Implement visibility toggles using external library (@vueuse/core) and keybinds",
+            "tool": "Cursor (Composer)",
+            "reasoning": "Directs the agent to integrate external libraries and handle complex browser events (KeyStroke) via high-level instructions."
+        },
+        {
+            "time": "15:55",
+            "action": "Encapsulate all logic and state into a new parent component 'LiquidPromptEditor.vue'",
+            "tool": "Cursor (Composer)",
+            "reasoning": "Final architectural cleanup; the agent handles the tedious task of moving state, imports, and templates into a dedicated container component."
+        }
+    ],
+    "key_takeaways": [
+        "Multi-file editing is the critical differentiator for 'Agentic' coding, allowing AI to architect solutions rather than just autocomplete lines.",
+        "Context is King: Explicitly adding relevant files (using @) drastically improves the agent's ability to mimic style and logic.",
+        "The workflow shifts from 'writing code' to 'debugging and directing', allowing a single engineer to operate at a higher velocity.",
+        "Iterative prompting (doing small tasks, then refining) is more effective than trying to prompt the entire application in one go."
+    ]
+}

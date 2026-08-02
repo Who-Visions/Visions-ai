@@ -1,0 +1,66 @@
+{
+    "title": "Building an Always-On Personal AI Assistant with Active Memory",
+    "summary": "This tutorial demonstrates the architecture and workflow of 'Ada', a personal AI assistant built with RealtimeSTT, DeepSeek-v3, and ElevenLabs. The core innovation is the integration of a 'Typer AI Agent' framework that maps natural language to Python CLI commands, and an 'Active Memory' system using a Markdown scratchpad. This allows the user to stage complex data in the scratchpad for the AI to process, enabling batch operations, context retention, and iterative error correction through voice commands.",
+    "steps": [
+        {
+            "time": "00:00",
+            "action": "Initialize the AI Assistant",
+            "tool": "Terminal (sh ada.sh)",
+            "reasoning": "Starts the background listener loop which waits for the wake word 'Ada' to trigger the agentic workflow."
+        },
+        {
+            "time": "00:05",
+            "action": "Execute Basic Voice Command",
+            "tool": "RealtimeSTT, template.py",
+            "reasoning": "Demonstrates the 'Ear' to 'Brain' to 'Action' pipeline where speech is transcribed and mapped to a specific CLI function (`list-users`)."
+        },
+        {
+            "time": "00:19",
+            "action": "Chain Multiple Commands",
+            "tool": "DeepSeek-v3, Typer",
+            "reasoning": "Shows the LLM's ability to decompose a complex natural language request into a sequence of shell commands (`create-user` && `list-users`)."
+        },
+        {
+            "time": "04:05",
+            "action": "Configure Modular Architecture",
+            "tool": "assistant_config.yml",
+            "reasoning": "Defines the three essential components: Ear (STT), Brain (LLM), and Mouth (TTS), allowing for modular swapping of providers."
+        },
+        {
+            "time": "06:10",
+            "action": "Switch to Local Compute",
+            "tool": "Ollama (Phi-4), Local TTS",
+            "reasoning": "Demonstrates the flexibility of the architecture to run 100% locally for privacy and zero cost, albeit with performance trade-offs."
+        },
+        {
+            "time": "09:00",
+            "action": "Inject Context via Active Memory",
+            "tool": "Markdown Scratchpad",
+            "reasoning": "The user manually edits the scratchpad to define batch tasks (Create/Delete blocks), treating the file as a dynamic variable for the agent's context."
+        },
+        {
+            "time": "10:10",
+            "action": "Execute Batch Tasks from Context",
+            "tool": "Typer AI Agent",
+            "reasoning": "The agent reads the updated scratchpad context and generates a complex chain of commands to process the user-defined blocks."
+        },
+        {
+            "time": "10:45",
+            "action": "Debug Execution Failure",
+            "tool": "template.py",
+            "reasoning": "The user identifies a logic error in the agent's execution (using names instead of IDs) by inspecting the underlying code and output."
+        },
+        {
+            "time": "10:55",
+            "action": "Iterative Error Correction",
+            "tool": "Voice Command",
+            "reasoning": "The user verbally corrects the agent's logic ('use actual user ID'), prompting the LLM to re-reason and generate the correct CLI syntax."
+        }
+    ],
+    "key_takeaways": [
+        "The 'Active Memory' scratchpad pattern bridges the gap between human high-level thinking and AI execution, allowing for batch processing and state persistence.",
+        "Modular architecture (Ear, Brain, Mouth) enables seamless transitions between high-performance cloud models (DeepSeek-v3) and private local models (Ollama).",
+        "The Typer AI Agent framework effectively constrains the LLM to deterministic tool usage by mapping natural language intents to strict CLI command signatures.",
+        "Natural language acts as a debugging interface, allowing users to correct agent behavior dynamically without rewriting code."
+    ]
+}

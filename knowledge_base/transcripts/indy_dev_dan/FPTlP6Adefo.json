@@ -1,0 +1,47 @@
+{
+    "title": "The Compute Advantage Equation: Evaluating AI Coding Agents",
+    "summary": "A strategic framework for calculating the ROI of AI coding tools by balancing Compute Scaling and Autonomy against Time, Effort, and Monetary Cost. The workflow demonstrates how to quantify the value of tools like Aider, Cursor, Claude Code, and Devin to maximize decision-making velocity.",
+    "steps": [
+        {
+            "time": "0:01:22",
+            "action": "Define the Compute Advantage Equation",
+            "tool": "Conceptual Framework",
+            "reasoning": "Establishes the core metric for evaluation: (Compute Scaling * Autonomy) / (Time + Effort + Monetary Cost)."
+        },
+        {
+            "time": "0:05:25",
+            "action": "Initialize the Compute Advantage Calculator",
+            "tool": "igenticengineer.com Calculator",
+            "reasoning": "Sets up the interactive environment to quantitatively compare different agentic workflows based on the defined variables."
+        },
+        {
+            "time": "0:06:12",
+            "action": "Evaluate Aider (CLI Tool)",
+            "tool": "Aider",
+            "reasoning": "Benchmarks a low-autonomy, low-cost workflow (Score: 1.47), highlighting that low monetary cost does not guarantee a high compute advantage due to required manual effort."
+        },
+        {
+            "time": "0:08:12",
+            "action": "Evaluate Cursor (AI IDE)",
+            "tool": "Cursor",
+            "reasoning": "Demonstrates how increasing Autonomy and Compute Scaling via agentic IDEs significantly improves the advantage (Score: 12.5) despite added subscription costs."
+        },
+        {
+            "time": "0:11:04",
+            "action": "Evaluate Claude Code",
+            "tool": "Claude Code",
+            "reasoning": "Illustrates that high token costs are offset by massive reductions in Time and Effort due to high model intelligence and tool-use capability (Score: 20)."
+        },
+        {
+            "time": "0:12:38",
+            "action": "Evaluate Devin",
+            "tool": "Devin",
+            "reasoning": "Proves that Autonomy is the ultimate multiplier; despite extreme monetary costs ($500/mo), the massive reduction in time and effort yields the highest advantage (Score: 39.57)."
+        }
+    ],
+    "key_takeaways": [
+        "Autonomy acts as a multiplier for Compute Scaling, having a disproportionate impact on the final Compute Advantage score compared to linear cost reductions.",
+        "Monetary Cost is a denominator, meaning high-cost tools like Devin must provide massive Time/Effort savings and Autonomy to justify their price.",
+        "The shift from manual coding to agentic workflows is defined by maximizing 'Compute Advantage' rather than just minimizing direct costs."
+    ]
+}

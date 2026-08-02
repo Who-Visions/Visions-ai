@@ -1,0 +1,51 @@
+{
+  "title": "Fashion Shoot with a DIY Seamless Paper Dress",
+  "summary": "Fashion photographer Lindsay Adler demonstrates a creative photoshoot featuring a dress made entirely from scraps of seamless paper. She explains her lighting strategy to emphasize the paper's texture, uses a V-flat for fill, and employs an optical spot to create a dynamic background pattern that mimics the dress design.",
+  "steps": [
+    {
+      "time": "00:00",
+      "action": "Introduction to the concept of creating a fashion dress using scraps of seamless paper.",
+      "tool": "Seamless Paper Scraps"
+    },
+    {
+      "time": "02:02",
+      "action": "Select a background color. Lindsay chooses a dark gray to allow the subject to pop without visual distractions.",
+      "tool": "Savage Universal Fashion Gray Seamless Paper"
+    },
+    {
+      "time": "02:34",
+      "action": "Set up the main light off to the side to rake across the subject and emphasize the texture of the paper dress.",
+      "tool": "Profoto D2, Extra Large Umbrella with Diffusion"
+    },
+    {
+      "time": "03:00",
+      "action": "Introduce a white V-flat as a reflector to lift the shadows on the dark side of the face.",
+      "tool": "V-Flat World V-Flat"
+    },
+    {
+      "time": "03:43",
+      "action": "Add a second strobe with an optical spot and a 'searchlight' gobo to project a pattern onto the background that mimics the dress shapes.",
+      "tool": "Westcott Optical Spot, Searchlight Gobo, 24-70mm Lens"
+    },
+    {
+      "time": "04:43",
+      "action": "Configure camera settings. Lindsay shoots at f/8 to keep the background pattern relatively sharp.",
+      "code": "1/200 sec, f/8, ISO 400",
+      "tool": "Camera Settings"
+    },
+    {
+      "time": "05:16",
+      "action": "Select camera and lens. A zoom lens is used for flexibility in cropping and composition.",
+      "tool": "Canon EOS R5, Canon RF 24-105mm f/4 L IS"
+    }
+  ],
+  "key_takeaways": [
+    "Collaboration with artists can turn simple materials like scrap paper into high-fashion wardrobe pieces.",
+    "Side lighting is crucial for emphasizing texture and shape in monochromatic subjects.",
+    "Optical spots with specific gobos can be used to mirror the subject's geometry on the background.",
+    "Using a V-flat helps control contrast by lifting deep shadows created by directional main lighting.",
+    "Shooting at a higher f-stop (like f/8) keeps projected background patterns sharp and defined."
+  ],
+  "video_id": "5rnPMiUdjIw",
+  "url": "https://www.youtube.com/watch?v=5rnPMiUdjIw"
+}

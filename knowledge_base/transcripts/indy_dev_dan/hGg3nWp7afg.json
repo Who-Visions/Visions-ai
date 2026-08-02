@@ -1,0 +1,55 @@
+{
+  "title": "The 3 Essential Directories for Scalable Agentic Coding",
+  "summary": "A strategic framework for maximizing 'Compute Advantage' by structuring codebases into three specific directories. This workflow shifts engineering from iterative prompting to high-level architectural planning, allowing AI agents to operate autonomously with persistent context, detailed specifications, and reusable command structures.",
+  "steps": [
+    {
+      "time": "01:05",
+      "action": "Establish the `ai_docs/` directory",
+      "tool": "File System",
+      "reasoning": "Acts as the AI's persistent memory containing API docs, architecture patterns, and hidden business logic, allowing instant context retrieval without hallucination."
+    },
+    {
+      "time": "04:38",
+      "action": "Create the `.claude/` directory for reusable prompts",
+      "tool": "Claude Code / CLI",
+      "reasoning": "Stores reusable commands (like `context_prime.md`) to standardize workflows and prevent context window exhaustion by efficiently loading necessary project data."
+    },
+    {
+      "time": "09:57",
+      "action": "Execute Context Priming (`/prime`)",
+      "tool": "Claude Code",
+      "reasoning": "Before starting work, the agent reads the `README.md` and file tree to establish 'Context is King,' ensuring it understands the current state of the codebase."
+    },
+    {
+      "time": "10:57",
+      "action": "Draft a Feature Specification in `specs/`",
+      "tool": "Claude Code (Reasoning)",
+      "reasoning": "Instead of coding immediately, the agent is prompted to write a detailed plan (PRD) in the `specs/` folder. This leverages the concept 'Plan == Prompt' to define objectives, type changes, and test strategies first."
+    },
+    {
+      "time": "12:21",
+      "action": "Review and Refine the Spec File",
+      "tool": "Text Editor",
+      "reasoning": "The human engineer reviews the AI-generated plan, removing unnecessary suggestions (like schema changes) and refining logic before implementation begins."
+    },
+    {
+      "time": "15:20",
+      "action": "Execute Agentic Implementation",
+      "tool": "Claude Code",
+      "reasoning": "The agent is commanded to 'Implement specs/[filename]'. It treats the spec as a to-do list, performing surgical edits across multiple files (Agentic Coding) rather than simple single-file generation."
+    },
+    {
+      "time": "19:02",
+      "action": "Autonomous Self-Validation",
+      "tool": "Pytest / Claude Code",
+      "reasoning": "The agent runs the test suite, identifies failures (e.g., in `test_find.py`), and autonomously fixes the code until all tests pass, completing the engineering loop."
+    }
+  ],
+  "key_takeaways": [
+    "The Compute Advantage Equation: (Compute Scaling * Autonomy) / (Time + Effort + Cost).",
+    "Context is King: If the agent cannot see the architecture (`ai_docs/`), it cannot build correctly.",
+    "Plan == Prompt: Great planning in the `specs/` directory leads to high-quality agentic execution.",
+    "Agentic Coding is a superset of AI Coding that involves planning, building, and self-testing.",
+    "Reusable prompts (in `.claude/`) allow for consistent context loading and efficient token usage."
+  ]
+}

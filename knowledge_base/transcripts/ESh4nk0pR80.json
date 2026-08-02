@@ -1,0 +1,56 @@
+{
+  "title": "Monochromatic Red Beauty Photo Deconstruction",
+  "summary": "Professional photographer Lindsay Adler breaks down the lighting, styling, and post-processing techniques used to create a dramatic monochromatic red beauty portrait using a four-light setup.",
+  "steps": [
+    {
+      "time": "00:39",
+      "action": "Construct the set using a Savage Universal Primary Red background and a red plexiglass mirror surface for reflections.",
+      "code": null,
+      "tool": "Savage Universal Primary Red Background, Red Plexiglass"
+    },
+    {
+      "time": "02:30",
+      "action": "Set up the main light using a Profoto D2 with a Westcott Optical Spot and a 150mm lens, slightly defocused to create a soft slice of light on the face.",
+      "code": null,
+      "tool": "Profoto D2, Westcott Optical Spot, 150mm Lens"
+    },
+    {
+      "time": "03:28",
+      "action": "Position a rim/shoulder light overhead using a Profoto D2 with a medium umbrella and diffusion to create separation.",
+      "code": null,
+      "tool": "Profoto D2, Medium Umbrella, Diffusion"
+    },
+    {
+      "time": "04:53",
+      "action": "Place a background light behind the subject using a Profoto B10+ with an ND gel to cut power and create a subtle glow.",
+      "code": null,
+      "tool": "Profoto B10+, ND Gel"
+    },
+    {
+      "time": "06:22",
+      "action": "Add a fill light to the right using a Profoto B10+ with a medium umbrella, diffusion, and a red gel to lift shadows without losing color saturation.",
+      "code": null,
+      "tool": "Profoto B10+, Medium Umbrella, Red Gel"
+    },
+    {
+      "time": "06:52",
+      "action": "Set camera settings to 1/200 sec, f/8, ISO 400.",
+      "code": null,
+      "tool": "Canon R5, Canon RF 24-105mm f/4"
+    },
+    {
+      "time": "07:23",
+      "action": "Perform post-processing: Adjust white balance (warmer with magenta tint), retouch skin texture emphasized by hard light, and unify skin tones.",
+      "code": null,
+      "tool": "Adobe Photoshop / Camera Raw"
+    }
+  ],
+  "key_takeaways": [
+    "Do not over-light saturated red backgrounds, as it can wash out the color or turn it orange.",
+    "Use Neutral Density (ND) gels to reduce strobe power below its minimum setting for subtle effects.",
+    "Hard lighting sources like optical spots will emphasize skin texture, requiring careful retouching.",
+    "Monochromatic images rely on texture, depth, and varied lighting to create visual interest."
+  ],
+  "video_id": "ESh4nk0pR80",
+  "url": "https://www.youtube.com/watch?v=ESh4nk0pR80"
+}

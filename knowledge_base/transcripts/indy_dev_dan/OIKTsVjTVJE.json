@@ -1,0 +1,66 @@
+{
+    "title": "Beyond MCP: Optimizing AI Agent Context Windows",
+    "summary": "A technical analysis comparing four methods for connecting AI agents to external tools: MCP Servers, CLI Tools, Script Tools, and Skills. The workflow demonstrates how to reduce context window overhead from ~5% (MCP) to <1% using 'Progressive Disclosure' techniques, allowing agents to read tool documentation only when necessary rather than loading all definitions upfront.",
+    "steps": [
+        {
+            "time": "00:03",
+            "action": "Analyze MCP Context Overhead",
+            "tool": "cldy, MCP Server",
+            "reasoning": "Establishes the baseline problem: connecting an MCP server consumes ~10k tokens (5% of context) immediately before any task is performed."
+        },
+        {
+            "time": "01:39",
+            "action": "Execute Baseline MCP Task",
+            "tool": "Kalshi MCP, cldy",
+            "reasoning": "Demonstrates the standard workflow where the agent has instant access to tools but at a high continuous token cost."
+        },
+        {
+            "time": "04:42",
+            "action": "Prime CLI Tools",
+            "tool": "cldy, prompt.md",
+            "reasoning": "Replaces the MCP server with a 'Prime Prompt' that instructs the agent to read a README and a specific CLI entry point, drastically reducing initial context load."
+        },
+        {
+            "time": "05:31",
+            "action": "Execute CLI Command",
+            "tool": "Bash, uv, Python",
+            "reasoning": "The agent uses the CLI via Bash to fetch data. This proves the agent can perform the same tasks as MCP but with greater control over what code is read into context."
+        },
+        {
+            "time": "12:13",
+            "action": "Prime File System Scripts",
+            "tool": "cldy, Python Scripts",
+            "reasoning": "Introduces 'Progressive Disclosure'. The agent is instructed NOT to read script code unless `--help` is insufficient, keeping context usage at ~0.9%."
+        },
+        {
+            "time": "14:47",
+            "action": "Execute Script via Progressive Disclosure",
+            "tool": "Bash, uv, Python",
+            "reasoning": "The agent calls a specific, self-contained script (`search.py`) using `uv run`, loading only the necessary logic for that specific action."
+        },
+        {
+            "time": "18:32",
+            "action": "Implement Skill Tools",
+            "tool": "Claude Skills, SKILL.md",
+            "reasoning": "Demonstrates the most efficient method (0.1% context). Skills are invoked automatically by the model architecture rather than requiring a manual priming prompt."
+        },
+        {
+            "time": "22:50",
+            "action": "Evaluate Trade-offs",
+            "tool": "Comparison Matrix",
+            "reasoning": "Analyzes the four approaches based on Context Consumption, Portability, and Engineering Investment to determine the best use case for each."
+        },
+        {
+            "time": "25:45",
+            "action": "Define Hybrid Strategy",
+            "tool": "Strategic Framework",
+            "reasoning": "Establishes a heuristic: Use CLI + Prime Prompt 80% of the time for flexibility, MCP 15% for scale, and Scripts/Skills 5% for maximum context preservation."
+        }
+    ],
+    "key_takeaways": [
+        "MCP Servers incur a high fixed context cost (overhead) just by being connected, which scales poorly when stacking multiple servers.",
+        "Progressive Disclosure allows agents to discover how to use tools via READMEs and Help commands without loading the actual source code into the context window.",
+        "CLI Tools combined with a 'Prime Prompt' offer the best balance of low context usage and high customizability for most development tasks.",
+        "Tactical Agentic Coding (TAC) suggests using disposable, single-purpose agents to avoid context bloat, rather than maintaining long-running complex agents."
+    ]
+}

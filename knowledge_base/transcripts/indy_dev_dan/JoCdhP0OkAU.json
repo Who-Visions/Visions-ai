@@ -1,0 +1,47 @@
+{
+    "title": "5 NOTION IN 5: DB WRITE",
+    "summary": "This tutorial demonstrates how to programmatically write data to a Notion database using Python. It focuses on constructing the specific JSON structures required for different Notion property types (Title, Select, Date) and debugging common data serialization errors to ensure successful API requests.",
+    "steps": [
+        {
+            "time": "00:36",
+            "action": "Define the `write_row` function accepting client, database_id, and row data",
+            "tool": "Python",
+            "reasoning": "Encapsulates the logic for creating a database entry into a reusable function."
+        },
+        {
+            "time": "00:58",
+            "action": "Call `client.pages.create` with the parent argument set to the database ID",
+            "tool": "Notion API Client",
+            "reasoning": "Initiates the API request to create a new page specifically within the target database."
+        },
+        {
+            "time": "01:42",
+            "action": "Construct the `properties` object mapping inputs to Notion's nested schema (Title, Select, Date)",
+            "tool": "Python/JSON",
+            "reasoning": "Notion requires complex nested JSON objects to identify and populate specific column types correctly."
+        },
+        {
+            "time": "03:26",
+            "action": "Import `uuid` library to fix UnboundLocalError",
+            "tool": "Python Standard Library",
+            "reasoning": "Ensures the environment has the necessary dependencies to generate unique user identifiers."
+        },
+        {
+            "time": "03:58",
+            "action": "Convert UUID object to string to fix JSON serialization TypeError",
+            "tool": "Python",
+            "reasoning": "The API payload must be valid JSON; non-serializable Python objects like UUIDs must be cast to strings."
+        },
+        {
+            "time": "04:02",
+            "action": "Run script and verify new row appears in Notion UI",
+            "tool": "Notion UI",
+            "reasoning": "Confirms the agentic workflow successfully altered the remote state by populating the database."
+        }
+    ],
+    "key_takeaways": [
+        "To write to a database, use `client.pages.create` with the `parent` set to the database ID.",
+        "Notion properties require specific nested JSON structures (e.g., Title is `{'title': [{'text': {'content': value}}]}`).",
+        "All data sent to the API must be JSON serializable (e.g., convert UUIDs to strings)."
+    ]
+}

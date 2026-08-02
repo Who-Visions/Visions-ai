@@ -1,0 +1,65 @@
+{
+    "title": "Indie Hacker Runway Strategies & Resource Management",
+    "summary": "A strategic analysis of resource management for indie hackers, focusing on the relationship between 'Runway', 'Burn', and 'Time To Build'. The workflow utilizes Mermaid.live to visualize and evaluate seven distinct lifestyle strategies for funding and building software products, culminating in the 'Endgame' of self-sustaining profitability.",
+    "steps": [
+        {
+            "time": "00:28",
+            "action": "Initialize visualization environment",
+            "tool": "Mermaid.live",
+            "reasoning": "Sets up the visual editor to map out complex strategic relationships and workflows clearly."
+        },
+        {
+            "time": "00:51",
+            "action": "Define core variables: Runway, Burn, and Time To Build",
+            "tool": "Mermaid.live",
+            "reasoning": "Establishes the fundamental metrics that determine the viability of an indie business. Runway is defined as cash/burn, and Time To Build is the actual available hours to work."
+        },
+        {
+            "time": "03:52",
+            "action": "Model the 'YOLO' Strategy",
+            "tool": "Mermaid.live",
+            "reasoning": "Analyzes the scenario of having significant existing capital, allowing for immediate building without income concerns (high resource, low friction)."
+        },
+        {
+            "time": "04:36",
+            "action": "Model the 'Go Negative' Strategy",
+            "tool": "Mermaid.live",
+            "reasoning": "Evaluates the risk of leveraging debt (loans/credit) to fund development. This path is explicitly flagged as high-risk and generally not recommended."
+        },
+        {
+            "time": "05:21",
+            "action": "Model the 'All In, All Out' Strategy",
+            "tool": "Mermaid.live",
+            "reasoning": "Outlines a cyclic workflow: working full-time to save cash, quitting to build full-time until funds deplete, and repeating. Maximizes 'Time To Build' in bursts."
+        },
+        {
+            "time": "07:13",
+            "action": "Model the 'Half, and Half' Strategy",
+            "tool": "Mermaid.live",
+            "reasoning": "Illustrates a sustainable approach by lowering personal burn and working part-time, balancing income stability with consistent 'Time To Build'."
+        },
+        {
+            "time": "08:26",
+            "action": "Model the 'Contract Killer' Strategy",
+            "tool": "Mermaid.live",
+            "reasoning": "Defines a workflow based on high-value contract work to build runway quickly, followed by dedicated building periods upon contract completion."
+        },
+        {
+            "time": "09:24",
+            "action": "Model the 'Do it all' Strategy",
+            "tool": "Mermaid.live",
+            "reasoning": "Visualizes the stable but slow path of working full-time while building on the side, resulting in the lowest available 'Time To Build'."
+        },
+        {
+            "time": "10:37",
+            "action": "Define the 'Endgame' Target State",
+            "tool": "Mermaid.live",
+            "reasoning": "Maps the ultimate objective for all strategies: achieving product profitability that exceeds personal burn, allowing for infinite runway and continuous growth."
+        }
+    ],
+    "key_takeaways": [
+        "Runway is a function of Cash divided by Burn, but 'Time To Build' is the actual constraint on progress.",
+        "The 'Endgame' is reached when Product Profit > Personal Burn, removing the need for external funding strategies.",
+        "Strategies vary by risk and time availability; 'Do it all' offers stability but low speed, while 'All In, All Out' offers speed but lower stability."
+    ]
+}

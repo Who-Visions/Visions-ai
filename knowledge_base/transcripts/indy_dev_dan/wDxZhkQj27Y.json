@@ -1,0 +1,37 @@
+{
+    "title": "3 Concrete Instant Value Practical Prompt Engineering Techniques",
+    "summary": "A practical guide focusing on efficient prompt engineering techniques to maximize LLM utility while minimizing user effort. The tutorial critiques over-hyped AI frameworks and introduces three core methods—Capitalized Referencing, One Word Prompts, and Context Chaining—demonstrating how to structure inputs for clarity, speed, and context density.",
+    "steps": [
+        {
+            "time": "00:59",
+            "action": "Implement Capitalized Referencing (Cap Refs) by defining input variables in all caps (e.g., EXISTING_TITLES) and referencing them in the prompt instructions.",
+            "tool": "ChatGPT / LLM",
+            "reasoning": "Separates instructions from data, allowing for reusable prompts where the LLM can clearly distinguish between the task and the input variables."
+        },
+        {
+            "time": "02:20",
+            "action": "Use One Word Prompts (e.g., 'pytest', 'translate', 'reword') followed immediately by the code or text block.",
+            "tool": "ChatGPT / LLM",
+            "reasoning": "Leverages the LLM's ability to infer intent from a single keyword, drastically reducing typing time and avoiding over-engineered instructions for standard tasks."
+        },
+        {
+            "time": "05:28",
+            "action": "Apply Context Chaining by listing keywords separated by colons (e.g., 'code: python: poetry: publish to testpypi') instead of writing full sentences.",
+            "tool": "ChatGPT / LLM",
+            "reasoning": "Compresses the prompt length (e.g., from 148 to 41 characters) while providing sufficient semantic context for the LLM to retrieve the correct knowledge."
+        },
+        {
+            "time": "08:25",
+            "action": "Combine Context Chaining with Cap Refs (e.g., 'code: python: combine FUNC1 and FUNC2') to perform complex operations on specific data blocks.",
+            "tool": "ChatGPT / LLM",
+            "reasoning": "Synthesizes the brevity of context chaining with the structural clarity of capitalized references to handle complex tasks like code merging efficiently."
+        }
+    ],
+    "key_takeaways": [
+        "Avoid over-hyped AI agent frameworks and focus on fundamental prompt engineering skills.",
+        "Capitalized Referencing acts as variable declaration, making prompts modular and easier to organize.",
+        "One Word Prompts save time by stripping away conversational filler, resulting in blunt but effective outputs.",
+        "Context Chaining allows for high-density information transfer, reducing token usage and typing effort.",
+        "The better LLMs become, the less verbose instruction they need; specifying the right context is more important than length."
+    ]
+}

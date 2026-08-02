@@ -1,0 +1,66 @@
+{
+    "title": "Building a Mermaid AI Agent with Aider",
+    "summary": "A technical workflow demonstrating how to use Aider, an open-source CLI AI coding tool, to modify a Python application. The process involves context management, querying the codebase, refactoring existing logic, and implementing new features across multiple files to automate Mermaid diagram generation.",
+    "steps": [
+        {
+            "time": "04:14",
+            "action": "Initialize Aider with specific parameters",
+            "tool": "Aider CLI",
+            "reasoning": "Sets up the AI coding environment using the Sonnet model and disables auto-commits to maintain manual control over git history."
+        },
+        {
+            "time": "04:36",
+            "action": "Load relevant files into context",
+            "tool": "Aider (/add)",
+            "reasoning": "Populates the LLM's context window with the specific source code (`src/mermaid_agent/*`) needed to understand the project structure."
+        },
+        {
+            "time": "05:09",
+            "action": "Query codebase for specific logic",
+            "tool": "Aider (/ask)",
+            "reasoning": "Uses the AI to locate the exact function responsible for saving images, saving the developer from manual search."
+        },
+        {
+            "time": "05:56",
+            "action": "Plan architectural reuse",
+            "tool": "Aider (/ask)",
+            "reasoning": "Consults the AI to identify if existing utility functions (`build_file_path`) can be reused to avoid code duplication before writing new code."
+        },
+        {
+            "time": "07:07",
+            "action": "Execute refactoring changes",
+            "tool": "Aider",
+            "reasoning": "Directs the agent to modify `mermaid.py` and `utils.py` to standardize file path handling based on the previous plan."
+        },
+        {
+            "time": "08:24",
+            "action": "Implement iteration saving logic",
+            "tool": "Aider",
+            "reasoning": "Applies specific logic to `main.py` to save every iteration of a diagram with a unique filename, enabling history tracking."
+        },
+        {
+            "time": "12:18",
+            "action": "Reset and expand context for new feature",
+            "tool": "Aider (/drop, /add)",
+            "reasoning": "Clears previous context and loads new files (`README.md`, `typings.py`, etc.) to prepare for the complex `mer-bulk` feature implementation."
+        },
+        {
+            "time": "12:50",
+            "action": "Generate multi-file feature (Bulk Command)",
+            "tool": "Aider",
+            "reasoning": "Instructs the AI to implement the `mer-bulk` command in a 'one-shot loop', requiring simultaneous updates to typings, main logic, and agent modules."
+        },
+        {
+            "time": "15:15",
+            "action": "Verify bulk generation output",
+            "tool": "Python/Terminal",
+            "reasoning": "Executes the newly created command to confirm the agent successfully implemented the logic to generate multiple diagram versions."
+        }
+    ],
+    "key_takeaways": [
+        "Aider provides a powerful open-source alternative to Cursor for command-line based AI coding.",
+        "Effective context management (adding/removing files) is crucial for token efficiency and model accuracy.",
+        "Aider excels at multi-file edits, capable of updating types, logic, and entry points in a single prompt.",
+        "Human-in-the-loop workflows allow for architectural planning and specific logic refinement before code is committed."
+    ]
+}

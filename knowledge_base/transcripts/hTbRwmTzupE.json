@@ -1,0 +1,43 @@
+{
+  "title": "Creative Halloween Medusa Photoshoot with Nanlite Pavotubes",
+  "summary": "Professional photographer Lindsay Adler demonstrates a creative 5-light setup for a Medusa-themed Halloween photoshoot. She details the gear used, specific camera settings for continuous lighting, and a step-by-step process of building a complex lighting scenario using RGB color theory.",
+  "steps": [
+    {
+      "time": "01:05",
+      "action": "Introduction to the lighting gear, highlighting features like app control and pixel mapping.",
+      "tool": "Nanlite Pavotube II X Series"
+    },
+    {
+      "time": "02:39",
+      "action": "Configure camera settings for the shoot: 1/200 sec shutter speed to freeze motion, f/2.8 aperture for depth of field, and ISO 1000.",
+      "tool": "Canon EOS R5 + RF 70-200mm Lens"
+    },
+    {
+      "time": "04:05",
+      "action": "Position the first light (Main Light) overhead and set the color to Blue.",
+      "tool": "Nanlite Pavotube II X"
+    },
+    {
+      "time": "04:30",
+      "action": "Add a second light (Fill Light) from below set to Green to create a 'monster light' effect.",
+      "tool": "Nanlite Pavotube II X"
+    },
+    {
+      "time": "05:35",
+      "action": "Introduce a third light on the left side set to Orange. This interacts with the blue and green to create complex color mixing.",
+      "tool": "Nanlite Pavotube II X"
+    },
+    {
+      "time": "07:25",
+      "action": "Add the fourth and fifth lights as white rim lights on either side to separate the subject from the gold background.",
+      "tool": "Nanlite Pavotube II X"
+    }
+  ],
+  "key_takeaways": [
+    "Mixing Red, Green, and Blue light sources can create white light where they overlap and interesting CMYK colors in the shadows.",
+    "Modern cameras like the Canon R5 produce clean images even at ISO 1000, making continuous lighting viable for sharp portraits.",
+    "Building a lighting setup one light at a time allows for precise control over the mood and color palette."
+  ],
+  "video_id": "hTbRwmTzupE",
+  "url": "https://www.youtube.com/watch?v=hTbRwmTzupE"
+}

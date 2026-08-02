@@ -1,0 +1,48 @@
+{
+    "title": "2024 Predictions & Strategic Roadmap for Advanced AI Engineers",
+    "summary": "A strategic guide for software engineers to transition into 'Agentic Engineers' in 2024. The workflow emphasizes mastering prompt engineering, leveraging AI assistants to automate implementation, experimenting with local LLMs, and shifting focus towards high-level business strategy and architecture.",
+    "steps": [
+        {
+            "time": "19:31",
+            "action": "Treat prompt engineering as a first-class skill",
+            "tool": "Prompting frameworks, Testing frameworks",
+            "reasoning": "Prompting is becoming the new fundamental unit of programming; mastery is required to direct agentic software effectively."
+        },
+        {
+            "time": "21:00",
+            "action": "Curate and filter information sources",
+            "tool": "Information Channels",
+            "reasoning": "To maintain a competitive edge and make informed decisions without being overwhelmed by the rapid pace of AI advancements."
+        },
+        {
+            "time": "21:48",
+            "action": "Experiment with local LLMs to understand infrastructure trade-offs",
+            "tool": "Ollama, llamafile",
+            "reasoning": "Understanding the balance between local vs. API and privacy/cost implications is crucial for future architecture decisions."
+        },
+        {
+            "time": "22:39",
+            "action": "Master Python and TypeScript",
+            "tool": "Python, TypeScript",
+            "reasoning": "These remain the unchallenged, multi-purpose languages essential for integrating with AI and building modern applications."
+        },
+        {
+            "time": "08:47",
+            "action": "Integrate AI assistants into the development environment",
+            "tool": "Microsoft Copilot, Aider, Mentat, Cursor",
+            "reasoning": "AI assistants are becoming a standard requirement for programming to increase velocity and automate routine coding tasks."
+        },
+        {
+            "time": "09:24",
+            "action": "Shift focus from implementation details to business and product strategy",
+            "tool": "AI Automation Tools",
+            "reasoning": "As AI automates implementation, the value of an engineer shifts to high-level architecture and strategic alignment with business goals."
+        }
+    ],
+    "key_takeaways": [
+        "Prompt engineering is transitioning from a meme to a critical professional skill.",
+        "Engineers must move 'up the stack' to focus on strategy as implementation becomes automated.",
+        "Python and TypeScript remain the dominant languages for AI engineering.",
+        "Local LLMs and specialized AI UIs will emerge as significant trends."
+    ]
+}

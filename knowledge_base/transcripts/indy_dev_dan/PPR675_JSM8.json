@@ -1,0 +1,66 @@
+{
+    "title": "AI Coding In-browser Text to Speech With Aider",
+    "summary": "This workflow demonstrates a 'zero-code' approach to building a full-stack web application. By feeding external documentation (MDN Web Docs) into an AI coding agent (Aider), the developer orchestrates the creation of a frontend interface and a Python Flask backend. The process highlights the power of context injection, iterative refinement through natural language, and agentic file management to prototype functional software rapidly.",
+    "steps": [
+        {
+            "time": "00:12",
+            "action": "Research and Context Extraction",
+            "tool": "Browser / MDN Web Docs",
+            "reasoning": "Locating authoritative documentation (Web Speech API) to serve as the ground truth for the AI agent."
+        },
+        {
+            "time": "00:57",
+            "action": "Context Injection",
+            "tool": "VS Code / Aider",
+            "reasoning": "Copying documentation into a text file (`tts-docs.txt`) and adding it to Aider's context ensures the agent generates code using correct, up-to-date APIs."
+        },
+        {
+            "time": "01:07",
+            "action": "Initial Code Generation",
+            "tool": "Aider",
+            "reasoning": "Prompting the agent to generate the core HTML and JavaScript logic based specifically on the provided documentation file."
+        },
+        {
+            "time": "01:56",
+            "action": "Code Refactoring",
+            "tool": "Aider",
+            "reasoning": "Directing the agent to consolidate files (moving JS into HTML) to simplify the project structure via natural language commands."
+        },
+        {
+            "time": "02:52",
+            "action": "Backend Generation",
+            "tool": "Aider / Python Flask",
+            "reasoning": "Expanding the application stack by asking the agent to create a server-side Flask app to host the frontend."
+        },
+        {
+            "time": "03:16",
+            "action": "Framework Compliance Restructuring",
+            "tool": "Aider",
+            "reasoning": "Instructing the agent to move `index.html` to a `templates` directory to adhere to Flask's specific directory structure requirements."
+        },
+        {
+            "time": "04:35",
+            "action": "Version Control Maintenance",
+            "tool": "VS Code / Git",
+            "reasoning": "Manual intervention to clean up git status and ignore cache files, correcting state issues the agent encountered during file moves."
+        },
+        {
+            "time": "05:02",
+            "action": "Dependency Management",
+            "tool": "Aider",
+            "reasoning": "Requesting the agent to generate a `requirements.txt` file to ensure the Python environment is correctly configured for the generated app."
+        },
+        {
+            "time": "06:27",
+            "action": "UI/UX Iteration",
+            "tool": "Aider",
+            "reasoning": "Refining the application by asking the agent to add specific UI elements (buttons, textareas) and wire them to the existing logic."
+        }
+    ],
+    "key_takeaways": [
+        "Context Injection is Critical: Providing raw documentation (MDN) allows the AI to implement specific APIs correctly without hallucinating syntax.",
+        "Natural Language Refactoring: Aider can handle structural changes (moving files, merging code blocks) just as easily as writing new code.",
+        "Iterative Prototyping: The workflow moves from a basic script to a hosted Flask app with UI improvements entirely through conversational prompts.",
+        "Human-in-the-Loop: While the agent handles coding, the human operator is necessary for resolving git state conflicts and verifying runtime environments."
+    ]
+}

@@ -1,0 +1,43 @@
+{
+  "title": "Headshot Mania 2 Conference Announcement",
+  "summary": "Peter Hurley promotes the Headshot Mania 2 conference in Las Vegas, detailing the event's focus on headshot photography, business growth, and community networking, coinciding with his 50th birthday celebration.",
+  "steps": [
+    {
+      "time": "00:00",
+      "action": "Announce the event location in Las Vegas and the host's 50th birthday celebration.",
+      "code": null,
+      "tool": "Announcement"
+    },
+    {
+      "time": "00:05",
+      "action": "Specify the venue (SLS Hotel) and dates (February 19th to 22nd).",
+      "code": null,
+      "tool": "Event Details"
+    },
+    {
+      "time": "00:26",
+      "action": "Define the target audience as photographers who photograph people or want to start.",
+      "code": null,
+      "tool": "Target Audience"
+    },
+    {
+      "time": "00:42",
+      "action": "Outline the curriculum covering technical skills, marketing, sales, goals, and motivation.",
+      "code": null,
+      "tool": "Curriculum Overview"
+    },
+    {
+      "time": "01:40",
+      "action": "Direct viewers to register at headshotmania.com.",
+      "code": null,
+      "tool": "Call to Action"
+    }
+  ],
+  "key_takeaways": [
+    "Headshot Mania 2 is a comprehensive conference for headshot photographers covering both technical and business skills.",
+    "The event fosters community support and networking among photographers.",
+    "The conference takes place at the SLS Las Vegas from Feb 19-22, 2020."
+  ],
+  "video_id": "ABWqlmtNu4A",
+  "url": "https://www.youtube.com/watch?v=ABWqlmtNu4A"
+}

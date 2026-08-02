@@ -1,0 +1,54 @@
+{
+    "title": "Building omniComplete: An LLM-Powered Self-Improving Autocomplete System",
+    "summary": "This workflow details the creation of 'omniComplete', a domain-agnostic autocomplete system that leverages Large Language Models (LLMs) to generate context-aware suggestions. The system features a 'prompt-centered architecture' where user interactions (hits) are fed back into the model, allowing the autocomplete suggestions to self-improve and rank by popularity over time. The stack includes a Vue.js frontend, a Flask backend, and the Promptfoo testing framework.",
+    "steps": [
+        {
+            "time": "03:23",
+            "action": "Define the Client-Server-LLM Architecture",
+            "tool": "Architecture Diagram",
+            "reasoning": "Establishes the data flow where the frontend triggers a backend endpoint, which constructs a prompt based on history and domain knowledge before querying the LLM."
+        },
+        {
+            "time": "06:53",
+            "action": "Construct the Dynamic Prompt Template",
+            "tool": "Markdown / prompt.txt",
+            "reasoning": "Creates the 'Big Ass Prompt' (BAP) using Markdown headers and variables (Topic, Previous Completions, Domain Knowledge) to guide the LLM's JSON output."
+        },
+        {
+            "time": "08:20",
+            "action": "Implement the Self-Improvement Data Structure",
+            "tool": "JSON (previous_completions.json)",
+            "reasoning": "Sets up a storage mechanism to track 'hits' for specific queries. This data is fed back into the prompt to rank popular suggestions higher, enabling self-improvement."
+        },
+        {
+            "time": "10:32",
+            "action": "Develop the Flask Backend Logic",
+            "tool": "Python / Flask (main.py)",
+            "reasoning": "Creates two core endpoints: `/get-autocomplete` to generate suggestions via the LLM and `/use-autocomplete` to increment hit counts for selected suggestions."
+        },
+        {
+            "time": "11:22",
+            "action": "Integrate Frontend Triggers",
+            "tool": "Vue.js (App.vue)",
+            "reasoning": "Connects user UI actions (typing, pressing Tab) to the backend API, ensuring real-time suggestion retrieval and usage tracking."
+        },
+        {
+            "time": "12:29",
+            "action": "Validate Prompts with Promptfoo",
+            "tool": "Promptfoo (promptfooconfig.yaml)",
+            "reasoning": "Uses a dedicated testing framework to ensure the LLM consistently returns valid JSON and relevant results across different inputs before deployment."
+        },
+        {
+            "time": "13:50",
+            "action": "Execute the Reinforcement Loop",
+            "tool": "Live Demo",
+            "reasoning": "Demonstrates the agentic workflow where selecting a suggestion increments its 'hits' in the database, causing it to appear higher in the list for future users."
+        }
+    ],
+    "key_takeaways": [
+        "Self-Improving Prompts: By injecting usage metrics (hit rates) back into the prompt context, the system automatically optimizes its output based on actual user behavior.",
+        "Prompt-Centered Architecture: The application logic is driven primarily by a dynamic prompt template rather than complex hard-coded heuristics.",
+        "Domain Agnostic Design: The system can be repurposed for any topic simply by swapping the 'domain_knowledge.txt' file and the topic variable.",
+        "Hybrid Knowledge Base: Combines static domain expertise (text files) with dynamic user behavioral data (JSON logs) to ground LLM responses."
+    ]
+}

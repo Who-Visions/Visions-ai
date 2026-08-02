@@ -1,0 +1,54 @@
+{
+    "title": "Benchmarking LLM Prompt Formats for Agentic Workflows",
+    "summary": "A systematic workflow to evaluate and optimize prompt formats (XML, Markdown, JSON, Raw) across various Large Language Models using `promptfoo`. The process involves running diverse test cases—from simple summarization to complex code debugging—to determine which structure yields the highest accuracy and reproducibility for production AI agents.",
+    "steps": [
+        {
+            "time": "02:13",
+            "action": "Configure Test Environment",
+            "tool": "promptfoo",
+            "reasoning": "Establishes a controlled testing ground with a mix of local (Llama 3.1, Mistral) and cloud (GPT-4o, Claude 3.5) models to ensure format viability across different intelligence levels."
+        },
+        {
+            "time": "02:37",
+            "action": "Execute Simple Summarization Test (BF1)",
+            "tool": "Bun / promptfoo",
+            "reasoning": "Validates that for low-complexity tasks, prompt format (Raw, Markdown, XML, JSON) has negligible impact on performance."
+        },
+        {
+            "time": "04:55",
+            "action": "Execute Complex Structure Test (BF2 - YouTube Chapters)",
+            "tool": "Bun / promptfoo",
+            "reasoning": "Tests the models' ability to handle complex formatting rules and timestamps. Reveals that XML begins to outperform Markdown and Raw formats as complexity increases."
+        },
+        {
+            "time": "07:15",
+            "action": "Execute Tool Selection Test (BF3 - Command Selector)",
+            "tool": "Bun / promptfoo",
+            "reasoning": "Simulates an agentic workflow where the LLM must select functions/tools. XML proves superior for ensuring the model correctly identifies and structures commands."
+        },
+        {
+            "time": "11:09",
+            "action": "Execute Reasoning & Debugging Test (BF5)",
+            "tool": "Bun / promptfoo",
+            "reasoning": "Evaluates the model's ability to reason about code errors and return structured JSON fixes. XML tags help prevent the model from confusing instructions with code context."
+        },
+        {
+            "time": "14:23",
+            "action": "Execute File Manipulation Test (BF6 - Config Update)",
+            "tool": "Bun / promptfoo",
+            "reasoning": "Tests precise instruction following for modifying configuration files. XML demonstrates high reliability for 'editor' type agents."
+        },
+        {
+            "time": "18:55",
+            "action": "Analyze Aggregate Performance",
+            "tool": "Analytical Review",
+            "reasoning": "Synthesizes results to determine that XML is the optimal format for production reliability, while Markdown is best for developer readability."
+        }
+    ],
+    "key_takeaways": [
+        "XML tags provide the highest accuracy, flexibility, and parsability for complex agentic workflows, particularly for separating instructions from data.",
+        "Markdown is the superior format for human readability and development but performs slightly worse than XML on complex tasks.",
+        "JSON as a prompt format (not output) generally performs poorly due to lack of support for nesting and complex instructions.",
+        "High-end models (Claude 3.5, GPT-4o) are more resilient to poor formatting (Raw prompts) than local models (Llama 3.1 8B), which require strict structure to succeed."
+    ]
+}

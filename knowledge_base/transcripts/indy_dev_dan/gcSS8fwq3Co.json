@@ -1,0 +1,54 @@
+{
+    "title": "Cut It Up: Automated AI Video Repurposing Workflow",
+    "summary": "A technical breakdown of 'Cut It Up', a Python application that automates the conversion of long-form horizontal videos into multiple short-form vertical videos. The workflow orchestrates WhisperX for transcription, GPT-4 for semantic content selection, and FFmpeg for video processing through a modular CLI architecture.",
+    "steps": [
+        {
+            "time": "01:28",
+            "action": "Initialize Workflow via CLI",
+            "tool": "Python / Terminal",
+            "reasoning": "The user triggers the agentic workflow using `main.py` with flags (`-a` for all steps, `-cc` for clip count), establishing the parameters for the automation."
+        },
+        {
+            "time": "04:36",
+            "action": "Transcribe Master Video",
+            "tool": "WhisperX",
+            "reasoning": "Converts the unstructured video audio into a structured `.tsv` file containing text and millisecond timestamps, creating a readable data layer for the LLM."
+        },
+        {
+            "time": "08:38",
+            "action": "Generate Clipping Strategy",
+            "tool": "GPT-4 (OpenAI API)",
+            "reasoning": "The 'Brain' of the agent analyzes the transcript to identify interesting segments. It uses strict prompt engineering (e.g., 'end with a period', '20-45s duration') to generate a valid `.sh` script containing FFmpeg commands."
+        },
+        {
+            "time": "04:36",
+            "action": "Execute Clipping",
+            "tool": "FFmpeg",
+            "reasoning": "Runs the LLM-generated shell script to physically extract the selected time ranges from the master video file."
+        },
+        {
+            "time": "04:36",
+            "action": "Crop to Vertical Format",
+            "tool": "FFmpeg",
+            "reasoning": "Transforms the horizontal 16:9 clips into vertical 9:16 videos suitable for mobile platforms like TikTok or Reels."
+        },
+        {
+            "time": "04:36",
+            "action": "Re-transcribe and Burn Captions",
+            "tool": "WhisperX / FFmpeg",
+            "reasoning": "Transcribes the specific cropped clips to ensure synchronization and hard-codes subtitles onto the video for accessibility and engagement."
+        },
+        {
+            "time": "02:08",
+            "action": "Dump Final Assets",
+            "tool": "File System",
+            "reasoning": "Moves the fully processed, captioned, and cropped video files to the designated output directory for user consumption."
+        }
+    ],
+    "key_takeaways": [
+        "AI can successfully replace human editorial judgment by analyzing structured transcripts to select 'interesting' content segments.",
+        "Robust prompt engineering is critical for agentic workflows; constraints like specific time formats and sentence boundaries ensure the LLM generates executable code (FFmpeg) rather than just text.",
+        "A modular, flag-based architecture allows for selective execution of steps (e.g., skipping transcription if already done), optimizing development and processing time.",
+        "The 'Do More With Less' principle is achieved by chaining specialized tools: WhisperX for data extraction, GPT-4 for decision making, and FFmpeg for execution."
+    ]
+}

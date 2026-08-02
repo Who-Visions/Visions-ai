@@ -1,0 +1,55 @@
+{
+    "title": "Gemini 3 Pro & Agent Sandboxes: Scaling Compute with Reprogrammed Agents",
+    "summary": "This tutorial explores the release of Gemini 3 Pro and demonstrates a shift from focusing solely on model benchmarks to building robust agentic workflows. The presenter shows how to 'reprogram' agents using custom backslash commands and shared skills to give them their own isolated computing environments (sandboxes) via E2B. By running multiple agents (Gemini, Claude, Codex) in parallel on full-stack engineering tasks, the video illustrates the 'Best of N' strategy—scaling impact by throwing compute at problems and selecting the best results.",
+    "steps": [
+        {
+            "time": "02:06",
+            "action": "Initialize Gemini CLI and execute basic sandbox task",
+            "tool": "Gemini CLI (g3py), E2B Sandbox",
+            "reasoning": "Demonstrates the fundamental capability of giving an agent its own computer to execute isolated tasks like generating SVGs."
+        },
+        {
+            "time": "03:11",
+            "action": "Execute Agentic Workflow: Plan, Build, Host, Test (SQLite CRUD)",
+            "tool": "Gemini CLI, Custom Agent Skill",
+            "reasoning": "Moves beyond simple tasks to full-stack application development using a chained agentic workflow command (`\\agent-sandboxes:plan-build-host-test`)."
+        },
+        {
+            "time": "04:44",
+            "action": "Run comparative workflows on competitor models",
+            "tool": "Claude Code (cldys), OpenAI Codex (cdx51m)",
+            "reasoning": "Establishes a 'Best of N' environment where multiple models attempt the same engineering tasks to compare results."
+        },
+        {
+            "time": "05:55",
+            "action": "Monitor active agent instances",
+            "tool": "E2B Sandboxes Dashboard",
+            "reasoning": "Visualizes the scale of autonomous compute, showing CPU/Memory usage for multiple agents running simultaneously."
+        },
+        {
+            "time": "12:07",
+            "action": "Reprogram agents using Backslash Commands",
+            "tool": "VS Code, CLAUDE.md",
+            "reasoning": "Explains the technical implementation of mapping custom syntax (e.g., `\\sandbox`) to specific markdown-based agent skills and prompt files."
+        },
+        {
+            "time": "13:15",
+            "action": "Extract successful artifacts to local machine",
+            "tool": "CLI Command (* copy)",
+            "reasoning": "Demonstrates how to retrieve the 'winning' result from the isolated sandbox environment for local use."
+        },
+        {
+            "time": "19:50",
+            "action": "Debug and iterate on failed tasks",
+            "tool": "Gemini CLI, Documentation Injection",
+            "reasoning": "Shows the iterative process of fixing agent errors (like incorrect model names) by injecting specific documentation into the context."
+        }
+    ],
+    "key_takeaways": [
+        "Model performance benchmarks are less important than the 'agentic experience' and the ability to execute full workflows.",
+        "Giving agents dedicated sandboxes (computers) provides isolation, security, and the ability to scale compute.",
+        "The 'Best of N' pattern allows engineers to deploy multiple agents against a problem and select the best outcome.",
+        "Agents can be 'reprogrammed' via configuration files (like CLAUDE.md) to recognize custom commands and execute shared skills.",
+        "Scale your impact as an engineer by scaling compute and autonomy, not just personal coding speed."
+    ]
+}

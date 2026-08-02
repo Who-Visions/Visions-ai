@@ -1,0 +1,66 @@
+{
+    "title": "NOTION IN 5: DB READ - Agentic Workflow",
+    "summary": "This workflow details the process of programmatically reading data from a Notion database using Python. It covers the end-to-end lifecycle from creating a database in the UI to extracting and parsing deeply nested JSON data via the Notion API.",
+    "steps": [
+        {
+            "time": "00:23",
+            "action": "Create and configure an inline Notion database",
+            "tool": "Notion UI",
+            "reasoning": "Establishes the data source structure (columns: User ID, Event, Date) necessary for the read operation."
+        },
+        {
+            "time": "00:47",
+            "action": "Populate the database with sample data",
+            "tool": "Notion UI / Bash (uuid)",
+            "reasoning": "Provides concrete records to verify that the API can correctly retrieve and distinguish between different property types."
+        },
+        {
+            "time": "01:15",
+            "action": "Extract the Notion Database ID from the URL",
+            "tool": "Notion UI / Python",
+            "reasoning": "The Database ID is the unique identifier required to target the specific database in API calls."
+        },
+        {
+            "time": "01:35",
+            "action": "Retrieve database metadata using the Notion Client",
+            "tool": "Notion API (Python Client)",
+            "reasoning": "Fetches the schema definition to understand property types and structure before querying actual data."
+        },
+        {
+            "time": "02:06",
+            "action": "Inspect the metadata JSON output",
+            "tool": "Text Editor / JSON Viewer",
+            "reasoning": "Visual analysis of the schema helps identify the specific JSON paths for column definitions."
+        },
+        {
+            "time": "02:24",
+            "action": "Implement `safe_get` helper function",
+            "tool": "Python",
+            "reasoning": "Essential for robustly accessing deeply nested keys in Notion's complex JSON response without causing runtime errors."
+        },
+        {
+            "time": "02:46",
+            "action": "Query the database for row content",
+            "tool": "Notion API (Python Client)",
+            "reasoning": "Executes the query to retrieve the actual page objects (rows) containing the user data."
+        },
+        {
+            "time": "03:01",
+            "action": "Parse row data and extract specific fields",
+            "tool": "Python",
+            "reasoning": "Transforms the raw, nested API response into a simplified, flat dictionary format (User ID, Event, Date) for downstream use."
+        },
+        {
+            "time": "04:37",
+            "action": "Verify the final processed JSON",
+            "tool": "Text Editor / JSON Viewer",
+            "reasoning": "Validates that the extraction logic was successful and the data matches the source of truth in Notion."
+        }
+    ],
+    "key_takeaways": [
+        "Use `client.databases.retrieve` for metadata (schema) and `client.databases.query` for actual data rows.",
+        "Notion API responses are deeply nested, requiring specific traversal paths (e.g., `properties.Event.select.name`).",
+        "Helper functions like `safe_get` are critical for handling complex JSON structures and preventing `KeyError` exceptions.",
+        "Database IDs are extracted from the URL, specifically the UUID following the workspace path."
+    ]
+}

@@ -58,6 +58,13 @@ class Model:
     capabilities: frozenset = field(default_factory=frozenset)
 
 
+# DO NOT run a model-id find-and-replace over this file. It is the only place
+# a retired id is SUPPOSED to appear, and a sweep will rewrite those entries
+# into their own replacements — producing `note="shut down -> <itself>"` and
+# marking live models retired. That happened once, during the merge that added
+# these lines, and the audit caught it because the report said gemini-3.6-flash
+# was shut down in favour of gemini-3.6-flash. Exclude this path from any sweep.
+
 #: Transcribed from ai.google.dev/gemini-api/docs/models and the pricing page,
 #: 2026-08-02. Retired entries are kept ON PURPOSE — deleting them would turn a
 #: precise "that model is off, use X" into a vague "unknown model", and the
@@ -122,6 +129,13 @@ REGISTRY: tuple[Model, ...] = (
     Model("gemini-2.5-flash-image", Lane.IMAGE, Status.STABLE, rung=5,
           per_image_usd=0.039, note="Nano Banana (2.5); superseded by 3.1-flash-image",
           capabilities=frozenset({"generate", "edit"})),
+
+    Model("gemini-2.5-flash-preview-tts", Lane.LIVE, Status.PREVIEW, rung=5,
+          input_usd=0.50, output_usd=10.00, note="controllable TTS",
+          capabilities=frozenset({"tts"})),
+    Model("gemini-3.1-flash-tts-preview", Lane.LIVE, Status.PREVIEW, rung=15,
+          input_usd=1.00, output_usd=20.00, note="expressive TTS with audio tags",
+          capabilities=frozenset({"tts", "expressive"})),
 
     # --- live -----------------------------------------------------------
     Model("gemini-3.1-flash-live-preview", Lane.LIVE, Status.PREVIEW, rung=10,

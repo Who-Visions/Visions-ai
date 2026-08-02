@@ -1,0 +1,49 @@
+{
+    "title": "How Claude Code CHANGED Engineering - A Video Essay on Agentic Coding",
+    "summary": "This analysis explores the paradigm shift from standard AI coding to 'Agentic Coding' driven by Claude Code. It defines Claude Code not merely as a tool, but as a new engineering primitive that combines a powerful LLM, tool access, and an agentic loop within the terminal. The workflow emphasizes 'commanding compute' rather than chatting, leveraging emergent model behaviors to plan, build, and scale engineering tasks through programmable and parallelizable agent systems.",
+    "steps": [
+        {
+            "time": "03:46",
+            "action": "Initialize the agent directly from the command line with a specific prompt and permission scope.",
+            "tool": "Claude Code CLI (e.g., `claude -p \"...\" --allowedTools \"Write\"`)",
+            "reasoning": "Establishes the terminal as the highest leverage point for engineers, allowing massive impact with minimal friction via a single prompt."
+        },
+        {
+            "time": "05:10",
+            "action": "Engage 'Plan Mode' to define the architecture and specifications before code generation begins.",
+            "tool": "Claude Code (Plan Mode)",
+            "reasoning": "Follows the 'Think, Plan, Build' engineering workflow, ensuring the agent understands context and intent before execution."
+        },
+        {
+            "time": "05:10",
+            "action": "Implement hooks to monitor, control, and interrupt the agent's execution loop.",
+            "tool": "Claude Hooks",
+            "reasoning": "Provides necessary observability and control over the autonomous agent, preventing drift and ensuring alignment with engineering goals."
+        },
+        {
+            "time": "11:18",
+            "action": "Spin up parallel sub-agents to handle multiple distinct problems or iterations simultaneously.",
+            "tool": "Claude Code (Parallel Sub-agents)",
+            "reasoning": "Achieves infinite scalability by moving from serial task execution to concurrent, multi-agent problem solving."
+        },
+        {
+            "time": "11:34",
+            "action": "Utilize Programmable Mode to construct reusable, custom multi-agent systems.",
+            "tool": "Claude Code (Programmable Mode / `-p`)",
+            "reasoning": "Treats the agent as a foundational building block (primitive) that can be composed into larger, domain-specific automation systems."
+        },
+        {
+            "time": "13:29",
+            "action": "Deploy agents to dedicated hardware or cloud environments for long-running tasks.",
+            "tool": "Dedicated Agent Environments (e.g., Mac Mini, Cloud VMs)",
+            "reasoning": "Offloads massive context processing and prevents the agent from monopolizing the primary development machine, enabling 'unbelievable automation' like overnight refactoring."
+        }
+    ],
+    "key_takeaways": [
+        "Claude Code represents a shift from 'AI Coding' (chatting) to 'Agentic Coding' (commanding compute), acting as a partner that understands engineering state.",
+        "The 'Agent Architecture' (Context + Model + Prompt + Tools) creates emergent behaviors that outperform standard benchmarks in real-world engineering.",
+        "Simplicity is a feature: The workflow removes UI complexity, relying solely on the terminal, the context window, and the prompt.",
+        "The future of engineering involves multi-agent swarms and dedicated infrastructure where codebases are maintained and refactored automatically.",
+        "Engineers must focus on mastering principles (Context, Model, Prompt) rather than specific tools to survive the widening gap between traditional and agentic engineering."
+    ]
+}

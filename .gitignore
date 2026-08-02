@@ -25,7 +25,7 @@ Thumbs.db
 vector_store/
 generated_images/
 outputs/
-memory/
+/memory/
 *.png
 *.jpg
 *.jpeg
@@ -49,4 +49,9 @@ client_secret*.json
 # Ingestor logs
 knowledge_base/ingestor_errors.log
 knowledge_base/processed_pdfs.json
+
+# Ignore short term memory
+visions_short_term.d/
+*.env
+*.log
 .venv/

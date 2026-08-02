@@ -1,0 +1,61 @@
+{
+    "title": "The 5 Essential Elements of High-Quality Prompts",
+    "summary": "A strategic breakdown of prompt engineering focusing on five core elements—Model, Purpose, Variables, Examples, and Output—to maximize value with minimal effort. The tutorial demonstrates how to structure prompts for reusability and integration into agentic workflows, emphasizing JSON outputs for composability.",
+    "steps": [
+        {
+            "time": "01:28",
+            "action": "Select the appropriate Model",
+            "tool": "GPT-4o",
+            "reasoning": "The underlying model dictates the baseline performance and capability ceiling for the prompt; it has the biggest impact on results."
+        },
+        {
+            "time": "01:58",
+            "action": "Define a clear Purpose",
+            "tool": "Prompt Engineering",
+            "reasoning": "Establishing a single, specific goal ensures the LLM focuses its attention on the desired task, preventing drift."
+        },
+        {
+            "time": "02:26",
+            "action": "Inject Static and Dynamic Variables",
+            "tool": "Template Literals / Placeholders",
+            "reasoning": "Variables transform static text into reusable templates, allowing dynamic data injection which is crucial for programmatic workflows and automation."
+        },
+        {
+            "time": "03:33",
+            "action": "Provide Concrete Examples (Few-Shot Prompting)",
+            "tool": "Few-Shot Examples",
+            "reasoning": "Examples act as ground truth for the model, enforcing specific formatting and style requirements significantly better than instructions alone."
+        },
+        {
+            "time": "05:48",
+            "action": "Enforce JSON Output Structure",
+            "tool": "JSON Schema / Structured Output",
+            "reasoning": "JSON outputs enable reliable parsing, allowing the response to be used programmatically in prompt chains and agentic systems."
+        },
+        {
+            "time": "07:58",
+            "action": "Chain Prompts via Composability",
+            "tool": "Agentic Workflow Design",
+            "reasoning": "By feeding the Output of one agent into the Variables of another, complex autonomous workflows can be constructed."
+        },
+        {
+            "time": "09:49",
+            "action": "Apply elements to complex logic (OmniComplete)",
+            "tool": "Complex Prompt Template",
+            "reasoning": "Demonstrates how combining all elements allows for sophisticated tasks like context-aware autocompletion using domain knowledge."
+        },
+        {
+            "time": "12:23",
+            "action": "Generate Code Components (Nuxt/Vue)",
+            "tool": "Code Generation Prompt",
+            "reasoning": "Shows how structured prompts with specific examples can reliably generate complex code artifacts ready for production environments."
+        }
+    ],
+    "key_takeaways": [
+        "Model selection is the single most impactful factor on prompt performance.",
+        "Variables enable prompt reusability and are essential for dynamic agentic workflows.",
+        "Few-shot examples are critical for controlling output format and style nuances.",
+        "JSON output is the key enabler for chaining prompts and building higher-order systems.",
+        "Composability in AI agents is achieved by mapping the output of one prompt to the variables of the next."
+    ]
+}

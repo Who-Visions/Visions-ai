@@ -1,0 +1,49 @@
+{
+    "title": "Scaling Engineering with Codex and Claude Code Agentic Workflows",
+    "summary": "This workflow demonstrates a hybrid approach to agentic coding, utilizing OpenAI's Codex for high-level, parallel background tasks (planning, bug fixing, testing) and Anthropic's Claude Code for granular, high-control terminal operations. The process emphasizes scaling compute by running multiple agentic loops simultaneously and managing the trade-off between control (terminal) and ease of use (web agents).",
+    "steps": [
+        {
+            "time": "00:02:17",
+            "action": "Initialize parallel background tasks in Codex Web Interface",
+            "tool": "OpenAI Codex",
+            "reasoning": "Leverages cloud compute to perform multiple distinct engineering tasks (explanation, bug fixing, planning) simultaneously without blocking the developer."
+        },
+        {
+            "time": "00:04:43",
+            "action": "Review agent-generated fix, create PR, and merge via GitHub",
+            "tool": "Codex / GitHub",
+            "reasoning": "Validates the agent's work in the cloud environment before integrating it into the main branch."
+        },
+        {
+            "time": "00:05:07",
+            "action": "Sync changes locally to verify integration",
+            "tool": "Cursor / Git",
+            "reasoning": "Ensures the local development environment reflects the agentic changes merged remotely."
+        },
+        {
+            "time": "00:05:41",
+            "action": "Pivot strategy and launch new parallel planning/testing tasks",
+            "tool": "OpenAI Codex",
+            "reasoning": "Demonstrates rapid prototyping by scrapping previous plans and using available compute to explore new architectural directions (YAML workflows) and testing strategies."
+        },
+        {
+            "time": "00:12:03",
+            "action": "Direct agent to implement specific validation tests based on approved design",
+            "tool": "OpenAI Codex",
+            "reasoning": "Moves from high-level design to concrete implementation (pytest framework) using the agent's context of the codebase."
+        },
+        {
+            "time": "00:33:17",
+            "action": "Execute parallel file operations using terminal agent",
+            "tool": "Claude Code (CLI)",
+            "reasoning": "Utilizes the 'parallel' keyword in the terminal to perform mass read/write operations across multiple files, demonstrating high-control granular editing."
+        }
+    ],
+    "key_takeaways": [
+        "Scale success by scaling compute: Run multiple background tasks in parallel to maximize productivity.",
+        "The AI Coding Spectrum: Trade off Control (Terminal/Claude Code) for Ease of Use (Web/Codex) depending on the task.",
+        "Great planning is great prompting: Comprehensive specs lead to better agentic outputs.",
+        "Claude Code is a primitive: It offers raw, programmable access to the model for building custom workflows.",
+        "Compute Advantage Equation: Maximize compute scaling and autonomy while minimizing time and effort."
+    ]
+}

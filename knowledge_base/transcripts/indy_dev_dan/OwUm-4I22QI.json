@@ -1,0 +1,61 @@
+{
+    "title": "M4 Max vs M2 Max: Local LLM Benchmarking & Agentic Evaluation Workflow",
+    "summary": "This workflow demonstrates a comparative analysis of local Large Language Model (LLM) performance on Apple's M4 Max versus M2 Max hardware. It transitions from raw speed tests (Tokens Per Second) using Ollama to a structured, agentic benchmarking process using a custom tool called 'Benchy'. The process emphasizes the importance of 'Principled AI Coding' by using self-contained prompts, dynamic variables, and automated Python execution evaluators to measure model accuracy alongside inference speed across various model sizes (1B to 72B parameters).",
+    "steps": [
+        {
+            "time": "04:37",
+            "action": "Execute baseline speed test with Llama 3.2:1b using verbose mode.",
+            "tool": "Ollama (Terminal)",
+            "reasoning": "Establishes a baseline Tokens Per Second (TPS) metric to compare raw hardware performance between M4 and M2 chips."
+        },
+        {
+            "time": "06:36",
+            "action": "Scale model complexity to Falcon 3 (10B) and Qwen 2.5 (32B) to observe performance degradation.",
+            "tool": "Ollama (Terminal)",
+            "reasoning": "Determines how hardware handles increased parameter counts and identifies the correlation between model size and inference speed."
+        },
+        {
+            "time": "10:47",
+            "action": "Stress test hardware with a 72B parameter model to identify the 'Deadzone'.",
+            "tool": "Ollama (Terminal)",
+            "reasoning": "Identifies the usability threshold; the user defines <10 TPS as the 'deadzone' where local models become impractical for interactive use."
+        },
+        {
+            "time": "14:07",
+            "action": "Initialize 'Benchy' tool to visualize comparative metrics (Accuracy vs. TPS).",
+            "tool": "Benchy (Web Interface)",
+            "reasoning": " shifts focus from raw speed to 'Vibe Check' vs. actual utility, comparing local models against a cloud control (Deepseek V3)."
+        },
+        {
+            "time": "17:28",
+            "action": "Analyze 'Level 4' Prompts utilizing dynamic variables and function definitions.",
+            "tool": "VS Code / XML",
+            "reasoning": "Demonstrates 'Principled AI Coding' by creating self-contained prompts that are structured for deterministic outputs rather than open-ended chat."
+        },
+        {
+            "time": "19:30",
+            "action": "Configure automated evaluators (Python Code Executor) for Pass/Fail testing.",
+            "tool": "Benchy / YAML Config",
+            "reasoning": "Enables agentic workflows by allowing the system to automatically verify if the generated code functions correctly, removing human subjectivity."
+        },
+        {
+            "time": "22:46",
+            "action": "Execute a batch benchmark suite (Simple Math YAML) across multiple models.",
+            "tool": "Benchy",
+            "reasoning": "Scales the evaluation process, running identical prompts across different models to find the optimal balance between model size (parameter count) and task accuracy."
+        },
+        {
+            "time": "26:40",
+            "action": "Review generated benchmark reports to correlate parameter size with error rates.",
+            "tool": "Benchy Reports",
+            "reasoning": "Provides data-driven insights, revealing that larger models (e.g., Qwen 32B) do not always guarantee higher accuracy than optimized smaller models (e.g., Phi-4) for specific tasks."
+        }
+    ],
+    "key_takeaways": [
+        "The M4 Max provides a consistent 20-25% TPS improvement over the M2 Max for local LLMs.",
+        "10 Tokens Per Second (TPS) is identified as the minimum threshold for usable local model interaction.",
+        "Accuracy does not strictly scale with parameter size; smaller models (3B-14B) can outperform larger ones (32B) on specific logic tasks.",
+        "Effective agentic benchmarking requires automated evaluators (e.g., executing generated code) rather than just text comparison.",
+        "Deepseek V3 serves as a high-performance cloud control group to gauge the relative effectiveness of local quantization."
+    ]
+}

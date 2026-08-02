@@ -1,0 +1,67 @@
+{
+    "title": "Mastering OpenAI o1-preview: Agentic Workflows & Prompt Chaining",
+    "summary": "This tutorial explores the capabilities of OpenAI's o1-preview reasoning models compared to Claude 3.5 Sonnet. It demonstrates three specific agentic workflows: YouTube chapter generation, AI coding meta-reviews, and complex sentiment analysis. The video emphasizes the importance of prompt chaining, precise context injection using CLI tools, and the use of TypeScript interfaces to enforce structured outputs from reasoning models.",
+    "steps": [
+        {
+            "time": "03:07",
+            "action": "Execute baseline prompt with Claude 3.5 Sonnet",
+            "tool": "llm (CLI)",
+            "reasoning": "Establishes a performance baseline for the YouTube chapter generation task to compare against reasoning models."
+        },
+        {
+            "time": "04:10",
+            "action": "Execute prompt with o1-preview for Chapter Generation",
+            "tool": "llm (CLI)",
+            "reasoning": "Leverages o1's 'thinking' process to improve instruction following, specifically for SEO keyword inclusion and timestamp accuracy."
+        },
+        {
+            "time": "04:29",
+            "action": "Compare model outputs side-by-side",
+            "tool": "Text Editor",
+            "reasoning": "Verifies that the reasoning model correctly identified timestamps that the non-reasoning model missed."
+        },
+        {
+            "time": "09:49",
+            "action": "Bundle codebase into XML format",
+            "tool": "files-to-prompt",
+            "reasoning": "Aggregates multiple source files into a single XML structure to provide necessary context for the AI Coding Meta Review."
+        },
+        {
+            "time": "11:03",
+            "action": "Generate and embed Git Diff",
+            "tool": "git",
+            "reasoning": "Isolates specific code changes to focus the model's reasoning on recent modifications rather than the entire codebase."
+        },
+        {
+            "time": "11:38",
+            "action": "Run AI Coding Meta Review with o1-preview",
+            "tool": "llm (CLI)",
+            "reasoning": "Uses a prompt defining a TypeScript interface to force the model to output a structured JSON bug report and fix solution."
+        },
+        {
+            "time": "18:38",
+            "action": "Filter and reduce input data size",
+            "tool": "jq",
+            "reasoning": "Pre-processes raw JSON data to fit within token limits and focus the model on relevant data points (comments) for sentiment analysis."
+        },
+        {
+            "time": "20:14",
+            "action": "Execute Complex Sentiment Analysis",
+            "tool": "llm (CLI)",
+            "reasoning": "Tests the model's ability to handle massive context and generate dual-format output (JSON and Markdown) simultaneously."
+        },
+        {
+            "time": "23:09",
+            "action": "Verify structured JSON output",
+            "tool": "Text Editor",
+            "reasoning": "Confirms the model successfully adhered to the complex schema requirements (positive, nuanced, negative themes) defined in the prompt."
+        }
+    ],
+    "key_takeaways": [
+        "OpenAI's o1 reasoning models excel at strict instruction following and iterating on proposed solutions before outputting.",
+        "Using TypeScript interfaces in prompts is a highly effective way to enforce specific JSON output structures from reasoning models.",
+        "Prompt chaining is effectively embedded in the o1 series, reducing the need for manual chain-of-thought prompting.",
+        "For coding tasks, providing context via XML tags and CDATA blocks helps reasoning models parse file boundaries and diffs accurately.",
+        "CLI tools like 'llm', 'files-to-prompt', and 'jq' are essential for constructing reproducible, high-fidelity agentic workflows."
+    ]
+}

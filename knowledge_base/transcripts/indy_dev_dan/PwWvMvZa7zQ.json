@@ -1,0 +1,53 @@
+{
+    "title": "Advanced Prompt Engineering for Front-End Component Generation",
+    "summary": "This workflow demonstrates a structured approach to generating complex front-end components using Large Language Models. By utilizing a four-part prompting framework (Role, Purpose, Requirements, Memory), the user generates a Vue.js Carousel component and subsequently refines the code through iterative debugging and CSS adjustments to achieve a functional result.",
+    "steps": [
+        {
+            "time": "0:47",
+            "action": "Define Role and Purpose in Prompt",
+            "tool": "ChatGPT (GPT-4)",
+            "reasoning": "Establishing a specific persona (Senior Vue.js Engineer) and context (New Project) primes the LLM to adopt the correct level of expertise and tone."
+        },
+        {
+            "time": "1:52",
+            "action": "List Technical Requirements",
+            "tool": "ChatGPT (GPT-4)",
+            "reasoning": "Using a verbose, bulleted list of constraints (e.g., avoiding specific wrappers, defining animation logic) prevents the LLM from using unwanted libraries or patterns."
+        },
+        {
+            "time": "2:16",
+            "action": "Inject 'Memory' Context",
+            "tool": "ChatGPT (GPT-4)",
+            "reasoning": "Providing specific helper functions and syntax examples (Vue 3 <script setup>) bridges knowledge cutoffs and enforces specific coding standards that the LLM might otherwise ignore."
+        },
+        {
+            "time": "3:07",
+            "action": "Implement Generated Code",
+            "tool": "VS Code / Vite",
+            "reasoning": "Transferring the AI-generated code into the local development environment to assess functionality and identify integration issues."
+        },
+        {
+            "time": "3:24",
+            "action": "Debug Syntax Errors",
+            "tool": "Vue Compiler",
+            "reasoning": "Correcting minor syntax hallucinations, such as removing invalid 'export' keywords inside a script setup block, to make the code compilable."
+        },
+        {
+            "time": "3:45",
+            "action": "Refine CSS and Structure",
+            "tool": "CSS / Browser",
+            "reasoning": "Adjusting DOM structure and CSS properties (flex-shrink, container widths) to fix visual layout issues that the LLM could not perfectly predict without visual context."
+        },
+        {
+            "time": "4:15",
+            "action": "Correct Logic and State",
+            "tool": "Vue.js Logic",
+            "reasoning": "Manually fixing navigation indices and button states to ensure the component behaves correctly during user interaction."
+        }
+    ],
+    "key_takeaways": [
+        "The 'Role, Purpose, Requirements, Memory' framework is a reusable template for high-fidelity code generation.",
+        "Providing 'Memory' (existing code snippets or syntax examples) is crucial for guiding LLMs to use specific versions or patterns.",
+        "AI-generated code typically achieves 80-90% completion, requiring a human-in-the-loop for final debugging and logic refinement."
+    ]
+}

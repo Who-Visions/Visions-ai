@@ -1,0 +1,66 @@
+{
+    "title": "Claude Code 2.0 AGENTIC Coding",
+    "summary": "A demonstration of advanced agentic engineering workflows using Claude Code and Sonnet 4.5. The video contrasts standard coding tools with a 'Tactical Agentic Coding' approach, showcasing two primary workflows: an autonomous 'AFK' agent loop for prototyping on a dedicated device, and a local 'Scout, Plan, Build' workflow for a complex SDK migration. The core strategy involves encoding engineering processes into reusable custom slash commands and delegating context-heavy tasks to specialized sub-agents.",
+    "steps": [
+        {
+            "time": "01:33",
+            "action": "Define Autonomous Job",
+            "tool": "Claude Code (CLI) / MCP",
+            "reasoning": "Uses a reusable Meta-Cognitive Prompt (MCP) server to define a multi-task job (build 3 OpenAI agents) for an asynchronous worker."
+        },
+        {
+            "time": "02:11",
+            "action": "Start AFK Agent Server",
+            "tool": "Bash / Mac mini",
+            "reasoning": "Demonstrates 'AFK Engineering' where a dedicated device picks up the job from the queue to work autonomously outside the user's immediate loop."
+        },
+        {
+            "time": "02:31",
+            "action": "Initialize Local Migration Environment",
+            "tool": "Cursor IDE / Claude Code",
+            "reasoning": "Starts Claude Code with a specific MCP configuration (`--mcp-config`) to prepare for the local SDK migration task."
+        },
+        {
+            "time": "02:51",
+            "action": "Execute Custom Workflow Command",
+            "tool": "/scout_plan_build Slash Command",
+            "reasoning": "Triggers a composite agentic workflow that chains three distinct phases (Scout, Plan, Build) via a single prompt."
+        },
+        {
+            "time": "03:55",
+            "action": "Scout Phase (Parallel Delegation)",
+            "tool": "/scout (Gemini, Codex, etc.)",
+            "reasoning": "The main agent delegates the 'search' task to 4 parallel, cheaper sub-agents. This 'Reduce and Delegate' strategy preserves the main agent's context window."
+        },
+        {
+            "time": "05:58",
+            "action": "Plan Phase (Doc Scraping & Analysis)",
+            "tool": "/plan_w_docs / docs-scraper",
+            "reasoning": "The agent scrapes the provided migration guide URL and synthesizes it with the scouted file list to create a deterministic implementation plan."
+        },
+        {
+            "time": "07:29",
+            "action": "Build Phase (Implementation)",
+            "tool": "/build",
+            "reasoning": "The agent executes the code changes strictly following the generated plan, handling file updates and renaming across the codebase."
+        },
+        {
+            "time": "09:33",
+            "action": "Verification & Reporting",
+            "tool": "Automated Tests",
+            "reasoning": "The agent runs the updated code (e.g., `pong_agent`) to verify the migration and generates a final report of changes."
+        },
+        {
+            "time": "17:30",
+            "action": "Review AFK Agent Output",
+            "tool": "Manual Review",
+            "reasoning": "The user returns to the AFK results, verifying that the autonomous agent successfully generated the requested OpenAI agent prototypes."
+        }
+    ],
+    "key_takeaways": [
+        "**Scout-Plan-Build Framework**: Breaking engineering tasks into distinct phases allows for better error handling and context management compared to a single long prompt.",
+        "**Context Economy via Delegation**: Offloading 'scouting' (searching files) to cheaper, faster models prevents the main 'Planner' agent's context window from filling up with irrelevant data.",
+        "**Encoded Engineering**: Best practices can be captured in reusable Custom Slash Commands, effectively 'building systems that build systems'.",
+        "**The Stakeholder Trifecta**: Structured workflows (like explicit Plans) serve three audiences: You (the engineer), Your Team (for review), and Your Agents (for execution context)."
+    ]
+}

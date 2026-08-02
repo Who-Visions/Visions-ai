@@ -1,0 +1,47 @@
+{
+    "title": "Mastering AI Coding Tools: Copilots, Assistants, and Engineers",
+    "summary": "This tutorial categorizes AI coding tools into three tiers of autonomy: Copilots, Coding Assistants, and Software Engineers. It demonstrates a practical workflow using Cursor to leverage these tools for code completion, refactoring, documentation generation, and codebase analysis, emphasizing that Coding Assistants currently offer the highest productivity leverage while autonomous Engineers mature.",
+    "steps": [
+        {
+            "time": "04:00",
+            "action": "Use AI Autocomplete to generate function bodies by typing signatures or comments",
+            "tool": "Copilot++ / AI Copilot",
+            "reasoning": "Accelerates writing boilerplate code by predicting logic based on function names or natural language comments."
+        },
+        {
+            "time": "05:13",
+            "action": "Refactor code using a Selection Prompt (Command+K) to modify function parameters",
+            "tool": "Cursor / AI Coding Assistant",
+            "reasoning": "Demonstrates 'Selection Prompt' capability, allowing the AI to modify existing logic safely rather than just appending code."
+        },
+        {
+            "time": "05:46",
+            "action": "Generate documentation in README.md by referencing source files (@index.ts) in a prompt",
+            "tool": "Cursor / AI Coding Assistant",
+            "reasoning": "Uses 'Selection Prompt w/context' to ensure documentation stays synchronized with the actual code logic."
+        },
+        {
+            "time": "06:55",
+            "action": "Generate executable CLI commands via Terminal Prompt by referencing documentation (@README.md)",
+            "tool": "Cursor / AI Coding Assistant",
+            "reasoning": "Leverages 'Terminal Prompt' to bridge the gap between documentation and execution, reducing context switching."
+        },
+        {
+            "time": "08:23",
+            "action": "Analyze project structure and test coverage by querying the Chat with codebase context",
+            "tool": "Cursor / AI Coding Assistant",
+            "reasoning": "Utilizes 'Codebase Question/Answer' to perform high-level architectural analysis and identify missing test cases across multiple files."
+        },
+        {
+            "time": "10:44",
+            "action": "Integrate external library knowledge by pasting a documentation URL into the Chat",
+            "tool": "Cursor / AI Coding Assistant",
+            "reasoning": "Demonstrates 'Web Search' capability to fetch up-to-date syntax for specific libraries (e.g., Bun Shell) that may not be in the model's training data."
+        }
+    ],
+    "key_takeaways": [
+        "AI coding tools exist in a hierarchy of autonomy: Copilots (autocomplete), Assistants (interactive/context-aware), and Engineers (fully autonomous).",
+        "Providing specific context (e.g., @filename, @docs) significantly improves the accuracy of AI Assistants for complex tasks like documentation and refactoring.",
+        "AI Coding Assistants (Tier 2) currently provide the best balance of control and productivity compared to the immature Tier 3 autonomous agents."
+    ]
+}

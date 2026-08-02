@@ -1,0 +1,54 @@
+{
+    "title": "Claude Code Agentic Workflow: Plan Mode & Infinite Loops",
+    "summary": "This workflow demonstrates leveraging Claude Code's 'Plan Mode' to architect a modular software specification, followed by orchestrating an 'Infinite Agentic Loop' for parallel code generation. It emphasizes a 'Plan -> Spec -> Build' methodology to ensure context alignment and minimize errors before execution.",
+    "steps": [
+        {
+            "time": "00:00",
+            "action": "Launch Claude Code and activate 'Plan Mode' using `shift + tab` twice.",
+            "tool": "Claude Code CLI",
+            "reasoning": "Initiates a read-only state where the agent can research and plan without making premature or unwanted file modifications."
+        },
+        {
+            "time": "04:30",
+            "action": "Run `/project:prime` to load the context window with the codebase structure and documentation.",
+            "tool": "Custom Slash Command",
+            "reasoning": "Primes the agent with necessary context (file lists, docs) to ensure accurate planning and reduce hallucinations."
+        },
+        {
+            "time": "06:30",
+            "action": "In Plan Mode, prompt Claude to design a V4 specification that refactors single-file outputs into modular directories (HTML/CSS/JS).",
+            "tool": "Claude Code (Plan Mode)",
+            "reasoning": "Uses the 'Plan -> Spec -> Build' approach to define architectural changes clearly before any code is written."
+        },
+        {
+            "time": "08:50",
+            "action": "Review the detailed plan and directory structure proposed by Claude.",
+            "tool": "Claude Code",
+            "reasoning": "Validates the agent's understanding of the requirements (splitting files) to prevent wasted iterations during the build phase."
+        },
+        {
+            "time": "10:30",
+            "action": "Exit Plan Mode and instruct Claude to write the `invent_new_ui_v4.md` specification file based on the approved plan.",
+            "tool": "Claude Code (Edit Mode)",
+            "reasoning": "Transitions from planning to execution, creating a concrete blueprint (spec file) that future agents will use as a strict guide."
+        },
+        {
+            "time": "14:50",
+            "action": "Execute the `/project:infinite` command, passing the new V4 spec, output directory, and iteration count.",
+            "tool": "Custom Slash Command",
+            "reasoning": "Initiates the high-level orchestration where the main agent interprets the spec and manages sub-agents."
+        },
+        {
+            "time": "15:40",
+            "action": "Claude orchestrates parallel sub-agents to generate multiple UI iterations simultaneously.",
+            "tool": "Claude Code (Parallel Execution)",
+            "reasoning": "Demonstrates the power of agentic loops to scale production by running multiple distinct tasks in parallel based on a single spec."
+        }
+    ],
+    "key_takeaways": [
+        "The 'Plan -> Spec -> Build' workflow significantly reduces errors by separating architectural thinking from coding.",
+        "Plan Mode is essential for 'Ask, Validate, Learn' cycles, preventing sycophancy and bias in agent responses.",
+        "Priming the context window with project-specific commands ensures agents operate with full situational awareness.",
+        "Modern engineering involves optimizing codebases and tools for agent consumption, not just human readability."
+    ]
+}

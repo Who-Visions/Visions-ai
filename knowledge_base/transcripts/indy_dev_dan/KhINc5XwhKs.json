@@ -1,0 +1,60 @@
+{
+    "title": "Test-Driven Prompt Engineering with Promptfoo",
+    "summary": "This workflow demonstrates how to implement a test-driven framework for LLM prompts using Promptfoo. It covers setting up the environment, configuring providers (GPT-4 vs. GPT-3.5), defining test cases with specific assertions, and evaluating results to optimize agentic workflows for cost, speed, and accuracy.",
+    "steps": [
+        {
+            "time": "01:47",
+            "action": "Install Promptfoo and configure environment variables",
+            "tool": "Terminal / npm",
+            "reasoning": "Establishes the foundational tooling required to run automated evaluations against LLM providers."
+        },
+        {
+            "time": "03:58",
+            "action": "Define the configuration file (promptfooconfig.yaml)",
+            "tool": "VS Code",
+            "reasoning": "Orchestrates the evaluation by linking specific LLM providers (e.g., GPT-4, GPT-3.5), the prompt file, and the test dataset."
+        },
+        {
+            "time": "04:38",
+            "action": "Create the prompt template (prompt.txt)",
+            "tool": "VS Code",
+            "reasoning": "Isolates the agent's instruction logic into a modular file, allowing for independent iteration and variable injection (e.g., {{{nlq}}})."
+        },
+        {
+            "time": "05:18",
+            "action": "Define test cases and assertions (test.yaml)",
+            "tool": "VS Code",
+            "reasoning": "Sets up deterministic criteria (icontains-any) to validate if the agent's output meets specific requirements before scaling."
+        },
+        {
+            "time": "02:09",
+            "action": "Run the initial evaluation command",
+            "tool": "Terminal (promptfoo eval)",
+            "reasoning": "Executes the prompt against the defined providers to generate baseline performance data."
+        },
+        {
+            "time": "02:21",
+            "action": "Visualize evaluation results",
+            "tool": "Browser (promptfoo view)",
+            "reasoning": "Provides a matrix view to compare outputs side-by-side, allowing the engineer to inspect failures and latency differences."
+        },
+        {
+            "time": "08:42",
+            "action": "Implement advanced assertions (llm-rubric)",
+            "tool": "VS Code",
+            "reasoning": "Uses an LLM to grade the output of another LLM, enabling semantic validation for complex agent responses where simple string matching fails."
+        },
+        {
+            "time": "10:15",
+            "action": "Compare model performance metrics (Latency & Token Usage)",
+            "tool": "Promptfoo UI",
+            "reasoning": "Critical for optimization; identifies that GPT-3.5 is significantly faster and cheaper than GPT-4 for this specific task, allowing for cost-effective scaling."
+        }
+    ],
+    "key_takeaways": [
+        "Test-driven prompt engineering allows developers to ship prompts with confidence by catching regressions before deployment.",
+        "Using a framework like Promptfoo enables direct comparison between models (e.g., GPT-4 vs. GPT-3.5) to balance cost, speed, and accuracy.",
+        "Assertions are vital for agentic workflows; they range from simple string matching (icontains) to model-graded rubrics (llm-rubric) for semantic verification.",
+        "Optimizing prompts based on concrete metrics (latency and token count) prevents resource waste in high-scale applications."
+    ]
+}
