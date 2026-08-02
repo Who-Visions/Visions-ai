@@ -245,3 +245,43 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 [![Website](https://img.shields.io/badge/WhoVisions.com-4285F4?style=for-the-badge&logo=google-chrome&logoColor=white)](https://whovisions.com)
 
 </div>
+
+## Working on this repo from more than one machine
+
+This repo is worked from several boxes. Announce before you start:
+
+```bash
+relay check                                   # has another machine moved?
+relay claim take -s visions/core -g "what you are doing"
+# ... work ...
+relay claim release -s visions/core
+relay create -g "what you did" -m "where you left off"
+```
+
+Records land in `.handoffs/`. Install the CLI from
+[NouGenRelay](https://github.com/who-visions/nougenrelay); if `relay` is not on
+PATH after `pip install -e .`, `python -m nougen_relay` always works.
+
+**Commits carry their origin.** `.githooks/prepare-commit-msg` stamps every
+commit with `Machine:` and `Agent:` trailers, so `git log` answers "which box,
+which lane" rather than only "which GitHub account":
+
+```bash
+git config core.hooksPath .githooks
+```
+
+That is per-clone — `core.hooksPath` lives in `.git/config` and cannot be
+committed — so a fresh clone starts unstamped until someone runs it.
+
+### Why this exists
+
+Until 2026-08-02 this repo had no registry at all, and it cost something
+specific. A GCP project move and a Gemini version bump sat uncommitted in a
+working tree for months, hidden under 285 files of mode-only churn
+(`100644 -> 100755` on everything, including `.gitignore`). In the same tree
+`visions/core/agent.py` carried two syntax errors and could not be imported,
+and `main` held 36 references to Gemini models Google had already shut down.
+
+None of that was announced anywhere, because nothing was watching. Set
+`core.fileMode false` if you see phantom modifications — that noise is what
+kept the real diff invisible.
