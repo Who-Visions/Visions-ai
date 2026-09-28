@@ -1,0 +1,34 @@
+{
+  "video_id": "FWvQUhzdtFA",
+  "url": "https://www.youtube.com/watch?v=FWvQUhzdtFA",
+  "title": "Sue Bryce — Shooting Curves (posing masterclass)",
+  "summary": "Sue Bryce teaches her system for posing curvy bodies, which she stresses is the same system she uses on every body type. It reduces to three moves applied in order: turn 45 degrees to camera, put the weight on the back foot so the near hip travels away from the lens, and push the chin forward and down - further forward the curvier the subject. Around that she builds arm and hand rules (arms off the torso, elbows pulled back, visible triangles), a 'faux waist' created by placing the hands higher and further in than the true waist, seated and reclining variants on an apple box, and a firm ruling that the camera belongs on the subject's eye line rather than above it. The closing section is not technique: she recounts once shooting two sisters head-and-shoulders only, and identifies the cause as her own body-shame rather than their bodies. Full prose breakdown lives at Visions-ai/knowledge_base/posing_curves.md - this record is the pointer, not a duplicate.",
+  "steps": [
+    {"time": null, "action": "Move 1 - turn 45 degrees to camera. Not side-on. Opens the shoulder and pushes it out and back.", "code": null, "tool": null},
+    {"time": null, "action": "Move 2 - weight onto the back foot, pushing the near hip away from the lens; then push the weight into the FRONT of the hip and it travels back further still.", "code": null, "tool": null},
+    {"time": null, "action": "Move 3 - chin forward and down. The signature. The curvier the body, the further forward and down it must go. Client line that sells it: 'feels weird, looks fantastic.'", "code": null, "tool": null},
+    {"time": null, "action": "Camera on the subject's EYE LINE or a touch above - never from up high. Slimming comes from tilting the BODY, not raising the camera; shooting down just makes them look like they are looking up at you.", "code": null, "tool": null},
+    {"time": null, "action": "Shoot the 35mm: slightly wide so focus holds on the face while the body drops away. The 50 reads flatter. EXCEPTION - on a very lean body do not pull the hips away from camera, it makes the head look huge.", "code": null, "tool": "35mm"},
+    {"time": null, "action": "Get the arms OFF the torso - arms resting against the body read as one mass with it. Thumbs into the jean pockets relaxes the hands, shapes the elbows and lifts the arms clear.", "code": null, "tool": null},
+    {"time": null, "action": "'Barbie'/tabletop hands: hands out flat as if on a table, then pull the ELBOWS back behind the body. Narrows the whole line and brings the chest forward. Failure mode is pulling the SHOULDERS back too far - pull elbows, not shoulders.", "code": null, "tool": null},
+    {"time": null, "action": "Make triangles. Visible space between arm and body is what reads as slim. Drop a dominant forearm or move inside its line; keep hands low, never stiff or splayed.", "code": null, "tool": null},
+    {"time": null, "action": "The faux waist: people place their hands on their TRUE waist - place them higher and further in instead and invent a waistline, because the eye reads the hands as the waist. Kick the booty back. Watch for pinched fabric.", "code": null, "tool": null},
+    {"time": null, "action": "Kill the double chin: chin forward and down creating visible space between chin and chest line, and push the SHOULDER down - the lower it goes, the longer the neck reads. In a relaxed neck the chin often photographs as raised even when it does not look raised in the room.", "code": null, "tool": null},
+    {"time": null, "action": "Stop rapid blinking by asking the subject to 'slow down your blinks' - naming it creates the awareness that stops it.", "code": null, "tool": null},
+    {"time": null, "action": "Seated: slide the near arm against the thigh and all the way back to define the hourglass; knees together, then knees AND feet away from camera. The further the lower half travels, the longer and slimmer she reads. Do not let the frame fold up.", "code": null, "tool": null},
+    {"time": null, "action": "Apple box against a wall: on the floor she cannot recline because everything shortens the torso. The box lifts her so the body opens and she can take the shoulder back to the wall.", "code": null, "tool": "Apple box"},
+    {"time": null, "action": "Over-the-shoulder with curves requires a whole-body tip forward - and crucially it is NOT tipping toward the camera, it is tipping forward along her own axis so the shoulder drops and the face angle opens.", "code": null, "tool": null},
+    {"time": null, "action": "Cover-girl frames shot straight into backlight with a reflector bouncing back to the face; black v-flat behind a pale-skinned subject.", "code": null, "tool": "Reflector, v-flat"},
+    {"time": null, "action": "The ethic: she once photographed two sisters head-and-shoulders only. They asked why afterwards. The cause was not skill or retouching but her own body-shame at the time - she was judging their bodies through her own. Her ruling: never assume someone is not proud of their body just because you were not proud of yours.", "code": null, "tool": null}
+  ],
+  "key_takeaways": [
+    "Three moves, in order, on every body type: 45 degrees to camera, weight on the back foot, chin forward and down - and the curvier the subject the further forward and down the chin goes.",
+    "Slimming comes from tilting the body, not from raising the camera. Shoot on the eye line or a touch above; shooting down is the mistake almost everyone makes.",
+    "The 35mm is the slimming lens because the body drops away behind the face; the 50 reads flatter. But do not pull a lean subject's hips back - it enlarges the head.",
+    "Arms touching the torso read as one mass with it. Elbows pulled back, hands given a job, and visible triangles of space are what actually narrow the body.",
+    "The faux waist is the strongest single trick: the eye reads the hands as the waistline, so place them higher and further in than the true waist.",
+    "A double chin is eliminated by chin-forward-and-down plus pushing the shoulder down to lengthen the neck - not by raising the camera.",
+    "Direct constantly and reset every frame; the client cannot see through the camera and is waiting for guidance. Sculpt rather than shooting hundreds of frames hoping.",
+    "The technique exists to serve the person: the goal is not an ideal to conform to, but making each subject look the best they can. People buy photographs in which they themselves look good."
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "video_id": "XJ6gi_x0-o0",
+  "url": "https://www.youtube.com/watch?v=XJ6gi_x0-o0",
+  "title": "Shooting in Direct Sun Portrait Photography Tips",
+  "summary": "Emily of Ecord Photography walks through a priority ladder for portrait and wedding work when the sun is high and harsh and the shoot cannot be rescheduled. The ordering matters more than any single trick: avoid midday entirely if the schedule allows, then open shade, then sun filtered through trees or a building edge, then the lit edge of partial coverage, then indoors on a big window, and only as a last resort backlight the subject with the sun directly behind them. Throughout she treats lens flare and haze as defects to engineer out rather than effects to embrace, and closes with the counterintuitive ruling that dappled 'spotty' light is worse than clean open sun.",
+  "steps": [
+    {"time": "00:34", "action": "Tier 1 - avoid midday entirely. Same location shot at high sun versus a lowered sun; the later frame wins decisively. Reschedule when the timeline allows.", "code": null, "tool": null},
+    {"time": "01:44", "action": "Tier 2 - find OPEN shade. The test: look up and see sky, not a heavy overhang or dense tree canopy. Closed shade under a canopy kills the fill.", "code": null, "tool": null},
+    {"time": "02:21", "action": "Tier 3 - find FILTERED sun, letting it break through trees or past a building edge instead of striking the lens head-on. Preferred look; prevents the hazy wash.", "code": null, "tool": null},
+    {"time": "03:00", "action": "Treat lens flare and haze as defects, not vibe. Exception granted only when it matches the subject's story (guitar portrait).", "code": null, "tool": null},
+    {"time": "03:33", "action": "Kill flare by shading the FRONT ELEMENT, not the subject: reposition your own body, rotate the setup, use the client as a block, stand inside a patch of shade, or have an assistant hold a reflector as a flag.", "code": null, "tool": "Reflector used as flag"},
+    {"time": "04:14", "action": "Tier 4 - no open or filtered shade available: use slight coverage (porch, overhang) but pull subjects to the very EDGE of it so maximum light reaches their faces.", "code": null, "tool": null},
+    {"time": "05:23", "action": "Tier 5 - move indoors and shoot on a large window as the natural key. Used sparingly but is a real option.", "code": null, "tool": "Window light"},
+    {"time": "05:59", "action": "Tier 6 (last resort) - backlight: sun directly behind the subject, subject facing camera, their shadow falling toward the photographer. Yields even facial light on a blown-out bright background.", "code": null, "tool": null},
+    {"time": "07:08", "action": "Full-sun settings: ISO floor at 100-200, aperture chosen by group depth needed, shutter allowed to run very fast as the free variable.", "code": null, "tool": null},
+    {"time": "07:44", "action": "Spotty/dappled light ruling: with a wedding party under patchy sunspots, choose open direct sun INSTEAD. Dappled hotspots on faces, jackets and dresses distract worse than flat harsh light and are harder to edit.", "code": null, "tool": null}
+  ],
+  "key_takeaways": [
+    "Harsh-light strategy is an ordered ladder, not a bag of tricks: avoid midday > open shade > filtered sun > lit edge of partial coverage > window light indoors > backlight as last resort.",
+    "Open shade means you can see sky when you look up; a heavy canopy or deep overhang is closed shade and starves the subject of fill.",
+    "Flare is fixed by shading the lens rather than the subject - move your body, use the client as a block, or flag with a reflector.",
+    "Under partial coverage, pull subjects to the outer edge of the shade so the most light reaches their faces.",
+    "Backlighting produces even facial light at the cost of a bright background; direct front sun looks less professional and is harder to grade.",
+    "Dappled 'spotty' light is worse than clean open sun - accept flat harsh light over sunspots scattered across a group.",
+    "Full-sun exposure: pin ISO at 100-200, set aperture for the group's depth, let shutter speed climb freely."
+  ]
+}
