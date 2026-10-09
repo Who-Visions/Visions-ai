@@ -55,3 +55,4 @@ visions_short_term.d/
 *.env
 *.log
 .venv/
+/visions_short_term.db
