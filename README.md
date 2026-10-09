@@ -226,7 +226,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## 📜 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+Original Who Visions LLC code and documentation are proprietary and source-available under the [Who Visions Source-Available License v1.1](LICENSE.md), effective October 9, 2026. This is not an open-source license. The `gods-eye/` component and any other separately marked third-party materials remain under their own license terms; see [gods-eye/LICENSE](gods-eye/LICENSE). Earlier copies described as MIT-licensed remain subject to permissions validly granted under those earlier terms.
 
 ---
 
