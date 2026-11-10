@@ -1,0 +1,22 @@
+[
+  {
+    "id": "lbts-beach",
+    "name": "Anglin's Pier Beach",
+    "city": "Lauderdale-By-The-Sea",
+    "provider": "Town of LBTS / EarthCam",
+    "lat": 26.1897,
+    "lon": -80.0955,
+    "feedType": "image",
+    "sourceKind": "configured"
+  },
+  {
+    "id": "lbts-downtown",
+    "name": "Anglin's Square",
+    "city": "Lauderdale-By-The-Sea",
+    "provider": "Town of LBTS / EarthCam",
+    "lat": 26.1903,
+    "lon": -80.0975,
+    "feedType": "image",
+    "sourceKind": "configured"
+  }
+]

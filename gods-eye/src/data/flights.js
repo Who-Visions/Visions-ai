@@ -570,7 +570,7 @@ function _applyCockpitState(detail = {}) {
 // ---------------------------------------------------------------------------
 
 /** @constant {string} Civilian trail hue (PRD F4, pinned). */
-const TRAIL_COLOR = '#00d4ff';
+const TRAIL_COLOR = '#39ff88';
 /** @constant {number} Combined cap on trail vertices (backfill + live accumulation). */
 const TRAIL_MAX_POINTS = 400;
 /** @type {{setPositions: Function, clear: Function, destroy: Function}|null} Shared fading-trail renderer */

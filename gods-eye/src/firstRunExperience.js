@@ -115,6 +115,11 @@ export const FIRST_RUN_MISSIONS = Object.freeze({
     layerIds: Object.freeze(['earthquakes', 'local-firms']),
     busyText: 'Scanning active events…',
   }),
+  cameras: Object.freeze({
+    kind: 'local',
+    layerIds: Object.freeze(['cctv']),
+    busyText: 'Opening live cameras…',
+  }),
   explore: Object.freeze({ kind: 'none' }),
 });
 
@@ -263,7 +268,7 @@ export async function runFirstRunChoice(choice, { setContextMode, setLayerEnable
   // camera is already moving while the feeds spin up. The flight is framing,
   // not the mission — a stalled or superseded flight never fails the tile.
   const flight = Promise.resolve()
-    .then(() => flyToGlobe())
+    .then(() => (mission.kind === 'local' ? null : flyToGlobe()))
     .catch(() => null);
   const outcomes = await Promise.all(mission.layerIds.map(async (layerId) => {
     try {
