@@ -1,0 +1,108 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Who-Visions/NouGenShards/main/schemas/readme-manifest.schema.json",
+  "schema_version": 1,
+  "project": {
+    "title": "Visions AI",
+    "description": "A world-class photography AI mentor powered by Google's latest models — 80 years of visual arts experience, Gemini 3 Pro synthesis, and a cloud memory system.",
+    "emoji": "🎨"
+  },
+  "table_of_contents": true,
+  "badges": [
+    {
+      "label": "Visions AI",
+      "image": "https://img.shields.io/badge/Visions-AI-purple?style=for-the-badge&logo=google&logoColor=white"
+    },
+    {
+      "label": "Gemini 3",
+      "image": "https://img.shields.io/badge/Gemini%203-Pro-blue?style=for-the-badge"
+    },
+    {
+      "label": "Vertex AI",
+      "image": "https://img.shields.io/badge/Vertex-AI-orange?style=for-the-badge"
+    },
+    {
+      "label": "Python 3.12",
+      "image": "https://img.shields.io/badge/Python-3.12-green?style=for-the-badge&logo=python&logoColor=white"
+    },
+    {
+      "label": "Status Active",
+      "image": "https://img.shields.io/badge/Status-Active-brightgreen?style=for-the-badge"
+    }
+  ],
+  "sections": [
+    {
+      "title": "What is Visions",
+      "content": "**Visions** is an advanced AI photography mentor and creative director built on Google Cloud's Vertex AI platform. It combines the power of multiple Gemini models with **async cloud memory** to provide personalized, expert-level guidance.\n\n### Core Capabilities\n\n| Feature | Description |\n|---------|-------------|\n| 📸 **Photography Techniques** | Composition, lighting, camera settings |\n| 🎥 **Cinematic Direction** | Framing, color grading, visual storytelling |\n| 📷 **Camera Equipment** | Recommendations for Canon, Sony, Leica, Phase One |\n| 🖼️ **Image Analysis** | Critique your work with actionable feedback |\n| 🎨 **Image Generation** | Create visuals with Gemini 3 Pro Image Preview |\n| 🧠 **Persistent Memory** | Remembers your preferences across sessions |",
+      "emoji": "✨"
+    },
+    {
+      "title": "Memory Architecture",
+      "content": "Visions uses a **dual-layer cloud memory system** for personalized interactions:\n\n```\n┌─────────────────────────────────────────────────────────────┐\n│                     VISIONS AI MEMORY                        │\n├─────────────────────────────────────────────────────────────┤\n│                                                              │\n│  ⚡ SHORT-TERM (Firestore)           🧠 LONG-TERM (BigQuery) │\n│  ├── Session messages                ├── User preferences    │\n│  ├── Current context                 ├── Conversation history│\n│  └── Real-time sync                  └── Semantic search     │\n│                                                              │\n│  💾 FALLBACK (SQLite)                                        │\n│  └── Works offline/local development                         │\n│                                                              │\n└─────────────────────────────────────────────────────────────┘\n```\n\n**Auto-persists important info like:**\n- \"My name is...\" → `user:name`\n- \"I prefer...\" → `preference:general`\n- \"I work at...\" → `user:occupation`",
+      "emoji": "🧠"
+    },
+    {
+      "title": "Smart Model Cascade",
+      "content": "Visions uses an **intelligent multi-model architecture** that routes queries to the optimal AI model:\n\n```\n                    ┌──────────────────────┐\n                    │     USER QUERY       │\n                    └──────────┬───────────┘\n                               │\n                    ┌──────────▼──────────┐\n                    │  🎯 TRIAGE          │\n                    │  (Flash-Lite)       │\n                    └──────────┬──────────┘\n                               │\n         ┌─────────────────────┼─────────────────────┐\n         │                     │                     │\n    ┌────▼────┐          ┌─────▼─────┐         ┌─────▼─────┐\n    │   🌐    │          │    🔮     │         │    📚     │\n    │  Flash  │          │   Pro     │         │   RAG     │\n    │Grounded │          │ Thinking  │         │ Knowledge │\n    └────┬────┘          └─────┬─────┘         └─────┬─────┘\n         │                     │                     │\n         └─────────────────────┼─────────────────────┘\n                               │\n                    ┌──────────▼──────────┐\n                    │  🧠 GEMINI 3 PRO    │\n                    │  Final Synthesis    │\n                    └─────────────────────┘\n```\n\n### Model Routing\n\n| Model | Location | Purpose |\n|-------|----------|---------|\n| `gemini-3.1-pro-preview` | 🌍 Global | Final synthesis & response |\n| `gemini-3.1-flash-lite` | 📍 us-central1 | Query triage & quick instinct |\n| `gemini-3.6-flash` | 📍 us-central1 | Grounded search (real-time data) |\n| `gemini-3.1-pro-preview` | 📍 us-central1 | Deep thinking & analysis |\n| `gemini-3-pro-image` | 🌍 Global | Native image generation |",
+      "emoji": "🚀"
+    },
+    {
+      "title": "Architecture",
+      "content": "### Vertex AI Reasoning Engine\n\nVisions is deployed as a **Reasoning Engine** on Google Cloud:\n\n- ⚡ **Low-latency inference** - Optimized endpoints\n- 🔄 **Automatic scaling** - Handles traffic spikes\n- 🔒 **Enterprise security** - IAM integration\n- 📊 **Usage monitoring** - Built-in analytics\n- 🧠 **Cloud memory** - Firestore + BigQuery\n\n### Project Structure\n\n```\nVisions-ai/\n├── 🧠 agent.py              # Core agent with cascade logic + memory\n├── 💾 memory_cloud.py       # Cloud memory (Firestore + BigQuery)\n├── ⚙️ config.py             # Configuration & environment\n├── 🚀 deploy.py             # Reasoning Engine deployment\n├── 🐳 Dockerfile            # Cloud Run container (Python 3.12)\n├── 🔧 cloudbuild.yaml       # CI/CD pipeline\n├── 📚 tools/\n│   ├── vision_tools.py      # Gemini 3 vision capabilities\n│   ├── youtube_tools.py     # Video analysis\n│   ├── cinema_tools.py      # Cinematic generation\n│   └── agent_connect.py     # Inter-agent communication\n└── 🧪 tests/                # Test suite\n```",
+      "emoji": "🏗️"
+    },
+    {
+      "title": "Quick Start",
+      "content": "### Prerequisites\n\n- Python 3.10+\n- Google Cloud Project with Vertex AI enabled\n- `gcloud` CLI authenticated\n\n### Installation\n\n```bash\n# Clone the repository\ngit clone git@github.com:Who-Visions/Visions-ai.git\ncd Visions-ai\n\n# Create virtual environment\npython -m venv venv\nsource venv/bin/activate  # Linux/Mac\n# or\n.\\venv\\Scripts\\activate   # Windows\n\n# Install dependencies\npip install -r requirements.txt\n\n# Set up authentication\ngcloud auth application-default login\n```\n\n### Run Visions\n\n**Windows:**\n```batch\nvisions_visual.bat\n```\n\n**Linux/WSL:**\n```bash\npython cli_visual.py\n```",
+      "emoji": "🎮"
+    },
+    {
+      "title": "Commands",
+      "content": "| Command | Description |\n|---------|-------------|\n| `/generate <prompt>` | Generate image with aspect ratio selector |\n| `/image <path> <prompt>` | Analyze uploaded image |\n| `/memory` | View memory statistics |\n| `/stats` | System performance stats |\n| `/help` | Show all commands |\n| `/exit` | Terminate session |",
+      "emoji": "🛠️"
+    },
+    {
+      "title": "Deployment",
+      "content": "### Reasoning Engine (Vertex AI)\n\n```bash\npython deploy.py\n```\n\n### Cloud Run (via GitHub)\n\nPush to `main` branch triggers automatic deployment via Cloud Build.",
+      "emoji": "🚢"
+    },
+    {
+      "title": "Environment Variables",
+      "content": "| Variable | Description |\n|----------|-------------|\n| `VERTEX_PROJECT_ID` | GCP Project ID |\n| `VERTEX_LOCATION` | Region (default: us-central1) |\n| `REASONING_ENGINE_ID` | Deployed engine ID |\n| `GOOGLE_AI_STUDIO_API_KEY` | Fallback API key |",
+      "emoji": "🔐"
+    },
+    {
+      "title": "Working on this repo from more than one machine",
+      "content": "This repo is worked from several boxes. Announce before you start:\n\n```bash\nrelay check                                   # has another machine moved?\nrelay claim take -s visions/core -g \"what you are doing\"\n# ... work ...\nrelay claim release -s visions/core\nrelay create -g \"what you did\" -m \"where you left off\"\n```\n\nRecords land in `.handoffs/`. Install the CLI from [NouGenRelay](https://github.com/who-visions/nougenrelay); if `relay` is not on PATH after `pip install -e .`, `python -m nougen_relay` always works.\n\n**Commits carry their origin.** `.githooks/prepare-commit-msg` stamps every commit with `Machine:` and `Agent:` trailers, so `git log` answers \"which box, which lane\" rather than only \"which GitHub account\":\n\n```bash\ngit config core.hooksPath .githooks\n```\n\nThat is per-clone — `core.hooksPath` lives in `.git/config` and cannot be committed — so a fresh clone starts unstamped until someone runs it.\n\n### Why this exists\n\nUntil 2026-08-02 this repo had no registry at all, and it cost something specific. A GCP project move and a Gemini version bump sat uncommitted in a working tree for months, hidden under 285 files of mode-only churn (`100644 -> 100755` on everything, including `.gitignore`). In the same tree `visions/core/agent.py` carried two syntax errors and could not be imported, and `main` held 36 references to Gemini models Google had already shut down.\n\nNone of that was announced anywhere, because nothing was watching. Set `core.fileMode false` if you see phantom modifications — that noise is what kept the real diff invisible.",
+      "emoji": "🔄"
+    },
+    {
+      "title": "Contributing",
+      "content": "Contributions are welcome! Please feel free to submit a Pull Request.",
+      "emoji": "🤝"
+    },
+    {
+      "title": "License",
+      "content": "This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.",
+      "emoji": "📜"
+    }
+  ],
+  "links": [
+    {
+      "label": "Instagram",
+      "url": "https://instagram.com/aiwithdav3"
+    },
+    {
+      "label": "YouTube",
+      "url": "https://youtube.com/aiwithdav3"
+    },
+    {
+      "label": "Website",
+      "url": "https://whovisions.com"
+    },
+    {
+      "label": "Source Repository",
+      "url": "https://github.com/Who-Visions/Visions-ai"
+    }
+  ],
+  "footer": "Built with 💜 by Who Visions LLC — Powered by Google Cloud Vertex AI & Gemini"
+}
